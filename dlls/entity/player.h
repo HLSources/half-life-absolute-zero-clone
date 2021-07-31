@@ -410,6 +410,8 @@ public:
 	BOOL fHolsterAnimsEnabled;
 	BOOL fBreakHolster;
 	float cl_ladder_choice;
+	float cl_playerhelmet_choice;
+	float cl_playergenderswap_choice;
 
 	// instance of player at serverside, global at clientside.
 	int m_framesSinceRestore;
@@ -799,6 +801,8 @@ public:
 
 	void set_fvoxEnabled(BOOL argNew, BOOL setSilent);
 	void set_cl_ladder_choice(float argNew);
+	void set_cl_playerhelmet_choice(float argNew);
+	void set_cl_playergenderswap_choice(float argNew);
 
 
 	void InitStatusBar( void );

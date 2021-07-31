@@ -676,6 +676,8 @@
 #define DEFAULT_hud_brokentrans 0
 #define DEFAULT_cl_fvox 1
 #define DEFAULT_cl_ladder 1
+#define DEFAULT_cl_playerhelmet 0
+#define DEFAULT_cl_playergenderswap 0
 #define DEFAULT_precacheAll 1
 #define DEFAULT_cl_interp_entity 1
 

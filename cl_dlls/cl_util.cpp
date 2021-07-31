@@ -75,6 +75,8 @@ float global2PSEUDO_cl_ladder = -1;
 float globalPSEUDO_m_rawinputMem = -1;
 float global2PSEUDO_default_fov = -1;
 float global2PSEUDO_auto_adjust_fov = -1;
+float global2PSEUDO_cl_playerhelmet = -1;
+float global2PSEUDO_cl_playergenderswap = -1;
 
 float g_cl_nextCVarUpdate = -1;
 
@@ -117,6 +119,11 @@ void lateCVarInit(void){
 
 	global2PSEUDO_cl_ladder = EASY_CVAR_GET(cl_ladder);
 	easyClientCommand("_cl_ladder %f", global2PSEUDO_cl_ladder);
+	
+	global2PSEUDO_cl_playerhelmet = EASY_CVAR_GET(cl_playerhelmet);
+	easyClientCommand("_cl_playerhelmet %f", global2PSEUDO_cl_playerhelmet);
+	global2PSEUDO_cl_playergenderswap = EASY_CVAR_GET(cl_playergenderswap);
+	easyClientCommand("_cl_playergenderswap %f", global2PSEUDO_cl_playergenderswap);
 
 	// NOTE: m_rawinput does not need startup script here.
 	// It is already read by inputw32.cpp at startup as needed and acted on there.
@@ -188,6 +195,40 @@ void updateClientCVarRefs(void){
 		easyClientCommand("_cl_ladder %f", global2PSEUDO_cl_ladder);
 	}
 	
+	if (EASY_CVAR_GET(cl_playerhelmet) != global2PSEUDO_cl_playerhelmet) {
+
+		// Attempt to see if we can detect other forms of Half-Life trying to force models/player/... choices instead
+		// of models/player.mdl in single-player.
+		// If so, the player can be warned on changing helmet/gender CVars to know that they will be 
+		// ignored.
+		// !!! "developer" being 0 or 1 looks to be very signiifcant!  No clue why.
+		//easyPrintLine("Single/multi-player check. Maxclients:%d IsMultiplayer:%d Deathmatch:%d", gpGlobals->maxClients, IsMultiplayer(), gpGlobals->deathmatch);
+		
+		// See if the player should be warned about this CVar change not showing up in the custom model
+		// (something other than models/player.mdl being used as the player model in either of these cases, they don't
+		//  have the support for helmet/gender choice)
+		if(EASY_CVAR_GET(cl_playerhelmet) == 1){
+			if(IsMultiplayer()){
+				easyForcePrintLine("WARNING: cl_playerhelmet is on, yet this is a multiplayer game.  Custom player models not guaranteed supported.");
+			}else if(CVAR_GET_FLOAT("developer") != 0 ){
+				easyForcePrintLine("WARNING: cl_playerhelmet is on, yet the \"developer\" CVar is non-zero.  Custom player models not guaranteed supported.");
+			}
+		}
+		global2PSEUDO_cl_playerhelmet = EASY_CVAR_GET(cl_playerhelmet);
+		easyClientCommand("_cl_playerhelmet %f", global2PSEUDO_cl_playerhelmet);
+	}
+	if (EASY_CVAR_GET(cl_playergenderswap) != global2PSEUDO_cl_playergenderswap) {
+		if(EASY_CVAR_GET(cl_playergenderswap) == 1){
+			if(IsMultiplayer()){
+				easyForcePrintLine("WARNING: cl_playergenderswap is on, yet this is a multiplayer game.  Custom player models not guaranteed supported.");
+			}else if(CVAR_GET_FLOAT("developer") != 0 ){
+				easyForcePrintLine("WARNING: cl_playergenderswap is on, yet the \"developer\" CVar is non-zero.  Custom player models not guaranteed supported.");
+			}
+		}
+		global2PSEUDO_cl_playergenderswap = EASY_CVAR_GET(cl_playergenderswap);
+		easyClientCommand("_cl_playergenderswap %f", global2PSEUDO_cl_playergenderswap);
+	}
+	
 	if (EASY_CVAR_GET(m_rawinput) != globalPSEUDO_m_rawinputMem) {
 		globalPSEUDO_m_rawinputMem = EASY_CVAR_GET(m_rawinput);
 		// this CVar can modify originalmouseparms and newmouseparms, and apply immediately.
@@ -197,10 +238,6 @@ void updateClientCVarRefs(void){
 
 
 
-
-
-
-	
 	
 	if(EASY_CVAR_GET(default_fov) != global2PSEUDO_default_fov){
 		global2PSEUDO_default_fov = EASY_CVAR_GET(default_fov);
@@ -950,6 +987,11 @@ void testForHelpFile(void){
 
 // called by UTIL_ServerMassCVarReset in dlls/util.cpp
 void resetModCVarsClientOnly(){
+	
+	// Sure, why not.  Show the HUD.
+	CVAR_SET_FLOAT("hud_draw", 1);
+	CVAR_SET_FLOAT("r_drawviewmodel", 1);
+	
 	EASY_CVAR_RESET_MASS
 	// if applicable
 	saveHiddenCVars();

@@ -5304,6 +5304,24 @@ void ClientCommand( edict_t *pEntity )
 		
 		tempRef->set_cl_ladder_choice(tryStringToFloat(arg1ref));
 	}
+	else if (FStrEq(pcmdRefinedRef, "_cl_playerhelmet")) {
+		if (CMD_ARGC() <= 1) {
+			return;
+		}
+		const char* arg1ref = CMD_ARGV(1);
+		CBasePlayer* tempRef = GetClassPtr((CBasePlayer*)pev);
+		
+		tempRef->set_cl_playerhelmet_choice(tryStringToFloat(arg1ref));
+	}
+	else if (FStrEq(pcmdRefinedRef, "_cl_playergenderswap")) {
+		if (CMD_ARGC() <= 1) {
+			return;
+		}
+		const char* arg1ref = CMD_ARGV(1);
+		CBasePlayer* tempRef = GetClassPtr((CBasePlayer*)pev);
+		
+		tempRef->set_cl_playergenderswap_choice(tryStringToFloat(arg1ref));
+	}
 	else if (FStrEq(pcmdRefinedRef, "_default_fov")) {
 		if (CMD_ARGC() <= 1) {
 			return;

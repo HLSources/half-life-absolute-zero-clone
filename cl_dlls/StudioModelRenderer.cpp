@@ -2853,6 +2853,17 @@ int CStudioModelRenderer::StudioDrawPlayerReflection(int flags, entity_state_t* 
 			m_pCurrentEntity->curstate.body = 255;
 		}
 
+		//MODDD - NOTE.
+		// This is kinda hard to read, but "m_pRenderModel == m_pCurrentEntity->model" ?
+		// My guess is, this only happens on failing to load the player model at
+		// "models/player/X.X.mdl" where X is the "model" CVar's value, used in
+		// multiplayer or the "developer" CVar being non-zero in single-player.
+		// This is hard-coded behavior but this is still checking for those two things
+		// as well to know if the "model" CVar will be used.
+		// Anyway, being in single player or developer being non-zero, and having a missing
+		// player model (assuming using models/player/X/X.mdl), force the helmet submodel on.
+		// Happens to be this way for the modified models/player.mdl anyway that such a case
+		// appears to be using anyway.
 		if (!(m_pCvarDeveloper->value == 0 && !IsMultiplayer()) && (m_pRenderModel == m_pCurrentEntity->model))
 		{
 			m_pCurrentEntity->curstate.body = 1; // force helmet

@@ -3,7 +3,7 @@
 // to re-fetch the date sometimes.  Besides a full rebuild.
 
 // should increment between noticeable releases.
-#define MODINFO_Version "2.0_P13c"
+#define MODINFO_Version "2.0_P13d"
 
 // date of compilation.
 // Picked automatically if commented out (but it resets with each run of the game)

@@ -764,10 +764,12 @@ egon: glitch in sometimes failing to play the looping continual fire sound since
 
 rpg: new model + anims to work as expected
 
+New CVars: cl_playerhelmet and cl_playergenderswap.  0 or 1.
+Only works in single player with the "developer" CVar set to 0 (only time models/player.mdl is used for the player), and needs third person to be seen then.
+To work in other cases (models/player/X.mdl, 'x' being the "model" CVar), that model needs to have submodels to support having a helmet for place #1, female for #2, and female+helmet for #3.
+
 
 LATER:
 Panthereye will also be more willing to jump while routing randomly around a player it can't reach to melee.  (maybe?)
 Floater melee, anim now present in model.
 Kingpin teleport on taking damage, + get a green healing aurora while in cover?  (unsure)
-
-

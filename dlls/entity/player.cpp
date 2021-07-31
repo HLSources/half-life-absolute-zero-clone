@@ -119,7 +119,20 @@ EASY_CVAR_EXTERN_CLIENTSENDOFF_BROADCAST_DEBUGONLY(gaussRecoilSendsUpInSP)
 EASY_CVAR_EXTERN(playerDeadTruce)
 EASY_CVAR_EXTERN(playerDeadTalkerBehavior)
 
+
 extern int g_TalkMonster_PlayerDead_DialogueMod;
+
+
+
+
+// WARNING: support for helmet choice / gender only for AZ's own "models/player.mdl" player model.
+// Unsure if there's a solid way to check for that yet, probably a CVar that tells what to use.
+// Ignore CVars for helmet/gender if the model is anything but that for now?
+// Anyway, use the only bodygroup with this formula for submodel:
+//     submodelChoice = (cvar_gender * 2) + cvar_helmet
+#define BODYGROUP_PLAYER_DEFAULT 0
+
+
 
 
 #define TRAIN_NEW		0xc0
@@ -2629,7 +2642,27 @@ void CBasePlayer::set_cl_ladder_choice(float argNew) {
 	g_engfuncs.pfnSetPhysicsKeyValue(edict(), "plm", compatiblestring);
 }
 
+void CBasePlayer::set_cl_playerhelmet_choice(float argNew) {
+	if(argNew == 1){
+		// helmet on
+		cl_playerhelmet_choice = 1;
+	}else{
+		cl_playerhelmet_choice = 0;
+	}
 
+	SetBodygroup( BODYGROUP_PLAYER_DEFAULT, (int)((cl_playergenderswap_choice * 2) + cl_playerhelmet_choice) );
+}
+void CBasePlayer::set_cl_playergenderswap_choice(float argNew) {
+	if(argNew == 1){
+		// female
+		cl_playergenderswap_choice = 1;
+	}else{
+		// male
+		cl_playergenderswap_choice = 0;
+	}
+
+	SetBodygroup( BODYGROUP_PLAYER_DEFAULT, (int)((cl_playergenderswap_choice * 2) + cl_playerhelmet_choice) );
+}
 
 
 
@@ -2653,6 +2686,8 @@ CBasePlayer::CBasePlayer(void){
 	fHolsterAnimsEnabled = 0;
 	fBreakHolster = 0;
 	cl_ladder_choice = 0;
+	cl_playerhelmet_choice = 0;
+	cl_playergenderswap_choice = 0;
 
 
 

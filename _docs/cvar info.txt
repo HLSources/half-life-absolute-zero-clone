@@ -1646,3 +1646,27 @@ playerDeadTalkerBehavior (1) - MODEVAR (1 choice so far)
 1: when the player dies, a process begins.  All talkers turn to face the player if it is convenient to, wait for any combat to die down (if any are left when that happens), and two talkers (which can come from the closest one following the player and the nearest one otherwise, or two nearest if none were following) will come closer to play kneel animations and say a line.  Ones further away will still come out of cover to at least face the player from up to some distance.
    TODO: post-death lines, none of the as-is seem too fitting, resumes normal conversation after ~20-25 seconds of starting the walk-up to kneel
 
+
+-----------------------------------------------------------------------
+cl_playerhelmet (0) - BOOL.  When on, the standard player model will have its helmet on.  Only applies when models/player.mdl is the player model.
+
+cl_playergenderswap (0) - BOOL.  When on, the Gina choice of models/player.mdl is used instead.  Ditto.
+
+*** NOTES FOR cl_playerhelmet / cl_playergenderswap ***
+Only models/player.mdl happens to support the "cl_playerhelmet" and "cl_playergenderswap" CVars below as the game comes.
+models/player.mdl is used when the "developer" CVar is be 0 and the game is singleplayer (maxplayers of 1).  Otherwise, a model in models/player/X/X.mdl will be selected with the "model" CVar's value filled-in.
+
+Example:  for multiplayer or developer not 0, say "model" is "gordon", then "models/player/gordon/gordon.mdl" is used.
+To work in other cases, that model needs to have submodels to support having a helmet for place #1, female for #2, and female+helmet for #3 (default is #0).
+
+Or, just copy "models/player.mdl" to a new folder under "models/player/" and name apropriately like other custom models
+(more obvious if you look at how the valve gamefolder does it).
+Example: Say your new model will be nameded "custom".  Make the folder for "models/player/custom" and copy/paste "models/player.mdl" to that.
+         Rename the new player.mdl to custom.mdl.
+         You should end up with, "models/player/custom/custom.mdl".
+         Ingame, set the "model" CVar to "custom" to use it.  Despite warnings, it will now be compatible with cl_playerhelmet/cl_playergenderswap.
+"developer" CVar must be non-zero to show up in single-player, thirdperson to see it yourself.
+The server and any clients must have also done this for the same name in order for this to work in multiplayer.
+
+Impact from cl_himodels being 1 for "models/player.mdl" unknown, probably nothing.
+-----------------------------------------------------------------------
