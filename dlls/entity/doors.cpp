@@ -45,6 +45,8 @@ TYPEDESCRIPTION	CBaseDoor::m_SaveData[] =
 	DEFINE_FIELD( CBaseDoor, m_bUnlockedSound, FIELD_CHARACTER ),	
 	DEFINE_FIELD( CBaseDoor, m_bUnlockedSentence, FIELD_CHARACTER ),	
 
+	DEFINE_FIELD( CBaseDoor, m_sNetName_OnOpen, FIELD_STRING ),
+
 };
 
 IMPLEMENT_SAVERESTORE( CBaseDoor, CBaseToggle );
@@ -197,8 +199,15 @@ void CBaseDoor::KeyValue( KeyValueData *pkvd )
 		pev->scale = atof(pkvd->szValue) * (1.0/8.0);
 		pkvd->fHandled = TRUE;
 	}
-	else
+	//MODDD
+	else if (FStrEq(pkvd->szKeyName, "netname_onopen"))
+	{
+		m_sNetName_OnOpen = ALLOC_STRING(pkvd->szValue);
+		pkvd->fHandled = TRUE;
+	}
+	else{
 		CBaseToggle::KeyValue( pkvd );
+	}
 }
 
 BOOL CBaseDoor::IsWorldAffiliated(){
@@ -652,9 +661,18 @@ void CBaseDoor::OnDoorHitTop(void){
 		}
 	}
 
-	// Fire the close target (if startopen is set, then "top" is closed) - netname is the close target
-	if ( pev->netname && (pev->spawnflags & SF_DOOR_START_OPEN) )
-		FireTargets( STRING(pev->netname), m_hActivator, this, USE_TOGGLE, 0 );
+	//MODDD - involving the new m_sNetName
+	if(pev->spawnflags & SF_DOOR_START_OPEN){
+		// Starts open, hit top?  Opposite state, so FireTargets on the netname if we have one.
+		// Fire the close target (if startopen is set, then "top" is closed) - netname is the close target
+		if ( pev->netname )
+			FireTargets( STRING(pev->netname), m_hActivator, this, USE_TOGGLE, 0 );
+	}else{
+		// Starts closed, but hit the top?  Reached the start state, so FireTargets on the
+		// netname_onopen instead
+		if ( m_sNetName_OnOpen )
+			FireTargets( STRING(m_sNetName_OnOpen), m_hActivator, this, USE_TOGGLE, 0 );
+	}
 
 	SUB_UseTargets( m_hActivator, USE_TOGGLE, 0 ); // this isn't finished
 }//END OF OnDoorHitTop
@@ -699,9 +717,20 @@ void CBaseDoor::OnDoorHitBottom(void){
 
 	SUB_UseTargets( m_hActivator, USE_TOGGLE, 0 ); // this isn't finished
 
-	// Fire the close target (if startopen is set, then "top" is closed) - netname is the close target
-	if ( pev->netname && !(pev->spawnflags & SF_DOOR_START_OPEN) )
-		FireTargets( STRING(pev->netname), m_hActivator, this, USE_TOGGLE, 0 );
+	//MODDD - involving the new m_sNetName
+	if(!(pev->spawnflags & SF_DOOR_START_OPEN)){
+		// Starts closed, hit bottom?  Opposite state, so FireTargets on the netname if we have one.
+		// Fire the close target (if startopen is set, then "top" is closed) - netname is the close target
+		if ( pev->netname )
+			FireTargets( STRING(pev->netname), m_hActivator, this, USE_TOGGLE, 0 );
+	}else{
+		// Starts open, but hit the bottom?  Reached the start state, so FireTargets on the
+		// netname_onopen instead
+		if ( m_sNetName_OnOpen )
+			FireTargets( STRING(m_sNetName_OnOpen), m_hActivator, this, USE_TOGGLE, 0 );
+	}
+
+
 }//END OF OnDoorHitBottom
 
 

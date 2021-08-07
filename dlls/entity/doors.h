@@ -143,6 +143,13 @@ public:
 	BYTE	m_bLockedSentence;	
 	BYTE	m_bUnlockedSound;	
 	BYTE	m_bUnlockedSentence;
+
+
+	//MODDD - the entvars (pev) have "netname" for what to call FireTargets on whne the door reaches the opposite state:
+	// starts open, -> when closed,
+	// starts closed -> when open
+	// ...but we need to be able to handle reaching the original state too.
+	string_t m_sNetName_OnOpen;
 };
 
 
