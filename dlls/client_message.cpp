@@ -239,7 +239,7 @@ void LinkUserMessages( void )
 	gmsgYMG = REG_USER_MSG("YMG", 0);
 	gmsgYMG_Stop = REG_USER_MSG("YMG_S", 0);
 
-}//END OF LinkUserMessages
+}// LinkUserMessages
 
 
 

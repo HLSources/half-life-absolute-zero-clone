@@ -684,7 +684,7 @@ void CBarney::SayNearPassive(void) {
 	case 3:PlaySentenceSingular("BA_SMELL1", 4, VOL_NORM, ATTN_NORM);break;
 	case 4:PlaySentenceSingular("BA_SMELL2", 4, VOL_NORM, ATTN_NORM);break;
 	default:break;
-	}//END OF switch
+	}// switch
 
 }
 
@@ -697,7 +697,7 @@ void CBarney::OnNearCautious(void) {
 	}
 
 	unholsterTimer = gpGlobals->time + EASY_CVAR_GET_DEBUGONLY(barneyUnholsterTime);
-}//END OF onNearCautious
+}// onNearCautious
 
 
 void CBarney::SayNearCautious(void) {
@@ -739,8 +739,8 @@ void CBarney::SayNearCautious(void) {
 	case 33:PlaySentenceSingular("BA_STOP3", 4, VOL_NORM, ATTN_NORM);break;
 	case 34:PlaySentenceSingular("BA_STOP4", 4, VOL_NORM, ATTN_NORM);break;
 	default:break;
-	}//END OF switch
-}//END OF SayNearCautious
+	}// switch
+}// SayNearCautious
 
 
 
@@ -1084,28 +1084,13 @@ void CBarney::MonsterThink(void){
 		case 26:this->SetSequenceByName("pepsiswing"); break;
 		case 27:this->SetSequenceByName("pepsipush"); break;
 		case 28:this->SetSequenceByName("hambone"); break;
-
 		case 29:this->SetSequenceByName("barn_wave"); break;
 		case 30:this->SetSequenceByName("barn_wave"); break;
 		case 31:this->SetSequenceByName("stuka_warn"); break;
 		case 32:this->SetSequenceByName("stuka_warn"); break;
-		}//END OF switch
+		}
 	}
 
-
-
-	/*
-	// STOP!  Do this in the proper schedule.
-	if( 
-		//(m_pSchedule == slBaFollow || m_pSchedule == slBaFaceTarget) &&
-		//(m_hTargetEnt == NULL || (m_hTargetEnt != NULL && !m_hTargetEnt->IsAlive()) )
-		){
-		//Fail if who we're supposed to follow dies.
-		//m_hTargetEnt = NULL;
-		leaderRecentlyDied = TRUE;
-		TaskFail();
-	}
-	*/
 
 	if(reloadSoundTime != -1 && gpGlobals->time >= reloadSoundTime){
 
@@ -1114,8 +1099,6 @@ void CBarney::MonsterThink(void){
 		}else{
 			m_cAmmoLoaded = BARNEY_WEAPON_CLIP_SIZE;
 		}
-
-		
 		UTIL_PlaySound( ENT(pev), CHAN_WEAPON, "items/9mmclip1.wav", 1, ATTN_NORM, 0, 100, FALSE );
 		reloadSoundTime = -1;
 	}
@@ -1137,8 +1120,8 @@ void CBarney::MonsterThink(void){
 		}
 	}
 
+}// MonsterThink
 
-}//END OF MonsterThink
 
 //MODDD
 void CBarney::SetActivity ( Activity NewActivity )
@@ -1490,6 +1473,11 @@ void CBarney::DeathSound ( void )
 //             damage differently still looks weird, no way that precision makes sense.
 GENERATE_TRACEATTACK_IMPLEMENTATION(CBarney)
 {
+	// for statistics
+	float flDamageStart = flDamage;
+	// Before any logic further down, like a helmet hit, changes the hitgroup
+	// type to "head" after it's done
+	int iHitgroupStart = ptr->iHitgroup;
 
 	//MODDD - like agrunts and hgruntsn now, blast damage does even damage.  So block 10% unconditionally.
 	if ((bitsDamageType & DMG_BLAST) || (bitsDamageTypeMod & DMG_HITBOX_EQUAL)) {
@@ -1519,8 +1507,8 @@ GENERATE_TRACEATTACK_IMPLEMENTATION(CBarney)
 				}
 				else {
 					// low damage?
-					// cut by 60%
-					flDamage = flDamage * 0.4;
+					// cut by 65%
+					flDamage = flDamage * 0.35;
 					useBloodEffect = FALSE;
 				}
 			}
@@ -1538,7 +1526,7 @@ GENERATE_TRACEATTACK_IMPLEMENTATION(CBarney)
 				// absorb damage
 				if (flDamage <= 20) {
 					//flDamage = 0.01;
-					flDamage = flDamage * 0.12;
+					flDamage = flDamage * 0.10;
 					//MODDD - why not a little random-ness in ricochet flash size like the agrunt?
 					// was a flat 1.
 					UTIL_Ricochet(ptr->vecEndPos, RANDOM_FLOAT(1.0, 1.6));
@@ -1547,8 +1535,8 @@ GENERATE_TRACEATTACK_IMPLEMENTATION(CBarney)
 					if (useBulletHitSound) { *useBulletHitSound = FALSE; }
 					useBloodEffect = FALSE;
 				}else {
-					//MODDD - Hitting the armor still shouldn't be insignificant, reduce damage by 15%.
-					flDamage *= 0.85;
+					//MODDD - Hitting the armor still shouldn't be insignificant, reduce damage by 20%.
+					flDamage *= 0.80;
 				}
 			}else if (bitsDamageType & (DMG_SLASH | DMG_CLUB)) {
 				if (flDamage <= 20) {
@@ -1568,23 +1556,43 @@ GENERATE_TRACEATTACK_IMPLEMENTATION(CBarney)
 			ptr->iHitgroup = HITGROUP_HEAD;
 
 		}break;
-
-		//MODDD - anywhere else, cut bullet damage by 10%.  Still some protection there.
+		case HITGROUP_HEAD: {
+			// Not the helmet, but really the head?  OUCH
+			// Leave damage at 100%
+		}break;
+		//MODDD - anywhere else, cut physical damage by 10%.  Still some protection there.
 		// just be 'default' at this point
 		//case HITGROUP_LEFTARM:
 		//case HITGROUP_RIGHTARM:
 		//case HITGROUP_LEFTLEG:
 		//case HITGROUP_RIGHTLEG:
 		default:
-			if (bitsDamageType & (DMG_BULLET)) {
-				flDamage = flDamage * 0.1;
+			if (bitsDamageType & (DMG_BULLET | DMG_SLASH | DMG_CLUB)) {
+				if (flDamage >= 20){
+					// 30%
+					flDamage = flDamage * 0.7;
+				}else{
+					// 40%
+					flDamage = flDamage * 0.6;
+				}
 			}
 		break;
 
-		}//END OF switch on hitbox
-	}//END OF not DMG_BLAST or EQUAL_HITBOX check
+		}// switch on hitbox
+	}// not DMG_BLAST or EQUAL_HITBOX check
+
+
+	debugTraceAttack(ptr, bitsDamageType, bitsDamageTypeMod, iHitgroupStart, flDamageStart, flDamage);
 
 	GENERATE_TRACEATTACK_PARENT_CALL(CTalkMonster);
+}
+
+
+
+const char* CBarney::getHitgroupName(int arg_iHitgroup){
+	if(arg_iHitgroup == HITGROUP_BARNEY_HELMET)return "HITGROUP_BARNEY_HELMET";
+
+	return CBaseMonster::getHitgroupName(arg_iHitgroup);
 }
 
 
@@ -1621,7 +1629,7 @@ GENERATE_KILLED_IMPLEMENTATION(CBarney)
 					g->m_iDefaultAmmo = min((int)EASY_CVAR_GET_DEBUGONLY(barneyDroppedGlockAmmoCap), m_cAmmoLoaded);
 				}
 			}
-		}//END OF if(pGun != NULL)
+		}// if(pGun != NULL)
 
 	}
 
@@ -1715,7 +1723,7 @@ Schedule_t* CBarney::GetScheduleOfType ( int Type )
 
 
 
-	}//END OF switch( Type )
+	}// switch( Type )
 
 
 	return CTalkMonster::GetScheduleOfType( Type );
@@ -2108,7 +2116,7 @@ void CBarney::HandleEventQueueEvent(int arg_eventID){
 			m_fGunDrawn = FALSE;
 			//...
 		break;
-	}//END OF switch(...)
+	}// switch(...)
 	
 }
 
@@ -2322,7 +2330,7 @@ int CBarney::LookupActivityHard(int activity){
 
 				}
 				
-			}//END OF IsTalking check
+			}// IsTalking check
 			
 		break;}
 		/*
@@ -2332,7 +2340,7 @@ int CBarney::LookupActivityHard(int activity){
 		break;
 		*/
 
-	}//END OF switch
+	}// switch
 	//not handled by above?  try the real deal.
 	return CBaseAnimating::LookupActivity(activity);
 }
@@ -2370,7 +2378,7 @@ int CBarney::tryActivitySubstitute(int activity){
 		break;
 		*/
 
-	}//END OF switch
+	}// switch
 	
 	//not handled by above?
 	return CBaseAnimating::LookupActivity(activity);
@@ -2415,7 +2423,7 @@ BOOL CBarney::violentDeathAllowed(void){
 BOOL CBarney::violentDeathClear(void){
 	//Works for a lot of things going backwards.
 	return violentDeathClear_BackwardsCheck(200);
-}//END OF violentDeathAllowed
+}// violentDeathAllowed
 int CBarney::violentDeathPriority(void){
 	return 3;
 }
@@ -2485,7 +2493,7 @@ void CBarney::talkAboutKilledEnemy(void) {
 			case 1:PlaySentenceSingular("BA_KILL4", 4, VOL_NORM, ATTN_NORM);break;
 			case 2:PlaySentenceSingular("BA_KILL6", 4, VOL_NORM, ATTN_NORM);break;
 			}
-		}//END OF enemy classify check
+		}// enemy classify check
 
 
 		if (EASY_CVAR_GET_DEBUGONLY(barneyUnholsterTime) != -1 && unholsterTimer != -1) {
@@ -2600,7 +2608,7 @@ void CBarney::womboCombo(void) {
 				break;
 			}
 		}
-	}//END OF while(...)
+	}// while(...)
 
 	if (pickedNumber2 != NULL && pickedNumber3 != NULL) {
 		//WE GOT A COMBO!!!

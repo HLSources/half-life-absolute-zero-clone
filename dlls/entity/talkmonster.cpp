@@ -1051,10 +1051,10 @@ void CTalkMonster::RunTask( Task_t *pTask )
 					}else{
 						//easyForcePrintLine("I, %s:%d LOST TRACK OF MY TALKER AND MUST CEASE STARING AT THAT WHICH NO LONGER PARTAKES IN THE SWEET FRUIT OF EXISTANCE.", getClassname(), monsterID);
 					}
-				}//END OF wasLookingAtTalker check
+				}// wasLookingAtTalker check
 
 
-			}//END OF not moving AND not talking checks
+			}// not moving AND not talking checks
 
 			//made it here? we're done.
 			TaskComplete();
@@ -2025,7 +2025,7 @@ void CTalkMonster::ForgetEnemy(void) {
 
 	CBaseMonster::ForgetEnemy();
 
-}//END OF ForgetEnemy
+}// ForgetEnemy
 
 
 void CTalkMonster::OnForgiveDeclineSpam(void) {
@@ -2057,16 +2057,16 @@ void CTalkMonster::PlaySentenceUninterruptable(const char *pszSentence, float du
 	PlaySentence(pszSentence, duration, volume, attenuation, pitch);
 	ChangeSchedule(slTlkIdleEyecontact);
 
-}//END OF PlaySentenceTo
+}// PlaySentenceTo
 
 
 
 void CTalkMonster::PlaySentenceTo(const char *pszSentence, float duration, float volume, float attenuation, BOOL bConcurrent, CBaseEntity *pListener ){
 	PlaySentenceTo(pszSentence, duration, volume, attenuation, GetVoicePitch(), bConcurrent, pListener);
-}//END OF PlaySentenceTo
+}// PlaySentenceTo
 void CTalkMonster::PlaySentenceNoPitchTo(const char *pszSentence, float duration, float volume, float attenuation, BOOL bConcurrent, CBaseEntity *pListener ){
 	PlaySentenceTo(pszSentence, duration, volume, attenuation, 100, bConcurrent, pListener);
-}//END OF PlaySentenceTo
+}// PlaySentenceTo
 
 //Same as PlayScriptedSentence, but a bit more aggressive. Changes the current schedule to eye contact as well.
 void CTalkMonster::PlaySentenceTo(const char *pszSentence, float duration, float volume, float attenuation, int pitch, BOOL bConcurrent, CBaseEntity *pListener ){
@@ -2080,7 +2080,7 @@ void CTalkMonster::PlaySentenceTo(const char *pszSentence, float duration, float
 	PlayScriptedSentence(pszSentence, duration, volume, attenuation, pitch, bConcurrent, pListener);
 	ChangeSchedule(slTlkIdleEyecontact);
 
-}//END OF PlaySentenceTo
+}// PlaySentenceTo
 
 
 
@@ -2110,12 +2110,12 @@ void CTalkMonster::PlayScriptedSentence( const char *pszSentence, float duration
 //MODDD - version of PlaySentence that doesn't take pitch. Assumes a pitch of GetVoicePitch() effectively (this talker's own pitch) like retail.
 void CTalkMonster::PlaySentence(const char* pszSentence, float duration, float volume, float attenuation){
 	PlaySentence(pszSentence, duration, volume, attenuation, GetVoicePitch());
-}//END OF PlaySentence
+}// PlaySentence
 
 //Similar, but forces a pitch of 100 (unaltered from the sound file)
 void CTalkMonster::PlaySentenceNoPitch(const char* pszSentence, float duration, float volume, float attenuation){
 	PlaySentence(pszSentence, duration, volume, attenuation, 100);
-}//END OF PlaySentenceNoPitch
+}// PlaySentenceNoPitch
 
 void CTalkMonster::PlaySentence( const char *pszSentence, float duration, float volume, float attenuation, int pitch )
 {
@@ -2156,10 +2156,10 @@ void CTalkMonster::PlaySentence( const char *pszSentence, float duration, float 
 // doesn't want the "!" in front.
 void CTalkMonster::PlaySentenceSingular(const char *pszSentence, float duration, float volume, float attenuation ){
 	PlaySentenceSingular(pszSentence, duration, volume, attenuation, GetVoicePitch());
-}//END OF PlaySentenceSingular
+}// PlaySentenceSingular
 void CTalkMonster::PlaySentenceNoPitchSingular(const char *pszSentence, float duration, float volume, float attenuation ){
 	PlaySentenceSingular(pszSentence, duration, volume, attenuation, 100);
-}//END OF PlaySentenceNoPitchSingular
+}// PlaySentenceNoPitchSingular
 
 // If not giving a sentence group, use this. No exclamation mark required.
 void CTalkMonster::PlaySentenceSingular(const char *pszSentence, float duration, float volume, float attenuation, int pitch ){
@@ -2175,7 +2175,7 @@ void CTalkMonster::PlaySentenceSingular(const char *pszSentence, float duration,
 	copyString(pszSentence, &sentenceToPlay[1], 127 - 1);
 	
 	EMIT_SOUND_DYN( edict(), CHAN_VOICE, sentenceToPlay, volume, attenuation, 0, pitch);
-}//END OF PlaySentenceSingular
+}// PlaySentenceSingular
 
 
 
@@ -2366,7 +2366,7 @@ void CTalkMonster::BecomeProvoked(CBaseEntity* recentAttacker) {
 	forgiveSomePlayerDamageTime = -1;
 	recentDeclines = 0;  // this time is personal
 
-}//END OF BecomeProvoked
+}// BecomeProvoked
 
 
 // Hey, be careful with that
@@ -2376,7 +2376,7 @@ void CTalkMonster::BecomeSuspicious(float arg_forgiveSuspiciousTime) {
 	forgiveSuspiciousTime = gpGlobals->time + arg_forgiveSuspiciousTime;
 	// forgive a point of damage no sooner than 5 seconds, but can be later.
 	forgiveSomePlayerDamageTime = gpGlobals->time + max(arg_forgiveSuspiciousTime/5, 5);
-}//END OF BecomeProvoked
+}// BecomeProvoked
 
 
 
@@ -2501,7 +2501,7 @@ Schedule_t* CTalkMonster::GetSchedule(){
 
 
 	return CBaseMonster::GetSchedule();
-}//END OF GetSchedule
+}// GetSchedule
 
 
 
@@ -2904,7 +2904,7 @@ void CTalkMonster::MonsterThink(void){
 		//spawn effects every so often?
 
 
-	}//END OF if(EASY_CVAR_GET_DEBUGONLY(wildHeads))
+	}// if(EASY_CVAR_GET_DEBUGONLY(wildHeads))
 
 
 	if(this->m_pSchedule == NULL){
@@ -2997,7 +2997,7 @@ void CTalkMonster::MonsterThink(void){
 	}
 
 
-}//END OF monsterThink
+}// monsterThink
 
 
 
@@ -3539,7 +3539,7 @@ void CTalkMonster::OnCineCleanup(CCineMonster* pOldCine){
 
 	CBaseMonster::OnCineCleanup(pOldCine);
 
-}//END OF OnCineCleanup
+}// OnCineCleanup
 
 
 

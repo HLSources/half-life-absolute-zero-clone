@@ -13,7 +13,6 @@
 #ifndef ARCHER_H
 #define ARCHER_H
 
-
 // If this spawnflag is on, archers will use long-range logic.
 // They will try to pathfind to random points in a large body of water to hide and reach the surface to launch
 // energy balls
@@ -187,21 +186,9 @@ public:
 			pev->absmax = pev->origin + Vector(26, 26, 26);
 		}
 		
-	}//END OF SetObjectCollisionBox
+	}// SetObjectCollisionBox
+
+};
 
 
-
-};//END OF class CArcher
-
-
-
-
-
-
-#endif //END OF #ifdef ARCHER_H
-
-
-
-
-
-
+#endif// ARCHER_H

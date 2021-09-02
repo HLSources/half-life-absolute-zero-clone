@@ -84,8 +84,9 @@ EASY_CVAR_EXTERN(sv_rpg_projectile_model)
 void saySomethingBarneyRocket(CBaseEntity* entRef);
 
 
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 LINK_ENTITY_TO_CLASS( weapon_rpg, CRpg );
-
+#endif
 
 
 
@@ -151,10 +152,8 @@ void CLaserSpot::Revive( void )
 }
 
 
+
 LINK_ENTITY_TO_CLASS( rpg_rocket, CRpgRocket );
-
-
-
 
 CRpgRocket::CRpgRocket(void){
 	// don't touch vecMoveDirectionMemory, it gets set when the entity's spawned.
@@ -162,7 +161,7 @@ CRpgRocket::CRpgRocket(void){
 	alreadyDeleted = FALSE;
 	forceDumb = FALSE;
 
-}//END OF CRpgRocket constructor
+}// CRpgRocket constructor
 
 // NOTICE - CRpgRocket is already sitting in a completely serverside 'ifdef' check.
 TYPEDESCRIPTION	CRpgRocket::m_SaveData[] =
@@ -328,9 +327,9 @@ void saySomethingBarneyRocket(CBaseEntity* entRef){
 		EMIT_SOUND_DYN(entRef->edict(), channelChoice, "barney/c1a4_ba_octo4.wav", 1.0f, attenuationChoice, 0, 100);
 	break;
 	
-	}//END OF switch
+	}// switch
 
-}//END OF saySomethingBarneyRocket
+}// saySomethingBarneyRocket
 
 
 //=========================================================
@@ -584,7 +583,7 @@ void CRpgRocket::FollowThink( void  )
 			}
 		}
 
-	}//END OF forceDumb check
+	}// forceDumb check
 
 
 	//MODDD - this is fine.  buuuuut
@@ -660,7 +659,7 @@ void CRpgRocket::FollowThink( void  )
 
 	pev->nextthink = gpGlobals->time + 0.1;
 }
-#endif //END OF MASSIVE not CLIENT_DLL CHECK.  Which is all of CRpgRocket.
+#endif // MASSIVE not CLIENT_DLL CHECK.  Which is all of CRpgRocket.
 
 
 
@@ -673,7 +672,7 @@ CRpg::CRpg(void) {
 #endif
 	//m_fInAttack = 0;
 
-}//END OF CRpg constructor
+}// CRpg constructor
 
 
 
@@ -795,8 +794,9 @@ void CRpg::Reload( void )
 		return;
 	}
 
-	if ( m_pPlayer->ammo_rockets <= 0 )
+	if ( PlayerPrimaryAmmoCount() <= 0 ){
 		return;
+	}
 
 	// because the RPG waits to autoreload when no missiles are active while  the LTD is on, the
 	// weapons code is constantly calling into this function, but is often denied because 
@@ -1007,7 +1007,7 @@ void CRpg::Holster( int skiplocal /* = 0 */ )
 	
 	DefaultHolster(holsterAnimToSend, skiplocal, 0, (16.0f/30.0f));
 
-}//END OF Holster
+}// Holster
 
 
 
@@ -1145,7 +1145,7 @@ void CRpg::ItemPostFrameThink() {
 
 		//MODDD - no need for a forced delay, a hard mouse press is needed now.
 		//m_flNextSecondaryAttack = UTIL_WeaponTimeBase() + 0.2;
-	}//END OF IN_ATTACK2 check
+	}// IN_ATTACK2 check
 
 
 #ifndef CLIENT_DLL
@@ -1265,6 +1265,7 @@ void CRpg::UpdateSpot( void )
 }
 
 
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 class CRpgAmmo : public CBasePlayerAmmo
 {
 	void Spawn( void )
@@ -1308,3 +1309,4 @@ class CRpgAmmo : public CBasePlayerAmmo
 	}
 };
 LINK_ENTITY_TO_CLASS( ammo_rpgclip, CRpgAmmo );
+#endif

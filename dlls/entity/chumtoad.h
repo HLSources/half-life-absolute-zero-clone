@@ -231,8 +231,7 @@ class CChumToad : public CBaseMonster{
 	void onDelete(void);
 
 
-};//END OF CChumToad
-
+};
 
 /*
 class CChumToadRespawnable : public CChumToad, public CRespawnable {
@@ -248,4 +247,4 @@ public:
 
 
 
-#endif //END OF #ifdef CHUMTOAD_H
+#endif // CHUMTOAD_H

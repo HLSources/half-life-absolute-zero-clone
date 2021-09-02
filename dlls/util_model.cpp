@@ -49,7 +49,6 @@
 #include "util_printout.h"
 
 #include "activity.h"
-#include "activitymap.h"
 #include "util_model.h"
 #include "scriptevent.h"
 #include "enginecallback.h"
@@ -590,7 +589,6 @@ int GetAnimationEvent( void *pmodel, entvars_t *pev, MonsterEvent_t *pMonsterEve
 			int te1 = pevent[index].frame;
 			int te2 = pevent[index].type;
 			char what = pevent[index].options[0];
-			int breakme = 666;
 		}
 		*/
 

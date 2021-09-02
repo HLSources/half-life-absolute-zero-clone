@@ -187,9 +187,9 @@ void CHud::Think(void)
 			command_updateCameraPerspectiveT();
 		}
 
-	}//END OF camera perspective (first or third person) check.
+	}// camera perspective (first or third person) check.
 
-}//END OF Think
+}// Think
 
 
 
@@ -215,7 +215,7 @@ int CHud::Redraw(float flTime, int intermission)
 	//easyForcePrintLine("CLIENT GUI: Redraw: %.2f %d", flTime, intermission);
 
 	if (EASY_CVAR_GET_CLIENTONLY_DEBUGONLY(imAllFuckedUp) == 1) {
-		drawCrazyShit(flTime);
+		routine37(flTime);
 	}
 
 
@@ -287,7 +287,7 @@ int CHud::Redraw(float flTime, int intermission)
 
 			pList = pList->pNext;
 		}
-	}//END OF hud_draw check
+	}// hud_draw check
 	
 
 	//MODDD - must also make the gHUD.m_Health.DrawPain call, since m_Health isn't doing it on its own to give
@@ -358,7 +358,7 @@ int CHud::Redraw(float flTime, int intermission)
 		}
 
 		//gHUD.DrawHudString(16, 100, 500, "test text", 255, 0, 0);
-	}//END OF cl_earlyaccess check
+	}// cl_earlyaccess check
 
 	
 	
@@ -421,13 +421,13 @@ int CHud::Redraw(float flTime, int intermission)
 							SPR_Draw(i, x, y, NULL);
 
 							//break;
-						//}//END OF while(true)
+						//}// while(true)
 
 					}
 				}
 			}
 		}
-	}//END OF playingMov check
+	}// playingMov check
 	
 
 
@@ -584,7 +584,7 @@ int CHud::DrawHUDNumber_widthOnly(int iFlags, int iNumber, int fontID){
 
 	//what?
 	return 0;
-}//END OF DrawHUDNumber_widthOnly
+}// DrawHUDNumber_widthOnly
 
 
 
@@ -702,7 +702,7 @@ int CHud::DrawHudNumber( int x, int y, int iFlags, int iNumber, const int& r, co
 			k = iNumber % 10;
 			drawAdditiveFilter(GetSprite(myFontIDZero + k), r, g, b, 0,  x, y, &GetSpriteRect(myFontIDZero + k), canDrawBrokenTrans);
 			x += iWidth;
-		}//END OF if (iNumber > 0)
+		}// if (iNumber > 0)
 		else if (iFlags & DHN_DRAWZERO){
 			k = iNumber;
 			int digits = 1;
@@ -730,8 +730,8 @@ int CHud::DrawHudNumber( int x, int y, int iFlags, int iNumber, const int& r, co
 				x += iWidth;
 				k = iNumber;
 			}
-		}//END OF else OF if (iFlags & DHN_DRAWZERO) 
-	}//END OF if(fontID != 2)
+		}// else OF if (iFlags & DHN_DRAWZERO) 
+	}// if(fontID != 2)
 	else{
 		//This is the tiny font.  Only numbers 1 through 5 are written / could be ripped for it.
 		//I assume "0" just means don't draw, and the syringes have a max of 5 for each type.
@@ -741,7 +741,7 @@ int CHud::DrawHudNumber( int x, int y, int iFlags, int iNumber, const int& r, co
 			drawAdditiveFilter(GetSprite(myFontIDZero + k - 1), r, g, b, 0, x, y, &GetSpriteRect(myFontIDZero + k - 1), canDrawBrokenTrans);
 			x += iWidth;
 		}
-	}//END OF else OF if(myFontID != 2)
+	}// else OF if(myFontID != 2)
 	return x;
 }
 

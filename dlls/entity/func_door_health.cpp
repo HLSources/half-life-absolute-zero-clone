@@ -30,7 +30,7 @@ CHealthDoor::CHealthDoor(void) {
 	currentPreference = HDP_CLOSED;
 	turnedOffHealLight = FALSE;
 
-}//END OF CHealthDoor constructor
+}// CHealthDoor constructor
 
 
 
@@ -154,7 +154,7 @@ void CHealthDoor::I_HealthModule_UseEnd(void) {
 		turnOffHealLight();  //turn off the light to signify this charger is empty.
 	}
 
-}//END OF I_HealthModule_UseEnd
+}// I_HealthModule_UseEnd
 
 
 //void CHealthDoor::I_HealthModule_SetThink_UseEnd(void) {
@@ -171,7 +171,7 @@ void CHealthDoor::I_HealthModule_SetThink_Custom(void) {
 /*
 void CHealthDoor::UseEnd(void) {
 	healthModuleInstance.UseEnd();
-}//END OF UseEnd
+}// UseEnd
 
 void CHealthDoor::ChargeRestored(void) {
 	healthModuleInstance.ChargeRestored();
@@ -232,7 +232,7 @@ void CHealthDoor::CustomThink(void) {
 		}
 	}
 
-}//END OF CustomThink
+}// CustomThink
 
 
 void CHealthDoor::turnOffHealLight(void) {
@@ -248,7 +248,7 @@ void CHealthDoor::turnOffHealLight(void) {
 					//only makes sense to pick up this one. If there's multiple with the same name that's a map issue.
 					break;
 				}
-			}//END OF while
+			}// while
 			if (!FNullEnt(pentLight)) {
 				//easyForcePrintLine("I got a light: %s", STRING(pentLight->v.classname) );
 
@@ -270,8 +270,8 @@ void CHealthDoor::turnOffHealLight(void) {
 		else {
 			easyForcePrintLine("WallHealthDoor: ERROR. targetname string is blank, no light to connect.");
 		}
-	}//END OF turnedOffHealLight check
-}//END OF turnOffHealLight
+	}// turnedOffHealLight check
+}// turnOffHealLight
 
 void CHealthDoor::turnOnHealLight(void) {
 	//If respawned (refilled), look for the light entity and turn it back on.
@@ -286,7 +286,7 @@ void CHealthDoor::turnOnHealLight(void) {
 					//only makes sense to pick up this one. If there's multiple with the same name that's a map issue.
 					break;
 				}
-			}//END OF while
+			}// while
 			if (!FNullEnt(pentLight)) {
 				//easyForcePrintLine("I got a light: %s", STRING(pentLight->v.classname) );
 
@@ -308,8 +308,8 @@ void CHealthDoor::turnOnHealLight(void) {
 		else {
 			easyForcePrintLine("WallHealthDoor: ERROR. targetname string is blank, no light to connect.");
 		}
-	}//END OF turnedOffHealLight check
-}//END OF turnOnHealLight
+	}// turnedOffHealLight check
+}// turnOnHealLight
 
 
 
@@ -346,7 +346,7 @@ void CHealthDoor::AngularMove(Vector vecDestAngle, float flSpeed)
 	// scale the destdelta vector by the time spent traveling to get velocity
 	pev->avelocity = vecDestDelta / flTravelTime;
 
-}//END OF AngularMove
+}// AngularMove
 
 
 
@@ -392,7 +392,7 @@ void CHealthDoor::OnDoorGoUp(void) {
 	}
 	AngularMove(m_vecAngle2 * sign, pev->speed);
 
-}//END OF OnDoorGoUp
+}// OnDoorGoUp
 
 void CHealthDoor::OnDoorHitTop(void) {
 
@@ -411,7 +411,7 @@ void CHealthDoor::OnDoorHitTop(void) {
 		//I want to stay open for at least this much longer.
 		doorCloseDelay = gpGlobals->time + m_flWait;
 	}
-}//END OF OnDoorHitTop
+}// OnDoorHitTop
 
 
 //MODDD - moved from CBaseDoor to be more specific to here.
@@ -429,7 +429,7 @@ void CHealthDoor::OnDoorGoDown(void) {
 
 	//MODDD
 	AngularMove(m_vecAngle1, pev->speed);
-}//END OF OnDoorGoDown
+}// OnDoorGoDown
 
 
 void CHealthDoor::OnDoorHitBottom(void) {
@@ -445,7 +445,7 @@ void CHealthDoor::OnDoorHitBottom(void) {
 	ASSERT(m_toggle_state == TS_GOING_DOWN);
 	m_toggle_state = TS_AT_BOTTOM;
 	
-}//END OF OnDoorHitBottom
+}// OnDoorHitBottom
 
 
 
@@ -460,7 +460,7 @@ void CHealthDoor::ReportGeneric(void) {
 	//	healthModuleInstance.ChargeRestored();
 	//}
 
-}//END OF ReportGeneric
+}// ReportGeneric
 
 
 
@@ -546,11 +546,11 @@ void CHealthDoor::Spawn(void) {
 
 
 		//this->ReportGeneric();
-	//}//END OF heal check
+	//}// heal check
 
 	CRotDoor::Spawn();
 
-}//END OF Spawn
+}// Spawn
 
 
 
@@ -587,6 +587,6 @@ void CHealthDoor::Use(CBaseEntity* pActivator, CBaseEntity* pCaller, USE_TYPE us
 	//at least do this like the base class does. Just in case?
 	m_hActivator = pActivator;
 
-}//END OF Use
+}// Use
 
 

@@ -1,5 +1,3 @@
-
-
 #ifndef FUNC_DOOR_HEALTH_H
 #define FUNC_DOOR_HEALTH_H
 
@@ -87,16 +85,11 @@ public:
 	virtual int ObjectCaps(void) {
 		//add CONTINUOUS_USE, remove FCAP_ACROSS_TRANSITION (although CBaseDoor already does that 100% of the time)
 		return (CRotDoor::ObjectCaps() | FCAP_CONTINUOUS_USE) & ~FCAP_ACROSS_TRANSITION;
-	}//END OF ObjectCaps
+	}// ObjectCaps
 
 
 
 };
 
 
-
-
-
-#endif //FUNC_DOOR_HEALTH_H
-
-
+#endif// FUNC_DOOR_HEALTH_H

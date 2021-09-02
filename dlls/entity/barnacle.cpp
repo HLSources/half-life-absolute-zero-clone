@@ -114,7 +114,7 @@ int CBarnacle::IRelationship( CBaseEntity *pTarget ){
 	return standardRelation;
 
 
-}//END OF IRelationship
+}// IRelationship
 
 //Other monsters need to know not to be hostile towards me.
 int CBarnacle::forcedRelationshipWith(CBaseEntity *pWith){
@@ -154,7 +154,7 @@ void CBarnacle::StartReanimationPost(int preReviveSequence){
 	SetSequenceByIndex(preReviveSequence, -1, FALSE);
 
 	ChangeSchedule(slWaitForSequence );
-}//END OF StartReanimationPost
+}// StartReanimationPost
 
 
 
@@ -338,7 +338,7 @@ void CBarnacle::Spawn()
 		monsterIDLatest++;
 	}
 	
-}//END OF Spawn
+}// Spawn
 
 
 
@@ -454,7 +454,7 @@ void CBarnacle::BarnacleThink ( void )
 						daBlood,
 						RANDOM_LONG(13, 18)
 					);
-				}//END OF loop
+				}// loop
 
 
 
@@ -760,14 +760,14 @@ void CBarnacle::BarnacleThink ( void )
 	SetBoneController( 0, -(m_flAltitude + m_flTongueAdj) );
 	StudioFrameAdvance_SIMPLE( 0.1 );
 
-}//END OF BarnacleThink
+}// BarnacleThink
 
 
 GENERATE_GIBMONSTER_IMPLEMENTATION(CBarnacle){
 
 
 	GENERATE_GIBMONSTER_PARENT_CALL(CBaseMonster);
-}//END OF GibMonster
+}// GibMonster
 
 
 GENERATE_GIBMONSTERGIB_IMPLEMENTATION(CBarnacle){
@@ -796,7 +796,7 @@ GENERATE_GIBMONSTERGIB_IMPLEMENTATION(CBarnacle){
 	}
 
 	return FALSE;
-}//END OF GibMonsterGib
+}// GibMonsterGib
 
 
 //=========================================================
@@ -1110,9 +1110,9 @@ CBaseEntity *CBarnacle::TongueTouchEnt ( float *pflLength, float *pflLengthMinim
 				if(this->pev->origin.z + this->pev->maxs.z > pList[i]->pev->origin.z + pList[i]->pev->mins.z){
 					return pList[i];
 				}
-			}//END OF big if-then/
-		}//END OF for(int i = 0...)
-	}//END OF if(count)
+			}// big if-then/
+		}// for(int i = 0...)
+	}// if(count)
 
 	return NULL;
 }

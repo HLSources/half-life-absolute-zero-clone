@@ -353,7 +353,7 @@ int CHudPain::DrawPain(float flTime)
 		else
 			fAttackLeftMem = 0;
 
-	}//END OF if(painFlashColorModeVar != 0)
+	}// if(painFlashColorModeVar != 0)
 
 
 	//MODDD - OVERVIEW OF NEW CUMULATIVE FADE METHOD:
@@ -459,7 +459,7 @@ void CHudPain::setUniformDamage(float damageAmount) {
 
 	m_fAttackFrontDamage = m_fAttackRearDamage = m_fAttackRightDamage = m_fAttackLeftDamage = damageAmount / 4.0f;
 
-}//END OF setUniformDamage(...)
+}// setUniformDamage(...)
 
 
 

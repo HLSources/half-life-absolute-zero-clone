@@ -255,7 +255,7 @@ void CTripmineGrenade::KillBeam( void )
 
 float CTripmineGrenade::massInfluence(void){
 	return 0.20f;
-}//END OF massInfluence
+}// massInfluence
 int CTripmineGrenade::GetProjectileType(void){
 	return PROJECTILE_DEPLOYABLE;
 }
@@ -285,7 +285,7 @@ void CTripmineGrenade::ActivateMine(BOOL argPlayActivateSound){
 		// play enabled sound
 		EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "weapons/mine_activate.wav", 0.5, ATTN_NORM, 1.0, 75 );
 	}
-}//END OF ActivateMine
+}// ActivateMine
 
 
 
@@ -420,7 +420,9 @@ void CTripmineGrenade::DelayDeathThink( void )
 //MODDDD - NOTE: all the above was server-side only.  Easy to miss this...
 
 
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 LINK_ENTITY_TO_CLASS( weapon_tripmine, CTripmine );
+#endif
 
 CTripmine::CTripmine(){
 	holdingSecondaryTarget0 = 0.0f;

@@ -1,3 +1,6 @@
+// have a ifdef guard too, why not
+#ifndef BUILD_SETTINGS_H
+#define BUILD_SETTINGS_H
 
 // Some quick project-wide macros to customize a build.
 // There are still other important ones in other files such as PLAYER_ALWAYSHASLONGJUMP in dlls/player.h.
@@ -47,8 +50,8 @@
 // So this feature to let some CVars be 'impossible to change in multiplayer' likely has no use,
 // nevermind.
 
-// This controls whether cheat CVars (ones with the PROTECTION_FLAG CVar) can be modified directly in
-// multiplayer.
+// This controls whether cheat CVars (ones with the PROTECTION_FLAG CVar) can be modified directly
+// in multiplayer.
 #define CHEATS_ALLOWED_IN_MULTI_PLAYER 1
 
 #if CHEATS_ALLOWED_IN_MULTI_PLAYER == 1
@@ -63,8 +66,8 @@
 #define SPLIT_ALIEN_WEAPONS_INTO_NEW_SLOT 1
 
 
-// Test to fool around with scripted's, makes some things better (fixes a3a2, moving too fast at the opening = frozen agrunt),
-// but breaks others (a2a1 garg doesn't move).  Yowza, fragile.
+// Test to fool around with scripted's, makes some things better (fixes a3a2, moving too fast at
+// the opening = frozen agrunt), but breaks others (a2a1 garg doesn't move).  Yowza, fragile.
 #define HACKY_SCRIPT_TEST 0
 
 // little debug feature.  Force "func_door_rotating" to "func_door_health"
@@ -72,6 +75,28 @@
 // Use 0 for intended behavior otherwise (func_door_health must be used for wallhealth doors now).
 #define FORCE_ROTDOOR_TO_HEALTHDOOR 0
 
+
+// Set to 1 to avoid compiling the "ammo_9mm", "ammo_357", ... "ammo_hornets", "ammo_argrens" 
+// named cache variables and any related script.  These are redundant with the player ammo
+// array (m_rgAmmo) that can already be easily accessed by PlayerPrimaryAmmoCount.
+// Even in the as-is SDK, there was no named cache variable for snark ammo, it used straight
+// "m_pPlayer->m_rgAmmo[ m_iPrimaryAmmoType ]", so, odd move.  Clearly using the ammo count
+// of the currently equipped ammo can work for anything.
+// 0 for retail behavior, although a lot of places have already changed to using 
+// PlayerPrimaryAmmoCount anyway, better support for named cached versions would have to 
+// be added back, may as well be a macro switch-in at this point if wanted that badly.
+#define SKIP_NAMED_AMMO_CACHE 1
+
+// I don't see the point in generating DLL hooks for making weapons entities
+// (LINK_ENTITY_TO_CLASS) and compiling any part of ammo pickup classes for clientside.
+// This skips both of those if set to 1, 0 for retail behavior.
+#define SLIM_WEAPON_CLIENT_COMPILE 1
+
+// Turn on to get easy access to even more information about schedules, like task names
+// and recently used schedule enum constants to track down how a schedule was picked.
+// Enables a large chunk of util_debugschedule.h and other needed additions
+#define DEBUG_SCHEDULE 1
+//////////////////////////////////////////////////////////////////////
 
 
 
@@ -94,3 +119,4 @@
 // .............. nothing
 #define secret_ymg 0
 
+#endif// BUILD_SETTINGS_H

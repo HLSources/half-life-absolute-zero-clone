@@ -37,10 +37,9 @@ EASY_CVAR_EXTERN_CLIENTSENDOFF_BROADCAST_DEBUGONLY(muteCrowbarSounds)
 EASY_CVAR_EXTERN_DEBUGONLY(drawDebugCrowbar)
 
 
-//MODDD - some things moved to the new crowbar.h.
-
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 LINK_ENTITY_TO_CLASS( weapon_crowbar, CCrowbar );
-
+#endif
 
 
 void CCrowbar::Spawn( )
@@ -177,7 +176,7 @@ BOOL FindHullIntersection( const Vector &vecSrc, const Vector &vecEnd, TraceResu
 	}
 
 	return success;
-}//END OF FindHullIntersection
+}// FindHullIntersection
 #endif
 
 
@@ -323,7 +322,7 @@ Vector FireBulletsPlayerEh ( ULONG cShots, Vector vecSrc, Vector vecDirShooting,
 				}
 			}
 			*/
-		}//END OF if (tr.flFraction != 1.0)
+		}// if (tr.flFraction != 1.0)
 
 		//easyPrintLine("NULL?? %d", FNullEnt(tr.pHit) );
 
@@ -533,9 +532,9 @@ int CCrowbar::Swing( int fFirst )
 						case 2:
 							EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_ITEM, "weapons/cbar_hitbod3.wav", 1, ATTN_NORM); break;
 						}
-					}//END OF useBulletHitSound check
+					}// useBulletHitSound check
 
-				}//END OF canPlayHitSound check
+				}// canPlayHitSound check
 
 
 				//This now always happens for flesh (organic) hits.
@@ -579,14 +578,14 @@ int CCrowbar::Swing( int fFirst )
 						break;
 					}
 
-				}//END OF canPlayHitSound check
+				}// canPlayHitSound check
 
 				//MODDD - moved here, also for hitting metalic monsters. 0.6 multiple since that is a common reduction given by textures on world hits anyways.
 				m_pPlayer->m_iWeaponVolume = flVol * CROWBAR_WALLHIT_VOLUME * 0.6;
 
-			}//END OF else OF class / organic check
+			}// else OF class / organic check
 
-		}//END OF hit pEntity (not NULL) check
+		}// hit pEntity (not NULL) check
 
 		// play texture hit sound
 		// UNDONE: Calculate the correct point of intersection when we hit with the hull instead of the line
@@ -639,8 +638,8 @@ int CCrowbar::Swing( int fFirst )
 						//nothing?
 
 						break;
-					}//END OF switch
-				}//END OF IsMultiplayer check.
+					}// switch
+				}// IsMultiplayer check.
 
 
 				//if forced by multiplayer, don't bother. We meant to make it 0 or whatever.
@@ -670,7 +669,7 @@ int CCrowbar::Swing( int fFirst )
 					break;
 				}
 
-			}//END OF canPlayHitSound check
+			}// canPlayHitSound check
 
 			/*
 			//MODDD - new.  Also serverside, make the particle effect when hitting a non-monster:
@@ -689,7 +688,7 @@ int CCrowbar::Swing( int fFirst )
 			//MODDD - moved here, now just for hitting the world.
 			m_pPlayer->m_iWeaponVolume = flVol * CROWBAR_WALLHIT_VOLUME;
 
-		}//END OF if(fHitWorld)
+		}// if(fHitWorld)
 
 
 		//??? INVESTIGATE W/ PRINTOUTS
@@ -702,7 +701,7 @@ int CCrowbar::Swing( int fFirst )
 		//MODDD - moved to the above if-then.
 		//m_pPlayer->m_iWeaponVolume = flVol * CROWBAR_WALLHIT_VOLUME;
 
-	}//END OF trace hit OR special miss checks
+	}// trace hit OR special miss checks
 
 #endif
 	

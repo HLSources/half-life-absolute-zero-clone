@@ -27,7 +27,7 @@ HealthModule::HealthModule(void){
 	turnOffDelay = -1;
 	rechargeDelay = -1;
 	waitingForRecharge = FALSE;
-}//END OF HealthModule constructor
+}// HealthModule constructor
 
 
 
@@ -40,7 +40,7 @@ void HealthModule::setupSpawn(CBaseEntity* arg_parentEntity_entity, I_HealthModu
 	parentEntity_entity->pev->nextthink = gpGlobals->time + 0.1;
 	parentEntity_event->I_HealthModule_SetThink_Custom();
 
-}//END OF setup
+}// setup
 
 void HealthModule::setupRestore(CBaseEntity* arg_parentEntity_entity, I_HealthModule_Parent* arg_parentEntity_event){
 	parentEntity_entity = arg_parentEntity_entity;
@@ -52,7 +52,7 @@ void HealthModule::setupRestore(CBaseEntity* arg_parentEntity_entity, I_HealthMo
 	//parentEntity_entity->pev->nextthink = gpGlobals->time + 0.1;
 	//parentEntity_event->I_HealthModule_SetThink_Custom();
 
-}//END OF setup
+}// setup
 
 
 
@@ -104,7 +104,7 @@ void HealthModule::KeyValue(KeyValueData* pkvd){
 	else{
 		//Nothing to do here, it's up to the parent on seeing that pkvd->fHandled remained FALSE.
 	}
-}//END OF KeyValue
+}// KeyValue
 
 
 BOOL HealthModule::IsWorldAffiliated(void) {
@@ -131,7 +131,7 @@ void HealthModule::CustomThink(void){
 		waitingForRecharge = FALSE;
 	}
 
-}//END OF CustomThink
+}// CustomThink
 
 
 
@@ -139,7 +139,7 @@ void HealthModule::Spawn(){
 	//NOTICE - I don't call my own Precache method! The class hosting this HealthModule instance must call it.
 
 	m_iJuice = gSkillData.healthchargerCapacity;
-}//END OF Spawn
+}// Spawn
 
 
 extern int global_useSentenceSave;
@@ -255,7 +255,7 @@ void HealthModule::Use( CBaseEntity* pActivator, CBaseEntity* pCaller, USE_TYPE 
 	// govern the rate of charge
 	m_flNextCharge = gpGlobals->time + 0.1;
 
-}//END OF USE
+}// USE
 
 
 
@@ -320,7 +320,7 @@ void HealthModule::stopSounds(void){
 	StopSound( CHAN_STATIC, "items/medshotno1.wav" );
 	StopSound( CHAN_STATIC, "items/medcharge4.wav" );
 
-}//END OF stopSounds
+}// stopSounds
 
 
 

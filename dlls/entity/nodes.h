@@ -32,12 +32,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-
-
-
-
-
 //MODDD
 extern BOOL scheduleNodeUpdate;
 //MODDD - new config settings node-wide to be set by the map (CWorld) if certain KeyValue's are set.
@@ -51,8 +45,8 @@ extern BOOL map_anyAirNodes;
 
 // HERE HAVE A VERY IMPORANT NOTCE.
 // See "CGRAPH" down there?   Do.  Not.  Touch.  It.
-// I repat, .   Do.  Not .  Touch.  It.
-// it is one finick bastard that will forget hours of changes in a flash.
+// I repeat.   Do.  Not .  Touch.  It.
+// it will forget hours of changes in a flash.
 // issue is, it has a strict form at from loading form memory, so it needs
 // to know how much it is allowed to load.
 
@@ -462,4 +456,4 @@ enum
 extern CGraph WorldGraph;
 
 
-#endif //END OF #ifndef NODES_H
+#endif// NODES_H

@@ -96,7 +96,7 @@ void DebugLine_RenderAll(){
 	for(i = 0; i < DEBUG_LINES_MAX; i++){
 		aryDebugLines[i].checkDrawLines();
 	}
-}//END OF DebugLine_RenderAll
+}// DebugLine_RenderAll
 
 
 
@@ -132,7 +132,7 @@ void DebugDrawable_pathTrack::checkDrawLines(){
 			UTIL_drawLineFrame( m_pPathTrackRef->pev->origin, m_pPathTrackRef->m_paltpath->pev->origin, DEBUG_LINE_WIDTH, 255, 255, 255);
 		}
 	}
-}//END OF DebugDrawable_pathTrack's checkDrawLines
+}// DebugDrawable_pathTrack's checkDrawLines
 
 
 
@@ -156,7 +156,7 @@ void DebugLine_Setup(int argID, Vector vecStart, Vector vecEnd, int r, int g, in
 	thisLine.l1.setup(TRUE, r, g, b, DEBUG_LINE_WIDTH, vecStart.x, vecStart.y, vecStart.z, vecEnd.x, vecEnd.y, vecEnd.z);
 	
 	thisLine.l2.canDraw = FALSE;  //only one line here.
-}//END OF CreateDebugLine
+}// CreateDebugLine
 
 
 
@@ -237,7 +237,7 @@ void DebugLine_Setup(int argID, Vector vecStart, Vector vecEnd, float fraction, 
 		thisLine.l1.setup(TRUE, successR, successG, successB, DEBUG_LINE_WIDTH, vecStart.x, vecStart.y, vecStart.z, vecNewEnd.x, vecNewEnd.y, vecNewEnd.z);
 		thisLine.l2.setup(TRUE, failR, failG, failB, DEBUG_LINE_WIDTH, vecAltStart.x, vecAltStart.y, vecAltStart.z, vecAltEnd.x, vecAltEnd.y, vecAltEnd.z);
 	}
-}//END OF CreateDebugLine
+}// CreateDebugLine
 
 void DebugLine_Color(int argID, int r, int g, int b){
 	DebugDrawable& thisLine = aryDebugLines[argID];
@@ -392,7 +392,7 @@ void DebugCall3(CBasePlayer* somePlayer) {
 		//UTIL_printVector("debugPoint3", debugPoint3);
 		//UTIL_printVector("vecEnd", vecEnd);
 	}
-}//END OF DebugCall3()
+}// DebugCall3()
 
 
 
@@ -535,7 +535,7 @@ void drawOldDebugStuff(void) {
 						};
 					}
 					*/
-				}//END OF tempplayer null check
+				}// tempplayer null check
 
 			}
 			else {
@@ -600,10 +600,10 @@ void drawOldDebugStuff(void) {
 
 				}
 
-			}//END OF loop
-		}//END OF if(pEdicttt (first)  )
+			}// loop
+		}// if(pEdicttt (first)  )
 
-	}//END OF draw cine's check
+	}// draw cine's check
 
 
 }//drawExtraDebugStuff

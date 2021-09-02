@@ -77,7 +77,7 @@ void CSprayCan::Think( void )
 			}
 			break;
 		}
-	}//END OF else OF customLogoSprayMode
+	}// else OF customLogoSprayMode
 
 	pev->nextthink = gpGlobals->time + 0.1;
 }

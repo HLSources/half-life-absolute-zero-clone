@@ -529,7 +529,7 @@ CWorld::CWorld(void){
 
 	m_f_playerDeadTruce = FALSE;
 
-}//END OF CWorld constructor
+}// CWorld constructor
 
 
 
@@ -567,7 +567,7 @@ void CWorld::Spawn( void )
 	//MODDD
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	// Those rancid devs hardcoded the engine to do "DispatchKeyword" calls before
-	// absolutely anything else.  Those dire bastards.
+	// absolutely anything else.
 	// Instead going to assume all the keywords are done by the time of the "Spawn" call.
 	// As this is in "Spawn", this does not apply to loading a saved game.
 	// Skybox is remembered just fine between games.
@@ -670,7 +670,8 @@ void CWorld::Precache( void )
 	//W_Precache ();	// get weapon precaches
 	//ClientPrecache();
 	
-	//MODDD - call this method so that ones usually non-native (not included) to a map can be spawned by the player ("give") without crashing the game.
+	//MODDD - call this method so that ones usually non-native to a map can be spawned by the
+	// player ("give") without crashing the game.
 	method_precacheAll();
 	///////////////////////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -781,7 +782,7 @@ void CWorld::Precache( void )
 		CVAR_SET_FLOAT( "mp_defaultteam", 0 );
 	}
 
-}//END OF Precache
+}// Precache
 
 
 
@@ -975,7 +976,7 @@ void CWorld::WorldThink(void){
 
 	//nope, redundant then.
 	//CBaseEntity::Think();
-}//END OF WorldThink
+}// WorldThink
 */
 
 
@@ -991,7 +992,7 @@ void CWorld::applyLoadedCustomMapSettingsToGlobal(void){
 
 	g_f_playerDeadTruce = m_f_playerDeadTruce;
 
-}//END Of applyLoadedCustomMapSettingsToGlobal
+}// applyLoadedCustomMapSettingsToGlobal
 
 
 //MODDD - for hte other way around.  Settings set by nodes.cpp should be sent to here instead.

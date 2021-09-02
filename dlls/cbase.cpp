@@ -817,9 +817,25 @@ const char* CBaseEntity::getClassnameShort(void){
 
 
 
+
+// Get a string of the hitgroup (number) given, easier to understand.
+// See basemonster.cpp's version for more notes, the default HITGROUP
+// constants are clearly intended for things at least subclassing
+// CBaseMonster, not CBaseEntity.
+const char* CBaseEntity::getHitgroupName(int arg_iHitgroup){
+	static char strTemp[16];
+	// Not very creative to just drop the number, but CBaseEntity tracemethods
+	// aren't supposed  to involve hitgroups, at least not very often.
+	// CBaseMonster finding one unnamed will go out of its way to make a point
+	// about this.
+	sprintf(&strTemp[0], "#%d", arg_iHitgroup);
+	return strTemp;
+}
+
+
 //MODDD - mostly for testing.
 void CBaseEntity::Spawn(void){
-	//easyPrintLine("WWWWWWW %s", STRING(pev->classname) );
+	//easyPrintLine("CBaseEntity::Spawn %s", STRING(pev->classname) );
 	return;
 }
 
@@ -844,10 +860,6 @@ void CBaseEntity::ForceSpawnFlag(int arg_spawnFlag){
 }
 
 
-
-
-
-
 //MODDDMIRROR
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -870,15 +882,10 @@ void CBaseEntity::SetNextThink( float delay, BOOL correctSpeed )
 }
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 //MODDD notice - CBaseEntity's TakeHealth, TakeDamage and Killed method implementations have been moved to combat.cpp for consistency.
 //               CBaseMonster has all three of those methods over there, and both CBaseMonster and CBaseEntity already had their 
 //               TraceAttack's over there. More fitting to keep all of these methods in combat.cpp.
-
-
 
 CBaseEntity *CBaseEntity::GetNextTarget( void )
 {
@@ -1095,7 +1102,7 @@ void CBaseEntity::playMetallicHitSound(int arg_channel, float arg_volume){
 		UTIL_PlaySound(ENT(pev), arg_channel, "weapons/cbar_hit2.wav", arg_volume, ATTN_NORM, 0, 103 + RANDOM_LONG(0,3), FALSE);
 		break;
 	}
-}//END OF playMetallicHitSound
+}// playMetallicHitSound
 
 
 
@@ -1362,7 +1369,7 @@ edict_t* CBaseEntity::overyLongComplicatedProcessForCreatingAnEntity(const char*
 	//pent = CREATE_NAMED_ENTITY(istr);
 	
 	return CREATE_NAMED_ENTITY( MAKE_STRING( STRING( ALLOC_STRING( entityName ) ) )   );
-}//END OF overyLongComplicatedProcessForCreatingAnEntity
+}// overyLongComplicatedProcessForCreatingAnEntity
 
 
 
@@ -1427,7 +1434,7 @@ CBaseEntity * CBaseEntity::Create( const char *szName, const Vector &vecOrigin, 
 // Defaults to FALSE like retail. Special cases need TRUE.
 BOOL CBaseEntity::SeeThroughWaterLine(void){
 	return FALSE;
-}//END OF SeeThroughWaterLine
+}// SeeThroughWaterLine
 
 void CBaseEntity::ReportGeneric(){
 	// To be determined further by each entity class and its own specific variables. But this general info is ok.
@@ -1444,7 +1451,7 @@ void CBaseEntity::ReportGeneric(){
 	easyForcePrintLine("Flags:%d renderfx:%d rendermode:%d renderamt:%.2f gamestate:%d solid:%d movetype:%d", pev->flags, pev->renderfx, pev->rendermode, pev->renderamt, pev->gamestate, pev->solid, pev->movetype);
 	easyForcePrintLine("ThinkACTIVE:%d curtime:%.2f nextthink:%.2f ltime:%.2f", (m_pfnThink!=NULL), gpGlobals->time, pev->nextthink, pev->ltime);
 
-}//END OF ReportGeneric
+}// ReportGeneric
 
 Vector CBaseEntity::GetAbsVelocity(){
 	return pev->velocity;
@@ -1554,7 +1561,7 @@ void CBaseEntity::SetAngleZ(const float newVal) {
 // By default no.
 BOOL CBaseEntity::blocksImpact(void){
 	return FALSE;
-}//END OF Impact
+}// Impact
 
 // How much of an effect this has on other pushable entities.
 // Things smaller than average should reduce this number. This larger should increase it.
@@ -1562,7 +1569,7 @@ BOOL CBaseEntity::blocksImpact(void){
 // But things that would look silly making a pushable go flying (like arrows or hornets) should make this tiny to not look so strange.
 float CBaseEntity::massInfluence(void){
 	return 0.7f;
-}//END OF massInfluence
+}// massInfluence
 
 // What type of projectile am I, if I am a projectile at all?
 // This includes bolts, grenades, and rockets.  Any entity with the sole purpose of moving in one direction or following a target just to do damage.

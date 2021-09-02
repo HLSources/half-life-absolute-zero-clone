@@ -67,7 +67,7 @@ void EV_FriendlyVomit( event_args_s* args);
 void EV_FloaterExplode(struct event_args_s* args);
 
 
-}//END OF extern "C"
+}// extern "C"
 
 
 

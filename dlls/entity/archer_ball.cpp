@@ -18,14 +18,14 @@ void CArcherBall::Spawn( void ){
 	CControllerHeadBall::Spawn();
 	
 	SetTouch( &CArcherBall::BounceTouch );
-}//END OF Spawn
+}// Spawn
 
 void CArcherBall::Precache( void ){
 
 	CControllerHeadBall::Precache();
 
 
-}//END OF Precache
+}// Precache
 
 
 //MODDD - little less reactive to following th enemy.

@@ -1178,7 +1178,7 @@ void CStukaBat::HandleAnimEvent( MonsterEvent_t *pEvent )
 		default:
 			CBaseMonster::HandleAnimEvent( pEvent );
 		break;
-	}//END OF switch(...)
+	}// switch(...)
 	
 }
 
@@ -1327,7 +1327,7 @@ int CStukaBat::IRelationship( CBaseEntity *pTarget )
 		}
 
 
-	}//END OF if(potentialNeutral && !(m_afMemory & bits_MEMORY_PROVOKED ) )
+	}// if(potentialNeutral && !(m_afMemory & bits_MEMORY_PROVOKED ) )
 
 
 	/*
@@ -1473,7 +1473,7 @@ void CStukaBat::checkStartSnap(){
 		}else{
 			m_iSpawnLoc = 3;
 		}
-	}//END OF if m_iSpawnLoc == 0)
+	}// if m_iSpawnLoc == 0)
 
 	if(m_iSpawnLoc == 1){
 		//ground, snap to bottom.
@@ -2009,7 +2009,7 @@ void CStukaBat::StartTask ( Task_t *pTask )
 
 			triesLeft--;
 
-		}//END OF while(triesLeft)
+		}// while(triesLeft)
 
 
 		//didn't get it in enough tries? Give up this time.
@@ -2822,7 +2822,7 @@ void CStukaBat::RunTask ( Task_t *pTask )
 
 					if (RANDOM_LONG(0,1))
 						AttackSound();
-				}//END OF (dist check)
+				}// (dist check)
 				else{
 					
 
@@ -2876,7 +2876,7 @@ void CStukaBat::RunTask ( Task_t *pTask )
 						UTIL_PlaySound( ENT(pev), CHAN_WEAPON, pAttackMissSounds[ RANDOM_LONG(0,ARRAYSIZE(pAttackMissSounds)-1) ], 1.0, ATTN_NORM, 0, 100 + RANDOM_LONG(-5, 5) );
 						//UTIL_PlaySound(ENT(pev), CHAN_WEAPON, "zombie/claw_miss1.wav", 1.0, 1.0, 0, 100, FALSE);
 					}
-				}//END OF if(attackEffectDelay...)
+				}// if(attackEffectDelay...)
 
 				easyPrintLineGroup2("HOW IS THE SEQUENCE %d", m_fSequenceFinished);
 
@@ -2913,7 +2913,7 @@ void CStukaBat::RunTask ( Task_t *pTask )
 			}
 
 
-		}//END OF if(getEnemey() != NULL)
+		}// if(getEnemey() != NULL)
 		else{
 
 			//easyForcePrintLine("YOUR face SURE IS very DISGUSTING");
@@ -3209,9 +3209,9 @@ Schedule_t *CStukaBat::GetSchedule ( void )
 
 					EASY_CVAR_PRINTIF_PRE(stukaPrintout, easyForcePrintLine("POO POO 5"));
 
-				}//END of ELSE of distcheck
+				}// ELSE of distcheck
 
-			}//END OF if(!onGround)
+			}// if(!onGround)
 			else{
 
 				float dist = (pev->origin - pScent->m_vecOrigin).Length();
@@ -3248,9 +3248,9 @@ Schedule_t *CStukaBat::GetSchedule ( void )
 					//EAT THAT
 					return GetScheduleOfType( SCHED_STUKABAT_EAT );
 				}
-			}//END OF else...
+			}// else...
 
-			}//END OF if(pScent != NULL)
+			}// if(pScent != NULL)
 			else{
 				//No enemies, no scents?  let's... try hovering / idle.  
 				fallToIdling = TRUE;
@@ -3259,7 +3259,7 @@ Schedule_t *CStukaBat::GetSchedule ( void )
 				//EAT THAT
 				return GetScheduleOfType( SCHED_STUKABAT_EAT );
 			}
-		}//END OF if can smell food
+		}// if can smell food
 		else{
 			if(!snappedToCeiling && !canSeeEnemy){
 				fallToIdling = TRUE;
@@ -3267,7 +3267,7 @@ Schedule_t *CStukaBat::GetSchedule ( void )
 			}
 
 		}
-	}//END OF IF state is combat or alert
+	}// IF state is combat or alert
 
 	if(canSeeEnemy){
 		//let it raise.
@@ -3433,7 +3433,7 @@ Schedule_t* CStukaBat::GetScheduleOfType ( int Type )
 
 	//SCHED_TARGET_CHASE
 	break;
-	}//END OF switch(...)
+	}// switch(...)
 	
 	easyPrintLineGroup1("STUKA %d SCHED: %d", monsterID, Type);
 	return CBaseMonster::GetScheduleOfType( Type );
@@ -3717,7 +3717,7 @@ void CStukaBat::SetActivity ( Activity NewActivity, BOOL forceReset )
 		//		//return seq;
 		//		iSequence = seq;
 		//		break;
-		//	}//END OF while(true)    method immitation.
+		//	}// while(true)    method immitation.
 
 		//}
 		////easyPrintLineGroup2("deb6 %d %d %d", allowedToInterruptSelf, pev->sequence != iSequence, m_fSequenceFinished);
@@ -3763,14 +3763,14 @@ void CStukaBat::SetActivity ( Activity NewActivity, BOOL forceReset )
 		//		ALERT ( at_aiconsole, "%s has no sequence for act:%d\n", STRING(pev->classname), NewActivity );
 		//		pev->sequence		= 0;	// Set to the reset anim (if it's there)
 		//	}
-		//}//END OF if(allowedToInterruptSelf...)
+		//}// if(allowedToInterruptSelf...)
 
 		//m_Activity = NewActivity; // Go ahead and set this so it doesn't keep trying when the anim is not present
 	
 		//// In case someone calls this with something other than the ideal activity
 		//m_IdealActivity = m_Activity;
 
-	}//END OF if(NewActivity != ACT_CROUCHIDLE || !warpRandomAnim || m_fSequenceFinished)
+	}// if(NewActivity != ACT_CROUCHIDLE || !warpRandomAnim || m_fSequenceFinished)
 
 
 
@@ -4351,7 +4351,7 @@ void CStukaBat::MoveExecute( CBaseEntity *pTargetEnt, const Vector &vecDir, floa
 			}
 		
 
-		}//END OF if(pev->deadflag == DEAD_NO)
+		}// if(pev->deadflag == DEAD_NO)
 
 
 
@@ -4448,9 +4448,9 @@ void CStukaBat::MoveExecute( CBaseEntity *pTargetEnt, const Vector &vecDir, floa
 					*/
 			}
 			//return LookupSequence("Flying_cycler");
-		}//END OF if(moveFlyNoInterrupt == -1)
+		}// if(moveFlyNoInterrupt == -1)
 
-	}//END OF if(!on
+	}// if(!on
 	else{
 
 		m_flGroundSpeed = STUKABAT_MOVESPEED_WALK;
@@ -4873,7 +4873,7 @@ void CStukaBat::MonsterThink(){
 
 		stukaPrint.general.sendToPrintQueue("GENERAL: ATTA: %d STAT: %d", attackIndex, m_MonsterState );
 
-	}//END OF dead check
+	}// dead check
 
 
 	if(EASY_CVAR_GET_DEBUGONLY(stukaPrintout) == 1){
@@ -4907,7 +4907,7 @@ float CStukaBat::HearingSensitivity(){
 		default:
 			return 1.5f;
 		break;
-		}//END OF switch(EASY_CVAR_GET_DEBUGONLY(STUDetection))
+		}// switch(EASY_CVAR_GET_DEBUGONLY(STUDetection))
 	}else{
 		//provoked?  We hear well.
 		return 1.5f;
@@ -5018,8 +5018,8 @@ void CStukaBat::checkTraceLine(const Vector& vecSuggestedDir, const float& trave
 			//MODDAHHH 0.91, 5, 0.44, 4.56
 			//easyPrintLineGroup2("MODDAHHH %.2f, %d, %.2f, %.2f ", tr.flFraction, moveDist, toMove, (tr.vecEndPos - vecStart).Length());
 
-		}//END OF if(tr.flFraction < 1.0)
-	}//END OF if(!tempCheckTraceLineBlock)
+		}// if(tr.flFraction < 1.0)
+	}// if(!tempCheckTraceLineBlock)
 	
 	if(EASY_CVAR_GET_DEBUGONLY(drawDebugPathfinding2) == 1){
 		UTIL_drawLineFrame(vecStart, vecStart + vecRelativeEndScale, 16, 0, 255, 0);
@@ -5130,8 +5130,8 @@ void CStukaBat::checkTraceLineTest(const Vector& vecSuggestedDir, const float& t
 			//MODDAHHH 0.91, 5, 0.44, 4.56
 			//easyPrintLineGroup2("MODDAHHH %.2f, %d, %.2f, %.2f ", tr.flFraction, moveDist, toMove, (tr.vecEndPos - vecStart).Length());
 
-		}//END OF if(tr.flFraction < 1.0)
-	}//END OF if(!tempCheckTraceLineBlock)
+		}// if(tr.flFraction < 1.0)
+	}// if(!tempCheckTraceLineBlock)
 	
 	if(EASY_CVAR_GET_DEBUGONLY(drawDebugPathfinding2) == 1){
 		UTIL_drawLineFrame(vecStart, vecStart + vecRelativeEndScale, 16, 0, 255, 0);
@@ -5392,10 +5392,10 @@ void CStukaBat::checkFloor(const Vector& vecSuggestedDir, const float& travelMag
 
 		}
 
-	}//END OF if(!onGround)
+	}// if(!onGround)
 
 
-}//END OF checkFloor
+}// checkFloor
 
 
 
@@ -5415,7 +5415,7 @@ float CStukaBat::MoveYawDegreeTolerance(){
 	}
 
 	
-}//END OF MoveYawDegreeTolerance
+}// MoveYawDegreeTolerance
 
 
 
@@ -5509,11 +5509,11 @@ int CStukaBat::LookupActivityHard(int activity){
 			
 		break;
 
-	}//END OF switch(...)
+	}// switch(...)
 	
 	//not handled by above?  try the real deal.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF LookupActivityHard(...)
+}// LookupActivityHard(...)
 
 //quick reference
 /*
@@ -5537,12 +5537,12 @@ int CStukaBat::tryActivitySubstitute(int activity){
 		case ACT_HOVER:
 			return CBaseAnimating::LookupActivity(activity);
 		break;
-	}//END OF switch(...)
+	}// switch(...)
 
 
 	//not handled by above? Rely on the model's anim for this activity if there is one.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF tryActivitySubstitute(...)
+}// tryActivitySubstitute(...)
 
 
 
@@ -5556,7 +5556,7 @@ void CStukaBat::ReportAIState(void){
 	easyForcePrintLine("man %d %d bat:%.2f : ct:%.2f", m_Activity, m_IdealActivity, blockSetActivity, gpGlobals->time);
 	
 
-}//END OF ReportAIState()
+}// ReportAIState()
 
 
 //TODO - Pretty sure the stuka has turn activities, use them.
@@ -5564,7 +5564,7 @@ void CStukaBat::ReportAIState(void){
 
 Schedule_t* CStukaBat::GetStumpedWaitSchedule(){
 	return slStukaPathfindStumped;
-}//END OF GetStumpedWaitSchedule
+}// GetStumpedWaitSchedule
 
 
 
@@ -5587,12 +5587,12 @@ BOOL CStukaBat::violentDeathDamageRequirement(void){
 BOOL CStukaBat::violentDeathClear(void){
 	//No, it's a falling death. Don't do a linetrace.
 	return TRUE;
-}//END OF violentDeathAllowed
+}// violentDeathAllowed
 
 //Just allow violent death all the time, doubt the other GUTSHOT and HEADSHOT ACT's even have any sequences for me.
 int CStukaBat::violentDeathPriority(void){
 	return 1;
-}//END OF violentDeathPriority
+}// violentDeathPriority
 
 /*
 Activity CBaseMonster::GetDeathActivity ( void ){
@@ -5603,7 +5603,7 @@ Activity CBaseMonster::GetDeathActivity ( void ){
 	}
 
 	return CSquadMonster::GetDeathActivity(void);
-}//END OF GetDeathActivity
+}// GetDeathActivity
 */
 
 
@@ -5622,7 +5622,7 @@ Activity CStukaBat::getIdleActivity(void){
 	}
 
 
-}//END OF getIdleActivity)
+}// getIdleActivity
 
 
 // Override to tell whether this monster prefers to look for bits_NODE_GROUND or AIR

@@ -173,8 +173,8 @@ void CRecharge::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE use
 				//pPlayer->SetSuitUpdate("!HEV_BTY_DING", FALSE, SUIT_NEXT_IN_30SEC, 0.6);
 				// NOTICE - a sentence of 5000 is a special code to do the flexible power readout sentence.
 				thePlayer->SetSuitUpdateNumber(5000, SUIT_REPEAT_OK, -1, TRUE);
-			}//END OF IsPlayer check
-		}//END OF isOn check
+			}// IsPlayer check
+		}// isOn check
 
 
 		pev->frame = 1;			
@@ -269,7 +269,7 @@ void CRecharge::Off(void)
 		//pPlayer->SetSuitUpdate("!HEV_BTY_DING", FALSE, SUIT_NEXT_IN_30SEC, 0.6);
 		// NOTICE - a sentence of 5000 is a special code to do the flexible power readout sentence.
 		thePlayer->SetSuitUpdateNumber(5000, SUIT_REPEAT_OK, -1, TRUE);
-	}//END OF IsPlayer check
+	}// IsPlayer check
 
 
 	if ((!m_iJuice) && ( ( m_iReactivate = g_pGameRules->FlHEVChargerRechargeTime() ) > 0) )

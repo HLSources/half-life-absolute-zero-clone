@@ -367,7 +367,7 @@ void CGib::SpawnRandomGibs(entvars_t* pevVictim, int cGibs, int argSpawnGibID, B
 	//SpawnRandomGibs(pevVictim, cGibs, aryGibInfo[argSpawnGibID], spawnDecals);
 	const GibInfo_t& gibInfoChoice = aryGibInfo[argSpawnGibID];
 	CGib::SpawnRandomGibs(pevVictim, cGibs, gibInfoChoice.modelPath, gibInfoChoice.bodyMin, gibInfoChoice.bodyMax, spawnDecals, gibInfoChoice.bloodColor);
-}//END OF SpawnRandomGibs
+}// SpawnRandomGibs
 
 void CGib::SpawnRandomGibs(entvars_t* pevVictim, int cGibs, int argSpawnGibID, BOOL spawnDecals, int argBloodColor) {
 	if (argSpawnGibID == GIB_DUMMY_ID) {
@@ -499,12 +499,12 @@ void CGib::SpawnRandomGibs(entvars_t* pevVictim, int cGibs, const char* argGibPa
 		}
 		pGib->LimitVelocity();
 	}
-}//END OF SpawnRandomGibs
+}// SpawnRandomGibs
 
 
 float CGib::massInfluence(void) {
 	return 0.11f;
-}//END OF massInfluence
+}// massInfluence
 
 
 

@@ -122,9 +122,9 @@ public:
 	
 	GENERATE_TRACEATTACK_PROTOTYPE
 	GENERATE_TAKEDAMAGE_PROTOTYPE
+	const char* getHitgroupName(int arg_iHitgroup);
 
-	void ShowDamage( void );
-
+	void ShowDamage(void);
 	void onDelete(void);
 
 };
@@ -382,7 +382,7 @@ CBaseMonster *COsprey::MakeGrunt( Vector vecSrc )
 			DispatchSpawn( pEntity->edict() );
 
 			break;
-			}//END OF while(true) ... just to be skippable at any point.
+			}// while(true) ... just to be skippable at any point.
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 			pGrunt = pEntity->MyMonsterPointer( );
@@ -752,8 +752,6 @@ void COsprey::DyingThink( void )
 			WRITE_BYTE( 0 );		// speed
 		MESSAGE_END();
 
-		//easyPrintLine("OSPREY DEAD!!!!!!!!!!!!!!!!!!!!!!!!!");
-
 		UTIL_PlaySound(ENT(pev), CHAN_STATIC, "weapons/mortarhit.wav", 1.0, 0.3, 0, 100, FALSE);
 
 		RadiusDamageAutoRadius( pev->origin, pev, pev, 300, CLASS_NONE, DMG_BLAST );
@@ -825,9 +823,10 @@ void COsprey::ShowDamage( void )
 
 
 
-
 GENERATE_TRACEATTACK_IMPLEMENTATION(COsprey)
 {
+	float flDamageStart = flDamage;
+	int iHitgroupStart = ptr->iHitgroup;
 
 	//MODDD - gauss loses some damage on non-critical points
 	if (!(ptr->iHitgroup == 1 || ptr->iHitgroup == 2) && (bitsDamageTypeMod & (DMG_GAUSS))) {
@@ -866,12 +865,21 @@ GENERATE_TRACEATTACK_IMPLEMENTATION(COsprey)
 		//UTIL_Sparks
 		UTIL_Sparks( ptr->vecEndPos, DEFAULT_SPARK_BALLS, EASY_CVAR_GET_DEBUGONLY(sparksOspreyHitMulti) );
 	}
+
+	debugTraceAttack(ptr, bitsDamageType, bitsDamageTypeMod, iHitgroupStart, flDamageStart, flDamage);
+
 }
 
 
 GENERATE_TAKEDAMAGE_IMPLEMENTATION(COsprey)
 {
 	return GENERATE_TAKEDAMAGE_PARENT_CALL(CBaseMonster);
+}
+
+const char* COsprey::getHitgroupName(int arg_iHitgroup){
+	// just do the number
+	// (seen: 1, 2, 3)
+	return CBaseEntity::getHitgroupName(arg_iHitgroup);
 }
 
 

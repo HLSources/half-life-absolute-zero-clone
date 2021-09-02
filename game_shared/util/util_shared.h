@@ -350,6 +350,7 @@ extern DLL_GLOBAL const Vector g_vecZero;
 extern int giAmmoIndex;
 
 
+#if SKIP_NAMED_AMMO_CACHE == 0
 extern int AmmoIndex_9mm;
 extern int AmmoIndex_357;
 extern int AmmoIndex_ARgrenades;
@@ -363,6 +364,7 @@ extern int AmmoIndex_SatchelCharge;
 extern int AmmoIndex_Snarks;
 extern int AmmoIndex_TripMine;
 extern int AmmoIndex_ChumToads;
+#endif
 
 
 extern BOOL globalflag_muteDeploySound;
@@ -579,8 +581,9 @@ extern void InitShared(void);
 extern void PrecacheShared(void);
 extern void ClearWeaponInfoCache(void);
 
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-#endif //END OF UTIL_SHARED_H
+#endif// UTIL_SHARED_H

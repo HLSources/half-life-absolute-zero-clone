@@ -972,7 +972,7 @@ void V_CalcNormalRefdef(struct ref_params_s* pparams)
 			}
 
 			oldHull = ent->curstate.usehull;
-		}//END OF hull change check
+		}// hull change check
 
 
 		deltaOriginZ_cumula += deltaOriginZ;
@@ -1103,7 +1103,7 @@ void V_CalcNormalRefdef(struct ref_params_s* pparams)
 				oldViewHeight = pparams->viewheight[2];
 			}
 
-		}//END OF cl_interp_view_extra checks
+		}// cl_interp_view_extra checks
 		else {
 			oldViewHeight = pparams->viewheight[2];
 		}

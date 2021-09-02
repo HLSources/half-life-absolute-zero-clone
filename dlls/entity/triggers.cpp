@@ -1346,7 +1346,7 @@ void CBaseTrigger::HurtTouch ( CBaseEntity *pOther )
 	}
 
 
-}//END OF HurtTouch
+}// HurtTouch
 
 
 
@@ -1989,7 +1989,7 @@ int CChangeLevel::ChangeList( LEVELLIST *pLevelList, int maxList )
 				}
 			}
 
-		}//END OF loop
+		}// loop
 	}
 
 	
@@ -2014,7 +2014,7 @@ int CChangeLevel::ChangeList( LEVELLIST *pLevelList, int maxList )
 				tempmon->m_pCine->wasAttached = TRUE;
 			}
 
-		}//END OF loop
+		}// loop
 	}
 
 
@@ -2168,7 +2168,7 @@ int CChangeLevel::ChangeList( LEVELLIST *pLevelList, int maxList )
 				//easyForcePrintLine("THE HELL IS THAT WILLIS %s:%d", tempmon->getClassname(), tempmon->monsterID);
 			}
 
-		}//END OF loop
+		}// loop
 	}
 
 
@@ -2378,7 +2378,7 @@ void CTriggerPush::Touch( CBaseEntity *pOther )
 		}
 
 		// Sillyness
-		//pevToucher->velocity.z = 666;
+		//pevToucher->velocity.z = 500;
 
 	}
 }

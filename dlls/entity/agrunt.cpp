@@ -159,7 +159,7 @@ public:
 	//MODDD
 	GENERATE_TRACEATTACK_PROTOTYPE
 	GENERATE_TAKEDAMAGE_PROTOTYPE
-	
+	const char* getHitgroupName(int arg_iHitgroup);
 
 	void forceNewEnemy(CBaseEntity* argIssuing, CBaseEntity* argNewEnemy, BOOL argPassive);
 	void forgetForcedEnemy(CBaseMonster* argIssuing, BOOL argPassive);
@@ -589,111 +589,42 @@ void CAGrunt::MonsterThink(void){
 	if(EASY_CVAR_GET_CLIENTSENDOFF_BROADCAST_DEBUGONLY(thatWasntPunch) == 1 && this->m_fSequenceFinished){
 
 		switch(RANDOM_LONG(0, 33)){
-
-			case 0:
-				this->SetSequenceByName("land_hard");
-			break;
-			case 1:
-				this->SetSequenceByName("smashrail");
-			break;
-			case 2:
-				this->SetSequenceByName("bigopen");
-			break;
-			case 3:
-				this->SetSequenceByName("scare");
-			break;
-			case 4:
-				this->SetSequenceByName("scare");
-			break;
-			case 5:
-				this->SetSequenceByName("scare");
-			break;
-			case 6:
-				this->SetSequenceByName("float");
-			break;
-			case 7:
-				this->SetSequenceByName("float");
-			break;
-			case 8:
-				this->SetSequenceByName("longshoot");
-			break;
-			case 9:
-				this->SetSequenceByName("quickshoot");
-			break;
-			case 10:
-				this->SetSequenceByName("quickshoot");
-			break;
-			case 11:
-				this->SetSequenceByName("quickshoot");
-			break;
-			case 12:
-				this->SetSequenceByName("quickshoot");
-			break;
-			case 13:
-				this->SetSequenceByName("quickshoot");
-			break;
-			case 14:
-				this->SetSequenceByName("attack3");
-			break;
-			case 15:
-				this->SetSequenceByName("larmflinch");
-			break;
-			case 16:
-				this->SetSequenceByName("llegflinch");
-			break;
-			case 17:
-				this->SetSequenceByName("rarmflinch");
-			break;
-			case 18:
-				this->SetSequenceByName("rlegflinch");
-			break;
-			case 19:
-				this->SetSequenceByName("victorysquat");
-			break;
-			case 20:
-				this->SetSequenceByName("mattack3");
-			break;
-			case 21:
-				this->SetSequenceByName("mattack3");
-			break;
-			case 22:
-				this->SetSequenceByName("mattack2");
-			break;
-			case 23:
-				this->SetSequenceByName("bigflinch");
-			break;
-			case 24:
-				this->SetSequenceByName("smallflinch");
-			break;
-			case 25:
-				this->SetSequenceByName("smallflinch");
-			break;
-			case 26:
-				this->SetSequenceByName("smallflinch");
-			break;
-			case 27:
-				this->SetSequenceByName("smallflinch");
-			break;
-			case 28:
-				this->SetSequenceByName("smallflinch");
-			break;
-			case 29:
-				this->SetSequenceByName("smallflinch");
-			break;
-			case 30:
-				this->SetSequenceByName("turnl");
-			break;
-			case 31:
-				this->SetSequenceByName("turnl");
-			break;
-			case 32:
-				this->SetSequenceByName("turnr");
-			break;
-			case 33:
-				this->SetSequenceByName("turnr");
-			break;
+			case 0:SetSequenceByName("land_hard");break;
+			case 1:SetSequenceByName("smashrail");break;
+			case 2:SetSequenceByName("bigopen");break;
+			case 3:SetSequenceByName("scare");break;
+			case 4:SetSequenceByName("scare");break;
+			case 5:SetSequenceByName("scare");break;
+			case 6:SetSequenceByName("float");break;
+			case 7:SetSequenceByName("float");break;
+			case 8:SetSequenceByName("longshoot");break;
+			case 9:SetSequenceByName("quickshoot");break;
+			case 10:SetSequenceByName("quickshoot");break;
+			case 11:SetSequenceByName("quickshoot");break;
+			case 12:SetSequenceByName("quickshoot");break;
+			case 13:SetSequenceByName("quickshoot");break;
+			case 14:SetSequenceByName("attack3");break;
+			case 15:SetSequenceByName("larmflinch");break;
+			case 16:SetSequenceByName("llegflinch");break;
+			case 17:SetSequenceByName("rarmflinch");break;
+			case 18:SetSequenceByName("rlegflinch");break;
+			case 19:SetSequenceByName("victorysquat");break;
+			case 20:SetSequenceByName("mattack3");break;
+			case 21:SetSequenceByName("mattack3");break;
+			case 22:SetSequenceByName("mattack2");break;
+			case 23:SetSequenceByName("bigflinch");break;
+			case 24:SetSequenceByName("smallflinch");break;
+			case 25:SetSequenceByName("smallflinch");break;
+			case 26:SetSequenceByName("smallflinch");break;
+			case 27:SetSequenceByName("smallflinch");break;
+			case 28:SetSequenceByName("smallflinch");break;
+			case 29:SetSequenceByName("smallflinch");break;
+			case 30:SetSequenceByName("turnl");break;
+			case 31:SetSequenceByName("turnl");break;
+			case 32:SetSequenceByName("turnr");break;
+			case 33:SetSequenceByName("turnr");break;
 		}
-	}//END OF whatever the ...heck... that was
+	}// whatever the ...heck... that was
 
 	
 
@@ -718,13 +649,13 @@ void CAGrunt::MonsterThink(void){
 				PLAYBACK_EVENT_FULL (FEV_GLOBAL, NULL, g_sCustomBallsPowerup, 0.0, (float *)&position, (float *)&Vector(0,0,0), 0.0, 0.0, ballsToSpawn, 0, FALSE, FALSE);
 			}
 			*/
-		}//END OF still poweredup check
+		}// still poweredup check
 		else{
 			//turn it off.
 			setPoweredUpOff();
 		}
 
-	}//END OF if poweredup check
+	}// if poweredup check
 
 	CSquadMonster::MonsterThink();
 
@@ -749,6 +680,8 @@ void CAGrunt::MonsterThink(void){
 	*/
 
 }//MonsterThink
+
+
 
 
 void CAGrunt::setPoweredUpOff(void){
@@ -829,7 +762,7 @@ void CAGrunt::setPoweredUpOff(void){
 	}
 	*/
 
-}//END OF setPoweredUpOff()
+}// setPoweredUpOff()
 
 
 void CAGrunt::setPoweredUpOn(CBaseMonster* argPoweredUpCauseEnt, float argHowLong){
@@ -894,7 +827,7 @@ void CAGrunt::setPoweredUpOn(CBaseMonster* argPoweredUpCauseEnt, float argHowLon
 	}
 	*/
 
-}//END OF setPoweredUpOn
+}// setPoweredUpOn
 
 
 //=========================================================
@@ -970,10 +903,8 @@ int CAGrunt::ISoundMask ( void )
 
 GENERATE_TRACEATTACK_IMPLEMENTATION(CAGrunt)
 {
-	//easyForcePrintLine("AGrunt::TraceAttack says I took %.2f damage.", flDamage);
-	//easyForcePrintLine("agrunt: TraceAttack hitgroup:%d B:%d S:%d C:%d", ptr->iHitgroup, (bitsDamageType & (DMG_BULLET)), (bitsDamageType & (DMG_SLASH)), (bitsDamageType & (DMG_CLUB))   );
-	//easyForcePrintLine("ILL %d %d", (ptr->iHitgroup), (bitsDamageType & (DMG_BULLET | DMG_SLASH | DMG_CLUB)) != 0 );
-
+	float flDamageStart = flDamage;
+	int iHitgroupStart = ptr->iHitgroup;
 	
 	if ((bitsDamageType & DMG_BLAST) || (bitsDamageTypeMod & DMG_HITBOX_EQUAL)) {
 		//MODDD - DMG_BLAST isn't at all precise, shots for whatever hitgroup are a shot in the dark.
@@ -991,8 +922,6 @@ GENERATE_TRACEATTACK_IMPLEMENTATION(CAGrunt)
 		// damage split up.  only BULLET should have the RicochetTracer effect.
 		if (bitsDamageType & (DMG_BULLET)) {
 			if (flDamage <= 20) {
-
-				
 				//flDamage = 0.1;// don't hurt the monster much, but allow bits_COND_LIGHT_DAMAGE to be generated
 				// Do this instead, 12% damage.
 				flDamage = flDamage * 0.12;
@@ -1015,8 +944,8 @@ GENERATE_TRACEATTACK_IMPLEMENTATION(CAGrunt)
 				
 
 			}else {
-				//MODDD - Hitting the armor still shouldn't be insignificant, reduce damage by 15%.
-				flDamage = flDamage * 0.85;
+				//MODDD - Hitting the armor still shouldn't be insignificant, reduce damage by 20%.
+				flDamage = flDamage * 0.80;
 			}
 		}else if (bitsDamageType & (DMG_SLASH | DMG_CLUB) ) {
 			if (flDamage <= 20) {
@@ -1031,25 +960,39 @@ GENERATE_TRACEATTACK_IMPLEMENTATION(CAGrunt)
 				flDamage = flDamage * 0.90;
 			}
 		}
+	}else if(ptr->iHitgroup == HITGROUP_HEAD){
 
-	}
-	else {
-		// hit anywhere else?  Pretty fleshy and exposed, but kinda tough-looking I guess.  8%.
-		if (bitsDamageType & (DMG_BULLET)) {
-			flDamage = flDamage * 0.92;
+		// leave damage at 100%!
+
+	}else {
+		// hit anywhere else?  Pretty fleshy and exposed, but kinda tough-looking I guess.
+		if (bitsDamageType & (DMG_BULLET | DMG_SLASH | DMG_CLUB)) {
+			if (flDamage >= 20){
+				// 10%
+				flDamage = flDamage * 0.9;
+			}else{
+				// 20%
+				flDamage = flDamage * 0.8;
+			}
 		}
 	}
-	//END OF armor hitgroup check
+	// armor hitgroup check
 
-	
-	
-	//easyForcePrintLine("AGrunt::TraceAttack ended with %.2f damage.", flDamage);
+
+	debugTraceAttack(ptr, bitsDamageType, bitsDamageTypeMod, iHitgroupStart, flDamageStart, flDamage);
 	
 	// In as-is, we skipped call to the parent TraceAttack bbbbeeeeeecccccccaaaaaaauuuuuuussssssseeeeee?
 	// The hgrunt doesn't........
 	//AddMultiDamage( pevAttacker, this, flDamage, bitsDamageType, bitsDamageTypeMod );
 	GENERATE_TRACEATTACK_PARENT_CALL(CSquadMonster);
 }
+
+const char* CAGrunt::getHitgroupName(int arg_iHitgroup){
+	if(arg_iHitgroup == HITGROUP_AGRUNT_ARMOR)return "HITGROUP_AGRUNT_ARMOR";
+
+	return CBaseMonster::getHitgroupName(arg_iHitgroup);
+}
+
 
 //=========================================================
 // StopTalking - won't speak again for 10-20 seconds.
@@ -1683,9 +1626,9 @@ void CAGrunt::RunTask( Task_t* pTask ){
 		default:{
 			CSquadMonster::RunTask(pTask);
 		break;}
-	}//END OF switch
+	}// switch
 
-}//END OF RunTask
+}// RunTask
 
 
 
@@ -1966,11 +1909,11 @@ int CAGrunt::LookupActivityHard(int activity){
 				m_flFramerateSuggestion = 2.0;
 			}
 		break;
-	}//END OF switch(...)
+	}// switch(...)
 	
 	//not handled by above?  try the real deal.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF LookupActivityHard(...)
+}// LookupActivityHard(...)
 
 
 int CAGrunt::tryActivitySubstitute(int activity){
@@ -1981,12 +1924,12 @@ int CAGrunt::tryActivitySubstitute(int activity){
 		case ACT_RUN:
 
 		break;
-	}//END OF switch(...)
+	}// switch(...)
 
 
 	//not handled by above? We're not using the script to determine animation then. Rely on the model's anim for this activity if there is one.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF tryActivitySubstitute(...)
+}// tryActivitySubstitute(...)
 
 //Handles custom events sent from "LookupActivityHard", which sends events as timed delays along with picking an animation in script.
 //So this handles script-provided events, not model ones.
@@ -2005,10 +1948,10 @@ void CAGrunt::HandleEventQueueEvent(int arg_eventID){
 
 	break;
 	}
-	}//END OF switch(...)
+	}// switch(...)
 
 
-}//END OF HandleEventQueueEvent(...)
+}// HandleEventQueueEvent(...)
 
 
 void CAGrunt::setChaseSpeed(void){
@@ -2026,7 +1969,7 @@ void CAGrunt::setChaseSpeed(void){
 
 	//apply immediately just in case.
 	pev->framerate = m_flFramerateSuggestion;
-}//END OF setChaseSpeed
+}// setChaseSpeed
 
 GENERATE_TAKEDAMAGE_IMPLEMENTATION(CAGrunt)
 {
@@ -2102,7 +2045,7 @@ void CAGrunt::forceNewEnemy(CBaseEntity* argIssuing, CBaseEntity* argNewEnemy, B
 
 		m_hEnemy = argNewEnemy;
 
-		//If non-passive (immediate) and if in the middle of attacking and this was the incorrect enemy, stop attacking. Is this safe?
+		// If non-passive (immediate) and if in the middle of attacking and this was the incorrect enemy, stop attacking. Is this safe?
 		if(!argPassive){
 
 			/*
@@ -2117,16 +2060,15 @@ void CAGrunt::forceNewEnemy(CBaseEntity* argIssuing, CBaseEntity* argNewEnemy, B
 			
 			SetState(MONSTERSTATE_COMBAT);
 
-			//no matter what, just changeschedule.
-			//MODDD - fuck donuts
+			// no matter what, just changeschedule.
+			// or don't
 			//ChangeSchedule( GetSchedule() );
-			//easyForcePrintLine("FUCK DONUTS 1");
 			TaskFail();
 
-		}//END OF if(!argPassive)
-	}//END OF my enemy - forced enemy mismatch check
+		}// if(!argPassive)
+	}// my enemy - forced enemy mismatch check
 	else{
-		//if they DO match, and non-passive...
+		// if they DO match, and non-passive...
 		forceNewEnemyCooldownTightTime = gpGlobals->time + 2.5;
 
 		if(!argPassive){
@@ -2136,16 +2078,15 @@ void CAGrunt::forceNewEnemy(CBaseEntity* argIssuing, CBaseEntity* argNewEnemy, B
 			){
 				SetState(MONSTERSTATE_COMBAT);
 
-				//You MUST be focused on the enemy right this moment!
-				//easyForcePrintLine("FUCK DONUTS 2");
+				// You MUST be focused on the enemy right this moment!
 				//ChangeSchedule( GetSchedule() );
 				TaskFail();
 			}
 		}
 
-	}//END OF my enemy - forced enemy match check
+	}// my enemy - forced enemy match check
 
-}//END OF forceNewEnemy
+}// forceNewEnemy
 
 
 void CAGrunt::forgetForcedEnemy(CBaseMonster* argIssuing, BOOL argPassive){
@@ -2154,7 +2095,7 @@ void CAGrunt::forgetForcedEnemy(CBaseMonster* argIssuing, BOOL argPassive){
 		directedEnemyIssuer = NULL;
 		powerupCauseEntDirectedEnemy = NULL;
 	}
-}//END OF forgetNewEnemy
+}// forgetNewEnemy
 
 
 
@@ -2179,7 +2120,7 @@ void CAGrunt::ReportAIState(void){
 		gpGlobals->time
 	);
 	
-}//END OF ReportAIState()
+}// ReportAIState
 
 
 Vector CAGrunt::GetGunPosition(void){
@@ -2190,7 +2131,7 @@ Vector CAGrunt::GetGunPosition(void){
 	//::UTIL_printLineVector("yehhhag", vecGunPos-pev->origin);
 
 	return vecGunPos;
-}//END OF GetGunPosition
+}// GetGunPosition
 
 
 Vector CAGrunt::GetGunPositionAI(void){
@@ -2222,7 +2163,7 @@ Vector CAGrunt::GetGunPositionAI(void){
 	return vecSrc;
 	*/
 
-}//END OF GetGunPositionAI
+}// GetGunPositionAI
 
 
 
@@ -2270,7 +2211,7 @@ void CAGrunt::OnTakeDamageSetConditions(entvars_t *pevInflictor, entvars_t *pevA
 
 	easyPrintLine("%s:%d OnTkDmgSetCond raw:%.2f fract:%.2f", getClassname(), monsterID, flDamage, (flDamage / pev->max_health));
 
-}//END OF OnTakeDamageSetConditions
+}// OnTakeDamageSetConditions
 
 
 int CAGrunt::getHullIndexForNodes(void){

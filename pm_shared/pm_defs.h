@@ -216,7 +216,7 @@ typedef struct playermove_s
 	
 	pmtrace_t		(*PM_PlayerTraceEx) (float *start, float *end, int traceFlags, int (*pfnIgnore)( physent_t *pe ) );
 	int			(*PM_TestPlayerPositionEx) (float *pos, pmtrace_t *ptrace, int (*pfnIgnore)( physent_t *pe ) );
-	//MODDD NOTE - a typo, "usehull" with 3 L's, huh?  ... yes, I am that kind of bastard.
+	//MODDD NOTE - a typo, "usehull" with 3 L's, huh?
 	struct pmtrace_s *(*PM_TraceLineEx)( float *start, float *end, int flags, int usehull, int (*pfnIgnore)( physent_t *pe ) );
 } playermove_t;
 

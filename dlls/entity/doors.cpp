@@ -249,7 +249,7 @@ LINK_ENTITY_TO_CLASS( func_water, CBaseDoor );
 
 CBaseDoor::CBaseDoor(void){
 
-}//END OF CBaseDoor constructor
+}// CBaseDoor constructor
 
 
 void CBaseDoor::Spawn( )
@@ -512,7 +512,7 @@ void CBaseDoor::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE use
 void CBaseDoor::AngularMove( Vector vecDestAngle, float flSpeed )
 {
 	CBaseToggle::AngularMove(vecDestAngle, flSpeed);
-}//END OF AngularMove
+}// AngularMove
 
 
 
@@ -675,7 +675,7 @@ void CBaseDoor::OnDoorHitTop(void){
 	}
 
 	SUB_UseTargets( m_hActivator, USE_TOGGLE, 0 ); // this isn't finished
-}//END OF OnDoorHitTop
+}// OnDoorHitTop
 
 
 void CBaseDoor::OnDoorGoDown(void){
@@ -693,7 +693,7 @@ void CBaseDoor::OnDoorGoDown(void){
 	//MODDD - rotating door check here also moved to CRotDoor.
 
 	LinearMove( m_vecPosition1, pev->speed);
-}//END OF OnDoorGoDown
+}// OnDoorGoDown
 
 
 void CBaseDoor::OnDoorHitBottom(void){
@@ -731,7 +731,7 @@ void CBaseDoor::OnDoorHitBottom(void){
 	}
 
 
-}//END OF OnDoorHitBottom
+}// OnDoorHitBottom
 
 
 
@@ -859,7 +859,7 @@ CRotDoor::CRotDoor(void){
 	angularMoveDoneTime = -1;
 	doorCloseDelay = -1;
 
-}//END OF CRotDoor constructor
+}// CRotDoor constructor
 
 
 
@@ -906,7 +906,7 @@ void CRotDoor::AngularMove( Vector vecDestAngle, float flSpeed )
 {
 	//If not a heal door, nothing unusual.
 	CBaseDoor::AngularMove(vecDestAngle, flSpeed);
-}//END OF AngularMove
+}// AngularMove
 
 
 
@@ -953,12 +953,12 @@ void CRotDoor::OnDoorGoUp(void) {
 	}
 	AngularMove(m_vecAngle2*sign, pev->speed);
 	
-}//END OF OnDoorGoUp
+}// OnDoorGoUp
 
 void CRotDoor::OnDoorHitTop(void){
 
 	CBaseDoor::OnDoorHitTop();
-}//END OF OnDoorHitTop
+}// OnDoorHitTop
 
 
 //MODDD - moved from CBaseDoor to be more specific to here.
@@ -976,20 +976,20 @@ void CRotDoor::OnDoorGoDown(void){
 
 	//MODDD
 	AngularMove( m_vecAngle1, pev->speed);
-}//END OF OnDoorGoDown
+}// OnDoorGoDown
 
 
 void CRotDoor::OnDoorHitBottom(void){
 
 	CBaseDoor::OnDoorHitBottom();
 	
-}//END OF OnDoorHitBottom
+}// OnDoorHitBottom
 
 
 
 void CRotDoor::ReportGeneric(void){
 	CBaseDoor::ReportGeneric();
-}//END OF ReportGeneric
+}// ReportGeneric
 
 
 
@@ -1089,7 +1089,7 @@ void CRotDoor::Precache()
 void CRotDoor::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )
 {
 	CBaseDoor::Use(pActivator, pCaller, useType, value);
-}//END OF Use
+}// Use
 
 
 
@@ -1124,7 +1124,7 @@ CMomentaryDoor::CMomentaryDoor(void){
 	previousValue = 0;
 	hasPreviousValue = FALSE;
 	previousValueDelta = 0;
-}//END OF constructor
+}// constructor
 
 
 
@@ -1337,7 +1337,7 @@ void CMomentaryDoor::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYP
 
 
 
-}//END OF Use
+}// Use
 
 
 /*
@@ -1348,7 +1348,7 @@ void CMomentaryDoor::Think(){
 		UTIL_StopSound(ENT(pev), CHAN_STATIC, (char*)STRING(pev->noiseMoving)); //1, ATTN_NORM);
 	}
 	CBaseToggle::Think();
-}//END OF Think
+}// Think
 */
 
 

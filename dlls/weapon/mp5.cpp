@@ -25,9 +25,10 @@
 #include "gamerules.h"
 
 
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 LINK_ENTITY_TO_CLASS( weapon_mp5, CMP5 );
 LINK_ENTITY_TO_CLASS( weapon_9mmAR, CMP5 );
-
+#endif
 
 
 EASY_CVAR_EXTERN_CLIENTSENDOFF_BROADCAST_DEBUGONLY(cheat_minimumfiredelay)
@@ -346,8 +347,9 @@ void CMP5::SecondaryAttack( void )
 
 void CMP5::Reload( void )
 {
-	if ( m_pPlayer->ammo_9mm <= 0 )
+	if ( PlayerPrimaryAmmoCount() <= 0 ){
 		return;
+	}
 
 	//NEW DELAY, old was 1.5.
 	DefaultReload( MP5_MAX_CLIP, MP5_RELOAD, (47.0/20.0) );
@@ -385,6 +387,7 @@ void CMP5::WeaponIdle( void )
 
 
 
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 class CMP5AmmoClip : public CBasePlayerAmmo
 {
 	void Spawn( void )
@@ -421,7 +424,6 @@ LINK_ENTITY_TO_CLASS( ammo_mp5clip, CMP5AmmoClip );
 LINK_ENTITY_TO_CLASS( ammo_9mmAR, CMP5AmmoClip );
 
 
-
 class CMP5Chainammo : public CBasePlayerAmmo
 {
 	void Spawn( void )
@@ -453,7 +455,6 @@ class CMP5Chainammo : public CBasePlayerAmmo
 	}
 };
 LINK_ENTITY_TO_CLASS( ammo_9mmbox, CMP5Chainammo );
-
 
 class CMP5AmmoGrenade : public CBasePlayerAmmo
 {
@@ -488,5 +489,4 @@ class CMP5AmmoGrenade : public CBasePlayerAmmo
 LINK_ENTITY_TO_CLASS( ammo_mp5grenades, CMP5AmmoGrenade );
 LINK_ENTITY_TO_CLASS( ammo_ARgrenades, CMP5AmmoGrenade );
 
-
-
+#endif// SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)

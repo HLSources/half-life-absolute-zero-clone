@@ -393,7 +393,7 @@ class CItemAntidote : public CItem
 
 
 			return TRUE;
-		}//END OF if(pPlayer->m_rgItems[ITEM_ANTIDOTE] < 5)
+		}// if(pPlayer->m_rgItems[ITEM_ANTIDOTE] < 5)
 
 		//I'm guessing returning "TRUE" means delete the item now (it has been applied to the player, can't be again),
 		//and "FALSE" means whatever condition wasn't applied, so leave it untouched (like at 100 health upon touching
@@ -456,7 +456,7 @@ class CItemAdrenaline : public CItem
 
 
 			return TRUE;
-		}//END OF if(pPlayer->m_rgItems[ITEM_ADRENALINE] < 5)
+		}// if(pPlayer->m_rgItems[ITEM_ADRENALINE] < 5)
 
 		//I'm guessing returning "TRUE" means delete the item now (it has been applied to the player, can't be again),
 		//and "FALSE" means whatever condition wasn't applied, so leave it untouched (like at 100 health upon touching
@@ -521,7 +521,7 @@ class CItemRadiation : public CItem
 
 
 			return TRUE;
-		}//END OF if(pPlayer->m_rgItems[ITEM_RADIATION] < 5)
+		}// if(pPlayer->m_rgItems[ITEM_RADIATION] < 5)
 
 		//I'm guessing returning "TRUE" means delete the item now (it has been applied to the player, can't be again),
 		//and "FALSE" means whatever condition wasn't applied, so leave it untouched (like at 100 health upon touching

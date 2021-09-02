@@ -1419,7 +1419,7 @@ void CSprite::Expand_TimeTarget( float arg_targetScale, float arg_duration ){
 
 
 	Expand( arg_scaleDelta / arg_duration, arg_opacityDelta / arg_duration);
-}//END OF Expand_TimeTarget
+}// Expand_TimeTarget
 
 
 
@@ -1511,7 +1511,7 @@ void CSprite::AnimationScaleFadeIn_TimeTarget(float arg_startScale, float arg_ta
 	AnimationScaleFadeIn( arg_scaleDelta / arg_duration, arg_opacityDelta / arg_duration, arg_startScale, arg_targetScale, arg_targetOpacity);
 
 
-}//END OF AnimationScaleFadeIn_TimeTarget
+}// AnimationScaleFadeIn_TimeTarget
 
 
 //MODDD - copy of Expand that makes the sprite start invisible and fade into existance instead.
@@ -1539,7 +1539,7 @@ void CSprite::AnimationScaleFadeIn( float scaleSpeed, float fadeSpeed, float arg
 
 	pev->nextthink	= gpGlobals->time;
 	m_lastTime		= gpGlobals->time;
-}//END OF AnimationScaleFadeIn
+}// AnimationScaleFadeIn
 
 
 void CSprite::AnimationScaleFadeInThink( void ){
@@ -1589,7 +1589,7 @@ void CSprite::AnimationScaleFadeInThink( void ){
 		m_lastTime			= gpGlobals->time;
 	}
 
-}//END OF AnimationScaleFadeInThink
+}// AnimationScaleFadeInThink
 
 
 
@@ -2930,7 +2930,7 @@ BOOL CEnvMirror::canDrawPlayer(void){
 	// Here's the original way, checking a spawnflag that our mapmakers
 	// may not even be aware of for mirrors:
 	//return pev->spawnflags & SF_MIRROR_DRAWPLAYER;
-}//END OF canDrawPlayer
+}// canDrawPlayer
 
 
 
@@ -2943,7 +2943,7 @@ BOOL CEnvMirror::canDrawPlayer(void){
 // env_modelsimple (CEnvModelSimple) and env_model (CEnvModel) removed!
 // Not necessary for the mirror stuff we wanted
 
-//END OF MODDDMIRROR.
+// MODDDMIRROR.
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////

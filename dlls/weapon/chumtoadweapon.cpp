@@ -16,7 +16,9 @@ int CChumToadWeapon::numberOfEyeSkins = -1;
 
 
 
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 LINK_ENTITY_TO_CLASS( weapon_chumtoad, CChumToadWeapon );
+#endif
 
 /*
 #if REMOVE_ORIGINAL_NAMES != 1
@@ -233,7 +235,7 @@ void CChumToadWeapon::FallInit( void )
 
 	pev->nextthink = gpGlobals->time + 0.1;
 
-}//END OF FallInit(...)
+}// FallInit(...)
 
 
 
@@ -269,7 +271,7 @@ void CChumToadWeapon::FallThinkCustom ( void )
 		pev->nextthink = gpGlobals->time + 0.02;
 
 	}
-}//END OF FallThinkCustom(...)
+}// FallThinkCustom(...)
 
 
 
@@ -354,7 +356,7 @@ void CChumToadWeapon::setModel(const char* m){
 	}
 	*/
 
-}//END OF setModel
+}// setModel
 
 int CChumToadWeapon::GetItemInfo(ItemInfo *p)
 {
@@ -600,7 +602,7 @@ BOOL CChumToadWeapon::checkThrowValid(Vector trace_origin, float* minFractionSto
 		#endif
 			*/
 
-	}//END OF DEBUG DRAW CHECK
+	}// DEBUG DRAW CHECK
 #endif
 
 
@@ -641,7 +643,7 @@ BOOL CChumToadWeapon::checkThrowValid(Vector trace_origin, float* minFractionSto
 	}
 
 	return FALSE;
-}//END OF checkThrowValid
+}// checkThrowValid
 
 
 // Spawns a chumtoad in front of the player with some velocity to go forwards.
@@ -670,7 +672,7 @@ void CChumToadWeapon::ThrowChumtoad(Vector vecSpawnPoint){
 		ChangePlayerPrimaryAmmoCount(-1);
 	}
 
-}//END OF ThrowChumtoad()
+}// ThrowChumtoad()
 
 
 
@@ -735,8 +737,8 @@ void CChumToadWeapon::PrimaryAttack()
 	}
 
 #endif
-	//m_flTimeWeaponIdle = 666;
-}//END OF PrimaryAttack(...)
+	
+}// PrimaryAttack
 
 
 
@@ -824,7 +826,7 @@ void CChumToadWeapon::ItemPostFrame(){
 	
 #endif
 
-}//END OF ItemPostFrame
+}// ItemPostFrame
 
 
 
@@ -933,13 +935,14 @@ void CChumToadWeapon::WeaponIdle( void )
 	//CHUMTOADWEAPON_IDLE1 = 0, //31, 16
 	//CHUMTOADWEAPON_FIDGETLICK, //31, 16
 	//CHUMTOADWEAPON_FIDGETCROAK, //51, 16
-}//END OF WeaponIdle(...)
+}// WeaponIdle
 
 
 
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 CChumToadWeapon_NoReplace::CChumToadWeapon_NoReplace() {
 
-}//END OF constructor
+}// constructor
 
 LINK_ENTITY_TO_CLASS(weapon_chumtoad_noreplace, CChumToadWeapon_NoReplace);
 
@@ -950,4 +953,5 @@ void CChumToadWeapon_NoReplace::Spawn(void) {
 	// after that call, may as well lose the "_noreplace" bit.
 	pev->classname = MAKE_STRING("weapon_chumtoad");
 }
+#endif
 

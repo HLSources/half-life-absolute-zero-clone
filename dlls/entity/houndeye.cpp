@@ -837,7 +837,7 @@ void CHoundeye::setModel(const char* m){
 		}
 	}
 
-}//END OF setModel
+}// setModel
 
 
 //MODDD - doesn't "restore" make more sense?
@@ -1132,7 +1132,7 @@ void CHoundeye::WriteBeamColor ( BOOL useAltcolor )
 			bBlue	= 255;
 		}
 
-	}//END OF if(!useAltcolor)
+	}// if(!useAltcolor)
 	else{
 		bRed	= 248;
 		bGreen	= 248;
@@ -2009,12 +2009,12 @@ int CHoundeye::tryActivitySubstitute(int activity){
 		case ACT_IDLE:{
 			//return SEQ_TEMPLATEMONSTER_XXX;
 		break;}
-	}//END OF switch
+	}// switch
 	*/
 
 	//not handled by above? Rely on the model's anim for this activity if there is one.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF tryActivitySubstitute
+}// tryActivitySubstitute
 
 int CHoundeye::LookupActivityHard(int activity){
 	int i = 0;
@@ -2043,10 +2043,10 @@ int CHoundeye::LookupActivityHard(int activity){
 				}
 			}
 		break;}
-	}//END OF switch
+	}// switch
 	
 	//not handled by above?  try the real deal.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF LookupActivityHard
+}// LookupActivityHard
 
 

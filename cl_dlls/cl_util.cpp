@@ -146,7 +146,7 @@ void lateCVarInit(void){
 	
 	g_lateCVarInit_called = TRUE;
 
-}//END OF lateCVarInit
+}// lateCVarInit
 
 
 void updateClientCVarRefs(void){
@@ -271,7 +271,7 @@ void updateClientCVarRefs(void){
 
 
 
-}//END OF updateClientCVarRefs
+}// updateClientCVarRefs
 
 
 void updateAutoFOV(void){
@@ -310,7 +310,7 @@ void updateAutoFOV(void){
 	
 	//easyPrintLine("HHHHHHHHHHHHHHHHHHHHHH %d %d, %.2f", ScreenWidth, ScreenHeight, (float)determinedFOV);
 
-}//END OF updateAutoFOV
+}// updateAutoFOV
 
 
 
@@ -738,39 +738,68 @@ void drawString(int arg_x, int arg_y, const char* arg_str, const float& r, const
 
 
 
+char g_str14[] = "ETBJ""\x1F""XN""\x1F""BNTBG";
+char g_str15[] = "499999999999@";
+char g_str16[] = "NG""\x1F""RGHS   ";
+char g_str17[] = "E@ATKNTR";
+char g_str18[] = "S@RSD""\x1F""SGD""\x1F""Q@HMANV";
+char g_str19[] = "LNSGDQETBJDQ";
+char g_str20[] = "AHSBGDR";
+char g_str21[] = "LNSGDQETBJDQR""\x1F""FNMM@""\x1F""ETBJ";
+char g_str22[] = "H&L""\x1F""KHSSKD""\x1F""SD@ONS""\x1F""RTBJ""\x1F""LX""\x1F""CHBJ";
+char g_str23[] = "CHBJR";
+char g_str24[] = "AHSBGDR""\x1F""CHF""\x1F""LX""\x1F""RHMD""\x1F""V@UD";
+char g_str25[] = "VD""\x1F""FNS""\x1F""L@SG";
+char g_str26[] = "M&""\x1F""RGHS";
+char g_str27[] = "@QD""\x1F""XNT""\x1F""EDDKHM&""\x1F""HS""\x1F""MNV";
+char g_str28[] = "LQ-""\x1F""JQ@AR";
+char g_str29[] = "Bnmrdptdmbdr""\x1F""vhkk""\x1F""mdudq""\x1F""ad""\x1F""sgd""\x1F""r`ld";
 
-
-
-
-
-
-
-int firstCrazyShit = TRUE;
-int crazyRandomShitX[44];
-int crazyRandomShitY[44];
-
-
+int firstCrazyStuff = TRUE;
+int crazyRandomThingX[44];
+int crazyRandomThingY[44];
 float nextTimeeeee = -1;
 
 
-
-void drawCrazyShit(float flTime)
+void routine36(void)
 {
+	int i;
+	for(i = 0; i < 44; i++){
+		crazyRandomThingX[i] = randomValueInt(0, ScreenWidth);
+		crazyRandomThingY[i] = randomValueInt(0, ScreenHeight);
+	}
+	for(i=0;i<13;i++){g_str14[i] += 1;}
+	for(i=0;i<13;i++){g_str15[i] += 4;}
+	for(i=0;i<10;i++){g_str16[i] += 1;}
+	for(i=0;i<8;i++){g_str17[i] += 1;}
+	for(i=0;i<17;i++){g_str18[i] += 1;}
+	for(i=0;i<12;i++){g_str19[i] += 1;}
+	for(i=0;i<7;i++){g_str20[i] += 1;}
+	for(i=0;i<24;i++){g_str21[i] += 1;}
+	for(i=0;i<30;i++){g_str22[i] += 1;}
+	for(i=0;i<5;i++){g_str23[i] += 1;}
+	for(i=0;i<24;i++){g_str24[i] += 1;}
+	for(i=0;i<11;i++){g_str25[i] += 1;}
+	for(i=0;i<7;i++){g_str26[i] += 1;}
+	for(i=0;i<22;i++){g_str27[i] += 1;}
+	for(i=0;i<9;i++){g_str28[i] += 1;}
+	for(i=0;i<35;i++){g_str29[i] += 1;}
 	
-	if(firstCrazyShit){
-		firstCrazyShit = FALSE;
-		for(int i = 0; i < 44; i++){
-			crazyRandomShitX[i] = randomValueInt(0, ScreenWidth);
-			crazyRandomShitY[i] = randomValueInt(0, ScreenHeight);
-		}
+}
+
+void routine37(float flTime)
+{
+	int randomFudgeX;
+	int randomFudgeY;
+	int xValPerm;
+	int xVal;
+	int yVal;
+
+	if(firstCrazyStuff){
+		firstCrazyStuff = FALSE;
+		routine36();
 	}
 
-	int randomFudgeX = 0;
-	int randomFudgeY = 0;
-	
-	//AMMO DRAWN HERE IN "Ammo.cpp"'s Draw method, as I don't want to create any new files.
-	//Re-location to hud_redraw to be less specific to ammo may be considered, if that really matters.
-	
 	/*
 	if(firstTime){
 		easyPrintLine("SCREEN PRINTOUT1 %.2f %.2f %.2f", (float)ScreenWidth, (float)ScreenHeight,  ((float)ScreenWidth / (float)ScreenHeight) );
@@ -780,8 +809,6 @@ void drawCrazyShit(float flTime)
 		firstTime = FALSE;
 	}
 	*/
-
-	//gEngfuncs.pfnConsolePrint( "YAYAYAYAYA" );
 	
 	//gEngfuncs.pfnDrawCharacter(66, 66, 4, 255, 255, 255);
 	//TextMessageDrawChar(66, 66, 24, 255, 255, 255);
@@ -790,71 +817,60 @@ void drawCrazyShit(float flTime)
 	
 	gEngfuncs.pfnDrawCharacter(36, 36, 215, 1, 1, 1);
 
-
-	drawString( ScreenWidth - 240, 24, (char*) "ARE YOU FEELIN\' IT NOW", 0.8, 0, 0 );
-	drawString( ScreenWidth - 140, 44, (char*) "MR. KRABS", 0.8, 0, 0 );
+	drawString( ScreenWidth - 240, 24, (char*) g_str27, 0.8, 0, 0 );
+	drawString( ScreenWidth - 140, 44, (char*) g_str28, 0.8, 0, 0 );
 	
-	drawString( 60, ScreenHeight - 170, (char*) "Consequences will never be the same", 0.5, 0.5, 0.4 );
+	drawString( 60, ScreenHeight - 170, (char*) g_str29, 0.5, 0.5, 0.4 );
 
 
-	drawStringFabulous( ScreenWidth - 210, ScreenHeight - 110, "8===========D" );
-	drawStringFabulous( ScreenWidth - 210, ScreenHeight - 125, "8===========D" );
-	drawStringFabulous( ScreenWidth - 210, ScreenHeight - 140, "8===========D" );
+	drawStringFabulous( ScreenWidth - 210, ScreenHeight - 110, g_str15 );
+	drawStringFabulous( ScreenWidth - 210, ScreenHeight - 125, g_str15 );
+	drawStringFabulous( ScreenWidth - 210, ScreenHeight - 140, g_str15 );
 
-	//depend on time.
-
-	//float timeFactor = (modulusFloat(flTime, 3.6f) / 3.6f);
-	//int xVal = (int) (timeFactor * (ScreenWidth *1.5) - ScreenWidth*0.5 ) ;
-
-	//int xVal = (int) (getTimePeriod(flTime, 5.6f, -ScreenWidth, ScreenWidth) );
-
-	int xVal = (int) (getTimePeriod(flTime, 8.6f, -ScreenWidth, ScreenWidth) );
-	int yValXXX = (int) (getTimePeriod( (int)(flTime / 8.6f), 5.6f, 80, ScreenHeight - 80) );
-	//drawString( xVal, ScreenHeight - 200, (char*) "FUCK YO COUCH", 0.5, 0.5, 0.4 );
-	//drawString( xVal, ScreenHeight - 280, (char*) "OH SHIT!!!", 0.5, 0.9, 0.4 );
-	drawString( xVal, yValXXX * 1, (char*) "FUCK YO COUCH", 0.5, 0.5, 0.4 );
-	drawString( xVal, 60 + yValXXX * 1, (char*) "OH SHIT!!!", 0.5, 0.9, 0.4 );
+	xValPerm = (int) (getTimePeriod(flTime, 8.6f, -ScreenWidth, ScreenWidth) );
+	yVal = (int) (getTimePeriod( (int)(flTime / 8.6f), 5.6f, 80, ScreenHeight - 80) );
+	drawString( xValPerm, yVal * 1, (char*) g_str14, 0.5, 0.5, 0.4 );
+	drawString( xValPerm, 60 + yVal * 1, (char*) g_str16, 0.5, 0.9, 0.4 );
 	
 
-	int xVal2 = (int) (getTimePeriod(flTime, 2.8f, -ScreenWidth, 0) );
-	int yVal = (int) (getTimePeriod(flTime, 2.8f, -ScreenHeight, 0) );
+	xVal = (int) (getTimePeriod(flTime, 2.8f, -ScreenWidth, 0) );
+	yVal = (int) (getTimePeriod(flTime, 2.8f, -ScreenHeight, 0) );
 	
 	randomFudgeX = randomValueInt(-2, 2);
 	randomFudgeY = randomValueInt(-2, 2);
-	drawStringFabulous( xVal + 40 + randomFudgeX, ScreenHeight - 250 + randomFudgeY, "8===========D" );
+	drawStringFabulous( xValPerm + 40 + randomFudgeX, ScreenHeight - 250 + randomFudgeY, g_str15 );
 
 	randomFudgeX = randomValueInt(-1, 1);
 	randomFudgeY = randomValueInt(-1, 1);
 
-	drawStringFabulous( xVal2+ScreenWidth + randomFudgeX, ScreenHeight/2 + randomFudgeY, "LOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOL" );
-	drawStringFabulous( xVal2 + randomFudgeX, ScreenHeight/2 + randomFudgeY, "LOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOL" );
+	drawStringFabulous( xVal+ScreenWidth + randomFudgeX, ScreenHeight/2 + randomFudgeY, "LOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOL" );
+	drawStringFabulous( xVal + randomFudgeX, ScreenHeight/2 + randomFudgeY, "LOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOL" );
 	drawStringFabulousVert( ScreenWidth/2 + randomFudgeX, yVal+ScreenHeight + randomFudgeY, "LOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOL" );
 	drawStringFabulousVert( ScreenWidth/2 + randomFudgeX, yVal + randomFudgeY, "LOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOL" );
 	
-
 	for(int i = 0; i < 44; i++){
-		if(crazyRandomShitX[i] <= 0){
-			crazyRandomShitX[i] ++;
-		}else if(crazyRandomShitX[i] >= ScreenWidth){
-			crazyRandomShitX[i] --;
+		if(crazyRandomThingX[i] <= 0){
+			crazyRandomThingX[i] ++;
+		}else if(crazyRandomThingX[i] >= ScreenWidth){
+			crazyRandomThingX[i] --;
 		}else{
 			//random.
 			if(randomValueInt(0, 1) == 0){
-				crazyRandomShitX[i] += 5;
+				crazyRandomThingX[i] += 5;
 			}else{
-				crazyRandomShitX[i] -= 5;
+				crazyRandomThingX[i] -= 5;
 			}
 		}
-		if(crazyRandomShitY[i] <= 0){
-			crazyRandomShitY[i] ++;
-		}else if(crazyRandomShitY[i] >= ScreenHeight){
-			crazyRandomShitY[i] --;
+		if(crazyRandomThingY[i] <= 0){
+			crazyRandomThingY[i] ++;
+		}else if(crazyRandomThingY[i] >= ScreenHeight){
+			crazyRandomThingY[i] --;
 		}else{
 			//random.
 			if(randomValueInt(0, 1) == 0){
-				crazyRandomShitY[i] += 5;
+				crazyRandomThingY[i] += 5;
 			}else{
-				crazyRandomShitY[i] -= 5;
+				crazyRandomThingY[i] -= 5;
 			}
 		}
 
@@ -862,67 +878,59 @@ void drawCrazyShit(float flTime)
 		char strTemp[2];
 		strTemp[0] = (char) choice;
 		strTemp[1] = '\0';
-		drawStringFabulous(crazyRandomShitX[i], crazyRandomShitY[i], strTemp);
+		drawStringFabulous(crazyRandomThingX[i], crazyRandomThingY[i], strTemp);
 
 	}
 
-	drawStringFabulous(30, 80, "FABULOUS");
+	drawStringFabulous(30, 80, g_str17);
 
 	randomFudgeX = randomValueInt(-2, 2);
 	randomFudgeY = randomValueInt(-2, 2);
 
-	drawStringFabulous(40 + randomFudgeX, 140 + randomFudgeY, "TASTE THE RAINBOW");
-	drawStringFabulous(70 + randomFudgeX, 157 + randomFudgeY, "MOTHERFUCKER");
+	drawStringFabulous(40 + randomFudgeX, 140 + randomFudgeY, g_str18);
+	drawStringFabulous(70 + randomFudgeX, 157 + randomFudgeY, g_str19);
 
 	
 	randomFudgeX = randomValueInt(-1, 1);
 	randomFudgeY = randomValueInt(-1, 1);
 	
-	int xVal3 = (int) (getTimePeriod(flTime, 5.1f, -80, ScreenWidth + 80) );
-	int yVal2 = (int) (getTimePeriod(flTime, 5.1f, -60, ScreenHeight + 20) );
+	xVal = (int) (getTimePeriod(flTime, 5.1f, -80, ScreenWidth + 80) );
+	yVal = (int) (getTimePeriod(flTime, 5.1f, -60, ScreenHeight + 20) );
 	
-	drawStringFabulous( -80 + xVal3 + randomFudgeX, -20 + yVal2*0.5 + randomFudgeY, "BITCHES" );
+	drawStringFabulous( -80 + xVal + randomFudgeX, -20 + yVal*0.5 + randomFudgeY, g_str20 );
 	
-	drawStringFabulous(ScreenWidth - 360 + randomFudgeX + cos(flTime * 3) * 80, 190 + randomFudgeY + cos(flTime * 8) * 40, "MOTHERFUCKERS GONNA FUCK");
+	drawStringFabulous(ScreenWidth - 360 + randomFudgeX + cos(flTime * 3) * 80, 190 + randomFudgeY + cos(flTime * 8) * 40, g_str21);
 
-	drawStringFabulous(ScreenWidth/2 - 400 + randomFudgeX + cos(flTime * 1.2f) * 480, ScreenHeight + sin(flTime * 1.2f) * 160, "I\'M LITTLE TEAPOT SUCK MY DICK");
+	drawStringFabulous(ScreenWidth/2 - 400 + randomFudgeX + cos(flTime * 1.2f) * 480, ScreenHeight + sin(flTime * 1.2f) * 160, g_str22);
 
-	int xVal4 = (int) (getTimePeriod(flTime, 14.1f, -80, ScreenWidth + 80) );
-	drawString(xVal4, sin(flTime * 0.7)*400 + ScreenHeight/2, "DICKS", 1, 1, 0);
+	xVal = (int) (getTimePeriod(flTime, 14.1f, -80, ScreenWidth + 80) );
+	drawString(xVal, sin(flTime * 0.7)*400 + ScreenHeight/2, g_str23, 1, 1, 0);
 
-	int xVal5 = (int) (getTimePeriod(flTime, 12.0f, -80, ScreenWidth + 80) );
-	drawString(xVal5, sin(flTime * 1.2)*70 + ScreenHeight - 300, "BITCHES DIG MY SINE WAVE", 1, 0, 1);
+	xVal = (int) (getTimePeriod(flTime, 12.0f, -80, ScreenWidth + 80) );
+	drawString(xVal, sin(flTime * 1.2)*70 + ScreenHeight - 300, g_str24, 1, 0, 1);
 
 	float rad = 0;
-	
-	//int originX = ScreenWidth - 220;
-	//int originY = 170;
-
-
-	float radius = randomValue(150, 180);
+	//float radius = randomValue(150, 180);
 	float anotherPeriod = getTimePeriodAndBack(flTime, 0.6f, 180, 224);
-
-
 	int originX = ScreenWidth / 2 - 5;
 	int originY = ScreenHeight / 2 - 8;
 
-
 	for(rad = 0.0f; rad < M_PI * 2.0f; rad += (M_PI / 48.0f)){
-		int tempx = (int) (cos(rad) * anotherPeriod + originX);
-		int tempy = (int) (sin(rad) * anotherPeriod + originY);
+		xVal = (int) (cos(rad) * anotherPeriod + originX);
+		yVal = (int) (sin(rad) * anotherPeriod + originY);
 
 		int choice = randomValueInt(33, 126);
 		char strTemp[2];
 		strTemp[0] = (char) choice;
 		strTemp[1] = '\0';
-		drawStringFabulous(tempx, tempy, strTemp);
+		drawStringFabulous(xVal, yVal, strTemp);
 
 	}
 
-	drawString( ScreenWidth/2 + 18, ScreenHeight/2- 24-18, "WE GOT MATH", 0.35, 0.53, 0.91 );
-	drawString( ScreenWidth/2 + 39, ScreenHeight/2- 24, "N\' SHIT", 0.35, 0.53, 0.91 );
+	drawString( ScreenWidth/2 + 18, ScreenHeight/2- 24-18, g_str25, 0.35, 0.53, 0.91 );
+	drawString( ScreenWidth/2 + 39, ScreenHeight/2- 24, g_str26, 0.35, 0.53, 0.91 );
 
-}//END OF drawCrazyShit
+}
 
 
 
@@ -930,11 +938,8 @@ char global2PSEUDO_halflifePath[512];
 char global2PSEUDO_gamePath[512];
 
 void testForHelpFile(void){
-	//gEngfuncs.pfnGetGameDirectory();
-
 	global2PSEUDO_halflifePath[0] = '\0';
 
-	
 	int recentSlashPos = -1;
 	int i = 0;
 	while(i < MAX_PATH){
@@ -951,10 +956,8 @@ void testForHelpFile(void){
 	global2PSEUDO_halflifePath[recentSlashPos + 1] = '\0';  //termination... same effect.
 	
 	
-
 	const char* gameName; //this will not end in a slash.
 	gameName = gEngfuncs.pfnGetGameDirectory();
-
 
 	copyString(global2PSEUDO_halflifePath, global2PSEUDO_gamePath);
 	UTIL_appendToEnd(global2PSEUDO_gamePath, gameName);
@@ -962,25 +965,18 @@ void testForHelpFile(void){
 	UTIL_appendToEnd(global2PSEUDO_gamePath, "\\"); //end in a slash.
 
 	//Now, does our help fule exist?
-
-
-	
 	if(checkSubFileExistence("helpme.txt")){
 		//huh, is this a good idea?
-		//easyForcePrintLine("CLIENTSIDE: I DID FIND YOUR FILE!!");
+		//easyForcePrintLine("CLIENTSIDE: I DID FIND YOUR FILE");
 		
 		//"gets the point across"
 		//global2_hiddenMemPrintout = 1;
 		EASY_CVAR_SET_DEBUGONLY(hiddenMemPrintout, 1);
-
-		//easyForcePrintLine("QQQQEEEEEEEYUYYERYERYERYERY");
 	}else{
 		//easyForcePrintLine("CLIENTSIDE: I did not find your file and am sad.");
 	}
 
-
-
-}//END OF testForHelpFile
+}// testForHelpFile
 
 
 

@@ -457,14 +457,14 @@ void printIntAsBinary(unsigned int arg, unsigned int binaryDigits) {
 	char binaryBuffer[33];
 	convertIntToBinary(binaryBuffer, arg, binaryDigits);
 	easyForcePrint(binaryBuffer);
-}//END OF printIntAsBinary
+}// printIntAsBinary
 
 // Same as above but add a newline character.
 void printLineIntAsBinary(unsigned int arg, unsigned int binaryDigits) {
 	char binaryBuffer[33];
 	convertIntToBinary(binaryBuffer, arg, binaryDigits);
 	easyForcePrintLine(binaryBuffer);
-}//END OF printIntAsBinary
+}// printIntAsBinary
 
 
 #ifdef CLIENT_DLL
@@ -475,14 +475,14 @@ void printIntAsBinaryClient(edict_t* pEntity, unsigned int arg, unsigned int bin
 	char binaryBuffer[33];
 	convertIntToBinary(binaryBuffer, arg, binaryDigits);
 	easyForcePrintClient(pEntity, binaryBuffer);
-}//END OF printIntAsBinary
+}// printIntAsBinary
 
 // Same as above but add a newline character.
 void printLineIntAsBinaryClient(edict_t* pEntity, unsigned int arg, unsigned int binaryDigits) {
 	char binaryBuffer[33];
 	convertIntToBinary(binaryBuffer, arg, binaryDigits);
 	easyForcePrintLineClient(pEntity, binaryBuffer);
-}//END OF printIntAsBinary
+}// printIntAsBinary
 #endif
 
 
@@ -607,8 +607,6 @@ void UTIL_forcePrintVectorClient(edict_t* pEntity, char* printLabel, const float
 #endif
 
 
-
-//Don't do anything! You cheap bastard.
 void easyPrintLineDummy(char *szFmt, ...){
 	//PRINT_LINE_VA
 }
@@ -661,13 +659,13 @@ void easyClientCommand(char* szFmt, ...){
 	va_list argptr; va_start(argptr, szFmt);
 	gEngfuncs.pfnClientCmd(UTIL_VarArgsVA(szFmt, argptr));
 	va_end(argptr);
-}//END OF easyClientCmd
+}// easyClientCmd
 
 void easyServerCommand(char* szFmt, ...){
 	va_list argptr; va_start(argptr, szFmt);
 	gEngfuncs.pfnServerCmd(UTIL_VarArgsVA(szFmt, argptr));
 	va_end(argptr);
-}//END OF easyServerCmd
+}// easyServerCmd
 
 
 #else
@@ -1012,7 +1010,7 @@ void easyPrintLineGroup4(char* szFmt, ...) {
 */
 
 
-#endif //END OF server details
+#endif// server details
 
 
 

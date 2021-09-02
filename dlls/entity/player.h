@@ -138,12 +138,11 @@ extern void respawn(entvars_t *pev, BOOL fCopyCorpse);
 
 
 
-
-
 class CBasePlayer : public CBaseMonster
 {
 public:
 
+#if SKIP_NAMED_AMMO_CACHE != 1
 	//MODDD - moved from CBaseEntity.  Stores ammo counts as named vars.
 	// Might not even be necessary, notice the lack of one for snark/squeak ammo, a retail weapon.
 	int ammo_9mm;
@@ -154,6 +153,7 @@ public:
 	int ammo_uranium;
 	int ammo_hornets;
 	int ammo_argrens;
+#endif
 
 
 	BOOL queueFirstAppearanceMessageSend;
@@ -797,7 +797,9 @@ public:
 	void SetCustomDecalFrames( int nFrames );
 	int GetCustomDecalFrames( void );
 
+#if SKIP_NAMED_AMMO_CACHE == 0
 	void TabulateAmmo( void );
+#endif
 
 	void set_fvoxEnabled(BOOL argNew, BOOL setSilent);
 	void set_cl_ladder_choice(float argNew);
@@ -840,7 +842,7 @@ public:
 			// use the one related to screensize.
 			return auto_determined_fov;
 		}
-	}//END OF getBaseFOV
+	}// getBaseFOV
 #endif
 
 };

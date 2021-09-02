@@ -393,7 +393,7 @@ float EV_HLDM_PlayTextureSound(int idx, pmtrace_t* ptr, float* vecSrc, float* ve
 			// get texture type
 			chTextureType = PM_FindTextureType(szbuffer);
 		}
-	}//END OF world check
+	}// world check
 
 
 
@@ -737,7 +737,7 @@ void EV_HLDM_FireBullets(int idx, float* forward, float* right, float* up, int c
 			//unrecognized setting?  Default to whatever was sent like in retail.
 
 		break;
-		}//END OF switch
+		}// switch
 
 		disableBulletHitDecal = EV_HLDM_CheckTracer(idx, vecSrc, tr.endpos, forward, right, iBulletType, iTracerFreq, tracerCountChoice);
 
@@ -1218,7 +1218,7 @@ void EV_FireMP5(event_args_t* args)
 			}
 		}
 		V_PunchAxis(0, theViewpunch);
-	}// END OF IsLocal check
+	}//  IsLocal check
 
 	EV_GetDefaultShellInfo(args, origin, velocity, ShellVelocity, ShellOrigin, forward, right, up, 20, -12, 4);
 
@@ -1600,7 +1600,7 @@ void EV_FireGauss(event_args_t* args)
 		//}
 
 		gEngfuncs.pEventAPI->EV_PlaySound(idx, origin, CHAN_WEAPON, "weapons/gauss2.wav", flVol, flAttn, 0, iPitch);
-	}//END OF mutePlayerWeaponFirecheck
+	}// mutePlayerWeaponFirecheck
 
 
 
@@ -2104,7 +2104,7 @@ void EV_FireGauss(event_args_t* args)
 			}
 
 		}
-	}//END OF while
+	}// while
 }
 //======================
 //	   GAUSS END 
@@ -2381,7 +2381,7 @@ void EV_FireCrossbow2(event_args_t* args)
 					//        compiler figures it out anyways I suppose.
 					bolt->callback = &EV_BoltCallback; //So we can set the angles and origin back. (Stick the bolt to the wall)
 				}
-			}//END OF kRenderNormal check
+			}// kRenderNormal check
 		}
 	}
 
@@ -2753,10 +2753,10 @@ void EV_EgonFire(event_args_t* args)
 						pBeam = gEngfuncs.pEfxAPI->R_BeamEntPoint(idx | 0x1000, tr.endpos, iBeamModelIndex, 99999, 4.0, 0.105, 0.92, 70, 0, 0, r, g, b);
 					}
 
-				}//END OF beam type check
+				}// beam type check
 			}
 		}
-	}//END OF spiral beam check
+	}// spiral beam check
 
 
 
@@ -2858,7 +2858,7 @@ void EV_EgonFire(event_args_t* args)
 
 	*/
 	
-}//END OF EV_EgonFire
+}// EV_EgonFire
 
 
 void EV_EgonStop(event_args_t* args)
@@ -2870,7 +2870,9 @@ void EV_EgonStop(event_args_t* args)
 	VectorCopy_f(args->origin, origin);
 
 
-	//easyForcePrintLine("EV_EgonStop pid: %d  islocal? %d dathing %d othathing: %.2f", idx, EV_IsLocal(idx), 666, cl_lw->value );
+
+
+	//easyForcePrintLine("EV_EgonStop pid: %d  islocal? %d cl_lw->value: %.2f", idx, EV_IsLocal(idx), cl_lw->value );
 
 
 	if(g_cl_egonEffectCreatedYet){
@@ -3166,7 +3168,7 @@ void matrixMult(const Vector& m_1, const float m_2[3][3], Vector& v_out) {
 	v_out.y = m_1.x * m_2[1][0] + m_1.y * m_2[1][1] + m_1.z * m_2[1][2];
 	v_out.z = m_1.x * m_2[2][0] + m_1.y * m_2[2][1] + m_1.z * m_2[2][2];
 
-}//END OF matrixMult
+}// matrixMult
 
 
 
@@ -3337,7 +3339,7 @@ void floaterGasCallback(struct tempent_s* ent, float frametime, float currenttim
 
 	//TEST - real slow for now!
 	ent->entity.baseline.fuser1 = gEngfuncs.GetClientTime() + 0;
-}//END OF EV_imitation7_think
+}// EV_imitation7_think
 
 
 void floaterBigGasCallback(struct tempent_s* ent, float frametime, float currenttime)
@@ -3354,7 +3356,7 @@ void floaterBigGasCallback(struct tempent_s* ent, float frametime, float current
 
 	//TEST - real slow for now!
 	ent->entity.baseline.fuser1 = gEngfuncs.GetClientTime() + 0;
-}//END OF EV_imitation7_think
+}// EV_imitation7_think
 
 
 
@@ -3681,7 +3683,7 @@ void EV_FreakyLight(event_args_t* args) {
 		for (i = 0; i < toGen; i++) {
 			generateFreakyLaser((float*)&args->origin);
 		}
-	}//END OF if(EASY_CVAR_GET_CLIENTONLY_DEBUGONLY(raveLaserEnabled) == 1)
+	}// if(EASY_CVAR_GET_CLIENTONLY_DEBUGONLY(raveLaserEnabled) == 1)
 
 }
 
@@ -3710,7 +3712,7 @@ void EV_FriendlyVomit(event_args_t* args) {
 		createBallVomit(&m_iHotglowGreen, &origin, &ang);
 	}
 
-}//END OF EV_FriendlyVomit
+}// EV_FriendlyVomit
 
 
 
@@ -3737,7 +3739,7 @@ void EV_FloaterExplode(event_args_t* args) {
 		createBallFloaterGas(&m_iHotglowGreen, origin + Vector(0, 0, 12));
 	}
 
-}//END OF EV_FloaterExplode
+}// EV_FloaterExplode
 
 
 
@@ -4109,7 +4111,7 @@ void writeColorPickerChoices(void) {
 		}
 		fclose(myFile);
 	}
-}//END OF wirteColorPickerChoices
+}// wirteColorPickerChoices
 
 
 
@@ -4340,15 +4342,15 @@ void TEST_Particles(const Vector& v_origin, const Vector& v_velocity)
 			p->die += TEST_PARTICLE_LIFE;
 
 
-		}//END OF for each particle to spawn
+		}// for each particle to spawn
 
 
-	}//END OF velocity length check
+	}// velocity length check
 
 
 
 
-}//END OF TEST_Particles
+}// TEST_Particles
 
 
 
@@ -4418,7 +4420,7 @@ void EV_imitation7_think(struct tempent_s* ent, float frametime, float currentti
 	//TEST - real slow for now!
 	ent->entity.baseline.fuser1 = gEngfuncs.GetClientTime() + TEST_PARTICLE_SPAWN_CYCLE_TIME;
 	//ent->entity.baseline.fuser1 = gEngfuncs.GetClientTime() + 1.0f;
-}//END OF EV_imitation7_think
+}// EV_imitation7_think
 
 
 void EV_imitation7(event_args_t* args) {
@@ -4448,7 +4450,7 @@ void EV_imitation7(event_args_t* args) {
 	}
 
 
-}//END OF EV_imitation7
+}// EV_imitation7
 
 
 
@@ -4551,7 +4553,7 @@ void EV_Trail_EngineChoice_Think(struct tempent_s* ent, float frametime, float c
 
 
 
-}//END OF EV_imitation7
+}// EV_imitation7
 
 
 
@@ -4595,7 +4597,7 @@ void EV_Trail_EngineChoice(event_args_t* args) {
 	}
 
 
-}//END OF EV_Trail_EngineChoice
+}// EV_Trail_EngineChoice
 
 
 
@@ -4902,7 +4904,7 @@ void EV_Mirror(event_args_t* args)
 				}
 			}
 		}
-	}//END OF mirrorTargetIndex check
+	}// mirrorTargetIndex check
 
 	if (mirrorTargetIndex != -1) {
 		VectorCopy_f(org_target, gHUD.Mirrors[mirrorTargetIndex].origin);

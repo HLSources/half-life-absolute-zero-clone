@@ -1,19 +1,14 @@
-
-
 #ifndef PLATS_H
 #define PLATS_H
-
 
 #include "util.h"
 #include "cbase.h"
 #include "basetoggle.h"
 
-
-
+#define SF_PLAT_TOGGLE		0x0001
 
 static void PlatSpawnInsideTrigger(entvars_t* pevPlatform);
 
-#define SF_PLAT_TOGGLE		0x0001
 
 class CBasePlatTrain : public CBaseToggle
 {
@@ -96,11 +91,4 @@ public:
 };
 
 
-
-
-
-
-
-
-
-#endif //END OF PLATS_H
+#endif// PLATS_H

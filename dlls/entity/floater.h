@@ -165,19 +165,16 @@ public:
 			pev->absmax = pev->origin + Vector(13, 13, 52);
 		}
 		
-	}//END OF SetObjectCollisionBox
+	}// SetObjectCollisionBox
 
-
-
-
-};//END OF class CFloater
+};
 
 
 
 
 
 
-#endif //END OF #ifdef FLOATER_H
+#endif // FLOATER_H
 
 
 

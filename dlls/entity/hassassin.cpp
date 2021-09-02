@@ -799,7 +799,7 @@ void CHAssassin::HAssassinTouch( CBaseEntity* pOther ){
 	groundTouchCheckDuration = gpGlobals->time + 4;
 	
 
-}//END OF HAssassinTouch
+}// HAssassinTouch
 
 
 
@@ -826,7 +826,7 @@ void CHAssassin::MonsterThink(){
 						ChangeSchedule ( GetScheduleOfType(SCHED_ASSASSIN_JUMP_LAND) );
 					}
 				}
-			}//END OF MOVETYPE_TOSS check
+			}// MOVETYPE_TOSS check
 		}else{
 			groundTouchCheckDuration = -1;
 		}
@@ -1598,7 +1598,7 @@ BOOL CHAssassin ::attemptDropWeapon(void){
 
 
 	return FALSE;
-}//END OF attemptDropWeapon(...)
+}// attemptDropWeapon(...)
 
 
 
@@ -2050,7 +2050,7 @@ Schedule_t* CHAssassin::GetScheduleOfType ( int Type )
 	break;}
 
 
-	}//END OF switch
+	}// switch
 
 	return CBaseMonster::GetScheduleOfType( Type );
 }
@@ -2116,7 +2116,7 @@ Vector CHAssassin::GetGunPosition(void){
 	::UTIL_printLineVector("yehhhag", vecGunPos-pev->origin);
 
 	return vecGunPos;
-}//END OF GetGunPosition
+}// GetGunPosition
 
 
 Vector CHAssassin::GetGunPositionAI(void){
@@ -2132,7 +2132,7 @@ Vector CHAssassin::GetGunPositionAI(void){
 
 	return pev->origin + Vector( 0, 0, 43 ) + forward * 41;
 	*/
-}//END OF GetGunPositionAI
+}// GetGunPositionAI
 
 
 
@@ -2279,7 +2279,7 @@ int CHAssassin::tryActivitySubstitute(int activity){
 			return LookupSequence(HASSASSIN_CROSSBOW_RELOAD_ANIM);
 		break;}
 
-	}//END OF switch
+	}// switch
 
 
 	//not handled by above?  No animations.
@@ -2377,9 +2377,9 @@ void CHAssassin::HandleEventQueueEvent(int arg_eventID){
 		}
 	break;}
 
-	}//END OF switch
+	}// switch
 
-}//END OF HandleEventQueueEvent
+}// HandleEventQueueEvent
 
 
 BOOL CHAssassin::predictRangeAttackEnd(void) {

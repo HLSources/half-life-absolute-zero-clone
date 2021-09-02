@@ -121,7 +121,7 @@ void CPickupWalker::Spawn( void )
 	MonsterInit();
 	*/
 
-}//END OF Spawn(...);
+}// Spawn(...);
 
 
 
@@ -347,7 +347,7 @@ Schedule_t* CPickupWalker::GetSchedule ( void )
 	EASY_CVAR_PRINTIF_PRE(chumtoadPrintout, easyPrintLine("ChumToad: GetSchedule FAIL TO PICK SCHEDULE. BROKEN.") );
 	*/
 	return &slError[ 0 ];
-}//END OF GetSchedule(...)
+}// GetSchedule(...)
 
 
 
@@ -361,10 +361,10 @@ Schedule_t* CPickupWalker::GetScheduleOfType( int Type){
 			return &slPickupWalkerIdleWait[0];
 		break;
 
-	}//END OF switch(Type)
+	}// switch(Type)
 
 	return CBaseMonster::GetScheduleOfType(Type);
-}//END OF GetScheduleOfType(...)
+}// GetScheduleOfType(...)
 
 
 
@@ -387,9 +387,9 @@ void CPickupWalker::StartTask ( Task_t *pTask )
 		default:
 			CBaseMonster::StartTask ( pTask );
 		break;
-	}//END OF switch(...)
+	}// switch(...)
 
-}//END OF StartTask(...)
+}// StartTask(...)
 
 
 
@@ -411,9 +411,9 @@ void CPickupWalker::RunTask ( Task_t *pTask ){
 		default:
 			CBaseMonster::RunTask(pTask);
 		break;
-	}//END OF switch(...)
+	}// switch(...)
 
-}//END OF RunTask(...)
+}// RunTask(...)
 
 
 
@@ -421,7 +421,7 @@ void CPickupWalker::RunTask ( Task_t *pTask ){
 //unused. MonsterThink is good enough.
 void CPickupWalker::PickupWalkerThink( void ){
 	
-}//END OF ChumToadThink(...)
+}// ChumToadThink(...)
 
 
 //GOOD REF:
@@ -473,7 +473,7 @@ BOOL CPickupWalker::isOrganic(){
 // All pickup walkers can spawn regardless of mp_allowmonsters.
 BOOL CPickupWalker::bypassAllowMonstersSpawnCheck(void) {
 	return TRUE;
-}//END OF bypassAllowMonstersSpawnCheck
+}// bypassAllowMonstersSpawnCheck
 
 
 
@@ -538,7 +538,7 @@ void CPickupWalker::PickupWalkerTouch( CBaseEntity *pOther )
 
 		////////SUB_UseTargets( pOther, USE_TOGGLE, 0 ); // UNDONE: when should this happen?
 		
-	}//END OF if pOther is player check
+	}// if pOther is player check
 		//if so, delete.  TODO!!!
 		/*
 		SetTouch( NULL );
@@ -566,13 +566,13 @@ void CPickupWalker::PickupWalkerTouch( CBaseEntity *pOther )
 	}
 	*/
 
-}//END OF PickupWalkerTouch
+}// PickupWalkerTouch
 
 void CPickupWalker::MonsterThink ( void )
 {
     CBaseMonster::MonsterThink();
     return;
-}//END OF MonsterThink
+}// MonsterThink
 
 
 

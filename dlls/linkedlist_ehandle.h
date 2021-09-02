@@ -48,7 +48,7 @@ public:
 
 		return FALSE;
 
-	}//END OF contains
+	}// contains
 
 	LinkedListTempNode* getNonEmpty(BOOL& mustAppend) {
 
@@ -74,7 +74,7 @@ public:
 		}
 
 		return NULL; //???
-	}//END OF getLastNode
+	}// getLastNode
 
 	void append(CBaseEntity* argEnt) {
 
@@ -103,7 +103,7 @@ public:
 			}
 
 		}
-	}//END OF append
+	}// append
 
 
 	LinkedListTemp() {

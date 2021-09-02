@@ -85,7 +85,7 @@ BOOL CBaseMonster::SCHEDULE_attemptFindCoverFromEnemy(Task_t* pTask){
 		// no coverwhatsoever.
 		return FALSE;//TaskFail();
 	}
-}//END OF SCHEDULE_attemptFindCoverFromEnemy()
+}// SCHEDULE_attemptFindCoverFromEnemy()
 
 
 
@@ -111,9 +111,13 @@ BOOL CBaseMonster::FHaveSchedule( void )
 //=========================================================
 void CBaseMonster::ClearSchedule( void )
 {
+	//MODDD - yes.
+	DebugSchedule_SchedEnum_Reset(this);
+	
 	m_iTaskStatus = TASKSTATUS_NEW;
 	m_pSchedule = NULL;
 	m_iScheduleIndex = 0;
+
 }
 
 //=========================================================
@@ -139,7 +143,10 @@ BOOL CBaseMonster::FScheduleDone ( void )
 //=========================================================
 void CBaseMonster::ChangeSchedule ( Schedule_t *pNewSchedule )
 {
-	if(EASY_CVAR_GET_DEBUGONLY(crazyMonsterPrintouts))easyForcePrintLine("YOU despicable person %s %d", pNewSchedule->pName, pNewSchedule->iInterruptMask);
+	//MODDD - let the debug system be aware of this.
+	DebugSchedule_SchedEnum_Apply(this);
+
+	if(EASY_CVAR_GET_DEBUGONLY(crazyMonsterPrintouts))easyForcePrintLine("ChangeSchedule: %s %d", pNewSchedule->pName, pNewSchedule->iInterruptMask);
 
 	ASSERT( pNewSchedule != NULL );
 	
@@ -482,10 +489,9 @@ void CBaseMonster::MaintainSchedule ( void )
 	// in the middle of the loop.  Sadly that's also very in consistent and not worthwhile.
 
 
-
+	int i;
 	Schedule_t* pNewSchedule;
 	Schedule_t* pPrevSchedule;
-	int i;
 	BOOL pickedScheduleThisCall = FALSE;
 	BOOL queueStopAtScheduleEnd = FALSE;
 
@@ -504,10 +510,6 @@ void CBaseMonster::MaintainSchedule ( void )
 
 	if(EASY_CVAR_GET_DEBUGONLY(crazyMonsterPrintouts) == 1){
 		easyPrintLine("DOCKS1 %d", HasConditions(bits_COND_CAN_MELEE_ATTACK1));
-	}
-
-	if(monsterID == 0){
-		int x = 34;
 	}
 
 	// UNDONE: Tune/fix this 10... This is just here so infinite loops are impossible
@@ -708,7 +710,7 @@ void CBaseMonster::MaintainSchedule ( void )
 			if(EASY_CVAR_GET_DEBUGONLY(crazyMonsterPrintouts) == 1){
 				easyPrintLine("OOPS A PLENTY 11 %d", HasConditions(bits_COND_CAN_MELEE_ATTACK1));
 			}
-		}//END OF valid check
+		}// valid check
 
 
 		if ( m_iTaskStatus == TASKSTATUS_NEW )
@@ -744,7 +746,7 @@ void CBaseMonster::MaintainSchedule ( void )
 					 m_iTaskStatus = TASKSTATUS_NEW;
 				 }
 				 //Some correction for now, but still need to track any calls like these down and fix them. These automatic adjustments may not be all that is needed.
-			}//END OF m_fNewScheduleThisFrame check
+			}// m_fNewScheduleThisFrame check
 
 			if (HasConditions(bits_COND_TASK_FAILED)) {
 				//HACK
@@ -752,7 +754,7 @@ void CBaseMonster::MaintainSchedule ( void )
 			}
 			*/
 
-		}//END OF if ( m_iTaskStatus == TASKSTATUS_NEW )
+		}// if ( m_iTaskStatus == TASKSTATUS_NEW )
 
 
 
@@ -778,12 +780,10 @@ void CBaseMonster::MaintainSchedule ( void )
 		// Maybe it's on the hgrunts side instead in there for the most part, they just ignore the reaction
 		// animations more often.
 
-		
 		if ( m_Activity != m_IdealActivity ){
 			SetActivity ( m_IdealActivity );
 		}
 		
-
 		/*
 		if ( m_Activity != m_IdealActivity )
 		{
@@ -821,10 +821,10 @@ void CBaseMonster::MaintainSchedule ( void )
 			//break;
 
 
-	//MODDD - IMPORTANT SECTION.
-	//////////////////////////////////////////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////////////////////////////
+			//MODDD - IMPORTANT SECTION.
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
 
 			// that does 'm_iTaskStatus != TASKSTATUS_COMPLETE', redundant with being TASKSTATUS_RUNNING as above wants
 			//if (TaskIsRunning())
@@ -853,9 +853,9 @@ void CBaseMonster::MaintainSchedule ( void )
 						m_iTaskStatus = TASKSTATUS_NEW;
 					}
 					//Some correction for now, but still need to track any calls like these down and fix them. These automatic adjustments may not be all that is needed.
-				}//END OF m_fNewScheduleThisFrame check
+				}// m_fNewScheduleThisFrame check
 
-			}//END OF TaskIsRunning()
+			}// TaskIsRunning()
 
 			//////////////////////////////////////////////////////////////////////////////////////////
 			//////////////////////////////////////////////////////////////////////////////////////////
@@ -886,13 +886,13 @@ void CBaseMonster::MaintainSchedule ( void )
 
 
 
-		}//END OF TASKSTATUS_RUNNING check
+		}// TASKSTATUS_RUNNING check
 			
 		if(EASY_CVAR_GET_DEBUGONLY(crazyMonsterPrintouts) == 1){
 			easyPrintLine("OOPS A PLENTY 14 %d", HasConditions(bits_COND_CAN_MELEE_ATTACK1));
 		}
 
-	}//END OF THE LOOP.  Come on now, let's not try and hide this.
+	}// THE LOOP.  Come on now, let's not try and hide this.
 
 	
 	// OLD LOCATION OF IMPORTANT SECTION
@@ -1287,7 +1287,7 @@ void CBaseMonster::RunTask ( Task_t *pTask )
 				else if ( distance >= 270 && m_movementActivity != ACT_RUN )
 					m_movementActivity = ACT_RUN;
 
-			}//END OF m_hTargetEnt check
+			}// m_hTargetEnt check
 
 			break;
 		}
@@ -1894,7 +1894,7 @@ void CBaseMonster::RunTask ( Task_t *pTask )
 					case TASK_MELEE_ATTACK2:{predictActRepeat(bits_COND_CAN_MELEE_ATTACK2); break;}
 					case TASK_SPECIAL_ATTACK1:{predictActRepeat(bits_COND_SPECIAL1); break;}
 					case TASK_SPECIAL_ATTACK2:{predictActRepeat(bits_COND_SPECIAL2); break;}
-				}//END OF inner switch
+				}// inner switch
 			}
 
 			/*
@@ -1982,7 +1982,7 @@ void CBaseMonster::RunTask ( Task_t *pTask )
 					case TASK_MELEE_ATTACK2:{predictActRepeat(bits_COND_CAN_MELEE_ATTACK2); break;}
 					case TASK_SPECIAL_ATTACK1:{predictActRepeat(bits_COND_SPECIAL1); break;}
 					case TASK_SPECIAL_ATTACK2:{predictActRepeat(bits_COND_SPECIAL2); break;}
-				}//END OF inner switch
+				}// inner switch
 			}
 			
 			/*
@@ -2053,9 +2053,9 @@ void CBaseMonster::RunTask ( Task_t *pTask )
 	break;}
 
 
-	}//END OF switch(...)
+	}// switch(...)
 
-}//END OF RunTask(...)
+}// RunTask(...)
 
 //=========================================================
 // SetTurnActivity - measures the difference between the way
@@ -2081,7 +2081,7 @@ void CBaseMonster::SetTurnActivity ( void ){
 		m_IdealActivity = ACT_TURN_LEFT;
 	}
 
-}//END OF SetTurnActivity
+}// SetTurnActivity
 
 
 //MODDD - same as above but forces the turn activity.
@@ -2100,7 +2100,7 @@ void CBaseMonster::SetTurnActivityForceAct ( void ){
 		SetActivity(ACT_TURN_LEFT);
 	}
 
-}//END OF SetTurnActivityForceAct
+}// SetTurnActivityForceAct
 
 
 
@@ -2419,7 +2419,7 @@ void CBaseMonster::StartTask ( Task_t *pTask )
 			//made it here, how??
 			TaskFail();
 
-		}//END OF else OF coverAttempt check
+		}// else OF coverAttempt check
 
 		break;
 	}
@@ -3880,7 +3880,7 @@ void CBaseMonster::StartTask ( Task_t *pTask )
 
 			randomTries--;
 
-		}//END OF while(randomTries > 0)
+		}// while(randomTries > 0)
 
 		vecLastTrySuccess = FALSE;
 		//all four were done.

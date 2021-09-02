@@ -202,4 +202,4 @@ public:
 
 };
 
-#endif //END OF ANIMATING_H
+#endif // ANIMATING_H

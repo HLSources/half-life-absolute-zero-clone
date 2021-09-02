@@ -222,8 +222,6 @@ void CSatchelCharge::BounceSound( void )
 }
 
 
-LINK_ENTITY_TO_CLASS( weapon_satchel, CSatchel );
-
 
 
 float CSatchelCharge::massInfluence(void){
@@ -237,6 +235,11 @@ int CSatchelCharge::GetProjectileType(void){
 #endif //CLIENT_DLL check
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
+LINK_ENTITY_TO_CLASS( weapon_satchel, CSatchel );
+#endif
 
 
 
@@ -685,7 +688,7 @@ void CSatchel::Throw( void )
 			m_flNextSecondaryAttack = UTIL_WeaponTimeBase() + EASY_CVAR_GET_CLIENTSENDOFF_BROADCAST_DEBUGONLY(cheat_minimumfiredelaycustom) + 0.03f;
 		}
 
-	}//END OF ammo check
+	}// ammo check
 }
 
 

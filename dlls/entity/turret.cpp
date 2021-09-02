@@ -83,8 +83,6 @@ extern DLL_GLOBAL float g_rawDamageCumula;
 
 
 
-
-
 static GibInfo_t* getTurretGibInfo(float cvarRef){
 	
 	if(cvarRef == 3){
@@ -284,7 +282,7 @@ void CBaseTurret::StartReanimation(void){
 	//     SetEyePosition();
 
 	StartReanimationPost(oldSeq);
-}//END OF StartReanimation
+}// StartReanimation
 
 
 // cloned, a lot about the turret is differnet or stripped-down from most monster AI.
@@ -322,7 +320,7 @@ void CBaseTurret::StartReanimationPost(int preReviveSequence){
 	//m_iOn = TRUE;
 
 	//ChangeSchedule(slWaitForReviveSequence);
-}//END OF StartReanimationPost
+}// StartReanimationPost
 
 
 void CBaseTurret::ReviveThink(void){
@@ -718,7 +716,7 @@ void CBaseTurret::BeserkAimLogic(void) {
 		//return;
 	}
 
-}//END OF BeserkAimLogic
+}// BeserkAimLogic
 
 
 void CBaseTurret::ActiveThink(void)
@@ -1280,7 +1278,7 @@ void CBaseTurret::DeathStart(void) {
 
 	//MODDD - several lines moved to the postDeathEndTimeReached check below
 
-	//}//END OF deadflag != DEAD_DEAD check
+	//}// deadflag != DEAD_DEAD check
 
 }//DeathStart
 
@@ -1328,7 +1326,7 @@ void CBaseTurret::DeathEnd(void) {
 
 	pev->takedamage = DAMAGE_YES;// don't let autoaim aim at corpses.
 
-}//END OF DeathEnd
+}// DeathEnd
 
 
 //MODDD - NOTE.  This gets called continuously after losing all health until the
@@ -1567,7 +1565,14 @@ GENERATE_TRACEATTACK_IMPLEMENTATION(CBaseTurret)
 		TraceBleed( flDamage, vecDir, ptr, bitsDamageType, bitsDamageTypeMod );
 	}
 
-}//END OF TraceAttack
+}// TraceAttack
+
+const char* CBaseTurret::getHitgroupName(int arg_iHitgroup){
+	if(arg_iHitgroup == HITGROUP_TURRET_ARMOR)return "HITGROUP_TURRET_ARMOR";
+
+	return CBaseMonster::getHitgroupName(arg_iHitgroup);
+}
+
 
 
 
@@ -2150,7 +2155,7 @@ GENERATE_GIBMONSTER_IMPLEMENTATION(CBaseTurret){
 		FadeMonster();
 	}
 
-}//END OF GibMonster
+}// GibMonster
 
 
 // Can I make blood particles?  Leaving this up to a CVar for turrets.

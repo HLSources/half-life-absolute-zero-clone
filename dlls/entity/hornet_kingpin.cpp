@@ -17,7 +17,7 @@
 
 CHornetKingpin::CHornetKingpin(void){
 
-}//END OF CHornetKingpin constructor
+}// CHornetKingpin constructor
 
 LINK_ENTITY_TO_CLASS( hornet_kingpin, CHornetKingpin );
 
@@ -58,14 +58,14 @@ void CHornetKingpin::Spawn( void ){
 	SetThink(&CHornetKingpin::StartSpeedMissile);
 	SetTouch(&CHornetKingpin::SmartDieTouch);
 
-}//END OF Spawn
+}// Spawn
 
 void CHornetKingpin::Precache( void ){
 	CHornet::Precache();
 	//do what the parent does.
 
 
-}//END OF Precache
+}// Precache
 
 
 void CHornetKingpin::setup(CBaseEntity* arg_targetEnt, const Vector& arg_targetOffset){
@@ -201,9 +201,9 @@ void CHornetKingpin::SmartDieTouch(CBaseEntity* pOther )
 		pev->nextthink = gpGlobals->time + 1;// stick around long enough for the sound to finish!
 		//pev->nextthink = gpGlobals->time + 0;
 
-	}//END OF other hornet_kingpin check
+	}// other hornet_kingpin check
 	
-}//END OF SmartDieTouch
+}// SmartDieTouch
 
 
 

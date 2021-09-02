@@ -572,6 +572,10 @@ SOURCE=..\pm_shared\pm_shared.c
 # End Group
 # Begin Source File
 
+SOURCE=.\activity.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\basemonster.cpp
 # End Source File
 # Begin Source File
@@ -969,10 +973,6 @@ SOURCE=..\pm_shared\pm_shared.h
 # Begin Source File
 
 SOURCE=.\activity.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\activitymap.h
 # End Source File
 # Begin Source File
 

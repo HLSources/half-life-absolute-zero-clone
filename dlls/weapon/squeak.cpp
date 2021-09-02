@@ -189,7 +189,7 @@ void CSqueakGrenade::setModel(const char* m){
 
 	//no blinking expected here, too tiny & jumpy for that to be worthwhile.
 
-}//END OF setModel
+}// setModel
 
 
 GENERATE_KILLED_IMPLEMENTATION(CSqueakGrenade){
@@ -224,7 +224,7 @@ GENERATE_KILLED_IMPLEMENTATION(CSqueakGrenade){
 			// retail effect
 			UTIL_BloodDrips(pev->origin, g_vecZero, BloodColor(), 80);
 		}
-	}//END OF should show blood check
+	}// should show blood check
 	
 
 	if (m_hOwner != NULL)
@@ -255,7 +255,7 @@ BOOL CSqueakGrenade::isOrganic(void){
 
 float CSqueakGrenade::massInfluence(void){
 	return 0.20f;
-}//END OF massInfluence
+}// massInfluence
 int CSqueakGrenade::GetProjectileType(void){
 	return PROJECTILE_ORGANIC_HOSTILE;
 }
@@ -501,8 +501,9 @@ void CSqueakGrenade::SuperBounceTouch( CBaseEntity *pOther )
 
 
 
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 LINK_ENTITY_TO_CLASS( weapon_snark, CSqueak );
-
+#endif
 
 #ifndef CLIENT_DLL
 TYPEDESCRIPTION	CSqueak::m_SaveData[] =
@@ -611,7 +612,7 @@ void CSqueak::setModel(const char* m){
 	}
 	*/
 
-}//END OF setModel
+}// setModel
 
 
 int CSqueak::GetItemInfo(ItemInfo *p)
@@ -936,7 +937,7 @@ void CSqueak::ItemPostFrame(void){
 
 	CBasePlayerWeapon::ItemPostFrame();
 
-}//END OF ItemPostFrame
+}// ItemPostFrame
 
 
 
@@ -1037,9 +1038,10 @@ void CSqueak::WeaponIdle( void )
 }
 
 
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 CSqueak_NoReplace::CSqueak_NoReplace() {
 
-}//END OF constructor
+}// constructor
 
 LINK_ENTITY_TO_CLASS(weapon_snark_noreplace, CSqueak_NoReplace);
 
@@ -1050,5 +1052,5 @@ void CSqueak_NoReplace::Spawn(void) {
 	//after that call, may as well lose the "_noreplace" bit.
 	pev->classname = MAKE_STRING("weapon_snark");
 }
-
+#endif
 

@@ -82,4 +82,4 @@ public:
 
 
 
-#endif //END OF BARNACLE_H
+#endif // BARNACLE_H

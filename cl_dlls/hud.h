@@ -734,13 +734,13 @@ public:
 			// use the one related to screensize.
 			return globalPSEUDO_autoDeterminedFOV;
 		}
-	}//END OF getBaseFOV
+	}// getBaseFOV
 
 };
 
 
 
-#endif //END OF HUD_H
+#endif // HUD_H
 
 
 

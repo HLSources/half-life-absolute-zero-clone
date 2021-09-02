@@ -12,7 +12,6 @@
 #include "linkedlist_ehandle.h"
 
 
-
 class CFriendly : public CBaseMonster{
 public:
 
@@ -148,10 +147,7 @@ public:
 	int getHullIndexForNodes(void);
 	BOOL needsMovementBoundFix(void);
 
-};//END OF class CFriendly
+};// class CFriendly
 
 
-
-
-#endif //END OF #ifdef FRIENDLY_H
-
+#endif // FRIENDLY_H

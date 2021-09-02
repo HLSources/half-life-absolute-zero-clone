@@ -633,7 +633,7 @@ void command_sneaky(){
 	//  mp3 play sound/media/Half-Life11.mp3
 	//~sometime?
 
-}//END OF command_sneaky
+}// command_sneaky
 
 
 void method_mod_version_client(){
@@ -643,7 +643,7 @@ void method_mod_version_client(){
 	writeDateInfo(aryChrD, 128);
 
 	easyForcePrintLine("AZ client.dll  Version: %s  Date: %s", aryChr, aryChrD);
-}//END OF method_mod_version_client
+}// method_mod_version_client
 
 
 void method_mod_version_server() {
@@ -674,7 +674,7 @@ void method_mod_version_server() {
 		easyForcePrintLine("***Must be ingame/server for this call to work!");
 	}
 	
-}//END OF method_mod_version_client
+}// method_mod_version_client
 
 
 

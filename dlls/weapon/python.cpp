@@ -41,9 +41,10 @@ extern vec3_t ev_punchangle;
 
 
 
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 LINK_ENTITY_TO_CLASS( weapon_python, CPython );
 LINK_ENTITY_TO_CLASS( weapon_357, CPython );
-
+#endif
 
 
 
@@ -328,8 +329,10 @@ void CPython::PrimaryAttack()
 
 void CPython::Reload( void )
 {
-	if ( m_pPlayer->ammo_357 <= 0 )
+
+	if ( PlayerPrimaryAmmoCount() <= 0 ){
 		return;
+	}
 
 	if ( m_pPlayer->pev->fov != 0 )
 	{
@@ -426,7 +429,7 @@ void CPython::ItemPostFrameThink(){
 		//	m_flNextSecondaryAttack = EASY_CVAR_GET_CLIENTSENDOFF_BROADCAST_DEBUGONLY(cheat_minimumfiredelaycustom);
 		//}
 
-	}//END OF IN_ATTACK2 check
+	}// IN_ATTACK2 check
 
 
 
@@ -461,7 +464,7 @@ void CPython::ItemPostFrameThink(){
 	}
 
 	CBasePlayerWeapon::ItemPostFrameThink();
-}//END OF ItemPostFrameThink()
+}// ItemPostFrameThink()
 
 
 
@@ -680,11 +683,7 @@ void CPython::UpdateSpot( void )
 }
 
 
-
-
-
-
-
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 class CPythonAmmo : public CBasePlayerAmmo
 {
 	void Spawn( void )
@@ -716,4 +715,4 @@ class CPythonAmmo : public CBasePlayerAmmo
 	}
 };
 LINK_ENTITY_TO_CLASS( ammo_357, CPythonAmmo );
-
+#endif

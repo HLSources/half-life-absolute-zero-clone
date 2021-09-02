@@ -514,7 +514,12 @@ public:
 	//MODDD
 	const char* getClassname(void);
 	const char* getClassnameShort(void);
-	
+	virtual const char* getHitgroupName(int arg_iHitgroup);
+
+
+	virtual void DefaultSpawnNotice(void);
+	virtual void ForceSpawnFlag(int arg_spawnFlag);
+
 	// initialization functions
 	//MODDD - changed for a test.
 	//virtual void Spawn( void ) { return; }
@@ -534,10 +539,6 @@ public:
 	virtual BOOL isProvokable(void);
 	virtual BOOL isProvoked(void);
 
-	//also MODDD
-	virtual void DefaultSpawnNotice(void);
-	virtual void ForceSpawnFlag(int arg_spawnFlag);
-	
 	//MODDD
 	virtual BOOL usesSoundSentenceSave(void);
 
@@ -1154,4 +1155,4 @@ public:
 
 
 
-#endif //END OF #ifndef CBASE_H
+#endif // CBASE_H

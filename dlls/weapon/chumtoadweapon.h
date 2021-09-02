@@ -103,7 +103,7 @@ public:
 #endif
 	}
 
-};//END OF CChumToadWeapon
+};// CChumToadWeapon
 
 
 
@@ -112,6 +112,7 @@ public:
 // Same as spawning by "weapon_chumtoad", but gives the same effect as the 
 // SF_PICKUP_NOREPLACE spawnflag.
 // It doesn't add the spawnflag, just having a classname that ends in "_noreplace" is enough.
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 class CChumToadWeapon_NoReplace : public CChumToadWeapon
 {
 public:
@@ -120,10 +121,10 @@ public:
 
 	void Spawn(void);
 };
-
+#endif
 //////////////////////////////////////////////////////////////////////////////////////
 
 
 
 
-#endif //END OF #ifdef CHUMTOADWEAPON_H
+#endif// CHUMTOADWEAPON_H

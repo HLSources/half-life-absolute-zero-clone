@@ -1097,7 +1097,7 @@ float CHAssault::SafeSetBlending ( int iBlender, float flValue ){
 	}
 
 	return CBaseAnimating::SetBlending(iBlender, flValue);
-}//END OF SafeSetBlending
+}// SafeSetBlending
 
 
 // Some commonly used script for aiming at at the enemy consistently (no jitter).
@@ -1187,7 +1187,7 @@ void CHAssault::AimAtEnemy(Vector& refVecShootOrigin, Vector& refVecShootDir ){
 		SafeSetBlending( 0, angDirAI.x );
 		//SafeSetBlending( 0, 30 );
 	}//'NULL enemy or residual-fire' check
-}//END OF AimAtEnemy
+}// AimAtEnemy
 
 
 // aim a little higher
@@ -1466,7 +1466,7 @@ void CHAssault::HandleEventQueueEvent(int arg_eventID){
 
 
 
-	}//END OF SWITCH (animQueueEventID check)
+	}// SWITCH (animQueueEventID check)
 
 }
 //=========================================================
@@ -1665,7 +1665,7 @@ void CHAssault::Precache()
 
 	global_useSentenceSave = FALSE;
 
-}//END OF precache
+}// precache
 
 //=========================================================
 // AI Schedules Specific to this monster
@@ -1732,7 +1732,7 @@ Vector CHAssault::GetGunPosition(void){
 	//::UTIL_printLineVector("yehhh", vecGunPos-pev->origin);
 
 	return vecGunPos;
-}//END OF GetGunPosition
+}// GetGunPosition
 
 Vector CHAssault::GetGunPositionAI(void){
 	Vector v_forward, v_right, v_up, angle;
@@ -1759,7 +1759,7 @@ Vector CHAssault::GetGunPositionAI(void){
 	
 
 	return vecSrc;
-}//END OF GetGunPositionAI
+}// GetGunPositionAI
 
 
 
@@ -2060,7 +2060,7 @@ void CHAssault::SetTurnActivity(void){
 		//see if a change to a turn activity makes sense as normal.
 		CSquadMonster::SetTurnActivity();
 	}
-}//END OF SetTurnActivity
+}// SetTurnActivity
 
 
 void CHAssault::SetActivity(Activity NewActivity){
@@ -3090,10 +3090,10 @@ void CHAssault::RunTask ( Task_t *pTask )
 						}
 
 					}
-				}//END OF tr.pHit NULL check
+				}// tr.pHit NULL check
 
 			}
-		}//END OF residualFireTimeBehindCheck
+		}// residualFireTimeBehindCheck
 
 	break;
 	case TASK_FACE_ENEMY:
@@ -3829,7 +3829,7 @@ void CHAssault::MonsterThink ( void )
 			//just stop.
 			rageTimer = -1;
 		}
-	}//END OF rageTimer check
+	}// rageTimer check
 	else{
 		//normal framerate.
 	}
@@ -3929,7 +3929,7 @@ void CHAssault::MonsterThink ( void )
 				SetActivity(ACT_IDLE);
 			//}
 		}
-	}//END OF ACT_IDLE check
+	}// ACT_IDLE check
 
 	if(waittime != -1 && waittime <= gpGlobals->time){
 		waittime = -1;
@@ -4097,7 +4097,7 @@ int CHAssault::LookupActivityHard(int activity){
 			case 2:
 				iSelectedActivity = ACT_RUN;
 			break;
-		}//END OF switch
+		}// switch
 	}
 	*/
 
@@ -4118,7 +4118,7 @@ int CHAssault::LookupActivityHard(int activity){
 				case 2:
 					iSelectedActivity = ACT_RUN;
 				break;
-			}//END OF switch
+			}// switch
 		}else{
 			// not spinning? go faster all the time.
 			iSelectedActivity = ACT_RUN;

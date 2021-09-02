@@ -30,4 +30,4 @@ extern void Init_CustomMessage(void);
 // They're called by the client's engine on receiving events.
 
 
-#endif //END OF CUSTOMMESSAGE_H
+#endif // CUSTOMMESSAGE_H

@@ -757,7 +757,7 @@ int CGraph::NextNodeInRoute(int iCurrentNode, int iDest, int iHull, int iCap)
 				if (EASY_CVAR_GET_DEBUGONLY(nodeConnectionBreakableCheck) <= 1 || pathBetweenClear(iCurrentNode, iNext)) {
 					//is this valid?  if so, proceed.  
 
-				}//END OF new if...
+				}// new if...
 				else {
 					//not ok?  hm..
 					iNext = iNextPrevious;
@@ -1332,7 +1332,7 @@ int CGraph::FindNearestNode(const Vector& vecOrigin, int afNodeTypes)
 			//ALERT(at_aiconsole, "Cache Miss.\n");
 		}
 
-	}//END OF CVar check
+	}// CVar check
 	////////////////////////////////////////////////////////////////////////////////////
 
 	// Mark all points as unchecked.
@@ -1592,7 +1592,7 @@ CGraph::CGraph(void) {
 	node_hulltest_heightswap = FALSE;
 	map_anyAirNodes = FALSE;
 
-}//END OF CGraph constructor
+}// CGraph constructor
 
 
 //=========================================================
@@ -4022,7 +4022,7 @@ void CGraph::ComputeStaticRoutingTables(void)
 	TestRoutingTables();
 #endif
 	m_fRoutingComplete = TRUE;
-}//END OF ComputeStaticRoutingTables
+}// ComputeStaticRoutingTables
 
 
 // Test those routing tables. Doesn't really work, yet.

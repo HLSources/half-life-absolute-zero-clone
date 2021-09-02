@@ -398,7 +398,7 @@ void PM_PlayStepSound_LadderAlpha(int playerLadderMovement) {
 				case 1:	pmove->PM_PlaySound(CHAN_VOICE, "!player_pl_pain4", fvol, ATTN_NORM, 0, PITCH_NORM); break;
 				case 2:	pmove->PM_PlaySound(CHAN_VOICE, "!player_pl_pain5", fvol, ATTN_NORM, 0, PITCH_NORM); break;
 				case 3:	pmove->PM_PlaySound(CHAN_VOICE, "!player_pl_pain6", fvol, ATTN_NORM, 0, PITCH_NORM); break;
-				}//END OF switch(rndSound)
+				}// switch(rndSound)
 				*/
 
 				switch (irand) {
@@ -406,7 +406,7 @@ void PM_PlayStepSound_LadderAlpha(int playerLadderMovement) {
 					case 1:	pmove->PM_PlaySound(CHAN_VOICE, "player/pl_pain4.wav", fvol, ATTN_NORM, 0, PITCH_NORM); break;
 					case 2:	pmove->PM_PlaySound(CHAN_VOICE, "player/pl_pain5.wav", fvol, ATTN_NORM, 0, PITCH_NORM); break;
 					case 3:	pmove->PM_PlaySound(CHAN_VOICE, "player/pl_pain6.wav", fvol, ATTN_NORM, 0, PITCH_NORM); break;
-				}//END OF switch(rndSound)
+				}// switch(rndSound)
 			}
 
 			//#'s 1 and 2 will give the view punch.  And the new 3 then.
@@ -420,7 +420,7 @@ void PM_PlayStepSound_LadderAlpha(int playerLadderMovement) {
 			}
 			//}
 			// iStepLeft is already alternated above
-		}//END OF cycle-check
+		}// cycle-check
 		//MODDD - area is unnecessary after the move from player.cpp
 		//else {
 		//	if (filterediuser4 < LADDER_CYCLE_BASE * ladderCycleMulti) {
@@ -430,7 +430,7 @@ void PM_PlayStepSound_LadderAlpha(int playerLadderMovement) {
 		//}
 
 		//return;
-	//}//END OF special ladder movement check
+	//}// special ladder movement check
 
 
 }//PM_PlayStepSound_LadderAlpha
@@ -695,7 +695,7 @@ void PM_UpdateStepSound( void )
 			return;
 		}
 
-	}//END OF FladderCheck
+	}// FladderCheck
 
 
 
@@ -1480,7 +1480,7 @@ void PM_InclineCheck(void) {
 				// find that or deem it a blocking wall.
 			}
 
-		}//END OF no upward velocity check
+		}// no upward velocity check
 
 	//}//skipInclineChecks
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3559,7 +3559,7 @@ void PM_LadderMove( physent_t *pLadder )
 		pmove->iuser4 = filterediuser4;
 
 
-	}//END OF (trace check)
+	}// (trace check)
 }
 
 physent_t *PM_Ladder( void )
@@ -5003,7 +5003,7 @@ void CUSTOM_setPhysicsKey(const char* physString, const char* keyToChange, const
 	
 
 
-}//END OF CUSTOM_setPhyiscsKey
+}// CUSTOM_setPhyiscsKey
 
 
 

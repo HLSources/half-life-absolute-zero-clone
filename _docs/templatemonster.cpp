@@ -140,7 +140,7 @@ const char* CTemplateMonster::pAttackMissSounds[] =
 CTemplateMonster::CTemplateMonster(void){
 
 
-}//END OF CTemplateMonster constructor
+}// CTemplateMonster constructor
 
 
 
@@ -242,7 +242,7 @@ void CTemplateMonster::Precache( void ){
 
 
 	global_useSentenceSave = FALSE;
-}//END OF Precache()
+}// Precache()
 
 
 
@@ -284,7 +284,7 @@ void CTemplateMonster::Spawn( void ){
 	//SetTouch(&CTemplateMonster::CustomTouch );
 	//SetTouch( NULL );
 
-}//END OF Spawn();
+}// Spawn();
 
 
 // Not to be confused with the bounds given by the Spawn method's "UTIL_SetSize".
@@ -307,7 +307,7 @@ void CTemplateMonster::SetObjectCollisionBox(void){
 		pev->absmax = pev->origin + Vector(X, X, Z);
 	}
 	*/
-}//END OF SetObjectCollisionBox
+}// SetObjectCollisionBox
 
 
 void CTemplateMonster::SetEyePosition(void){
@@ -316,7 +316,7 @@ void CTemplateMonster::SetEyePosition(void){
 
 	// The default way reads the model for eye position.
 	CBaseMonster::SetEyePosition();
-}//END OF SetEyePosition
+}// SetEyePosition
 
 
 // default, override if necessary.
@@ -524,7 +524,7 @@ Schedule_t* CTemplateMonster::GetSchedule( void ){
 	}
 
 	return &slError[ 0 ];
-}//END OF GetSchedule()
+}// GetSchedule()
 
 
 Schedule_t* CTemplateMonster::GetScheduleOfType( int Type){
@@ -533,10 +533,10 @@ Schedule_t* CTemplateMonster::GetScheduleOfType( int Type){
 		case SCHED_TEMPLATEMONSTER_XXX:{
 
 		break;}
-	}//END OF switch(Type)
+	}// switch(Type)
 	
 	return CBaseMonster::GetScheduleOfType(Type);
-}//END OF GetScheduleOfType
+}// GetScheduleOfType
 
 
 void CTemplateMonster::ScheduleChange(){
@@ -552,12 +552,12 @@ void CTemplateMonster::ScheduleChange(){
 	
 	CBaseMonster::ScheduleChange(); //Call the parent.
 
-}//END OF ScheduleChange
+}// ScheduleChange
 
 
 Schedule_t* CTemplateMonster::GetStumpedWaitSchedule(){
 	return CBaseMonster::GetStumpedWaitSchedule();
-}//END OF GetStumpedWaitSchedule
+}// GetStumpedWaitSchedule
 
 
 
@@ -571,9 +571,9 @@ void CTemplateMonster::StartTask( Task_t* pTask ){
 		default:{
 			CBaseMonster::StartTask( pTask );
 		break;}
-	}//END OF switch
+	}// switch
 
-}//END OF StartTask
+}// StartTask
 
 void CTemplateMonster::RunTask( Task_t* pTask ){
 	
@@ -586,9 +586,9 @@ void CTemplateMonster::RunTask( Task_t* pTask ){
 		default:{
 			CBaseMonster::RunTask(pTask);
 		break;}
-	}//END OF switch
+	}// switch
 
-}//END OF RunTask
+}// RunTask
 
 
 //IMPORTANT. Easy to overlook, but this filter can be frustrating if you forget about it.
@@ -601,7 +601,7 @@ BOOL CTemplateMonster::FCanCheckAttacks(void){
 	}
 
 	return FALSE;
-}//END OF FCanCheckAttacks
+}// FCanCheckAttacks
 
 BOOL CTemplateMonster::CheckMeleeAttack1( float flDot, float flDist ){
 	return FALSE;
@@ -620,7 +620,7 @@ BOOL CTemplateMonster::CheckRangeAttack2( float flDot, float flDist ){
 
 void CTemplateMonster::CustomTouch( CBaseEntity* pOther ){
 
-}//END OF CustomTouch
+}// CustomTouch
 
 
 
@@ -629,7 +629,7 @@ void CTemplateMonster::MonsterThink(){
 
 
 	CBaseMonster::MonsterThink();
-}//END OF MonsterThink
+}// MonsterThink
 
 // PrescheduleThink - this function runs after conditions are collected and before scheduling code is run.
 // NOTE - PrescheduleThink is called by RunAI of monsterstate.cpp, which is called from MonsterThink in the parent CBaseMonster class (monsters.cpp).
@@ -639,7 +639,7 @@ void CTemplateMonster::PrescheduleThink (){
 
 
 	CBaseMonster::PrescheduleThink();
-}//END OF PrescheduleThink
+}// PrescheduleThink
 
 
 
@@ -685,12 +685,12 @@ void CTemplateMonster::ReportAIState(){
 	// call the parent, and add on to that below if necessary (things specific to this monster that the base class can't get)
 	CBaseMonster::ReportAIState();
 
-}//END OF ReportAIState()
+}// ReportAIState()
 
 //Should this monster be any better or worse at hearing than usual?  Higher meants it hears the same sound from a greater distance.
 float CTemplateMonster::HearingSensitivity(void){
 	return 1.0f;
-}//END OF HearingSensitivity
+}// HearingSensitivity
 
 // To have a schedule interrupted by a schedule (and maybe even picked up by conditions at all?), it has to be part of
 // this list at least. And part of the sound interrupt list on a schedule. And the schedule has to be interruptible by sounds,
@@ -705,7 +705,7 @@ int CTemplateMonster::ISoundMask(void){
 			bits_SOUND_PLAYER	|
 			//MODDD - new
 			bits_SOUND_BAIT;
-}//END OF ISoundMask
+}// ISoundMask
 
 
 
@@ -715,14 +715,14 @@ int CTemplateMonster::ISoundMask(void){
 // at least once to start combat).
 BOOL CTemplateMonster::noncombat_Look_ignores_PVS_check(void){
 	return FALSE;
-}//END OF noncombat_Look_ignores_PVS_check
+}// noncombat_Look_ignores_PVS_check
 
 // You must explicitly allow this monster to be able to do the violent death at all, whether it has one available from
 // the model or not (but it should be if allowed).  Use the custom animation system and override what ACT_DIEVIOLENT
 // returns if the model doesn't do it right or at all.
 BOOL CTemplateMonster::violentDeathAllowed(void){
 	return FALSE;
-}//END OF hasViolentDeathSequence
+}// hasViolentDeathSequence
 
 // Default case should work fine for most monsters.
 // Only allow a violent death animation if the last hit solidly did this much damage.
@@ -736,7 +736,7 @@ BOOL CTemplateMonster::violentDeathDamageRequirement(void){
 // But "hasViolentDeathSequence" must be overridden to 'return TRUE' above regardless.
 BOOL CTemplateMonster::violentDeathClear(void){
 	return TRUE;
-}//END OF
+}//
 
 // Bascially, priority is in order from 1 to 3. 1 is in front of all other DIE act's if conditions are met, even
 // at the same time as any other DIE act's. 2 is after GUTSHOT and HEADSHOT. 3 only competes with ACT_DIEBACKWARDS, otherwise never gets a chance.
@@ -744,7 +744,7 @@ BOOL CTemplateMonster::violentDeathClear(void){
 // Flyers could use 1 or 2 instead.
 int CTemplateMonster::violentDeathPriority(void){
 	return 3;
-}//END OF violentDeathPriority
+}// violentDeathPriority
 
 
 
@@ -781,7 +781,7 @@ void CTemplateMonster::OnTakeDamageSetConditions(entvars_t *pevInflictor, entvar
 
 
 	CBaseMonster::OnTakeDamageSetConditions(pevInflictor, pevAttacker, flDamage, bitsDamageType, bitsDamageTypeMod);
-}//END OF OnTakeDamageSetConditions
+}// OnTakeDamageSetConditions
 
 
 
@@ -792,7 +792,7 @@ GENERATE_DEADTAKEDAMAGE_IMPLEMENTATION(CTemplateMonster){
 
 
 	return GENERATE_DEADTAKEDAMAGE_PARENT_CALL(CBaseMonster);
-}//END OF DeadTakeDamage
+}// DeadTakeDamage
 
 
 
@@ -835,7 +835,7 @@ GENERATE_KILLED_IMPLEMENTATION(CTemplateMonster){
 
 
 	GENERATE_KILLED_PARENT_CALL(CBaseMonster);
-}//END OF Killed
+}// Killed
 
 
 // When this monster is about to be removed from the game (FL_KILLME is set in pev->flags, or REMOVE_ENTITY is about to be used),
@@ -847,7 +847,7 @@ void CTemplateMonster::onDelete(void){
 	//UTIL_StopSound(ENT(pev), CHAN_X, "templatemonster/templatemonster_loopingsound.wav");
 	//...
 
-}//END OF onDelete
+}// onDelete
 
 
 void CTemplateMonster::SetYawSpeed( void ){
@@ -866,9 +866,9 @@ void CTemplateMonster::SetYawSpeed( void ){
 		default:{
 			pev->yaw_speed = 200;
 		break;}
-	}//END OF switch
+	}// switch
 	
-}//END OF SetYawSpeed
+}// SetYawSpeed
 
 
 
@@ -918,12 +918,12 @@ int CTemplateMonster::tryActivitySubstitute(int activity){
 		case ACT_IDLE:{
 			return SEQ_TEMPLATEMONSTER_XXX;
 		break;}
-	}//END OF switch
+	}// switch
 
 
 	// not handled by above? Rely on the model's anim for this activity if there is one.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF tryActivitySubstitute
+}// tryActivitySubstitute
 
 // 
 int CTemplateMonster::LookupActivityHard(int activity){
@@ -943,11 +943,11 @@ int CTemplateMonster::LookupActivityHard(int activity){
 			//random chance?
 			//return SEQ_TEMPLATEMONSTER_XXX;
 		break;}
-	}//END OF switch
+	}// switch
 	
 	// not handled by above?  try the real deal.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF LookupActivityHard
+}// LookupActivityHard
 
 
 
@@ -964,9 +964,9 @@ void CTemplateMonster::HandleEventQueueEvent(int arg_eventID){
 
 
 		break;}
-	}//END OF switch
+	}// switch
 
-}//END OF HandleEventQueueEvent
+}// HandleEventQueueEvent
 
 
 // This handles events built into the model, not custom hard-coded ones (above).
@@ -984,8 +984,8 @@ void CTemplateMonster::HandleAnimEvent(MonsterEvent_t* pEvent ){
 		default:{
 			CBaseMonster::HandleAnimEvent( pEvent );
 		break;}
-	}//END OF switch
+	}// switch
 
-}//END OF HandleAnimEvent
+}// HandleAnimEvent
 
 

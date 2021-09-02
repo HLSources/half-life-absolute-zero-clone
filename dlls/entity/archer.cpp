@@ -640,7 +640,7 @@ void CArcher::Precache( void )
 	UTIL_PrecacheOther( "archer_ball" );
 
 
-}//END OF Precache()
+}// Precache()
 
 
 void CArcher::Spawn( void )
@@ -691,7 +691,7 @@ void CArcher::Spawn( void )
 	SetTouch(&CArcher::CustomTouch );
 	//SetTouch( NULL );
 
-}//END OF Spawn();
+}// Spawn();
 
 
 
@@ -978,7 +978,7 @@ BOOL CArcher::ShouldAdvanceRoute( float flWaypointDist, float flInterval )
 				return FALSE;
 			}
 
-		}//END OF goal check
+		}// goal check
 		else{
 			//do it the way the flier would.
 			return CFlyingMonster::ShouldAdvanceRoute(flWaypointDist, flInterval);
@@ -1180,7 +1180,7 @@ void CArcher::MoveExecute( CBaseEntity *pTargetEnt, const Vector &vecDir, float 
 	}
 
 
-}//END OF MoveExecute
+}// MoveExecute
 
 
 
@@ -1240,7 +1240,7 @@ void CArcher::MoveExecute( CBaseEntity *pTargetEnt, const Vector &vecDir, float 
 void CArcher::SetEyePosition(void){
 	//CFlyingMonster::SetEyePosition();
 	pev->view_ofs = Vector(0, 0, 42 - 8);//VEC_VIEW;
-}//END OF SetEyePosition
+}// SetEyePosition
 
 
 
@@ -1442,7 +1442,7 @@ Schedule_t* CArcher::GetSchedule ( void )
 	}
 
 	return &slError[ 0 ];
-}//END OF GetSchedule()
+}// GetSchedule()
 
 
 
@@ -1582,10 +1582,10 @@ Schedule_t* CArcher::GetScheduleOfType( int Type){
 
 
 
-	}//END OF switch(Type)
+	}// switch(Type)
 	
 	return CFlyingMonster::GetScheduleOfType(Type);
-}//END OF GetScheduleOfType
+}// GetScheduleOfType
 
 
 void CArcher::ScheduleChange(){
@@ -1601,12 +1601,12 @@ void CArcher::ScheduleChange(){
 	
 	CFlyingMonster::ScheduleChange(); //Call the parent.
 
-}//END OF ScheduleChange
+}// ScheduleChange
 
 
 Schedule_t* CArcher::GetStumpedWaitSchedule(){
 	return CFlyingMonster::GetStumpedWaitSchedule();
-}//END OF GetStumpedWaitSchedule
+}// GetStumpedWaitSchedule
 
 
 
@@ -1711,7 +1711,7 @@ void CArcher::StartTask( Task_t *pTask ){
 				TaskComplete();
 				return;
 
-			}//END OF while tries remain
+			}// while tries remain
 
 			//didn't TaskComplete() and end early above? we failed to find a good point.
 			TaskFail();
@@ -1835,7 +1835,7 @@ void CArcher::StartTask( Task_t *pTask ){
 				TaskFail();
 				return;
 
-			}//END OF pathSuccess check
+			}// pathSuccess check
 
 
 			TaskComplete();
@@ -1900,9 +1900,9 @@ void CArcher::StartTask( Task_t *pTask ){
 		default:{
 			CFlyingMonster::StartTask( pTask );
 		break;}
-	}//END OF switch
+	}// switch
 
-}//END OF StartTask
+}// StartTask
 
 void CArcher::RunTask( Task_t *pTask ){
 	
@@ -1976,9 +1976,9 @@ void CArcher::RunTask( Task_t *pTask ){
 		default:{
 			CFlyingMonster::RunTask(pTask);
 		break;}
-	}//END OF switch
+	}// switch
 
-}//END OF RunTask
+}// RunTask
 
 
 
@@ -2144,7 +2144,7 @@ void CArcher::MonsterThink(){
 
 	//CFlyingMonster::MonsterThink();
 	CBaseMonster::MonsterThink();
-}//END OF MonsterThink
+}// MonsterThink
 
 // PrescheduleThink - this function runs after conditions are collected and before scheduling code is run.
 //NOTE - PrescheduleThink is called by RunAI of monsterstate.cpp, which is called from MonsterThink in the parent CFlyingMonster class (monsters.cpp).
@@ -2154,7 +2154,7 @@ void CArcher::PrescheduleThink (){
 
 
 	CFlyingMonster::PrescheduleThink();
-}//END OF PrescheduleThink
+}// PrescheduleThink
 
 
 
@@ -2175,14 +2175,14 @@ BOOL CArcher::isOrganic(){
 int CArcher::IRelationship( CBaseEntity *pTarget ){
 
 	return CFlyingMonster::IRelationship(pTarget);
-}//END OF IRelationship
+}// IRelationship
 
 
 void CArcher::ReportAIState(){
 	//call the parent, and add on to that.
 	CFlyingMonster::ReportAIState();
 	//print anything special with easyForcePrintLine
-}//END OF ReportAIState()
+}// ReportAIState()
 
 
 
@@ -2215,7 +2215,7 @@ GENERATE_DEADTAKEDAMAGE_IMPLEMENTATION(CArcher)
 
 
 	return GENERATE_DEADTAKEDAMAGE_PARENT_CALL(CFlyingMonster);
-}//END OF DeadTakeDamage
+}// DeadTakeDamage
 
 
 
@@ -2295,10 +2295,10 @@ GENERATE_KILLED_IMPLEMENTATION(CArcher)
 	//if you have the "FL_KILLME" flag, it means this is about to get deleted (gibbed). No point in doing any of this then.
 	if(firstCall && !(pev->flags & FL_KILLME) ){
 		cheapKilledFlyer();
-	}//END OF firstCall check
+	}// firstCall check
 	*/
 
-}//END OF Killed
+}// Killed
 
 
 
@@ -2317,7 +2317,7 @@ void CArcher::SetYawSpeed( void ){
 	}
 
 	pev->yaw_speed = ys;
-}//END OF SetYawSpeed
+}// SetYawSpeed
 
 
 
@@ -2352,7 +2352,7 @@ void CArcher::SetActivity(Activity NewActivity ){
 		CFlyingMonster::SetActivity(NewActivity);
 	}
 
-}//END OF SetActivity
+}// SetActivity
 
 Activity CArcher::GetDeathActivity ( void ){
 
@@ -2406,12 +2406,12 @@ int CArcher::tryActivitySubstitute(int activity){
 		case ACT_HOVER:
 			return ARCHER_SWIM_SEQ;
 		break;
-	}//END OF switch
+	}// switch
 
 
 	//not handled by above? Rely on the model's anim for this activity if there is one.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF tryActivitySubstitute
+}// tryActivitySubstitute
 
 
 int CArcher::LookupActivityHard(int activity){
@@ -2481,12 +2481,12 @@ int CArcher::LookupActivityHard(int activity){
 		case ACT_HOVER:
 			return ARCHER_SWIM_SEQ;
 		break;
-	}//END OF switch
+	}// switch
 	
 	
 	//not handled by above?  try the real deal.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF LookupActivityHard
+}// LookupActivityHard
 
 
 //Handles custom events sent from "LookupActivityHard", which sends events as timed delays along with picking an animation in script.
@@ -2636,10 +2636,10 @@ void CArcher::HandleEventQueueEvent(int arg_eventID){
 
 	break;
 	}
-	}//END OF switch
+	}// switch
 
 
-}//END OF HandleEventQueueEvent
+}// HandleEventQueueEvent
 
 
 //This handles events built into the model, not custom hard-coded ones (above).
@@ -2654,7 +2654,7 @@ void CArcher::HandleAnimEvent(MonsterEvent_t *pEvent ){
 	default:
 		CFlyingMonster::HandleAnimEvent( pEvent );
 	break;
-	}//END OF switch
+	}// switch
 }
 
 
@@ -2751,8 +2751,8 @@ void CArcher::checkTraceLine(const Vector& vecSuggestedDir, const float& travelM
 			//MODDAHHH 0.91, 5, 0.44, 4.56
 			//easyPrintLineGroup2("MODDAHHH %.2f, %d, %.2f, %.2f ", tr.flFraction, moveDist, toMove, (tr.vecEndPos - vecStart).Length());
 
-		}//END OF if(tr.flFraction < 1.0)
-	}//END OF if(!tempCheckTraceLineBlock)
+		}// if(tr.flFraction < 1.0)
+	}// if(!tempCheckTraceLineBlock)
 	
 	if(EASY_CVAR_GET_DEBUGONLY(drawDebugPathfinding2) == 1){
 		UTIL_drawLineFrame(vecStart, vecStart + vecRelativeEndScale, 16, 0, 255, 0);
@@ -2861,8 +2861,8 @@ void CArcher::checkTraceLineTest(const Vector& vecSuggestedDir, const float& tra
 			//MODDAHHH 0.91, 5, 0.44, 4.56
 			//easyPrintLineGroup2("MODDAHHH %.2f, %d, %.2f, %.2f ", tr.flFraction, moveDist, toMove, (tr.vecEndPos - vecStart).Length());
 
-		}//END OF if(tr.flFraction < 1.0)
-	}//END OF if(!tempCheckTraceLineBlock)
+		}// if(tr.flFraction < 1.0)
+	}// if(!tempCheckTraceLineBlock)
 	
 	if(EASY_CVAR_GET_DEBUGONLY(drawDebugPathfinding2) == 1){
 		UTIL_drawLineFrame(vecStart, vecStart + vecRelativeEndScale, 16, 0, 255, 0);
@@ -3116,10 +3116,10 @@ void CArcher::checkFloor(const Vector& vecSuggestedDir, const float& travelMag, 
 			
 
 		}
-	}//END OF if(!onGround)
+	}// if(!onGround)
 
 
-}//END OF checkFloor
+}// checkFloor
 
 
 int CArcher::getLoopingDeathSequence(void){
@@ -3143,18 +3143,18 @@ void CArcher::onDeathAnimationEnd(){
 	//It does nothing special.  Just keep it to what the parent does.
 	CFlyingMonster::onDeathAnimationEnd();
 
-}//END OF onDeathAnimationEnd
+}// onDeathAnimationEnd
 
 
 // I can goto the surface of water to do ranged attacks too. I have to know if I can by seeing where the enemy is.
 // And be able to track the enemy above water (from itself being underwater) to even begin to determine that.
 BOOL CArcher::SeeThroughWaterLine(void){
 	return TRUE;
-}//END OF SeeThroughWaterLine
+}// SeeThroughWaterLine
 
 BOOL CArcher::noncombat_Look_ignores_PVS_check(void){
 	return TRUE;
-}//END OF ignores_PVS_check
+}// ignores_PVS_check
 
 
 
@@ -3166,7 +3166,7 @@ void CArcher::BecomeDead( void )
 	// give the corpse half of the monster's original maximum health. 
 	pev->health = pev->max_health / 2;
 	pev->max_health = 5; // max_health now becomes a counter for how many blood decals the corpse can place.
-}//END OF BecomeDead
+}// BecomeDead
 
 
 //TODO - implement the probe?  Ensure the monster stays underwater like the ichy does.
@@ -3285,12 +3285,12 @@ BOOL CArcher::attemptBuildRandomWanderRoute(const float& argWaterLevel){
 		//TaskComplete();
 		//return;
 		return TRUE;
-	}//END OF while tries left
+	}// while tries left
 
 
 	//ran out of tries? oh well.
 	return FALSE;
-}//END OF attemptBuildRandomWanderRoute
+}// attemptBuildRandomWanderRoute
 
 
 //let's be safe here...  don't exclude the player being immediately out of view.

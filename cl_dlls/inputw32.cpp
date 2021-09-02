@@ -235,7 +235,7 @@ void IN_StartupMouse (void)
 // read in the value for m_rawinputMem (argNew) and use it to build
 // the two 'mouseparms' arrays.
 void determineMouseParams(float argNew) {
-	if (globalPSEUDO_m_rawinputMem == 0) {
+	if (argNew == 0) {
 		originalmouseparms[0] = 0;
 		originalmouseparms[1] = 0;
 		originalmouseparms[2] = 1;

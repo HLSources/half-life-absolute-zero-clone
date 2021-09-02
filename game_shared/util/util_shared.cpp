@@ -152,6 +152,8 @@ int giAmmoIndex;
 
 //MODDD - named ammo indeces so that they don't have to be re-found every single time TabulateAmmo is called
 // Globals and set once at startup, since where what ammotype is in the array of ammo types never changes.
+// (not necessary it turns out)
+#if SKIP_NAMED_AMMO_CACHE == 0
 int AmmoIndex_9mm;
 int AmmoIndex_357;
 int AmmoIndex_ARgrenades;
@@ -166,7 +168,7 @@ int AmmoIndex_SatchelCharge;
 int AmmoIndex_Snarks;
 int AmmoIndex_TripMine;
 int AmmoIndex_ChumToads;
-
+#endif
 
 
 // Also from weapons.cpp, since we can refer to these in both client/server now.
@@ -382,7 +384,7 @@ BOOL CanAttack(float attack_time, float curtime, BOOL isPredicted)
 		return (attack_time <= 0.0) ? TRUE : FALSE;
 	}
 
-	//END OF normal behavior w/o the cheat.
+	// normal behavior w/o the cheat.
 	//}else{
 	//	//with cheats, can always attack.
 	//	return TRUE;
@@ -520,7 +522,7 @@ void AddAmmoNameToAmmoRegistry_Primary(int iId, const char* szAmmoname, int iAmm
 	CBasePlayerItem::AmmoTypeCacheArray[iId].iPrimaryAmmoType = giAmmoIndex;
 
 	//giAmmoIndex++;
-}//END OF AddAmmoNameToAmmoRegistry_Primary
+}// AddAmmoNameToAmmoRegistry_Primary
 
 void AddAmmoNameToAmmoRegistry_Secondary(int iId, const char* szAmmoname, int iAmmoMax)
 {
@@ -553,7 +555,7 @@ void AddAmmoNameToAmmoRegistry_Secondary(int iId, const char* szAmmoname, int iA
 	CBasePlayerItem::AmmoTypeCacheArray[iId].iSecondaryAmmoType = giAmmoIndex;
 
 	//giAmmoIndex++;
-}//END OF AddAmmoNameToAmmoRegistry_Secondary
+}// AddAmmoNameToAmmoRegistry_Secondary
 
 
 
@@ -606,19 +608,25 @@ void RegisterWeapon(CBasePlayerWeapon* pWeapon, CBasePlayerWeapon* pAryWeaponSto
 
 		// this memset is unnecessary, the method ends after this.
 		//memset(&tempInfo, 0, sizeof tempInfo);
-	}//END OF GetItemInfo pass check
+	}// GetItemInfo pass check
 
 }//registerWeapon
 
 
-//MODDD - After 'registerWeapon' has been called for all weapons, all possible ammo-types have also been registered.
+//MODDD - After 'registerWeapon' has been called for all weapons, all possible ammo-types
+// have also been registered.
 // Use them to fill the cached ammo indeces.
+// Although these are unnecessary anyway it turns out, but keeping as a config setting
+// in case we change our minds.
+// This method could be a neat event besides that someday anyway, who knows.
 void PostWeaponRegistry(void) {
 
-	// No references to snark/squeak ammo in there, eh?  Interesting.  Seems these really aren't that necessary.
+	// No references to snark/squeak ammo in there, eh?  Interesting.  Seems these really
+	// aren't that necessary.
 	// Don't see what these do that a weapon's own PrimaryAmmoIndex() method can't do.
 	// Could replace calls for ammo-type by string name throughout other files though.
 
+#if SKIP_NAMED_AMMO_CACHE == 0
 	AmmoIndex_9mm = GetAmmoIndex("9mm");
 	AmmoIndex_357 = GetAmmoIndex("357");
 	AmmoIndex_ARgrenades = GetAmmoIndex("ARgrenades");
@@ -633,9 +641,9 @@ void PostWeaponRegistry(void) {
 	AmmoIndex_Snarks = GetAmmoIndex("Snarks");
 	AmmoIndex_TripMine = GetAmmoIndex("Trip Mine");
 	AmmoIndex_ChumToads = GetAmmoIndex("Chum Toads");
+#endif
 
 }//PostWeaponRegistry
-
 
 
 	
@@ -777,7 +785,7 @@ int tryStringToInt(const char* arg_src){
 
 		i++;
 
-	}//END OF while(...)
+	}// while(...)
 
 	//loop above ended (did not return or throw)?  Too long!
 	throw 13;
@@ -834,7 +842,7 @@ float tryStringToFloat(const char* arg_src){
 
 		i++;
 
-	}//END OF while(...)
+	}// while(...)
 
 	//loop above ended (did not return or throw)?  Too long!
 	throw 13;
@@ -958,7 +966,7 @@ int UTIL_findCharFirstPos(const char* search, char toFind){
 			return i;
 		}
 		i++;
-	}//END OF while(TRUE)
+	}// while(TRUE)
 	//???
 	return -1;
 }
@@ -1477,7 +1485,7 @@ void determineHiddenMemPath(void){
 		easyForcePrintLine("HIDDEN MEM PATH: %s", globalPSEUDO_hiddenMemPath);
 	}
 	
-}//END OF determineHiddenPath
+}// determineHiddenPath
 
 
 
@@ -1680,7 +1688,7 @@ void loadHiddenCVars(void){
 			if(c == '\r'){
 				//skip, unnecessary.
 			}else if(c == '\n' || c == EOF){
-				//End of file or new line? In any case count as a line break just in case the very last line didn't end in a newline character.
+				// file or new line? In any case count as a line break just in case the very last line didn't end in a newline character.
 				
 				aryChrLineBuffer[intLineBufferPos] = '\0'; //this makes some string-processing methods happier.
 				processLoadHiddenCVarLine(&aryChrLineBuffer[0]);
@@ -1698,7 +1706,7 @@ void loadHiddenCVars(void){
 					intLineBufferPos++;
 				}
 			}
-		}//END OF while reading file.
+		}// while reading file.
 
 		easyPrintLine("***Hidden CVars Loaded***");
 		//fprintf(fp, "%s", string);
@@ -1862,7 +1870,7 @@ void convertIntToBinary(char* buffer, unsigned int arg, unsigned int binaryDigit
 	}
 	
 	//return string(aryChrReturn);
-}//END OF convertIntToBinary
+}// convertIntToBinary
 
 
 
@@ -1974,14 +1982,6 @@ Vector UTIL_ClampVectorToBoxNonNormalized( const Vector &input, const Vector &cl
 
 
 
-
-
-
-
-
-
-
-
 BOOL IsMultiplayer(void){
 #ifdef CLIENT_DLL
 	// bIsMultiplayer()
@@ -1990,7 +1990,7 @@ BOOL IsMultiplayer(void){
 #else
 	return g_pGameRules->IsMultiplayer();
 #endif
-}//END OF IsMultiplayer
+}// IsMultiplayer
 
 
 void UTIL_Sparks(const Vector& position){
@@ -2001,7 +2001,7 @@ void UTIL_Sparks(const Vector& position){
 	//easyPrintLine("!!!!!!!!! SPARK CREATION UNSOURCED 2!!!!!!!!!");
 	UTIL_Sparks(position, DEFAULT_SPARK_BALLS, EASY_CVAR_GET_DEBUGONLY(sparksEnvMulti));
 
-}//END OF Util_Sparks(...)
+}// Util_Sparks(...)
 
 void UTIL_Sparks(const Vector& position, int arg_ballsToSpawn, float arg_extraSparkMulti){
 
@@ -2025,7 +2025,7 @@ void UTIL_Sparks(const Vector& position, int arg_ballsToSpawn, float arg_extraSp
 		MESSAGE_END();
 #endif
 		return;
-	}//END OF if
+	}// if
 
 	//PLAYBACK_EVENT_FULL (FEV_GLOBAL, pGib->edict(), g_sTrail, 0.0, 
 	//	(float *)&pGib->pev->origin, (float *)&pGib->pev->angles, 0.7, 0.0, pGib->entindex(), ROCKET_TRAIL, 0, 0);
@@ -2154,7 +2154,7 @@ void UTIL_Sparks(const Vector& position, int arg_ballsToSpawn, float arg_extraSp
 
 	*/
 
-}//END OF UTIL_Sparks
+}// UTIL_Sparks
 
 
 
@@ -2342,7 +2342,7 @@ void InitShared(void) {
 
 
 
-}//END OF InitShared
+}// InitShared
 
 
 
@@ -2359,7 +2359,7 @@ void PrecacheShared(void){
 	//int tester2 =PRECACHE_MODEL_SHARED("sprites/hotglow.spr");
 	//int tester3 =PRECACHE_MODEL_SHARED("sprites/bubble.spr");
 
-}//END OF PrecacheShared
+}// PrecacheShared
 
 
 
@@ -2373,9 +2373,6 @@ void ClearWeaponInfoCache(void){
 	memset(CBasePlayerItem::AmmoInfoArray, 0, sizeof(CBasePlayerItem::AmmoInfoArray));
 	giAmmoIndex = 0;
 }
-
-
-
 
 
 
@@ -2401,8 +2398,6 @@ void	(*R_SparkEffect)				(float* pos, int count, int velocityMin, int velocityMa
 void	(*R_SparkShower)				(float* pos);
 void	(*R_SparkStreaks)				(float* pos, int count, int velocityMin, int velocityMax);
 */
-
-
 
 
 

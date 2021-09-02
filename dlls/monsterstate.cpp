@@ -42,10 +42,6 @@ void CBaseMonster::SetState ( MONSTERSTATE State )
 	}
 */
 
-	if (FClassnameIs(pev, "monster_gargantua")) {
-		int eckz = 666;
-	}
-
 
 	//MODDD - force the state to stay "PRONE" if caught by a barnacle!
 	// Any other state can be picked after this monster is freed.  Or, rather, 'if'.
@@ -276,11 +272,6 @@ MONSTERSTATE CBaseMonster::GetIdealState ( void )
 {
 	int iConditions;
 	iConditions = IScheduleFlags();
-
-
-	if (FClassnameIs(pev, "monster_gargantua")) {
-		int xxx = 666;
-	}
 	
 	// If no schedule conditions, the new ideal state is probably the reason we're in here.
 	switch ( m_MonsterState )
@@ -408,7 +399,7 @@ MONSTERSTATE CBaseMonster::GetIdealState ( void )
 		//  well.  That isn't very exciting.
 		return MONSTERSTATE_DEAD;
 	break;
-	}//END OF switch(m_MonsterState)
+	}// switch(m_MonsterState)
 
 	// Made it here?  Return the current ideal one I guess.
 	return m_IdealMonsterState;

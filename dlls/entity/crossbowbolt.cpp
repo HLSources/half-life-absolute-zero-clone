@@ -55,7 +55,7 @@ CCrossbowBolt::CCrossbowBolt(void){
 	recentVelocity = Vector(0,0,0);
 	noDamage = FALSE;
 	realNextThink = 0;
-}//END OF CCrossbowBolt constructor
+}// CCrossbowBolt constructor
 
 
 
@@ -135,7 +135,7 @@ void CCrossbowBolt::Spawn(BOOL useTracer, BOOL arg_noDamage)
 		WRITE_BYTE(100);	// brightness
 	
 		MESSAGE_END();
-	}//END OF useTracer check
+	}// useTracer check
 	///////////////////////////////////////////////////////
 
 
@@ -277,25 +277,17 @@ void CCrossbowBolt::BoltTouch( CBaseEntity *pOther )
 			else {
 				// May do lots of damage, but no gibbing. Does not make sense for ordinary
 				// piercing arrows.  Also does poison.
-				// MODDD TODO - make crossbow poison weaker than most?  It's already pretty devastating
-				// even without the poison.  Would need a new damage type (for the 2nd dmg bitmask
-				// probably).  BLEGH.
 				gMultiDamage.type = DMG_BULLET | DMG_NEVERGIB; //| DMG_POISON;
 				gMultiDamage.typeMod = DMG_PROJECTILE | DMG_POISONHALF;
 			}
 
-
 			pOther->TraceAttack(pevOwner, damageToDeal, pev->velocity.Normalize(), &tr, gMultiDamage.type, gMultiDamage.typeMod);
-
-
-			//ClearMultiDamage();
-			//gMultiDamage.type = DMG_BULLET | DMG_NEVERGIB;
 
 			//easyForcePrintLine("OW! 3 %s health:%.2f", pOther->getClassname(), pOther->pev->health);
 			//easyForcePrintLine("!!!CROSSBOWBOLT: ApplyMultiDamage CALL!!!");
 			ApplyMultiDamage(pev, pevOwner);
 
-		}//END OF noDamage
+		}// noDamage
 
 
 		//easyForcePrintLine("OW! 4 %s health:%.2f", pOther->getClassname(), pOther->pev->health);
@@ -327,7 +319,7 @@ void CCrossbowBolt::BoltTouch( CBaseEntity *pOther )
 			// not organic?  Slightly modified
 			EMIT_SOUND_DYN(ENT(pev), CHAN_BODY, "weapons/xbow_hit1.wav", RANDOM_FLOAT(0.98, 1.0), ATTN_NORM - 0.1, 0, 107 + RANDOM_LONG(0, 4));
 			hitEffect(tr);
-		}//END OF pOther organic check
+		}// pOther organic check
 
 		
 		// Does this crossbowbolt need to  be removed this instant?
@@ -415,9 +407,9 @@ void CCrossbowBolt::BoltThink( void )
 
 		UTIL_BubbleTrail( pev->origin - pev->velocity * 0.1, pev->origin, 8);
 
-	}//END OF realNextThink check
+	}// realNextThink check
 
-}//END OF BoltThink
+}// BoltThink
 
 
 void CCrossbowBolt::ExplodeThink( void )
@@ -514,7 +506,7 @@ void CCrossbowBolt::ExplodeThink( void )
 
 float CCrossbowBolt::massInfluence(void){
 	return 0.02f;
-}//END OF massInfluence
+}// massInfluence
 
 int CCrossbowBolt::GetProjectileType(void){
 	return PROJECTILE_BOLT;

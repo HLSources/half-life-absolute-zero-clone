@@ -44,8 +44,9 @@ BOOL atLeastOneHornet = FALSE;
 float HGUN_prevRechargeTime = -1;
 float HGUN_prevRechargeTimeTo = -1;
 
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 LINK_ENTITY_TO_CLASS( weapon_hornetgun, CHgun );
-
+#endif
 
 
 BOOL CHgun::IsUseable( void )
@@ -543,15 +544,8 @@ void CHgun::ItemPostFrameThink(void) {
 			ChangePlayerPrimaryAmmoCount(1);
 			//easyForcePrintLine("yay? %d", PlayerPrimaryAmmoCount());
 
-		}//END OF while loop
-
-
-
-
-
-
-	}//END OF ammo under max check
-
+		}// while loop
+	}// ammo under max check
 
 	CBasePlayerWeapon::ItemPostFrameThink();
 }

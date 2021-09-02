@@ -761,7 +761,7 @@ void CBasePlayer::PainSound( void )
 	}else {
 		UTIL_PlaySound(ENT(pev), CHAN_VOICE, "player/pl_pain7.wav", 1, ATTN_NORM, FALSE);
 	}
-}//END OF PainSound
+}// PainSound
 
 
 //A chance of 3 / 5 to play pain, 2 / 5 nothing.  Spotted across the script, condensed here for ease of (re)use.
@@ -781,7 +781,7 @@ void CBasePlayer::PainChance( void )
 	case 3: UTIL_PlaySound(ENT(pev), CHAN_VOICE, "player/pl_pain7.wav", 1, ATTN_NORM, FALSE);break;
 	}
 
-}//END OF PainChance
+}// PainChance
 
 
 
@@ -1032,7 +1032,7 @@ GENERATE_TRACEATTACK_IMPLEMENTATION(CBasePlayer)
 				flDamage *= damageModifier;
 			}
 
-		}//END OF DMG_HITBOX_EQUAL damage type check
+		}// DMG_HITBOX_EQUAL damage type check
 
 
 
@@ -1054,14 +1054,14 @@ GENERATE_TRACEATTACK_IMPLEMENTATION(CBasePlayer)
 			*/
 
 			TraceBleed( flDamage, vecDir, ptr, bitsDamageType, bitsDamageTypeMod );
-		//}//END OF hideDamage check
+		//}// hideDamage check
 
 		//easyForcePrintLine("AddMultiDamage CALL FROM TRACEATTACK. Attacker:%s Victim:%s hitgrp:%d Dmg:%.2f", pevAttacker!=NULL?STRING(pevAttacker->classname):"NULL", this->getClassname(), ptr->iHitgroup, flDamage);
 		
 		AddMultiDamage( pevAttacker, this, flDamage, bitsDamageType, bitsDamageTypeMod );
-	}//END OF if pev->takedamage
+	}// if pev->takedamage
 
-}//END OF TraceAttack
+}// TraceAttack
 
 
 /*
@@ -1097,7 +1097,7 @@ GENERATE_TAKEDAMAGE_IMPLEMENTATION(CBasePlayer)
 			}
 		}
 
-	}//END OF reviveSafetyTime
+	}// reviveSafetyTime
 
 	//MODDD - don't make these noises if waiting for a revive.
 	//If dead, don't play.
@@ -1126,7 +1126,7 @@ GENERATE_TAKEDAMAGE_IMPLEMENTATION(CBasePlayer)
 				pass = TRUE;
 			}
 			
-		}//END OF if(EASY_CVAR_GET_DEBUGONLY(mutePlayerPainSounds) != 1))
+		}// if(EASY_CVAR_GET_DEBUGONLY(mutePlayerPainSounds) != 1))
 
 		if(pass){
 			//AMD889 ADDED THIS, is it the old landing stuff?
@@ -1135,8 +1135,8 @@ GENERATE_TAKEDAMAGE_IMPLEMENTATION(CBasePlayer)
 			PainChance();
 		}
 
-		//} //END OF if(bitsDamageType & (DMG_FALL)
-	}//END OF if(IsAlive)
+		//} // if(bitsDamageType & (DMG_FALL)
+	}// if(IsAlive)
 	
 
 
@@ -1612,7 +1612,7 @@ GENERATE_TAKEDAMAGE_IMPLEMENTATION(CBasePlayer)
 				SetSuitUpdate("!HEV_HLTH1", FALSE, SUIT_NEXT_IN_10MIN);	// health dropping
 			}
 		}
-	}//END OF (if NOT during post-invincibility-delay)
+	}// (if NOT during post-invincibility-delay)
 
 
 	// Made it this far?  No queued messages?  Can play this (generic, hev_damage)
@@ -1637,11 +1637,11 @@ GENERATE_TAKEDAMAGE_IMPLEMENTATION(CBasePlayer)
 			// had armor but lost it?  Definitely queue this.
 			SetSuitUpdate("!HEV_E6", FALSE, 180);
 		}
-	}//END OF DMG_TIMEBASED and MOD.
+	}// DMG_TIMEBASED and MOD.
 	
 
 	return fTookDamage;
-}//END OF takeDamage
+}// takeDamage
 
 
 GENERATE_DEADTAKEDAMAGE_IMPLEMENTATION(CBasePlayer) {
@@ -1833,8 +1833,9 @@ void CBasePlayer::RemoveAllAmmo(void) {
 	for (i = 0; i < MAX_AMMO_TYPES; i++) {
 		m_rgAmmo[i] = 0;
 	}
+#if SKIP_NAMED_AMMO_CACHE == 0
 	TabulateAmmo();  //safety?
-
+#endif
 		
 	// Go through all weapons.  Any exhaustible weapons (grenades, snarks, etc.) need to be deleted
 	// on running out of ammo.
@@ -2000,7 +2001,7 @@ void CBasePlayer::RemoveAllItems( BOOL removeSuit )
 	MESSAGE_BEGIN( MSG_ONE, gmsgClearWeapon, NULL, pev );
 	MESSAGE_END();
 
-}//END OF RemoveAllItems
+}// RemoveAllItems
 
 
 
@@ -2081,7 +2082,7 @@ GENERATE_KILLED_IMPLEMENTATION(CBasePlayer)
 					break;
 				}
 
-			}//END OF through all entities.
+			}// through all entities.
 
 		}else if(EASY_CVAR_GET(playerDeadTruce) == 3){
 			// Always start the truce now
@@ -2116,7 +2117,7 @@ GENERATE_KILLED_IMPLEMENTATION(CBasePlayer)
 			tempMrFriendly->horrorSelected = FALSE;
 			tempMrFriendly->stopHorrorSound();
 		}
-	}//END OF while(friendly check)
+	}// while(friendly check)
 
 
 
@@ -2363,7 +2364,7 @@ void CBasePlayer::stopSelfSounds(void) {
 	//UTIL_StopSound(tempplayer->edict(), CHAN_STATIC, "");
 	//////////////////////////////////////////////////////////////////////////////////////
 
-}//END OF stopSelfSounds
+}// stopSelfSounds
 
 
 // position to shoot at
@@ -2585,14 +2586,14 @@ This function is used to find and store
 all the ammo we have into the ammo vars.
 ============
 */
-
-
 //MODDD - supports the cached ammotype indeces.
 // These "ammo_" counts can probably be phased out at some point, several weapons don't even use them
 // (gauss makes no mention of ammo_uranium, there isn't even a count for a retail weapon: snarks/squeak).
 // Ammo counts through the array of ammo's on the player (m_rgAmmo) are kept in synch with clientside
 // anyway, which is really what these are tied to.
 // So these counts look to have no advantage over say, PlayerPrimaryAmmoCount() for a given weapon.
+// DONE!  New config setting, may as well kill the whole method then
+#if SKIP_NAMED_AMMO_CACHE == 0
 void CBasePlayer::TabulateAmmo()
 {
 	ammo_9mm = AmmoInventory( AmmoIndex_9mm );
@@ -2604,6 +2605,7 @@ void CBasePlayer::TabulateAmmo()
 	ammo_uranium = AmmoInventory(AmmoIndex_uranium );
 	ammo_hornets = AmmoInventory(AmmoIndex_Hornets );
 }
+#endif
 
 
 void CBasePlayer::set_fvoxEnabled(BOOL argNew, BOOL setSilent) {
@@ -2760,7 +2762,7 @@ CBasePlayer::CBasePlayer(void){
 
 	m_framesSinceRestore = 0;
 
-}//END OF CBasePlayer constructor
+}// CBasePlayer constructor
 
 /*
 ===========
@@ -3094,7 +3096,7 @@ void CBasePlayer::PlayerDeathThink(void)
 						}
 						
 					}
-				}//END OF recoveryIndex == 0 check... again
+				}// recoveryIndex == 0 check... again
 
 			}
 			else {
@@ -3108,8 +3110,8 @@ void CBasePlayer::PlayerDeathThink(void)
 				SetSuitUpdate("!HEV_E3", FALSE, SUIT_REPEAT_OK, 4.2f);
 				declareRevivelessDead();
 			}
-		}//END OF recoveryIndex == 0 check... again.
-	}//END OF huge-ass recoveryIndex == 0 check
+		}// recoveryIndex == 0 check... again.
+	}// huge-ass recoveryIndex == 0 check
 
 
 	if(recoveryIndex == 2 && gpGlobals->time >= recoveryDelay){
@@ -3195,7 +3197,7 @@ void CBasePlayer::PlayerDeathThink(void)
 
 		}
 
-	}//END OF fade check
+	}// fade check
 	else{
 		//Should be invisible? can force it to be safe.
 		//pev->effects |= EF_NODRAW;
@@ -3390,7 +3392,7 @@ void CBasePlayer::HandleDeadStage(void){
 				theTalker->OnPlayerDead(this);
 			}
 
-		}//END OF through all entities.
+		}// through all entities.
 
 		deadStage++;
 		nextDeadStageTime = gpGlobals->time + 0.6;
@@ -3431,7 +3433,7 @@ void CBasePlayer::HandleDeadStage(void){
 				}
 			}
 
-		}//END OF through all entities.
+		}// through all entities.
 
 		deadStage++;
 		nextDeadStageTime = gpGlobals->time + 1.4;
@@ -3475,7 +3477,7 @@ void CBasePlayer::HandleDeadStage(void){
 						break;
 					}
 				}//DISTANCE MY buddy
-			}//END OF through all entities.
+			}// through all entities.
 
 
 			if(anythingInCombat){
@@ -3536,7 +3538,7 @@ void CBasePlayer::HandleDeadStage(void){
 
 				theTalker->ChangeScheduleToApproachDeadPlayer(this->pev->origin);
 			}//DISTANCE MY buddy
-		}//END OF through all entities.
+		}// through all entities.
 
 
 
@@ -3643,7 +3645,7 @@ void CBasePlayer::HandleDeadStage(void){
 				}
 			}//bestdist check
 
-		}//END OF through all entities.
+		}// through all entities.
 
 
 		// go through ary_kneelers, make em' come up closer to kneel
@@ -3919,7 +3921,7 @@ void CBasePlayer::PlayerUse ( void ){
 			}
 //			ALERT( at_console, "%s : %f\n", STRING( pObject->pev->classname ), flDot );
 		}
-	}//END OF loop through entities to check for using
+	}// loop through entities to check for using
 
 
 
@@ -4120,7 +4122,7 @@ void CBasePlayer::PlayerUse ( void ){
 							flUseSuccess = TRUE;
 						}
 
-					}//END OF inner center test
+					}// inner center test
 				}else{
 					//mismatch? not ok.
 					if (EASY_CVAR_GET_DEBUGONLY(playerUseDrawDebug) == 1) {
@@ -4199,7 +4201,7 @@ void CBasePlayer::PlayerUse ( void ){
 			UTIL_PlaySound( ENT(pev), CHAN_ITEM, "common/wpn_denyselect.wav", 0.4, ATTN_NORM, 0, 100, FALSE);
 		}
 	}
-}//END OF PlayerUse
+}// PlayerUse
 
 
 
@@ -4547,7 +4549,7 @@ void CBasePlayer::PreThink(void)
 			}
 
 
-		}//END OF while(friendly check)
+		}// while(friendly check)
 
 		if(closestFriendly != NULL){
 			//selected!
@@ -4599,7 +4601,7 @@ void CBasePlayer::PreThink(void)
 			}
 		}
 
-	}//END OF closestFriendly check
+	}// closestFriendly check
 
 
 	
@@ -4652,7 +4654,7 @@ void CBasePlayer::PreThink(void)
 		//Call the local method, "eventMethod", provided.  That is horrendous.
 		(this->*(currentSuitSoundEvent))();
 
-	}//END OF currentSuitSoundEventTime check
+	}// currentSuitSoundEventTime check
 
 
 	if(!fvoxEnabled && currentSuitSoundFVoxCutoff != -1 && currentSuitSoundFVoxCutoff <= gpGlobals->time){
@@ -4672,7 +4674,7 @@ void CBasePlayer::PreThink(void)
 			//not supported (number readings are all or nothing).
 		}
 
-	}//END OF currentSuitSoundEventTime check
+	}// currentSuitSoundEventTime check
 
 
 
@@ -4782,7 +4784,7 @@ void CBasePlayer::PreThink(void)
 			if (longJumpCharge > PLAYER_LONGJUMPCHARGE_MAX) {
 				longJumpCharge = PLAYER_LONGJUMPCHARGE_MAX;
 			}
-		}//END OF longJumpCharge check
+		}// longJumpCharge check
 #endif
 
 		if((EASY_CVAR_GET_DEBUGONLY(itemBatteryPrerequisite) == 0 || pev->armorvalue > 0 )){
@@ -4894,9 +4896,9 @@ void CBasePlayer::PreThink(void)
 
 #endif
 
-		}//END OF if((EASY_CVAR_GET_DEBUGONLY(itemBatteryPrerequisite) == 0 || pev->armorvalue > 0 ))
+		}// if((EASY_CVAR_GET_DEBUGONLY(itemBatteryPrerequisite) == 0 || pev->armorvalue > 0 ))
 
-	}//END OF if(m_fLongJump)
+	}// if(m_fLongJump)
 
 
 	if (pev->button & IN_JUMP)
@@ -4937,7 +4939,7 @@ void CBasePlayer::PreThink(void)
 		pev->velocity = g_vecZero;
 	}
 
-}//END OF PreThink.
+}// PreThink.
 
 
 
@@ -5064,7 +5066,7 @@ void CBasePlayer::parse_itbd(int i) {
 	break;
 	}//switch(i)
 
-}//END OF parse_itbd
+}// parse_itbd
 
 
 void CBasePlayer::timedDamage_nonFirstFrame(int i, int* m_bitsDamageTypeRef) {
@@ -5163,7 +5165,7 @@ void CBasePlayer::UpdateGeigerCounter( void )
 
 	//MODDD - sound-related clientside geiger.cpp script moved here for better control.
 
-	}//END OF if (gpGlobals->time < m_flgeigerDelay)
+	}// if (gpGlobals->time < m_flgeigerDelay)
 
 
 	int pct;
@@ -5183,7 +5185,7 @@ void CBasePlayer::UpdateGeigerCounter( void )
 			//after leaving radiation, the use
 		}
 		foundRadiation = TRUE;
-	}//END OF if(m_flgeigerRange < 800)
+	}// if(m_flgeigerRange < 800)
 	else{
 		//mark to let the suit's timer cool down.
 		foundRadiation = FALSE;
@@ -5325,7 +5327,7 @@ void CBasePlayer::UpdateGeigerCounter( void )
 		}
 	}
 	//easyForcePrintLine("DO I BUCKO %d", usesSoundSentenceSave() );
-}//END OF UpdateGeigerCounter
+}// UpdateGeigerCounter
 
 /*
 ================
@@ -5652,7 +5654,7 @@ void CBasePlayer::CheckSuitUpdate()
 						
 					break;
 
-					}//END OF switch(determiner)
+					}// switch(determiner)
 
 					if(batterySayPhase == 1 && obligedCustomSentence == 0 ){   //determiner > 0 && determiner != 5001){
 						//if not 0, 
@@ -5668,7 +5670,7 @@ void CBasePlayer::CheckSuitUpdate()
 					//m_flSuitUpdate = gpGlobals->time + m_rgSuitPlayListDuration[isearch];
 					m_flSuitUpdate = gpGlobals->time + timeToSay;
 					
-				}//END OF else OF if(isentence < 10000)
+				}// else OF if(isentence < 10000)
 				//EMIT_SOUND_SUIT(ENT(pev), "scientist/scream25.wav");
 				//EMIT_SOUND_DYN(ENT(pev), CHAN_STATIC, "scientist/scream25.wav", CVAR_GET_FLOAT("suitvolume"), ATTN_NORM, 0, 100);
 
@@ -5698,7 +5700,7 @@ void CBasePlayer::CheckSuitUpdate()
 
 BOOL CBasePlayer::SetSuitUpdatePRE(){
 	return SetSuitUpdatePRE(FALSE);
-}//END OF SetSuitUpdatePRE(...)
+}// SetSuitUpdatePRE(...)
 
 //MODDD - new method to contain things commonly repeated throughout "SetSuitUpdate" method clones before the action.
 // Returns a boolean (true/false) whether this request is allowed to happen or blocked.
@@ -5728,7 +5730,7 @@ BOOL CBasePlayer::SetSuitUpdatePRE(BOOL fvoxException ){
 
 	//made it here? sounds ok.
 	return TRUE;
-}//END OF SetSuitUpdatePRE(...)
+}// SetSuitUpdatePRE(...)
 
 //MODDD - assume this is not an exception to the "fvoxEnabled" setting (whether to play FVox sounds or not)
 BOOL CBasePlayer::SetSuitUpdatePRE(char *name, int fgroup, int& isentence ){
@@ -5789,7 +5791,7 @@ BOOL CBasePlayer::SetSuitUpdatePRE(char *name, int fgroup, int& isentence, BOOL 
 	//made it here? sounds ok.
 	return TRUE;
 
-}//END OF SetSuitUpdatePRE(...)
+}// SetSuitUpdatePRE(...)
 
 
 
@@ -5798,7 +5800,7 @@ BOOL CBasePlayer::SetSuitUpdatePOST(int iempty, int isentence, float fNoRepeatTi
 
 	return SetSuitUpdateEventPOST(iempty, isentence, fNoRepeatTime, playDuration, canPlay, -1, NULL);
 	
-}//END OF SetSuitUpdatePOST(...)
+}// SetSuitUpdatePOST(...)
 
 
 BOOL CBasePlayer::SetSuitUpdateEventPOST(int iempty, int isentence, float fNoRepeatTime, float playDuration, BOOL canPlay, float eventDelay, void (CBasePlayer::*eventMethod)() ){
@@ -5855,7 +5857,7 @@ BOOL CBasePlayer::SetSuitUpdateEventFVoxCutoffPOST(int iempty, int isentence, fl
 	}
 
 	return TRUE;
-}//END OF SetSuitUpdateEventFVoxCutoffPOST(...)
+}// SetSuitUpdateEventFVoxCutoffPOST(...)
 
 
 
@@ -5902,7 +5904,7 @@ BOOL CBasePlayer::SetSuitUpdateNoRepeatSweep(int& iempty, int isentence){
 	}
 
 	return canPlay;
-}//END OF SetSuitUpdateNoRepeatSweep(...)
+}// SetSuitUpdateNoRepeatSweep(...)
 
 BOOL CBasePlayer::SetSuitUpdateCheckNoRepeatApply(int& iempty, int isentence){
 	int i;
@@ -5937,7 +5939,7 @@ BOOL CBasePlayer::SetSuitUpdateCheckNoRepeatApply(int& iempty, int isentence){
 			iempty = i;
 	}
 	return TRUE;  //I think?
-}//END OF SetSuitUpdateNoRepeatSweep(...)
+}// SetSuitUpdateNoRepeatSweep(...)
 
 BOOL CBasePlayer::SetSuitUpdateCheckNoRepeat(int& iempty, int isentence){
 	int i;
@@ -5976,7 +5978,7 @@ BOOL CBasePlayer::SetSuitUpdateCheckNoRepeat(int& iempty, int isentence){
 	}
 
 	return TRUE;
-}//END OF SetSuitUpdateCheckNoRepeat(...)
+}// SetSuitUpdateCheckNoRepeat(...)
 
 
 
@@ -6131,7 +6133,7 @@ void CBasePlayer::SetSuitUpdateAndForceBlock(char *name, int fgroup, float fNoRe
 
 	BOOL passPOST = SetSuitUpdatePOST(iempty, isentence, fNoRepeatTime, playDuration, canPlay);
 
-}//END OF SetSuitUpdateAndForceBlock
+}// SetSuitUpdateAndForceBlock
 
 
 
@@ -6176,7 +6178,7 @@ void CBasePlayer::SetSuitUpdateEventFVoxCutoff(char *name, int fgroup, float fNo
 	BOOL passPOST = SetSuitUpdateEventFVoxCutoffPOST(iempty, isentence, fNoRepeatTime, playDuration, canPlay, eventDelay, eventMethod, fvoxOffCutoff);
 
 
-}//END OF SetSuitUpdateEventFVoxCutoff
+}// SetSuitUpdateEventFVoxCutoff
 
 
 
@@ -6349,7 +6351,7 @@ void CBasePlayer::PostThink()
 		
 		EASY_CVAR_SYNCH_SERVER_MASS
 
-	}//END OF queueFirstAppearanceMessageSend check
+	}// queueFirstAppearanceMessageSend check
 
 	
 	if(EASY_CVAR_GET_DEBUGONLY(myStrobe) == 1){
@@ -6776,7 +6778,7 @@ void CBasePlayer::_commonReset(void){
 	m_bitsDamageTypeModForceShow = 0;
 
 	recentDeadPlayerFollowersCount = 0;
-}//END OF _commonReset
+}// _commonReset
 
 
 
@@ -6931,7 +6933,7 @@ void CBasePlayer::commonReset(void){
 	//pev->renderfx |= ISPLAYER;
 
 
-}//END OF commonReset
+}// commonReset
 
 
 
@@ -6973,7 +6975,7 @@ void CBasePlayer::OnFirstAppearance(void) {
 	g_firstPlayerEntered = TRUE;
 	queueFirstAppearanceMessageSend = TRUE;
 
-}//END OF OnFirstAppearance
+}// OnFirstAppearance
 
 
 // The hideDamage CVar makes the player unaffected by punches.
@@ -6984,7 +6986,7 @@ BOOL CBasePlayer::blocksImpact(void){
 	}else{
 		return TRUE;
 	}
-}//END OF blocksImpact
+}// blocksImpact
 
 
 
@@ -7109,7 +7111,7 @@ void CBasePlayer::Spawn( BOOL revived ){
 		if(EASY_CVAR_GET_DEBUGONLY(timedDamageReviveRemoveMode) == 3){
 			attemptResetTimedDamage(TRUE);
 		}
-	}//END OF if(!revived)
+	}// if(!revived)
 
 	
 	pev->takedamage		= DAMAGE_AIM;
@@ -7123,7 +7125,7 @@ void CBasePlayer::Spawn( BOOL revived ){
 	pev->max_health = 100;
 
 
-	// MODDD -  LETS   FUCKING   GOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+	// MODDD
 	// Say you're resetting all the flags like a normal person.  Except for FL_PROXY which is to be preserved.
 	// Keeping FL_GOD flags too, because endlessly revive/die/revive/die/revive/die'ing in a insta-kill pit is hilarious.
 	//pev->flags		   &= FL_PROXY;	// keep proxy flag sey by engine
@@ -7183,7 +7185,7 @@ void CBasePlayer::Spawn( BOOL revived ){
 		g_engfuncs.pfnSetPhysicsKeyValue( edict(), "plm", "0" );
 
 		g_engfuncs.pfnSetPhysicsKeyValue( edict(), "gmm", "1" );
-	}//END OF if(!revived)
+	}// if(!revived)
 
 
 
@@ -7343,7 +7345,7 @@ void CBasePlayer::Spawn( BOOL revived ){
 		{
 			m_rgAmmoLast[i] = 0;  // client ammo values also have to be reset  (the death hud clear messages does on the client side)
 		}
-	}//END OF else OF if(!revived)
+	}// else OF if(!revived)
 
 
 	m_lastx = m_lasty = 0;
@@ -7368,14 +7370,17 @@ void CBasePlayer::Spawn( BOOL revived ){
 	//pev->renderfx |= ISPLAYER;
 
 
-}//END OF Spawn
+}// Spawn
 
 
 //MODDD - added from inheritance heirarchy
 void CBasePlayer::Activate(void){
 	
 	//MODDD - this solves the egon "click" on the first use since load issue... I think.
+	// Or just don't rely on cached indices at all.  Probably.
+#if SKIP_NAMED_AMMO_CACHE == 0
 	TabulateAmmo();
+#endif
 
 	CBaseMonster::Activate();
 }
@@ -7702,7 +7707,7 @@ void CBasePlayer::SelectItem(const char *pstr)
 
 	setActiveItem_HolsterCheck(pItem);
 
-}//END OF SelectItem
+}// SelectItem
 
 
 //MODDD - final step in selecting an item.  Doesn't do the holster-decision, this would be called by that
@@ -7924,7 +7929,7 @@ edict_t* CBasePlayer::GiveNamedItem( const char *pszName, int pszSpawnFlags  )
 			return NULL;
 		}
 
-	}//END OF if(EASY_CVAR_GET(precacheAll) == 0)
+	}// if(EASY_CVAR_GET(precacheAll) == 0)
 
 
 	// Let this know that a spawned item should not be replaced by something that has physical bounds
@@ -8092,9 +8097,9 @@ edict_t* CBasePlayer::GiveNamedItem( const char *pszName, int pszSpawnFlags, con
 				forceDynamicIndex = -1;
 			}
 
-		}//END OF if(tr != NULL)
+		}// if(tr != NULL)
 
-	}//END OF if(<stukabat spawned>)
+	}// if(<stukabat spawned>)
 	*/
 
 	//easyPrintLine("DAHHH %s :::%.2f", STRING(pent->v.classname), extraOffset);
@@ -8198,7 +8203,7 @@ edict_t* CBasePlayer::GiveNamedItem( const char *pszName, int pszSpawnFlags, con
 		}
 		DispatchSpawn(pent);
 
-	}//END OF g_giveWithoutTargetLocation check
+	}// g_giveWithoutTargetLocation check
 
 
 
@@ -8668,7 +8673,7 @@ BOOL CBasePlayer::AddPlayerItem( CBasePlayerItem *pItem )
 		pItem->Kill( );
 	}
 	return FALSE;
-}//END OF AddPlayerItem
+}// AddPlayerItem
 
 
 
@@ -8684,10 +8689,10 @@ void CBasePlayer::printOutWeapons(void){
 			easyForcePrintLine("slot:%d row:%d %s", i, i2, STRING(thisItem->pev->classname) );
 			i2++;
 			thisItem = thisItem->m_pNext;
-		}//END OF while
-	}//END OF for
+		}// while
+	}// for
 
-}//END OF printOutWeapons
+}// printOutWeapons
 
 
 
@@ -8739,7 +8744,7 @@ BOOL CBasePlayer::CanAddPlayerItem( int arg_iItemSlot, const char* arg_classname
 	//For now, if the player doesn't already have it, just assume "yes".
 
 	return TRUE;
-}//END OF CanAddPlayerItem
+}// CanAddPlayerItem
 
 
 int CBasePlayer::RemovePlayerItem( CBasePlayerItem *pItem )
@@ -8819,7 +8824,9 @@ int CBasePlayer::GiveAmmo( int iCount, const char* szName, int iMax )
 		MESSAGE_END();
 	}
 
+#if SKIP_NAMED_AMMO_CACHE == 0
 	TabulateAmmo();
+#endif
 
 	return i;
 }
@@ -8859,7 +8866,9 @@ int CBasePlayer::GiveAmmoID(int iCount, int iAmmoTypeId, int iMax)
 		MESSAGE_END();
 	}
 
+#if SKIP_NAMED_AMMO_CACHE == 0
 	TabulateAmmo();
+#endif
 
 	return i;
 }
@@ -9125,7 +9134,7 @@ void CBasePlayer::UpdateClientData( void )
 		MESSAGE_END();
 	}
 
-	}//END OF SCOPE
+	}// SCOPE
 
 
 	//NOTICE - this physics key, psm (push speed multiplier) is NOT controlled by CVar, hidden or not.
@@ -9277,7 +9286,7 @@ void CBasePlayer::UpdateClientData( void )
 		}
 		*/
 
-	}//END OF cameraModeMem check
+	}// cameraModeMem check
 
 
 
@@ -9531,7 +9540,7 @@ void CBasePlayer::UpdateClientData( void )
 		m_bitsDamageType &= DMG_TIMEBASED;
 		//MODDD
 		m_bitsModHUDDamage &= (DMG_TIMEBASEDMOD);
-	}//END OF Crazy damage check
+	}// Crazy damage check
 
 
 	// Update Flashlight
@@ -9569,7 +9578,7 @@ void CBasePlayer::UpdateClientData( void )
 			WRITE_BYTE(m_iFlashBattery);
 			MESSAGE_END();
 
-		}//END OF if(endlessFlashlightBattery->value == 0)
+		}// if(endlessFlashlightBattery->value == 0)
 	}
 
 
@@ -10281,7 +10290,7 @@ void CBasePlayer::consumeAntidote(){
 	MESSAGE_END();
 
 
-}//END OF consumeAntidote
+}// consumeAntidote
 
 void CBasePlayer::consumeRadiation(){
 	radiationQueued = FALSE;
@@ -10297,7 +10306,7 @@ void CBasePlayer::consumeRadiation(){
 		WRITE_BYTE( 1 );
 	MESSAGE_END();
 
-}//END OF consumeRadiation
+}// consumeRadiation
 
 void CBasePlayer::consumeAdrenaline(){
 	if (m_rgItems[ITEM_ADRENALINE] <= 0) {
@@ -10330,7 +10339,7 @@ void CBasePlayer::consumeAdrenaline(){
 		WRITE_BYTE( 2 );
 	MESSAGE_END();
 
-}//END OF consumeAdrenaline
+}// consumeAdrenaline
 
 
 // Sounds from the player do NOT attempt to use the soundsentencesave system.  They are
@@ -10444,7 +10453,7 @@ void CBasePlayer::RecordFollowers(void){
 
 
 
-	}//END OF through all entities.
+	}// through all entities.
 
 
 }//RecordFollowers

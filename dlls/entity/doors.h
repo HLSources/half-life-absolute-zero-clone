@@ -200,7 +200,7 @@ public:
 	virtual int ObjectCaps(void) {
 		//just the default behavior.
 		return (CBaseDoor::ObjectCaps());
-	}//END OF ObjectCaps
+	}// ObjectCaps
 
 };
 

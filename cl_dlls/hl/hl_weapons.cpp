@@ -366,8 +366,8 @@ void HUD_PrepEntity( CBaseEntity *pEntity, CBasePlayer *pWeaponOwner )
 		// for serverside weapons which don't use global static copies like clientside deos.
 		//tempWeaponRef->m_iPrimaryAmmoType = GetAmmoIndex(szName);
 
-	}//END OF pWeaponOwner check
-}//END OF HUD_PrepEntity
+	}// pWeaponOwner check
+}// HUD_PrepEntity
 
 
 
@@ -812,7 +812,7 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 		pWeapon = &g_ChumToadWeapon;
 		break;
 
-	}//END OF weapon ID link
+	}// weapon ID link
 
 	// Store pointer to our destination entity_state_t so we can get our origin, etc. from it
 	//  for setting up events on the client
@@ -995,9 +995,15 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 		if (pCurrent == pWeapon) {
 			if (IS_AMMOTYPE_VALID(myPrimaryAmmoType)) {
 				localPlayer.m_rgAmmo[myPrimaryAmmoType] = (int)from->client.vuser4[1];
+			}else{
+				// !!! Is this safe?
+				localPlayer.m_rgAmmo[myPrimaryAmmoType] = 0;
 			}
 			if (IS_AMMOTYPE_VALID(mySecondaryAmmoType)) {
 				localPlayer.m_rgAmmo[mySecondaryAmmoType] = (int)from->client.vuser4[2];
+			}else{
+				// !!! Is this safe?
+				localPlayer.m_rgAmmo[mySecondaryAmmoType] = 0;
 			}
 		}
 
@@ -1029,7 +1035,7 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 				*/
 			}
 		}
-	}//END OF yet another weapons loop.
+	}// yet another weapons loop.
 
 
 
@@ -1119,6 +1125,7 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 	localPlayer.m_flNextAmmoBurn = from->client.fuser2;
 	localPlayer.m_flAmmoStartCharge = from->client.fuser3;
 
+#if SKIP_NAMED_AMMO_CACHE == 0
 	//Stores all our ammo info, so the client side weapons can use them.
 	localPlayer.ammo_9mm = (int)from->client.vuser1[0];
 	localPlayer.ammo_357 = (int)from->client.vuser1[1];
@@ -1128,16 +1135,14 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 	localPlayer.ammo_uranium = (int)from->client.ammo_cells;
 	localPlayer.ammo_hornets = (int)from->client.vuser2[0];
 	localPlayer.ammo_rockets = (int)from->client.ammo_rockets;
-
+#endif
 
 	// Point to current weapon object
 	if (from->client.m_iId)
 	{
-		// OOoooooooo you motherfucker you
+		// OOoooooooo
 		localPlayer.m_pActiveItem = g_pWpns[from->client.m_iId];
 	}
-
-	//easyForcePrintLine("AW snao D %.2f", localPlayer.m_flNextAttack);
 
 
 	if (localPlayer.m_pActiveItem->m_iId == WEAPON_RPG)
@@ -1289,6 +1294,7 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 	to->client.maxspeed = localPlayer.pev->maxspeed;
 
 	//HL Weapons
+#if SKIP_NAMED_AMMO_CACHE == 0
 	to->client.vuser1[0] = localPlayer.ammo_9mm;
 	to->client.vuser1[1] = localPlayer.ammo_357;
 	to->client.vuser1[2] = localPlayer.ammo_argrens;
@@ -1298,6 +1304,7 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 	to->client.ammo_cells = localPlayer.ammo_uranium;
 	to->client.vuser2[0] = localPlayer.ammo_hornets;
 	to->client.ammo_rockets = localPlayer.ammo_rockets;
+#endif
 
 	if (localPlayer.m_pActiveItem->m_iId == WEAPON_RPG)
 	{
@@ -1311,16 +1318,15 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 	}
 
 
-
 	//Apparently, animations sent from serverside are picked up here.
 
 	// Make sure that weapon animation matches what the game .dll is telling us
 	//  over the wire ( fixes some animation glitches )
 
-
-	//easyForcePrintLine("WHAT THE FUCK c:%d f:%d t:%d pw:%d pr:%d", HUD_GetWeaponAnim(), from->client.weaponanim, to->client.weaponanim, pWeapon->m_pPlayer->pev->weaponanim, pWeapon->pev->sequence);
-
-
+	//easyForcePrintLine("WHAT THE hek c:%d f:%d t:%d pw:%d pr:%d", HUD_GetWeaponAnim(), from->client.weaponanim, to->client.weaponanim, pWeapon->m_pPlayer->pev->weaponanim, pWeapon->pev->sequence);
+	
+	// just for breakpoints
+	/*
 	int tempthingy = to->client.weaponanim;
 	if (to->client.weaponanim == ANIM_NO_UPDATE) {
 		int xxx = 4;
@@ -1328,6 +1334,7 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 	if (to->client.weaponanim == 9) {
 		int xxx = 4;
 	}
+	*/
 
 
 
@@ -1438,7 +1445,7 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 
 
 	//if(to->client.weaponanim  == EGON_IDLE1){
-	//	g_currentanim = 666;
+	//	g_currentanim = 15;
 	//}
 
 	//MODDD - added check for "254".  That's a special code for, "the serverside anim request got cleared".
@@ -1482,9 +1489,6 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 
 
 		if (seqPlayDelay != -1) {
-			int x = 666;
-
-
 
 
 		}else
@@ -1529,7 +1533,7 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 			}
 		skipperLoc:		int x = 4;
 
-		}//END OF holstering check
+		}// holstering check
 		else {
 			int x = 45;
 		}
@@ -1671,7 +1675,7 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 		{
 			pto->fuser1 = -0.001;
 		}
-	}//END OF that for loop. Wow don't hide from me like that.
+	}// that for loop. Wow don't hide from me like that.
 
 	// m_flNextAttack is now part of the weapons, but is part of the player instead
 	to->client.m_flNextAttack -= cmd->msec / 1000.0;
@@ -1801,9 +1805,9 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 				viewModelState.skin--;
 			}
 
-		}//END OF time check (every 0.1 seconds)
+		}// time check (every 0.1 seconds)
 
-	}//END OF skin count check
+	}// skin count check
 	
 
 
@@ -1818,7 +1822,7 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 		localPlayer.m_rgAmmoCLIENTHISTORY[i] = localPlayer.m_rgAmmo[i];
 	}
 	
-}//END OF HUD_WeaponsPostThink
+}// HUD_WeaponsPostThink
 
 
 

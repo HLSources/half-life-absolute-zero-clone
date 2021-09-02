@@ -73,7 +73,7 @@ void writeVersionInfo(char* aryChr, int maxLength) {
 			}
 		}
 
-	}//END OF for loop
+	}// for loop
 	aryChr[maxLength - 1] = '\0';
 }
 
@@ -110,7 +110,7 @@ void writeDateInfo(char* aryChr, int maxLength) {
 		else {
 			aryChr[i] = toWrite[i];
 		}
-	}//END OF for loop
+	}// for loop
 	aryChr[maxLength - 1] = '\0';
 }
 
@@ -264,5 +264,5 @@ const char* determineVisualStudioVersion(void) {
 #endif
 #endif
 
-}//END OF determineVisualStudioVersion
+}// determineVisualStudioVersion
 

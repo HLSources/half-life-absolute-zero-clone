@@ -450,7 +450,7 @@ CFriendly::CFriendly(void){
 	nextNormalThinkTime = 0.01;
 
 
-}//END OF CFriendly constructor
+}// constructor
 
 
 
@@ -535,7 +535,7 @@ void CFriendly::VomitHitSound(edict_t* pevToPlayAt){
 	// no soundsentencesave.  (Ambient supports sentences though)
 	UTIL_PlaySound( pevToPlayAt, CHAN_STATIC, pVomitHitSounds[randomSound], 1.0, ATTN_NORM, 0, pitch, FALSE);
 	
-}//END OF VomitHitSound
+}// VomitHitSound
 
 
 
@@ -583,7 +583,7 @@ void CFriendly::Precache( void )
 
 	global_useSentenceSave = FALSE;
 
-}//END OF Precache()
+}// Precache()
 
 
 
@@ -629,7 +629,7 @@ void CFriendly::Spawn( void )
 	SetTouch(&CFriendly::CustomTouch );
 	//SetTouch( NULL );
 
-}//END OF Spawn();
+}// Spawn();
 
 
 //based off of GetSchedule for CBaseMonster in schedule.cpp.
@@ -863,7 +863,7 @@ Schedule_t* CFriendly::GetSchedule ( void )
 	}
 
 	return &slError[ 0 ];
-}//END OF GetSchedule()
+}// GetSchedule()
 
 
 Schedule_t* CFriendly::GetScheduleOfType( int Type){
@@ -885,10 +885,10 @@ Schedule_t* CFriendly::GetScheduleOfType( int Type){
 		case SCHED_FRIENDLY_STARE_AT_PLAYER:
 			return &slFriendlyStareAtPlayer[0];
 
-	}//END OF switch(Type)
+	}// switch(Type)
 	
 	return CBaseMonster::GetScheduleOfType(Type);
-}//END OF GetScheduleOfType(...)
+}// GetScheduleOfType(...)
 
 
 
@@ -1055,7 +1055,7 @@ void CFriendly::StartTask( Task_t *pTask ){
 				}
 				*/
 
-			}//END OF player scan check
+			}// player scan check
 
 
 			//if(newPathDelay == -1){
@@ -1078,9 +1078,9 @@ void CFriendly::StartTask( Task_t *pTask ){
 		default:
 			CBaseMonster::StartTask( pTask );
 		break;
-	}//END OF switch(...)
+	}// switch(...)
 
-}//END OF StartTask(...)
+}// StartTask(...)
 
 void CFriendly::RunTask( Task_t *pTask ){
 	
@@ -1182,7 +1182,7 @@ void CFriendly::RunTask( Task_t *pTask ){
 						}
 					}
 
-				}//END OF player while loop
+				}// player while loop
 
 
 				if(closestLookingPlayer != NULL){
@@ -1191,7 +1191,7 @@ void CFriendly::RunTask( Task_t *pTask ){
 					return;
 				}
 
-			}//END OF nextPlayerSightCheck check
+			}// nextPlayerSightCheck check
 
 
 
@@ -1271,9 +1271,9 @@ void CFriendly::RunTask( Task_t *pTask ){
 		default:
 			CBaseMonster::RunTask(pTask);
 		break;
-	}//END OF switch(...)
+	}// switch(...)
 
-}//END OF RunTask(...)
+}// RunTask(...)
 
 
 
@@ -1359,13 +1359,13 @@ void CFriendly::CustomTouch( CBaseEntity *pOther ){
 				tempMonsterOther->fApplyTempVelocity = TRUE;
 				tempMonsterOther->velocityApplyTemp = pOther->pev->velocity + Vector(vecX, vecY, 70);
 
-			}//END OF bound check
-		}//END Of hate check
+			}// bound check
+		}// hate check
 
-	}//END OF monster check
+	}// monster check
 
 
-}//END OF CustomTouch(...)
+}// CustomTouch
 
 
 
@@ -1492,7 +1492,7 @@ void CFriendly::MonsterThink( void ){
 							VomitHitSound( ENT( pEntity->pev ) );
 							nextVomitHitSoundAllowed = gpGlobals->time + 0.2;
 						}
-					}//END OF player check. Should we play another sound for the vomit hitting something else without touching shields?
+					}// player check. Should we play another sound for the vomit hitting something else without touching shields?
 					else{
 
 						if(gpGlobals->time >= nextVomitHitSoundAllowed){
@@ -1501,9 +1501,9 @@ void CFriendly::MonsterThink( void ){
 					}
 				}//no damage requirement, whatever.
 
-			}//END OF if other thing hit
+			}// if other thing hit
 
-		}//END OF vomit frame check
+		}// vomit frame check
 		else{
 			//IMPORTANT - delink any player taking damage.
 			//unlinkShieldSapList();
@@ -1512,7 +1512,7 @@ void CFriendly::MonsterThink( void ){
 			}
 		}
 
-	}//END OF pev->deadflag
+	}// pev->deadflag
 	else{
 		//dead? Stop the rapid logic.
 		if(rapidVomitCheck && !rapidVomitCheck_ScheduleFinish){
@@ -1582,10 +1582,10 @@ void CFriendly::MonsterThink( void ){
 					}
 					PLAYBACK_EVENT_FULL (FEV_GLOBAL, NULL, g_sFriendlyVomit, 0.0, (float *)&position, (float *)&vecF, 0.0, 0.0, ballsToSpawn, 0, FALSE, FALSE);
 
-				}//END OF less strict check for the vomit effect
+				}// less strict check for the vomit effect
 
 
-			}//END OF vomit anim check
+			}// vomit anim check
 			else{
 				//unlinkShieldSapList();
 				if(rapidVomitCheck && !rapidVomitCheck_ScheduleFinish){
@@ -1593,7 +1593,7 @@ void CFriendly::MonsterThink( void ){
 				}
 			}
 
-		}//END OF pev->deadflag check (not dead)
+		}// pev->deadflag check (not dead)
 	
 		
 		CBaseMonster::MonsterThink();
@@ -1603,7 +1603,7 @@ void CFriendly::MonsterThink( void ){
 			//would just waste resources.
 			nextNormalThinkTime = gpGlobals->time + 0.1;
 		}
-	}//END OF if(okayForNormalThink)
+	}// if(okayForNormalThink)
 
 
 	//easyForcePrintLine("MY SEQUENCE s:%d f:%.2f fl?:%d custoseq:%d", pev->sequence, pev->frame, m_fSequenceLoops, usingCustomSequence);
@@ -1631,7 +1631,7 @@ void CFriendly::MonsterThink( void ){
 	}
 
 
-}//END OF MonsterThink
+}// MonsterThink
 
 
 void CFriendly::stopHorrorSound(void){
@@ -1669,14 +1669,14 @@ int CFriendly::IRelationship( CBaseEntity *pTarget ){
 
 	return R_NO;  //unless provoked, Mr. Friendly doesn't have a care in the world.
 	//return CBaseMonster::IRelationship(pTarget);
-}//END OF IRelationship(...)
+}// IRelationship(...)
 
 
 void CFriendly::ReportAIState(void){
 	//call the parent, and add on to that.
 	CBaseMonster::ReportAIState();
 	//print anything special with easyForcePrintLine
-}//END OF ReportAIState()
+}// ReportAIState()
 
 
 
@@ -1734,7 +1734,7 @@ GENERATE_TAKEDAMAGE_IMPLEMENTATION(CFriendly)
 						//horrorPlayTimePreDelay = gpGlobals->time + 0.531;
 						tempPlayer->horrorPlayTimePreDelay = gpGlobals->time + 0.531;
 					}
-				}//END OF enemy null check
+				}// enemy null check
 
 				
 			}
@@ -1782,14 +1782,14 @@ GENERATE_KILLED_IMPLEMENTATION(CFriendly){
 				if(EASY_CVAR_GET_DEBUGONLY(friendlyPianoOtherVolume) > 0){
 					UTIL_PlaySound( m_hEnemy->edict(), CHAN_STATIC, "friendly/friendly_horror_end.wav", EASY_CVAR_GET_DEBUGONLY(friendlyPianoOtherVolume), 1.8, 0, 100, TRUE );
 				}
-			}//END OF entTest (player) null check
-		}//END OF enemy and isPlayer check
+			}// entTest (player) null check
+		}// enemy and isPlayer check
 
 	}
 
 
 	GENERATE_KILLED_PARENT_CALL(CBaseMonster);
-}//END OF Killed
+}// Killed
 
 
 void CFriendly::OnDelete(void){
@@ -1810,7 +1810,7 @@ void CFriendly::ForgetEnemy(void) {
 
 	CBaseMonster::ForgetEnemy();
 
-}//END OF ForgetEnemy
+}// ForgetEnemy
 
 
 
@@ -1827,7 +1827,7 @@ void CFriendly::SetYawSpeed( void ){
 	
 	pev->yaw_speed = ys;
 	return;
-}//END OF SetYawSpeed(...)
+}// SetYawSpeed(...)
 
 
 
@@ -1899,11 +1899,11 @@ int CFriendly::LookupActivityHard(int activity){
 
 			return FRIENDLY_VOMIT;
 		break;
-	}//END OF switch(...)
+	}// switch(...)
 	
 	//not handled by above?  try the real deal.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF LookupActivityHard(...)
+}// LookupActivityHard(...)
 
 
 int CFriendly::tryActivitySubstitute(int activity){
@@ -1932,13 +1932,13 @@ int CFriendly::tryActivitySubstitute(int activity){
 		case ACT_RANGE_ATTACK1:
 			return FRIENDLY_VOMIT;
 		break;
-	}//END OF switch(...)
+	}// switch(...)
 
 
 	//not handled by above? We're not using the script to determine animation then. Rely on the model's anim for this activity if there is one.
 	//CBaseAnimating::
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF tryActivitySubstitute(...)
+}// tryActivitySubstitute(...)
 
 
 //NOTICE - "UTIL_MakeVectors" is called in "CheckTraceHullAttack" and seems to work fine there.
@@ -2026,10 +2026,10 @@ void CFriendly::HandleEventQueueEvent(int arg_eventID){
 
 	break;
 	}
-	}//END OF switch(...)
+	}// switch(...)
 
 
-}//END OF HandleEventQueueEvent(...)
+}// HandleEventQueueEvent(...)
 
 
 
@@ -2046,7 +2046,7 @@ void CFriendly::HandleAnimEvent(MonsterEvent_t *pEvent ){
 	default:
 		CBaseMonster::HandleAnimEvent( pEvent );
 	break;
-	}//END OF switch(...)
+	}// switch(...)
 }
 
 
@@ -2154,7 +2154,7 @@ CBaseEntity* CFriendly::getNearestDeadBody(void){
 						break;
 					}
 
-				}//END OF player scan check
+				}// player scan check
 
 				//UTIL_TraceLine ( node.m_vecOrigin + vecViewOffset, vecLookersOffset, ignore_monsters, ignore_glass,  ENT(pev), &tr );
 				
@@ -2162,15 +2162,15 @@ CBaseEntity* CFriendly::getNearestDeadBody(void){
 				if(!playerLooking || thisDistance < 200){
 					bestChoiceYet = testMon;
 					leastDistanceYet = thisDistance;
-				}//END OF playerLooking check
+				}// playerLooking check
 	
-			}//END OF minimum distance yet
-		}//END OF entity scan null check
+			}// minimum distance yet
+		}// entity scan null check
 
-	}//END OF while loop through all entities in an area to see which are corpses.
+	}// while loop through all entities in an area to see which are corpses.
 	return bestChoiceYet;
 
-}//END OF getNearestDeadBody
+}// getNearestDeadBody
 
 
 
@@ -2230,12 +2230,12 @@ void CFriendly::attemptAddToShieldSapList(CBaseEntity* argEnt){
 
 
 
-}//END OF attemptAddToShieldSapList
+}// attemptAddToShieldSapList
 
 void CFriendly::unlinkShieldSapList(void){
 
 
-}//END OF unlinkShieldSapList
+}// unlinkShieldSapList
 
 
 BOOL CFriendly::isProvokable(void){
@@ -2265,7 +2265,7 @@ void CFriendly::ScheduleChange(){
 
 	CBaseMonster::ScheduleChange();
 	
-}//END OF ScheduleChange
+}// ScheduleChange
 
 
 

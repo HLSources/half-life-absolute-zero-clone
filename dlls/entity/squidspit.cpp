@@ -111,7 +111,7 @@ void CSquidSpit::precacheStatic(void){
 	PRECACHE_MODEL("sprites/bigspit.spr");// spit projectile.
 	PRECACHE_MODEL("models/spit.mdl");
 
-}//END OF precacheStatic
+}// precacheStatic
 
 
 
@@ -133,7 +133,7 @@ void CSquidSpit::Animate( void )
 			}
 		}
 
-	}//END OF model / spirte checks
+	}// model / spirte checks
 
 	pev->nextthink = gpGlobals->time + 0.1;
 
@@ -153,7 +153,7 @@ CSquidSpit* CSquidSpit::Shoot( CBaseMonster* argFiringEntity, Vector vecStart, V
 		(tempMon!=NULL)?tempMon->pev->mins+tempMon->pev->origin: argFiringEntity->m_vecEnemyLKP,
 		(tempMon!=NULL)?tempMon->pev->maxs+tempMon->pev->origin: argFiringEntity->m_vecEnemyLKP
 	);
-}//END OF Shoot
+}// Shoot
 
 
 
@@ -457,7 +457,7 @@ void CSquidSpit::Touch ( CBaseEntity *pOther )
 
 float CSquidSpit::massInfluence(void){
 	return 0.03f;
-}//END OF massInfluence
+}// massInfluence
 
 int CSquidSpit::GetProjectileType(void){
 	return PROJECTILE_ORGANIC_DUMB;

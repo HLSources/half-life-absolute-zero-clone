@@ -318,7 +318,7 @@ float VectorNormalize(vec3_t v); // returns vector length
 void VectorInverse(vec3_t v);
 void VectorScale(const vec3_t in, vec_t scale, vec3_t out);
 
-#endif //END OF C++ requirement
+#endif // C++ requirement
 
 
 
@@ -366,4 +366,4 @@ void VectorScale(const vec3_t in, vec_t scale, vec3_t out);
 
 
 
-#endif //END OF #ifndef VECTOR_H
+#endif // VECTOR_H

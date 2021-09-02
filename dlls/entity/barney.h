@@ -52,6 +52,7 @@ public:
 
 
 	void MonsterThink(void);
+
 	int  IRelationship(CBaseEntity* pTarget);
 
 	void Spawn(void);
@@ -71,7 +72,7 @@ public:
 
 	void RunTask(Task_t* pTask);
 	void StartTask(Task_t* pTask);
-	virtual int ObjectCaps(void) { return CTalkMonster::ObjectCaps() | FCAP_IMPULSE_USE; }
+	int ObjectCaps(void) { return CTalkMonster::ObjectCaps() | FCAP_IMPULSE_USE; }
 
 
 	BOOL CheckRangeAttack1(float flDot, float flDist);
@@ -106,6 +107,7 @@ public:
 	//MODDD
 	GENERATE_TRACEATTACK_PROTOTYPE
 	GENERATE_TAKEDAMAGE_PROTOTYPE
+	const char* getHitgroupName(int arg_iHitgroup);
 
 	void OnAlerted(BOOL alerterWasKilled);
 

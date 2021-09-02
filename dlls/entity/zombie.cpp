@@ -415,7 +415,7 @@ GENERATE_TAKEDAMAGE_IMPLEMENTATION(CZombie)
 				//pev->movetype = MOVETYPE_TOSS;
 			}
 		}
-	}//END OF bullet pushback check
+	}// bullet pushback check
 	
 	// applied, maybe. Wipe it.
 	flPushbackForceDamage = 0;
@@ -531,8 +531,8 @@ float CZombie::hitgroupDamage(float flDamage, int bitsDamageType, int bitsDamage
 			break;
 			}
 
-		}// END OF bitsDamageType check
-	}//END OF bitsDamageTypeMod check
+		}//  bitsDamageType check
+	}// bitsDamageTypeMod check
 	else {
 		// DMG_HITBOX_EQUAL?  No hitbox influence.
 		finalDamage = flDamage;
@@ -560,7 +560,7 @@ float CZombie::hitgroupDamage(float flDamage, int bitsDamageType, int bitsDamage
 		}
 
 		finalDamage *= damageMulti;
-	}//END OF zombieBulletResistance check
+	}// zombieBulletResistance check
 
 
 	return finalDamage;
@@ -571,7 +571,7 @@ float CZombie::hitgroupDamage(float flDamage, int bitsDamageType, int bitsDamage
 GENERATE_KILLED_IMPLEMENTATION(CZombie) {
 
 	GENERATE_KILLED_PARENT_CALL(CBaseMonster);
-}//END OF Killed
+}// Killed
 
 
 void CZombie::BecomeDead(void)
@@ -833,7 +833,7 @@ void CZombie::MonsterThink(){
 
 	if (tempTime == 0 || gpGlobals->time >= tempTime) {
 		tempTime = gpGlobals->time + 2;
-		easyPrintLineBroadcast("test %d %s", 666, "str");
+		easyPrintLineBroadcast("test %d %s", 15, "str");
 	}
 	*/
 	
@@ -851,7 +851,7 @@ void CZombie::MonsterThink(){
 	}
 
 	CBaseMonster::MonsterThink();
-}//END OF MonsterThink
+}// MonsterThink
 
 
 
@@ -911,7 +911,7 @@ Schedule_t* CZombie::GetSchedule( void )
 	}
 
 	return CBaseMonster::GetSchedule();
-}//END OF GetSchedule
+}// GetSchedule
 
 
 
@@ -938,11 +938,11 @@ Schedule_t* CZombie::GetScheduleOfType( int Type){
 		case SCHED_ZOMBIE_SEEK_CORPSE_QUICK_FAIL:
 			return &slZombieSeekCorpseQuickFail[0];
 		break;
-	}//END OF switch(Type)
+	}// switch(Type)
 	*/
 	
 	return CBaseMonster::GetScheduleOfType(Type);
-}//END OF GetScheduleOfType
+}// GetScheduleOfType
 
 
 void CZombie::StartTask(Task_t* pTask){
@@ -1160,10 +1160,10 @@ void CZombie::StartTask(Task_t* pTask){
 		CBaseMonster::StartTask( pTask );
 	break;
 
-	}//END OF switch
+	}// switch
 
 
-}//END OF StartTask
+}// StartTask
 
 
 void CZombie::RunTask(Task_t* pTask){
@@ -1210,9 +1210,9 @@ void CZombie::RunTask(Task_t* pTask){
 					}
 
 				}
-			}//END OF lookForCorpseTime check
-		}//END OF state and not-dead checks
-	}//END OF conditions checks
+			}// lookForCorpseTime check
+		}// state and not-dead checks
+	}// conditions checks
 
 
 
@@ -1287,9 +1287,9 @@ void CZombie::RunTask(Task_t* pTask){
 		CBaseMonster::RunTask( pTask );
 	break;
 
-	}//END OF switch
+	}// switch
 
-}//END OF StartTask
+}// StartTask
 
 
 
@@ -1329,11 +1329,11 @@ int CZombie::tryActivitySubstitute(int activity){
 		case ACT_STAND:
 			return LookupSequence("eatbodystand");
 		break;
-	}//END OF switch
+	}// switch
 
 	//not handled by above? Rely on the model's anim for this activity if there is one.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF tryActivitySubstitute
+}// tryActivitySubstitute
 
 int CZombie::LookupActivityHard(int activity){
 	int i = 0;
@@ -1367,11 +1367,11 @@ int CZombie::LookupActivityHard(int activity){
 		case ACT_STAND:
 			return LookupSequence("eatbodystand");
 		break;
-	}//END OF switch
+	}// switch
 	
 	//not handled by above?  try the real deal.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF LookupActivityHard
+}// LookupActivityHard
 
 
 //Handles custom events sent from "LookupActivityHard", which sends events as timed delays along with picking an animation in script.
@@ -1391,9 +1391,9 @@ void CZombie::HandleEventQueueEvent(int arg_eventID){
 
 	break;
 	}
-	}//END OF switch
+	}// switch
 
-}//END OF HandleEventQueueEvent
+}// HandleEventQueueEvent
 
 
 int CZombie::CheckLocalMove ( const Vector &vecStart, const Vector &vecEnd, CBaseEntity *pTarget, BOOL doZCheck, float *pflDist ){
@@ -1407,7 +1407,7 @@ int CZombie::CheckLocalMove ( const Vector &vecStart, const Vector &vecEnd, CBas
 
 	//default behavior.
 	return CBaseMonster::CheckLocalMove(vecStart, vecEnd, pTarget, doZCheck, pflDist);
-}//END OF CheckLocalMove
+}// CheckLocalMove
 
 
 
@@ -1466,7 +1466,7 @@ void CZombie::ZombieTouch( CBaseEntity *pOther ){
 
 
 
-}//END OF ZombieTouch
+}// ZombieTouch
 
 
 
@@ -1522,12 +1522,12 @@ CBaseEntity* CZombie::getNearestDeadBody(Vector argSearchOrigin, float argMaxDis
 				bestChoiceYet = testMon;
 				leastDistanceYet = thisDistance;
 				
-			}//END OF minimum distance yet
-		}//END OF entity scan null check
+			}// minimum distance yet
+		}// entity scan null check
 
-	}//END OF while loop through all entities in an area to see which are corpses.
+	}// while loop through all entities in an area to see which are corpses.
 	return bestChoiceYet;
-}//END OF getNearestDeadBody
+}// getNearestDeadBody
 
 
 //MODDD - this is the event that runs alongside a schedule about to be changed (re-picking a schedule).
@@ -1536,7 +1536,7 @@ void CZombie::ScheduleChange(void){
 	//...nevermind, not the best way to achieve what we wanted.
 	CBaseMonster::ScheduleChange();
 
-}//END OF ScheduleChange
+}// ScheduleChange
 
 
 void CZombie::OnCineCleanup(CCineMonster* pOldCine){
@@ -1553,7 +1553,7 @@ void CZombie::OnCineCleanup(CCineMonster* pOldCine){
 
 	CBaseMonster::OnCineCleanup(pOldCine);
 
-}//END OF OnCineCleanup
+}// OnCineCleanup
 
 
 Vector CZombie::BodyTarget(const Vector& posSrc) {

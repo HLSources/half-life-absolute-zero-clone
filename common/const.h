@@ -26,6 +26,20 @@
 #ifndef CONST_H
 #define CONST_H
 
+// first, a helper macro that everywhere expects, even CVar files, to turn whatever macro
+// into a string:
+#define QUOTE_T(x) #x
+#define QUOTE(x) QUOTE_T(x)
+
+// Wait!  Why not straight-shot it
+//#define QUOTE(x) #x
+// ANSWER:  because, a constant defined like so:
+//     #define MYCONST abc
+// and referred to like this:
+//     QUOTE(MYCONST)
+// would show up as "MYCONST" instead of the "abc" we want.  The above QUOTE_T way does this properly.
+
+
 #include "external_lib_include.h"
 // A cheap way to include custom CVars throughout all files in the entire project.
 #include "cvar_custom.h"

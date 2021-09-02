@@ -49,7 +49,7 @@ int filterSlot(int iSlot) {
 			return iSlot;
 		}
 	}
-}//END OF filterSlot
+}// filterSlot
 
 
 
@@ -605,7 +605,7 @@ void WeaponsResource::Think(void) {
 
 		gpLastSel = gpActiveSel;
 		gpActiveSel = NULL;
-	}//END OF click check
+	}// click check
 
 
 

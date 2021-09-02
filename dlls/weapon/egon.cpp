@@ -80,15 +80,16 @@ EASY_CVAR_EXTERN_CLIENTSENDOFF_BROADCAST_DEBUGONLY(egonFireRateMode)
 
 
 #ifdef CLIENT_DLL
-// Here are all the remaining fucks I give
-int fuckfuckfuckfuckfuck = 0;
-BOOL FuckFlag = FALSE;
+// Here are all the remaining ducks I give
+int duckduckduckduckduck = 0;
+BOOL DuckFlag = FALSE;
 #endif
 
 
 
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 LINK_ENTITY_TO_CLASS( weapon_egon, CEgon );
-
+#endif
 
 
 
@@ -244,18 +245,9 @@ float CEgon::GetDischargeInterval( void )
 
 BOOL CEgon::HasAmmo( void )
 {
-
-	if ( m_pPlayer->ammo_uranium <= 0 )
-		return FALSE;
-		
-	/*
-	if ( PlayerPrimaryAmmoCount() <= 0 )
-	{
-		//PlayEmptySound( );
-		//m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 0.5;
+	if ( PlayerPrimaryAmmoCount() <= 0 ){
 		return FALSE;
 	}
-	*/
 
 
 	return TRUE;
@@ -343,26 +335,26 @@ void CEgon::Attack( void )
 
 
 
-	//easyForcePrintLine("egon fs:%d beam?:%d  fuserreq?: %.2f <= %.2f is it? %d has dat ammo? %d amount? %d", m_fireState, (m_pBeam!=NULL), m_flReleaseThrow, UTIL_WeaponTimeBase(), (m_flReleaseThrow <= UTIL_WeaponTimeBase()), HasAmmo(), m_pPlayer->ammo_uranium );
-	//easyForcePrintLine("egon fs:%d beam?:%d  fuserreq?: %.2f <= %.2f is it? %d has dat ammo? %d amount? %d", m_fireState, (m_pBeam!=NULL), pev->fuser1, UTIL_WeaponTimeBase(), (pev->fuser1 <= UTIL_WeaponTimeBase()), HasAmmo(), m_pPlayer->ammo_uranium );
+	//easyForcePrintLine("egon fs:%d beam?:%d  fuserreq?: %.2f <= %.2f is it? %d has ammo? %d ", m_fireState, (m_pBeam!=NULL), m_flReleaseThrow, UTIL_WeaponTimeBase(), (m_flReleaseThrow <= UTIL_WeaponTimeBase()), HasAmmo() );
+	//easyForcePrintLine("egon fs:%d beam?:%d  fuserreq?: %.2f <= %.2f is it? %d has ammo? %d ", m_fireState, (m_pBeam!=NULL), pev->fuser1, UTIL_WeaponTimeBase(), (pev->fuser1 <= UTIL_WeaponTimeBase()), HasAmmo() );
 
 	// FEV_CLIENT?
 	flags |= FEV_GLOBAL | FEV_RELIABLE;
 
 
 #ifdef CLIENT_DLL
-	if(fuckfuckfuckfuckfuck > 0){
+	if(duckduckduckduckduck > 0){
 
-		if(FuckFlag == FALSE){
-			//easyForcePrintLine("fuckfuckfuckfuckfuck");
+		if(DuckFlag == FALSE){
+			//easyForcePrintLine("duckduckduckduckduck");
 			PLAYBACK_EVENT_FULL( flags, m_pPlayer->edict(), m_usEgonFire, 0.0, (float *)&g_vecZero, (float *)&g_vecZero, 0.0, 0.0, m_fireState, m_fInAttack, 1, 0 );
 		}else{
 			PLAYBACK_EVENT_FULL( flags, m_pPlayer->edict(), m_usEgonFire, 0.0, (float *)&g_vecZero, (float *)&g_vecZero, 0.0, 0.0, m_fireState, m_fInAttack, 0, 1 );
 		}
-		fuckfuckfuckfuckfuck--;
+		duckduckduckduckduck--;
 	}else{
 		// expiyah
-		FuckFlag = FALSE;
+		DuckFlag = FALSE;
 
 	}
 #endif
@@ -416,8 +408,8 @@ void CEgon::Attack( void )
 				
 #ifdef CLIENT_DLL
 			// just send the event clientside 5 times, surely one of them will take.           sweet god this engine.
-			fuckfuckfuckfuckfuck = 5;
-			//FuckFlag = FALSE;
+			duckduckduckduckduck = 5;
+			//DuckFlag = FALSE;
 #endif
 
 			m_shakeTime = 0;
@@ -614,7 +606,7 @@ CEgon::CEgon(void){
 	blockContinualFireSound = FALSE;
 
 
-}//END OF CEgon constructor
+}// CEgon constructor
 
 
 
@@ -674,10 +666,6 @@ int CEgon::Restore(CRestore& restore){
 	// Is weird the sprite still exists when you think about it...?  yea, clientisde probably.
 	//effectsExist = TRUE;
 
-
-	//if(m_pPlayer != NULL){
-		//m_pPlayer->TabulateAmmo();
-	//}
 
 	int result = restore.ReadFields("CEgon", this, m_SaveData, ARRAYSIZE(m_SaveData));
 	
@@ -749,8 +737,8 @@ void CEgon::onFreshFrame(void){
 	#endif
 
 	#ifdef CLIENT_DLL
-				fuckfuckfuckfuckfuck = 5;
-				FuckFlag = TRUE;
+				duckduckduckduckduck = 5;
+				DuckFlag = TRUE;
 	#endif
 				flags |= FEV_GLOBAL | FEV_RELIABLE;
 				// 2nd bool used instead.  That means, create the effect but use the running-sound instead of the startup sound.
@@ -819,7 +807,7 @@ void CEgon::SecondaryNotHeld( void ){
 void CEgon::SecondaryAttack( void )
 {
 
-}//END OF SecondaryAttack
+}// SecondaryAttack
 
 
 
@@ -1767,9 +1755,7 @@ void CEgon::CreateEffect( void )
 				m_pNoise->SetNoise( 2 );
 			}
 
-		}//END OF beam type check
-		
-		//m_pNoise->Point
+		}// beam type check
 	}
 
 
@@ -2073,6 +2059,7 @@ void CEgon::EndAttack( void )
 
 
 
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 class CEgonAmmo : public CBasePlayerAmmo
 {
 	void Spawn( void )
@@ -2109,3 +2096,4 @@ class CEgonAmmo : public CBasePlayerAmmo
 	}
 };
 LINK_ENTITY_TO_CLASS( ammo_egonclip, CEgonAmmo );
+#endif

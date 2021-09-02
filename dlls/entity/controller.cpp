@@ -914,7 +914,7 @@ Schedule_t *CController::GetSchedule ( void )
 	break;
 
 
-	}//END OF switch
+	}// switch
 	return CSquadMonster::GetSchedule();
 }
 
@@ -943,7 +943,7 @@ Schedule_t* CController::GetScheduleOfType ( int Type )
 	break;}
 
 
-	}//END OF switch
+	}// switch
 	
 
 	return CBaseMonster::GetScheduleOfType( Type );
@@ -1076,17 +1076,11 @@ void CController::Stop( void )
 }
 
 
-
 #define DIST_TO_CHECK 200
 
-
-
-
-// You know what FUCK IT
 BOOL CController::usesSegmentedMove(void) {
 	return FALSE;
 }
-
 
 //MODDD - support for MovePRE.
 // Little complex of a case here since the CController has some movement script meant to run at first and does
@@ -1098,15 +1092,10 @@ BOOL CController::usesSegmentedMove(void) {
 int CController::MovePRE(float flInterval, float& flWaypointDist, float& flCheckDist, float& flDist, Vector& vecDir, CBaseEntity*& pTargetEnt) {
 	// it is ok for this var to be re-calculated in Move and MovePRE.
 	float flMoveDist;
-
 	int localMoveResult;
-
 	localMoveResult = 1;
 
-
 	// !!! The section "used to be in MovePRE" should be moved here if restoring MovePRE
-
-
 
 	/*
 
@@ -1149,7 +1138,7 @@ int CController::MovePRE(float flInterval, float& flWaypointDist, float& flCheck
 	*/
 
 	return localMoveResult;
-}//END OF MovePRE
+}// MovePRE
 
 
 void CController::Move ( float flInterval ) 

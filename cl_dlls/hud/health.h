@@ -128,4 +128,4 @@ private:
 };	
 
 
-#endif //END OF HEALTH_H
+#endif // HEALTH_H

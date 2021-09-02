@@ -26,6 +26,7 @@
     <ClCompile Include="..\pm_shared\pm_math.c" />
     <ClCompile Include="..\pm_shared\pm_printout.c" />
     <ClCompile Include="..\pm_shared\pm_shared.c" />
+    <ClCompile Include="activity.cpp" />
     <ClCompile Include="basemonster.cpp" />
     <ClCompile Include="cbase.cpp" />
     <ClCompile Include="client.cpp" />
@@ -129,6 +130,7 @@
     <ClCompile Include="skill.cpp" />
     <ClCompile Include="util.cpp" />
     <ClCompile Include="util_debugdraw.cpp" />
+    <ClCompile Include="util_debugschedule.cpp" />
     <ClCompile Include="util_model.cpp" />
     <ClCompile Include="weapons.cpp" />
     <ClCompile Include="weapon\chumtoadweapon.cpp" />

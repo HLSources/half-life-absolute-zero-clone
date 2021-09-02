@@ -95,7 +95,7 @@ public:
 			pev->absmin = pev->origin + Vector(-35, -35, 0);
 			pev->absmax = pev->origin + Vector(35, 35, 42);
 		}
-	}//END OF SetObjectCollisionBox
+	}// SetObjectCollisionBox
 
 
 	void EXPORT LeapTouch ( CBaseEntity *pOther );
@@ -180,4 +180,4 @@ public:
 
 
 
-#endif //PANTHER_EYE_H
+#endif// PANTHER_EYE_H

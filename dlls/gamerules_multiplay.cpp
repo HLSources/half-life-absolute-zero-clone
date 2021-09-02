@@ -211,7 +211,7 @@ void CHalfLifeMultiplay::RefreshSkillData( void )
 		gSkillData.plrDmgHornet = 10;
 
 
-	}//END OF ignoreMultiplayerSkillOverride check
+	}// ignoreMultiplayerSkillOverride check
 }
 
 //=========================================================

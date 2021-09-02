@@ -56,12 +56,9 @@ DLL_GLOBAL const Vector VECTOR_CONE_DM_SHOTGUN = Vector(0.08716, 0.04362, 0.00);
 DLL_GLOBAL const Vector VECTOR_CONE_DM_DOUBLESHOTGUN = Vector(0.17365, 0.04362, 0.00); // 20 degrees by 5 degrees
 
 
-// oops.
-//BOOL makeNoise = FALSE;
-
-
-
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 LINK_ENTITY_TO_CLASS( weapon_shotgun, CShotgun );
+#endif
 
 
 
@@ -327,7 +324,7 @@ void CShotgun::ItemPostFrame( void )
 				SendWeaponAnimServerOnly(iAnim);
 			}
 		}
-	}//END OF not holdin
+	}// not holdin
 
 
 
@@ -367,7 +364,7 @@ void CShotgun::ItemPostFrameThink(void) {
 		else {
 
 		}
-	}//END OF checks
+	}// checks
 
 
 
@@ -835,12 +832,6 @@ BOOL CShotgun::reloadSemi(){
 	{
 		if (m_iClip != 8 && PlayerPrimaryAmmoCount() > 0)
 		{
-			/*
-			makeNoise = TRUE;
-			if (m_iClip > 0 && (m_fInAttack & SHOTGUN_BIT4)) {
-				makeNoise = FALSE;
-			}
-			*/
 
 			if (m_iClip > 0 && (m_fInAttack & SHOTGUN_BIT4)) {
 				// force the pump!
@@ -905,8 +896,6 @@ void CShotgun::reloadLogic(void) {
 	{
 		if (m_flTimeWeaponIdle > UTIL_WeaponTimeBase())
 			return;
-
-		//if (makeNoise == FALSE)return;
 
 		// was waiting for gun to move to side
 		m_fInSpecialReload = 3;
@@ -976,7 +965,7 @@ void CShotgun::WeaponIdle( void )
 }
 
 
-
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 class CShotgunAmmo : public CBasePlayerAmmo
 {
 	void Spawn( void )
@@ -1008,5 +997,5 @@ class CShotgunAmmo : public CBasePlayerAmmo
 	}
 };
 LINK_ENTITY_TO_CLASS( ammo_buckshot, CShotgunAmmo );
-
+#endif
 

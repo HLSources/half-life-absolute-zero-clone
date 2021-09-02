@@ -495,7 +495,7 @@ old colors
 	MESSAGE_END();
 
 
-	}//END OF if(EASY_CVAR_GET_CLIENTSENDOFF_BROADCAST_DEBUGONLY(hornetTrail) is 0 or 2)
+	}// if(EASY_CVAR_GET_CLIENTSENDOFF_BROADCAST_DEBUGONLY(hornetTrail) is 0 or 2)
 	//NOTE: EASY_CVAR_GET_CLIENTSENDOFF_BROADCAST_DEBUGONLY(hornetTrail) of 3 (or anything else really too) means no trail.
 
 
@@ -752,7 +752,7 @@ void CHornet::TrackTarget ( void )
 	}
 
 
-	}//END OF the thing.
+	}// the thing.
 
 
 	
@@ -1183,12 +1183,12 @@ GENERATE_KILLED_IMPLEMENTATION(CHornet){
 
 
 
-}//END OF Killed
+}// Killed
 
 
 float CHornet::massInfluence(void){
 	return 0.01f;
-}//END OF massInfluence
+}// massInfluence
 
 int CHornet::GetProjectileType(void){
 	return PROJECTILE_ORGANIC_HOSTILE;

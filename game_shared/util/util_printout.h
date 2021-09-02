@@ -231,13 +231,13 @@ extern void easyPrintLineDummy(char *szFmt, ...);
 	extern void easyPrintLineGroup3(char* format, ...);
 	extern void easyPrintLineGroup4(char* format, ...);
 
-#endif //END OF main cl_dlls/Server check
+#endif // main cl_dlls/Server check
 
 
 
 
 
 
-#endif//END OF UTIL_PRINTOUT
+#endif// UTIL_PRINTOUT
 
 

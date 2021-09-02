@@ -60,8 +60,9 @@ extern BOOL g_irunninggausspred;
 #endif
 
 
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 LINK_ENTITY_TO_CLASS(weapon_gauss, CGauss);
-
+#endif
 
 
 
@@ -74,7 +75,7 @@ CGauss::CGauss(void) {
 	ignoreIdleTime = -1;
 	inAttackPrev = 0;
 
-}//END OF CGauss constructor
+}// CGauss constructor
 
 
 
@@ -120,10 +121,6 @@ int CGauss::Restore(CRestore& restore){
 	// Is weird the sprite still exists when you think about it...?  yea, clientisde probably.
 	//effectsExist = TRUE;
 
-
-	//if(m_pPlayer != NULL){
-	//m_pPlayer->TabulateAmmo();
-	//}
 
 	int result = restore.ReadFields("CGauss", this, m_SaveData, ARRAYSIZE(m_SaveData));
 
@@ -435,7 +432,7 @@ void CGauss::_SecondaryAttack()
 			}
 			// take one ammo just to start the spin
 			ChangePlayerPrimaryAmmoCount(-chargeAmmoUsage);
-		}//END OF cheats check
+		}// cheats check
 
 	// well gee, is that so
 		m_fPrimaryFire = FALSE;
@@ -517,7 +514,7 @@ void CGauss::_SecondaryAttack()
 				}
 
 				ChangePlayerPrimaryAmmoCount(-chargeAmmoUsage);
-			}//END OF cheat check
+			}// cheat check
 
 			m_fireState++;
 			m_pPlayer->m_flNextAmmoBurn = UTIL_WeaponTimeBase() + chargeAmmoUsageDelay;
@@ -760,7 +757,7 @@ void CGauss::StartFire(void)
 				}
 			}
 
-		}//END OF cheat_nogaussrecoil check
+		}// cheat_nogaussrecoil check
 
 
 		// was !m_fPrimaryFire
@@ -1097,7 +1094,7 @@ void CGauss::Fire(Vector vecOrigSrc, Vector vecDir, float flDamage)
 
 						// And lastly, remove all damage.  doDirectHitRadDamage was only set to TRUE in places that reset this.
 						flDamage = 0;
-					}//END OF doDirectHitRadDamage check
+					}// doDirectHitRadDamage check
 
 
 				}
@@ -1230,7 +1227,6 @@ void CGauss::ItemPostFrameThink(void){
 
 
 	if(m_fInAttack == 0 && inAttackPrev != 0){
-		// FUCK SHIT AVENUE
 		StartFire();
 		m_fInAttack = 0;
 		inAttackPrev = 0;
@@ -1324,9 +1320,7 @@ void CGauss::WeaponIdle(void)
 
 
 
-
-
-
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 class CGaussAmmo : public CBasePlayerAmmo
 {
 	void Spawn(void)
@@ -1361,6 +1355,4 @@ class CGaussAmmo : public CBasePlayerAmmo
 	}
 };
 LINK_ENTITY_TO_CLASS(ammo_gaussclip, CGaussAmmo);
-
-
-
+#endif

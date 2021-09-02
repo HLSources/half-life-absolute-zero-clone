@@ -158,12 +158,12 @@ void CControllerHeadBall::HuntThink( void  )
 
 		nextNormalThinkTime = gpGlobals->time + 0.1;
 
-	}//END OF nextNormalThinkTime check
+	}// nextNormalThinkTime check
 
 	
 	//MODDD - this call used to be commented out, enabled because we're crazy! Draws some white lines around the ball I guess.
 	Crawl( );
-}//END OF HuntThink
+}// HuntThink
 
 
 void CControllerHeadBall::DieThink( void  )
@@ -331,7 +331,7 @@ void CControllerHeadBall::Crawl( void  )
 			//we can force this flattened vector (XY-plane wise) to take a length of 64 in the direction it's going in now.
 			vecAim2D = (vecAim2D / vecAim2D.Length());
 
-		}//END OF vecPnt 0 length check (bad direction)
+		}// vecPnt 0 length check (bad direction)
 
 
 		vecPnt2D = adjustedOrigin + vecAim2D * 64;
@@ -429,7 +429,7 @@ void CControllerHeadBall::BounceTouch( CBaseEntity *pOther )
 
 float CControllerHeadBall::massInfluence(void){
 	return 0.05f;
-}//END OF massInfluence
+}// massInfluence
 
 int CControllerHeadBall::GetProjectileType(void){
 	return PROJECTILE_ENERGYBALL;
@@ -445,7 +445,7 @@ int CControllerHeadBall::GetProjectileType(void){
 // is more of a statistic per type of energy ball, not the logic to figure that out.
 float CControllerHeadBall::nearZapDamage(void){
 	return gSkillData.controllerDmgZap;
-}//END OF nearZapDamage
+}// nearZapDamage
 
 
 // How much opacity do I lose per think cycle (0.1 seconds)?  Slow it down to last longer.
@@ -489,7 +489,7 @@ void CControllerHeadBall::velocityCheck(const float& arg_maxSpeed){
 	{
 		m_vecIdeal = m_vecIdeal.Normalize( ) * arg_maxSpeed;
 	}
-}//END OF velocityCheck
+}// velocityCheck
 
 
 

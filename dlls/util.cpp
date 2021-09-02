@@ -1364,7 +1364,7 @@ meleeDrawBloodModeB - Mode variable, for drawing blood when "checkTraceHullAttac
 				//POTATO.
 				return;
 			break;
-		}//END OF switch
+		}// switch
 
 	}else{
 		//check for meleeDrawBloodModeB
@@ -1447,9 +1447,9 @@ meleeDrawBloodModeB - Mode variable, for drawing blood when "checkTraceHullAttac
 				//POTATO.
 				return;
 			break;
-		}//END OF switch
+		}// switch
 
-	}//END OF else OF if( used checkHullTrace )
+	}// else OF if( used checkHullTrace )
 
 	/*
 	vecStart = arg_entSrc->pev->origin;
@@ -1490,7 +1490,7 @@ meleeDrawBloodModeB - Mode variable, for drawing blood when "checkTraceHullAttac
 		debugDrawVect4 = vecStart2;
 		debugDrawVect5 = vecEnd2;
 	}
-}//END OF UTIL_fromToBlood
+}// UTIL_fromToBlood
 
 
 
@@ -1611,7 +1611,7 @@ Vector UTIL_velocityToAngles( const Vector &vecVel){
 		}
 	}else{
 
-		// But wait there is atan2.  Aaaaahhhhh fuck.
+		// But wait there is atan2 that handles that too.  Oh well.
 
 		// neither flattened X or Y is 0?  ok.
 		if(vecVelDir2D.x >= 0){
@@ -1632,7 +1632,7 @@ Vector UTIL_velocityToAngles( const Vector &vecVel){
 
 	//easyForcePrintLine("VELDIR BE %.2f %.2f %.2f YOUR ANGLES BE %.2f %.2f %.2f", vecVelDir.x, vecVelDir.y, vecVelDir.z, xComp, yComp, 0);
 	return Vector(xComp, yComp, 0);
-}//END OF UTIL_velocityToAngles
+}// UTIL_velocityToAngles
 
 
 //MODDD - new
@@ -2153,11 +2153,11 @@ void interpretSoundAsSentence(char* interpretationFINAL, const char* pszName){
 			currentLength += 1;
 
 		break;
-		}//END OF switch(thisChar)
+		}// switch(thisChar)
 
 		readIndex += 1;
 
-	}//END OF while(reading)
+	}// while(reading)
 
 
 	if(!success){
@@ -2251,7 +2251,7 @@ void UTIL_PlaySound(edict_t* entity, int channel, const char* pszName, float vol
 //else
 	//	SENTENCEG_PlayRndSz( ENT( pev ), pszSentence, volume, attenuation, 0, GetVoicePitch() );
 
-}//END OF UTIL_PlaySound
+}// UTIL_PlaySound
 
 
 
@@ -2306,7 +2306,7 @@ void EMIT_SOUND_DYN(edict_t* entity, int channel, const char* pszName, float vol
 	//	g_engfuncs.pfnEmitSound(NULL, 0, "", 0, 0, 0, 0);
 	//}
 
-}//END OF EMIT_SOUND_DYN
+}// EMIT_SOUND_DYN
 
 
 
@@ -2444,7 +2444,7 @@ void UTIL_EmitAmbientSound( edict_t* entity, const Vector &vecOrigin, const char
 		EMIT_AMBIENT_SOUND( entity, vecOrigin, samp, vol, attenuation, fFlags, pitch);
 	}
 
-}//END OF UTIL_EmitAmbientSound
+}// UTIL_EmitAmbientSound
 
 
 
@@ -2461,7 +2461,7 @@ void EMIT_AMBIENT_SOUND( edict_t *entity, const Vector &vecOrigin, const char *s
 	else {
 		EMIT_AMBIENT_SOUND2(entity, rgfl, samp, vol, attenuation, fFlags, pitch);
 	}
-}//END OF UTIL_EmitAmbientSound
+}// UTIL_EmitAmbientSound
 
 
 
@@ -2669,10 +2669,10 @@ void UTIL_Explosion(int msg_dest, const float* pMsgOrigin, edict_t * ed, entvars
 		MESSAGE_END();
 	}else{
 		UTIL_QuakeExplosion(msg_dest, pMsgOrigin, ed, pev, altLocation, offsetx, offsety, offsetz, shrapMod);
-	}//END OF cl_explosion check
+	}// cl_explosion check
 	
 
-}//END OF UTIL_Explosion
+}// UTIL_Explosion
 
 
 
@@ -2724,7 +2724,7 @@ void UTIL_QuakeExplosion(int msg_dest, const float* pMsgOrigin, edict_t* ed, ent
 			}
 
 		}
-	}//END OF if(EASY_CVAR_GET_DEBUGONLY(quakeExplosionSound) == 1)
+	}// if(EASY_CVAR_GET_DEBUGONLY(quakeExplosionSound) == 1)
 	else if (EASY_CVAR_GET_DEBUGONLY(quakeExplosionSound) == 2) {
 		if (pev != NULL) {
 			//UTIL_PlaySound(ENT(pev), CHAN_WEAPON, "!old_explode0", 0.7, ATTN_NORM);
@@ -2744,9 +2744,9 @@ void UTIL_QuakeExplosion(int msg_dest, const float* pMsgOrigin, edict_t* ed, ent
 
 		}
 
-	}//END OF quake explosion sound checks.
+	}// quake explosion sound checks.
 
-}//END OF UTIL_QuakeExplosion
+}// UTIL_QuakeExplosion
 
 
 
@@ -4199,7 +4199,7 @@ void UTIL_drawBox(float x1, float y1, float z1, float x2, float y2, float z2){
 	
 	UTIL_TE_ShowLine(x1, y2, z2, x2, y2, z2);
 
-}//END OF UTIL_drawBox
+}// UTIL_drawBox
 
 
 
@@ -4223,7 +4223,7 @@ void UTIL_drawLineFrame(float x1, float y1, float z1, float x2, float y2, float 
 	const int speed = 0;
 	const int noise = 0;
 	UTIL_TE_BeamPoints(x1, y1, z1, x2, y2, z2, frameStart, frameRate, life, width, noise, r, g, b, 255, speed);
-}//END OF UTIL_drawLineFrame
+}// UTIL_drawLineFrame
 
 
 void UTIL_drawLineFrame(float x1, float y1, float z1, float x2, float y2, float z2, int width, int life, int r, int g, int b){
@@ -4235,19 +4235,19 @@ void UTIL_drawLineFrame(float x1, float y1, float z1, float x2, float y2, float 
 	const int speed = 0;
 	const int noise = 0;
 	UTIL_TE_BeamPoints(x1, y1, z1, x2, y2, z2, frameStart, frameRate, life, width, noise, r, g, b, 255, speed);
-}//END OF UTIL_drawLineFrame
+}// UTIL_drawLineFrame
 
 
 
 //Draw a vertical line going through this point, with the point as the center of the line. This makes it easier to see the point than drawing at one X, Y, Z coordinate (nearly impossible to see sometimes)
 void UTIL_drawPointFrame(const Vector& vecPoint, int width, int r, int g, int b){
 	UTIL_drawPointFrame(vecPoint.x, vecPoint.y, vecPoint.z, width, r, g, b);
-}//END OF UTIL_drawPointFrame
+}// UTIL_drawPointFrame
 
 void UTIL_drawPointFrame(float point_x, float point_y, float point_z, int width, int r, int g, int b){
 	//UTIL_drawLineFrame(vecPoint + Vector(0, 0, -30), vecPoint + Vector(0,0, 30), width, r, g, b);
 	UTIL_drawLineFrame(point_x, point_y, point_z + -30, point_x, point_y, point_z + 30, width, r, g, b);
-}//END OF UTIL_drawPointFrame
+}// UTIL_drawPointFrame
 
 
 
@@ -4288,7 +4288,7 @@ void UTIL_drawBoxFrame(float x1, float y1, float z1, float x2, float y2, float z
 	UTIL_drawLineFrame(x2, y1, z2, x2, y2, z2, width, r, g, b);
 	UTIL_drawLineFrame(x1, y2, z2, x2, y2, z2, width, r, g, b);
 
-}//END OF UTIL_drawBoxFrame
+}// UTIL_drawBoxFrame
 
 
 void UTIL_drawBoxFrame(float x1, float y1, float z1, float x2, float y2, float z2, int width, int life, int r, int g, int b){
@@ -4306,7 +4306,7 @@ void UTIL_drawBoxFrame(float x1, float y1, float z1, float x2, float y2, float z
 	UTIL_drawLineFrame(x2, y1, z2, x2, y2, z2, width, life,r, g, b);
 	UTIL_drawLineFrame(x1, y2, z2, x2, y2, z2, width, life,r, g, b);
 
-}//END OF UTIL_drawBoxFrame
+}// UTIL_drawBoxFrame
 
 
 //draw a box centered around a point for emphasis, and a 3D cross through the point itself.
@@ -4538,7 +4538,7 @@ void UTIL_TE_BeamPoints_Box(float x1, float y1, float z1, float x2, float y2, fl
 	
 	UTIL_TE_BeamPoints(x1, y2, z2, x2, y2, z2, frameStart, frameRate, life, width, noise, r, g, b, brightness, speed);
 
-}//END OF UTIL_TE_BeamPoints_Box
+}// UTIL_TE_BeamPoints_Box
 
 
 
@@ -4739,7 +4739,7 @@ void globalUpdateModel(){
 		// ok!
 		tempMonster->setModel();
 
-	}//END OF through all entities.
+	}// through all entities.
 
 }
 
@@ -4899,8 +4899,8 @@ void turnWorldLightsOff(){
 			}
 
 
-		}//END OF for loop through all entities.
-	}//END OF initial entity edict check
+		}// for loop through all entities.
+	}// initial entity edict check
 
 
 
@@ -4969,7 +4969,7 @@ void updateCVarRefs(BOOL isEarly){
 			}
 		}
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	}//END OF barnacleCanGib CVar check
+	}// barnacleCanGib CVar check
 
 
 	if(globalPSEUDO_germanCensorshipMem != EASY_CVAR_GET_CLIENTSENDOFF_BROADCAST(sv_germancensorship) || globalPSEUDO_allowGermanModelsMem != EASY_CVAR_GET_DEBUGONLY(allowGermanModels)){
@@ -4992,7 +4992,7 @@ void updateCVarRefs(BOOL isEarly){
 		}
 		// wait.  Why is sv_germanCensorship hidden again?
 		g_queueCVarHiddenSave = TRUE;
-	}//END OF german CVars update check
+	}// german CVars update check
 
 
 	if(EASY_CVAR_GET(cl_bullsquidspit) != globalPSEUDO_cl_bullsquidspit){
@@ -5091,7 +5091,7 @@ void updateCVarRefs(BOOL isEarly){
 
 	globalPSEUDO_queueClientSendoff = FALSE;
 
-}//END OF updateCVarRefs
+}// updateCVarRefs
 
 
 
@@ -5139,7 +5139,7 @@ int attemptInterpretSpawnFlag(const char* pszSpawnFlags){
 
 	return toReturn;
 
-}//END OF attemptInterpretSpawnFlag
+}// attemptInterpretSpawnFlag
 
 
 // This is called by human monsters looking for the RED blood color instead of a direct call for RED blood.
@@ -5153,7 +5153,7 @@ int UTIL_BloodColorRedFilter(BOOL robotReplacementModelExists){
 		//it will catch the RED blood and block any calls to draw it.
 		return BLOOD_COLOR_RED;
 	}
-}//END OF UTIL_BloodColorRedFilter
+}// UTIL_BloodColorRedFilter
 
 
 
@@ -5189,7 +5189,7 @@ void UTIL_PrecacheOtherWeapon( const char *szClassname )
 	}
 
 	REMOVE_ENTITY(pent);
-}//END OF UTIL_PrecacheOtherWeapon
+}// UTIL_PrecacheOtherWeapon
 
 
 // called by worldspawn
@@ -5329,7 +5329,7 @@ void W_Precache(void)
 	
 	PRECACHE_SOUND ("items/weapondrop1.wav");// weapon falls to the ground
 	
-}//END OF W_Precache
+}// W_Precache
 
 
 void ClientPrecache( void ){
@@ -5628,7 +5628,7 @@ void ClientPrecache( void ){
 
 	model_explosivestuff = PRECACHE_MODEL( "models/shrapnel.mdl" );
 
-}//END OF ClientPrecache()
+}// ClientPrecache()
 
 
 //Some extra things called for back in World.cpp.
@@ -5646,7 +5646,7 @@ void ExtraWorldPrecache(){
 	PRECACHE_SOUND ("weapons/ric3.wav");
 	PRECACHE_SOUND ("weapons/ric4.wav");
 	PRECACHE_SOUND ("weapons/ric5.wav");
-}//END OF ExtraWorldPrecache()
+}// ExtraWorldPrecache()
 
 
 
@@ -6266,7 +6266,7 @@ void method_precacheAll(void){
 
 			*/
 
-		}//END OF if(!soundSentenceSaveVar)
+		}// if(!soundSentenceSaveVar)
 
 
 
@@ -6432,14 +6432,14 @@ void method_precacheAll(void){
 	
 
 
-	}//END OF if(precacheAllVar)
+	}// if(precacheAllVar)
 	else if(EASY_CVAR_GET_DEBUGONLY(canDropInSinglePlayer) == 1){
 		// If the player can drop in SinglePlayer, precache this in anticipation of that.
 		// If "precacheAll" was already run, it already covered this (hence this happening in "else")
 		PRECACHE_MODEL("models/w_weaponbox.mdl");
 	}
 
-}//END OF method_precacheAll
+}// method_precacheAll
 
 
 
@@ -6644,10 +6644,10 @@ void attemptSendBulletSound(const Vector& bulletHitLoc, entvars_t* pevShooter){
 					}
 				}
 
-			}//END OF if(testMon != NULL)
+			}// if(testMon != NULL)
 
-		}//END OF while(another entity so far from the bullet hole to be triggered)
-	}//END OF EASY_CVAR_GET_DEBUGONLY(bulletholeAlertRange) above 0 check
+		}// while(another entity so far from the bullet hole to be triggered)
+	}// EASY_CVAR_GET_DEBUGONLY(bulletholeAlertRange) above 0 check
 }
 
 
@@ -6731,7 +6731,7 @@ CBaseEntity *FindEntityForward( CBasePlayer* pMe )
 					}
 				}
 			}
-		}//END OF while(...)
+		}// while(...)
 		//Find something?
 		if(bestYet != NULL){
 			if(EASY_CVAR_GET_DEBUGONLY(drawDebugPathfinding2) == 1){::DebugLine_Setup(0, vecStart, vecEnd, fracto);}
@@ -6849,7 +6849,7 @@ char* GetStringForState( STATE state )
 Vector projectionOntoPlane(Vector arg_vectOnto, Vector arg_planeNormal){
 	
 	return arg_vectOnto - ( ( ::DotProduct(arg_vectOnto, arg_planeNormal) / ::pow(arg_planeNormal.Length(), 2) ) * arg_planeNormal );
-}//END OF projectionOntoPlane
+}// projectionOntoPlane
 
 
 	
@@ -6883,8 +6883,8 @@ void UTIL_playOrganicGibSound(entvars_t* pevSoundSource){
 	case 2:
 		UTIL_PlaySound(ENT(pevSoundSource), CHAN_STATIC, "debris/bustflesh2.wav", 1, ATTN_NORM - 0.35, FALSE);
 	break;
-	}//END OF switch
-}//END OF Util_playOrganicGibsound
+	}// switch
+}// Util_playOrganicGibsound
 
 
 void UTIL_playMetalGibSound(entvars_t* pevSoundSource){
@@ -7000,7 +7000,7 @@ void OnMapLoadStart(){
 	// This var gets toggled the first time any map is loaded though.  Some things need to know this.
 	g_mapLoadedEver = TRUE;
 	
-}//END OF OnMapLoadStart
+}// OnMapLoadStart
 
 
 
@@ -7016,7 +7016,7 @@ void OnMapLoadEnd(){
 		theWorld->getCustomMapSettingsFromGlobal();
 	}
 	
-}//END OF OnMapLoadEnd
+}// OnMapLoadEnd
 
 
 const char* TOGGLE_STATE_STR[] = {"TS_AT_TOP", "TS_AT_BOTTOM", "TS_GOING_UP", "TS_GOING_DOWN"  };
@@ -7058,7 +7058,7 @@ void RestoreDynamicIDs(CGlobalState* argGS){
 	// Make sure these are not overwritten by World's precache calling OnMapLoadStart.
 	g_mapLoaded = TRUE;
 
-}//END OF RestoreGlobalState
+}// RestoreGlobalState
 
 
 BOOL GermanModelOrganicLogic(){
@@ -7623,7 +7623,7 @@ void UTIL_SetDeadPlayerTruce(BOOL arg_playerDeadTruce){
 						monsterTest->ForgetEnemy();
 					}
 				}
-			}//END OF through all entities.
+			}// through all entities.
 
 		}//arg_playerDeadTruce == TRUE check
 	}//arg/g match check

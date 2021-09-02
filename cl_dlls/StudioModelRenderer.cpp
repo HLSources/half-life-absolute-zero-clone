@@ -411,7 +411,7 @@ void CStudioModelRenderer::StudioCalcBoneAdj ( float dadt, float *adj, const byt
 				// Con_DPrintf("%d %f\n", mouthopen, value );
 				
 				break;  //end
-			}//END OF procedural loop
+			}// procedural loop
 
 		}
 		
@@ -429,7 +429,7 @@ void CStudioModelRenderer::StudioCalcBoneAdj ( float dadt, float *adj, const byt
 			break;
 		}
 		
-	}//END OF for(j = 0...)
+	}// for(j = 0...)
 }
 
 
@@ -2433,7 +2433,7 @@ void CStudioModelRenderer::StudioSetupBones ( byte isReflection )
 
 				}
 
-			}//END OF hardware / software rendering-mode check
+			}// hardware / software rendering-mode check
 
 			//*(m_pbonetransform[i][0][1]) *= 1;
 			//*(m_pbonetransform[i][1][1]) *= -1;
@@ -2479,7 +2479,7 @@ void CStudioModelRenderer::StudioSetupBones ( byte isReflection )
 		(*m_pbonetransform)[i][3][3] = 0;
 		*/
 
-	}//END OF for loop
+	}// for loop
 }
 
 
@@ -3018,7 +3018,7 @@ int CStudioModelRenderer::StudioDrawModel( int flags )
 		//BOOL doTheyMatch = (gEngfuncs.GetViewModel == IEngineStudio.GetViewEntity);
 		//int x = 4;
 
-	}//END OF frameCount checks
+	}// frameCount checks
 	else {
 		g_freshRenderFrame = FALSE;
 	}
@@ -3384,7 +3384,7 @@ int CStudioModelRenderer::StudioDrawModel( int flags )
 			if ((gHUD.numMirrors<0) || (gHUD.Mirrors[mirror_id].radius < dist)){
 				return 0;
 			}
-        }//END OF !StudioCheckBBox check
+        }// !StudioCheckBBox check
 		
 		(*m_pModelsDrawn)++;
 		(*m_pStudioModelCount)++; // render data cache cookie
@@ -3399,7 +3399,7 @@ int CStudioModelRenderer::StudioDrawModel( int flags )
 		//Now, restore the sequence!
 		m_pCurrentEntity->curstate.sequence = oldSeq;
 
-	}//END OF STUDIO_RENDER check
+	}// STUDIO_RENDER check
 	
 	if( g_drawType == DRAWTYPE_VIEWMODEL){
 		easyPrintLineDummy("FLAG6. s:%d b:%d", m_pCurrentEntity->curstate.sequence, m_pCurrentEntity->curstate.iuser1 );
@@ -3564,7 +3564,7 @@ int CStudioModelRenderer::StudioDrawModel( int flags )
 			g_blockUpdateRecentInterpArray = FALSE;
 		}//for
 
-	}//END OF mirror check.
+	}// mirror check.
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	/*
@@ -4803,15 +4803,12 @@ int CStudioModelRenderer::CUSTOM_GetAnimationEvent(int CUSTOM_sequence, float CU
 			continue;
 		}
 
-		//?????
-
 		/*
 		if(pevent[index].event == 10 || pevent[index].event == 11){
 			int x = pevent[index].event;
 			int te1 = pevent[index].frame;
 			int te2 = pevent[index].type;
 			char what = pevent[index].options[0];
-			int breakme = 666;
 		}
 		*/
 

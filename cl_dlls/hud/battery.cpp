@@ -315,7 +315,7 @@ int CHudBattery::Draw(float flTime)
 		}
 
 
-	}//END OF hud_version CHECK
+	}// hud_version CHECK
 
 	//alphaCrossHairIndex
 

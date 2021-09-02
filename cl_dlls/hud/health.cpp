@@ -334,7 +334,7 @@ int CHudHealth::Draw(float flTime)
 			}
 		}
 
-	}//END OF if(canDraw)
+	}// if(canDraw)
 
 
 	DrawDamage(flTime);
@@ -391,7 +391,7 @@ int CHudHealth::DrawItemFlash(float flTime) {
 	itemFlashCumulative = max(0, itemFlashCumulative - fFade);
 	//}
 	return 1;
-}//END OF DrawItemFlash(...)
+}// DrawItemFlash(...)
 
 
 
@@ -433,7 +433,7 @@ void CHudHealth::deriveColorFromHealth(int& r, int& g, int& b, int& a) {
 		ScaleColors(r, g, b, a);
 	}
 
-}//END OF deriveColorFromHealth
+}// deriveColorFromHealth
 
 
 
@@ -556,9 +556,9 @@ int CHudHealth::DrawDamage(float flTime)
 					drawTimedDamageIcon(i, r, g, b);
 				}
 
-			}//END OF for loop through damage types.
+			}// for loop through damage types.
 
-		}//END OF timedDamage_debug check
+		}// timedDamage_debug check
 		else if (EASY_CVAR_GET_CLIENTONLY_DEBUGONLY(timedDamage_debug) == 1 || EASY_CVAR_GET_CLIENTONLY_DEBUGONLY(timedDamage_debug) == 2 || EASY_CVAR_GET_CLIENTONLY_DEBUGONLY(timedDamage_debug) == 4 || EASY_CVAR_GET_CLIENTONLY_DEBUGONLY(timedDamage_debug) == 5) {
 			drawTimedDamageIcon(0, giDmgWidth / 8, ScreenHeight - giDmgHeight * 2, r, g, b);
 		}
@@ -579,7 +579,7 @@ int CHudHealth::DrawDamage(float flTime)
 			x = gHUD.DrawHudNumber(x, y, DHN_3DIGITS | DHN_DRAWZERO, m_iHealth, r, g, b, 1, 1);
 		}
 
-	}//END OF show damage icon allowed checks
+	}// show damage icon allowed checks
 
 
 	// check for bits that should be expired
@@ -745,5 +745,5 @@ void CHudHealth::drawTimedDamageIcon(int arg_index, int arg_draw_x, int arg_draw
 	SPR_DrawAdditive(0, draw_x - 2, draw_y + 5 + extraYOffset, tempRect);
 
 
-}//END OF drawTimedDamageIcon
+}// drawTimedDamageIcon
 

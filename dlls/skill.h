@@ -283,4 +283,4 @@ struct skilldata_t
 
 extern DLL_GLOBAL skilldata_t gSkillData;
 
-#endif //END OF #ifdef SKILL_H
+#endif// SKILL_H

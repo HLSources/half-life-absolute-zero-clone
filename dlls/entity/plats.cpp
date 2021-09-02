@@ -2092,7 +2092,7 @@ void CFuncTrackChange::ReportGeneric(){
 	//m_trackTop->pev->spawnflags &= ~SF_PATH_DISABLED;
 	//m_trackBottom->pev->spawnflags &= ~SF_PATH_DISABLED;
 
-}//END OF ReportGeneric
+}// ReportGeneric
 
 
 

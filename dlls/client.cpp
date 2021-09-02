@@ -176,7 +176,7 @@ class CrashTest{
 	void someMethod(){
 		int x = 6;
 	}
-};//END OF CrashTest class
+};// CrashTest class
 
 
 
@@ -323,10 +323,10 @@ BOOL attemptParseStringToInt(edict_t* pEntity, int* toStoreResult, const char* t
 	}else{
 		easyForcePrintLineClient(pEntity, errorMsg_noInput);
 		return FALSE;
-	}//END OF arg check
+	}// arg check
 
 	return FALSE;  //how could this be reached??
-}//END OF attemptParseStringToInt
+}// attemptParseStringToInt
 
 
 
@@ -342,12 +342,12 @@ CPathTrack* getPathTrackWithID(edict_t* pEntity, int argID){
 			break;
 		}
 
-	}//END OF while loop
+	}// while loop
 
 	//printout alongside this.
 	easyForcePrintLineClient(pEntity, "path_track of ID %d not found.", argID);
 	return NULL;
-}//END OF getPathTrackWithID
+}// getPathTrackWithID
 
 
 CFuncTrackChange* getTrackChangeWithID(edict_t* pEntity, int argID){
@@ -361,13 +361,13 @@ CFuncTrackChange* getTrackChangeWithID(edict_t* pEntity, int argID){
 			break;
 		}
 
-	}//END OF while loop
+	}// while loop
 
 	//printout alongside this.
 	easyForcePrintLineClient(pEntity, "func_trackchange of ID %d not found.", argID);
 	return NULL;
 
-}//END OF getTrackChangeWithID
+}// getTrackChangeWithID
 
 
 
@@ -418,7 +418,7 @@ CBaseMonster* getMonsterWithID(int argSeekID){
 			//break;  redundant, "return" already interrupts.
 		}
 
-	}//END OF through all entities.
+	}// through all entities.
 
 
 	//did not find it?
@@ -458,7 +458,7 @@ void reviveAllMonsters(edict_t* theCaller) {
 
 			tempMonster->StartReanimation();
 		}
-	}//END OF through all entities.
+	}// through all entities.
 
 }//reviveAllMonsters
 
@@ -501,7 +501,7 @@ void removeAllMonsters(edict_t* theCaller) {
 		//tempMonster->onDelete();   automatically called by SUB_REMOVE, don't manually call this.
 		tempMonster->SetThink(&CBaseEntity::SUB_Remove);
 		tempMonster->pev->nextthink = gpGlobals->time;
-	}//END OF list through all entities.
+	}// list through all entities.
 }
 
 void removeAllMonstersExcept(edict_t* theCaller, int excludeID) {
@@ -555,7 +555,7 @@ void removeAllMonstersExcept(edict_t* theCaller, int excludeID) {
 		//tempMonster->onDelete();   automatically called by SUB_REMOVE, don't manually call this.
 		tempMonster->SetThink(&CBaseEntity::SUB_Remove);
 		tempMonster->pev->nextthink = gpGlobals->time;
-	}//END OF list through all entities.
+	}// list through all entities.
 }
 
 void removeAllEntities(edict_t* theCaller) {
@@ -588,7 +588,7 @@ void removeAllEntities(edict_t* theCaller) {
 		//pTempEntity->SetThink(&CBaseEntity::SUB_Remove);
 		//pTempEntity->pev->nextthink = gpGlobals->time;
 
-	}//END OF list through all entities.
+	}// list through all entities.
 
 }
 
@@ -626,7 +626,7 @@ void listAllEntities(edict_t* theCaller) {
 		printBasicEntityInfo(theCaller, pTempEntity);
 		easyForcePrintLine();  // new line
 
-	}//END OF list through all entities.
+	}// list through all entities.
 
 }
 
@@ -666,7 +666,7 @@ void listAllMonsters(edict_t* theCaller) {
 		printBasicEntityInfo(theCaller, pTempEntity);
 		easyForcePrintLine();  // new line
 
-	}//END OF list through all entities.
+	}// list through all entities.
 }
 
 
@@ -811,10 +811,10 @@ void resetPlayerRPGRockets(CBasePlayer* playerRef){
 				}
 
 				pPlayerItem = pPlayerItem->m_pNext;
-			}//END OF while
-		}//END OF for(...)
-	}//END OF if(playerRef)
-}//END OF resetPlayerRPGRockets
+			}// while
+		}// for(...)
+	}// if(playerRef)
+}// resetPlayerRPGRockets
 
 
 
@@ -913,7 +913,7 @@ void resetModCVars(CBasePlayer* arg_plyRef, BOOL isEmergency){
 	//if applicable..
 	saveHiddenCVars();
 
-}//END OF resetModCVars
+}// resetModCVars
 
 
 
@@ -1313,7 +1313,7 @@ void Host_Say( edict_t *pEntity, int teamonly )
 			temp,
 			p );
 	}
-}//END OF Host_Say
+}// Host_Say
 
 
 
@@ -1333,7 +1333,6 @@ ClientCommand
 called each time a player uses a "cmd" command
 ============
 */
-// !!!START OF THIS SILLY SILLY METHOD!!!
 // Use CMD_ARGV and CMD_ARGC to get pointers the character string command.
 // Looks like CMD_ARGC gets the count of arguments supplied, that can be handy.
 void ClientCommand( edict_t *pEntity )
@@ -1358,7 +1357,6 @@ void ClientCommand( edict_t *pEntity )
 	//	}
 	//}
 
-	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Check for this command before the null-player check.  In case of bad transitions, the 'getmap'
 	// command will still work.
@@ -1491,7 +1489,7 @@ void ClientCommand( edict_t *pEntity )
 				//MESSAGE_END();
 			}
 		}
-	}//END OF globalPSEUDO_minimumfiredelaymem check
+	}// globalPSEUDO_minimumfiredelaymem check
 
 
 
@@ -2155,7 +2153,7 @@ void ClientCommand( edict_t *pEntity )
 				
 			// also turn off MP3 music.
 			submitJukeboxOff(tempEd);
-		}//END OF if(tempplayer)
+		}// if(tempplayer)
 
 	}else if(FStrEq(pcmdRefinedRef, "origin") || FStrEq(pcmdRefinedRef, "coords")){
 		if(tempplayer){
@@ -2284,7 +2282,7 @@ void ClientCommand( edict_t *pEntity )
 			}else{
 				easyForcePrintLineClient(pEntity, "ERROR: Could not find an entity / monster in crosshairs.");
 			}
-		}//END OF player dead check else.
+		}// player dead check else.
 
 	}else if (FStrEq(pcmdRefinedRef, "reviveall") || FStrEq(pcmdRefinedRef, "necromancy") || FStrEq(pcmdRefinedRef, "thriller") || FStrEq(pcmdRefinedRef, "thisisthriller") || FStrEq(pcmdRefinedRef, "cuzthisisthriller") || FStrEq(pcmdRefinedRef, "causethisisthriller") ) {
 
@@ -2587,7 +2585,7 @@ void ClientCommand( edict_t *pEntity )
 
 			//Calling this because paths don't usually get a chance to ever show this information. They are invisible and might not even collide with a player-crosshair traceline anyways.
 			pathTrackTarget->ReportGeneric();  
-		}//END OF pathTrackTarget check
+		}// pathTrackTarget check
 
 	
 	}else if( FStrEq(pcmdRefinedRef, "teleportpathtrack") || FStrEq(pcmdRefinedRef, "pathtrackteleport") || FStrEq(pcmdRefinedRef, "teleporttrackpath") || FStrEq(pcmdRefinedRef, "trackpathteleport")   ){
@@ -2630,7 +2628,7 @@ void ClientCommand( edict_t *pEntity )
 			}else{
 				easyForcePrintLineClient(pEntity, "-path_track:%d already enabled.", trackIDToFind);
 			}
-		}//END OF pathTrackTarget check
+		}// pathTrackTarget check
 
 	
 	}else if( FStrEq(pcmdRefinedRef, "disablepathtrack") || FStrEq(pcmdRefinedRef, "pathtrackdisable") || FStrEq(pcmdRefinedRef, "disabletrackpath") || FStrEq(pcmdRefinedRef, "trackpathdisable") ){
@@ -2654,7 +2652,7 @@ void ClientCommand( edict_t *pEntity )
 			}else{
 				easyForcePrintLineClient(pEntity, "-path_track:%d already disabled.", trackIDToFind);
 			}
-		}//END OF pathTrackTarget check
+		}// pathTrackTarget check
 
 	
 	}else if( FStrEq(pcmdRefinedRef, "drawtrackchange") || FStrEq(pcmdRefinedRef, "trackchangedraw")){
@@ -2687,7 +2685,7 @@ void ClientCommand( edict_t *pEntity )
 			//just a good idea.
 			trackChangeTarget->ReportGeneric();  
 
-		}//END OF trackChangeTarget check
+		}// trackChangeTarget check
 
 	
 	}else if( FStrEq(pcmdRefinedRef, "teleporttrackchange") || FStrEq(pcmdRefinedRef, "trackchangeteleport")){
@@ -2762,7 +2760,7 @@ void ClientCommand( edict_t *pEntity )
 					return;
 				}
 			}
-		}//END OF arg check
+		}// arg check
 
 		if(forwardEnt == NULL){
 			//try looking nearby?
@@ -2983,7 +2981,7 @@ void ClientCommand( edict_t *pEntity )
 					easyForcePrintLineClient(pEntity, "***Crash mode unrecognized.  Try a value from 0 to 8 as of the time of writing.");
 				break;}
 
-				}//END OF switch
+				}// switch
 
 			}catch(int){
 				easyForcePrintLineClient(pEntity, "***I don\'t know how to crash like that.  Yes, really.  <invalid mode>");
@@ -3177,7 +3175,7 @@ void ClientCommand( edict_t *pEntity )
 					closestNodeID = i;
 					closestNodeDist = thisDist;
 				}
-			}//END OF for(int i...)
+			}// for(int i...)
 			if(closestNodeID == -1){
 				easyForcePrintLineClient(pEntity, "***ERROR: closest to no node at all.  (?)");
 			}else{
@@ -3277,13 +3275,13 @@ void ClientCommand( edict_t *pEntity )
 						easyForcePrintClient(pEntity, " blk: %s", pevLinkEnt!=NULL?STRING(pevLinkEnt->classname):"X" );
 					}
 
-				}//END OF for(int i2 = 0...)
+				}// for(int i2 = 0...)
 			}
 
 			//easyForcePrintClient(pEntity, " m_pLinkEnt: %s", thisNode.m_pLin
 
 			easyForcePrintClient(pEntity, "\n");
-		}//END OF for(int i = 0...)
+		}// for(int i = 0...)
 		easyForcePrintLineClient(pEntity, "*************************");
 
 
@@ -3376,7 +3374,7 @@ void ClientCommand( edict_t *pEntity )
 				UTIL_drawBox(pEntityTemp->pev->origin + pEntityTemp->pev->mins, pEntityTemp->pev->origin + pEntityTemp->pev->maxs);
 				UTIL_drawBox(pEntityTemp->pev->absmin, pEntityTemp->pev->absmax);
 			}
-		}//END OF while(things in area)
+		}// while(things in area)
 
 	}else if(FStrEq(pcmdRefinedRef, "showbounds")){
 		
@@ -3782,7 +3780,7 @@ void ClientCommand( edict_t *pEntity )
 			}
 
 		}//arg count check
-	}//end of command
+	}// command
 	else if( FStrEq(pcmdRefinedRef, "testnoderoute2formonster") ){
 
 		if(CMD_ARGC() <= 1){
@@ -3866,7 +3864,7 @@ void ClientCommand( edict_t *pEntity )
 			}
 
 		}//arg count check
-	}//end of command
+	}// command
 
 
 	/*
@@ -3959,7 +3957,7 @@ void ClientCommand( edict_t *pEntity )
 					UTIL_SetOrigin(tempmon->m_pCine->pev, tempplayer->pev->origin + Vector(0, 0, 6));
 				}
 
-			}//END OF loop
+			}// loop
 		}
 	}
 	*/
@@ -4117,7 +4115,7 @@ void ClientCommand( edict_t *pEntity )
 				easyForcePrintLineClient(pEntity, "ERROR - could not parse inputs. No commas or non numeric characters allowed.");
 			}
 
-		}//END OF forwardEnt check
+		}// forwardEnt check
 
 	}else if( FStrEq(pcmdRefinedRef, "getangles") ){
 		const char* arg1ref = CMD_ARGV(1);
@@ -4181,7 +4179,7 @@ void ClientCommand( edict_t *pEntity )
 				easyForcePrintLineClient(pEntity, "ERROR - could not parse inputs. No commas or non numeric characters allowed.");
 			}
 
-		}//END OF forwardEnt check
+		}// forwardEnt check
 
 	}else if( FStrEq(pcmdRefinedRef, "setmyorigin") ){
 		const char* arg1ref = CMD_ARGV(1);
@@ -4310,7 +4308,7 @@ void ClientCommand( edict_t *pEntity )
 			if( (tempMon = pEntityTemp->GetMonsterPointer()) != NULL  ){
 				tempMon->drawPathConstant = FALSE;
 			}
-		}//END OF while(things in area)
+		}// while(things in area)
 
 	}else if( FStrEq(pcmdRefinedRef, "alldrawpath") || FStrEq(pcmdRefinedRef, "pathdrawall") || FStrEq(pcmdRefinedRef, "alldrawnpcpath") || FStrEq(pcmdRefinedRef, "drawpathall") || FStrEq(pcmdRefinedRef, "drawnpcpathall") ){
 		if(g_flWeaponCheat == 0.0){
@@ -4326,7 +4324,7 @@ void ClientCommand( edict_t *pEntity )
 			if( (tempMon = pEntityTemp->GetMonsterPointer()) != NULL  ){
 				tempMon->drawPathConstant = TRUE;
 			}
-		}//END OF while(things in area)
+		}// while(things in area)
 
 	}else if( FStrEq(pcmdRefinedRef, "testpointcontents") || FStrEq(pcmdRefinedRef, "pointcontents") ){
 		
@@ -4429,7 +4427,7 @@ void ClientCommand( edict_t *pEntity )
 			if( (tempMon = pEntityTemp->GetMonsterPointer()) != NULL  ){
 				tempMon->drawFieldOfVisionConstant = FALSE;
 			}
-		}//END OF while(things in area)
+		}// while(things in area)
 
 	}else if( FStrEq(pcmdRefinedRef, "alldrawfov") || FStrEq(pcmdRefinedRef, "fovdrawall") || FStrEq(pcmdRefinedRef, "alldrawnpcfov") || FStrEq(pcmdRefinedRef, "drawfovall") || FStrEq(pcmdRefinedRef, "drawnpcfovall") ){
 		if(g_flWeaponCheat == 0.0){
@@ -4445,7 +4443,7 @@ void ClientCommand( edict_t *pEntity )
 			if( (tempMon = pEntityTemp->GetMonsterPointer()) != NULL  ){
 				tempMon->drawFieldOfVisionConstant = TRUE;
 			}
-		}//END OF while(things in area)
+		}// while(things in area)
 
 	}else if( FStrEq(pcmdRefinedRef, "hidemyshit") || FStrEq(pcmdRefinedRef, "hideall") || FStrEq(pcmdRefinedRef, "hidefp") ){
 
@@ -4606,7 +4604,7 @@ void ClientCommand( edict_t *pEntity )
 				}
 				*/
 			}
-		}//END OF tempPlayer and weapon cheat checks
+		}// tempPlayer and weapon cheat checks
 
 	}else if(FStrEq(pcmdRefinedRef, "myasshungers")){
 		CBaseEntity* forwardEnt = FindEntityForward(tempplayer);
@@ -4729,7 +4727,7 @@ void ClientCommand( edict_t *pEntity )
 			
 				thisNode->m_sHintType = WorldGraph.m_pNodes[ i ].m_sHintType;
 				thisNode->m_sHintActivity = WorldGraph.m_pNodes[ i ].m_sHintActivity;
-			}//END OF for
+			}// for
 
 			// Clear the graph to signify it needs rebuilding.
 			WorldGraph.InitGraph();
@@ -4996,7 +4994,7 @@ void ClientCommand( edict_t *pEntity )
 						easyForcePrintLineClient(pEntity, "WARNING: trace failed; flFraction is 1.0 (did not hit anything).");
 					}
 
-				}//END OF line trace valid check
+				}// line trace valid check
 				else {
 					easyForcePrintLineClient(pEntity, "WARNING: trace failed; AllSolid.");
 				}
@@ -5005,7 +5003,7 @@ void ClientCommand( edict_t *pEntity )
 			else {
 				easyForcePrintLineClient(pEntity, "Enable cheats to use getNormalVector.");
 			}
-		}//END OF player and cheat check
+		}// player and cheat check
 
 	}
 	else if (FStrEq(pcmdRefinedRef, "chillout") || FStrEq(pcmdRefinedRef, "chill") || FStrEq(pcmdRefinedRef, "relax") || FStrEq(pcmdRefinedRef, "relaxbuddy") || FStrEq(pcmdRefinedRef, "smokeweed") || FStrEq(pcmdRefinedRef, "fageddaboutit") || FStrEq(pcmdRefinedRef, "forgetaboutit") || FStrEq(pcmdRefinedRef, "thesearenothtedroidsyouarelookingfor") || FStrEq(pcmdRefinedRef, "jedimindtrick")) {
@@ -5019,7 +5017,7 @@ void ClientCommand( edict_t *pEntity )
 				if (monsterTest != NULL) {
 					monsterTest->ForgetEnemy();
 				}
-			}//END OF while(things in area)
+			}// while(things in area)
 		}
 		else {
 			easyForcePrintLineClient(pEntity, "Captain Retrospect says: You shouldn\'t have pissed them off.\n");
@@ -5235,8 +5233,9 @@ void ClientCommand( edict_t *pEntity )
 		char aryChrD[128];
 		writeVersionInfo(aryChr, 128);
 		writeDateInfo(aryChrD, 128);
-
-		method_precacheAll();
+		
+		// ?  Why was this here.
+		//method_precacheAll();
 
 		easyForcePrintLineClient(pEntity, "AZ az.dll  Version: %s  Date: %s", aryChr, aryChrD);
 	}
@@ -5782,8 +5781,7 @@ void ClientCommand( edict_t *pEntity )
 	*/
 
 
-}//END OF... something big.
-//!!!END OF THIS SILLY SILLY METHOD!!!
+}// ClientCommand
 
 
 
@@ -5938,7 +5936,7 @@ void ServerActivate( edict_t *pEdictList, int edictCount, int clientMax )
 	OnMapLoadEnd();
 
 	//..When does the game load gpGlobals->time from a save file exactly, from what it was at the time of save? No clue.
-}//END OF ServerActivate
+}// ServerActivate
 
 
 
@@ -6024,7 +6022,7 @@ void PlayerPreThink( edict_t *pEntity )
 				// a late return.
 				return;
 			}
-		}//END OF multiplayer check
+		}// multiplayer check
 		
 		// to reach here, not paused?
 		g_gamePaused = FALSE;
@@ -6112,10 +6110,10 @@ void PlayerPostThink( edict_t *pEntity )
 				crashableEntityRef->Spawn();
 			break;}
 
-			}//END Of switch
+			}// switch
 
 			crashableEntityReferTime = -1;  //.... what?
-		}//END OF crashable check
+		}// crashable check
 
 
 		//if (pPlayer)   //already checked now
@@ -6163,19 +6161,18 @@ void PlayerPostThink( edict_t *pEntity )
 				//		}*/
 				//				
 
-				//	}//END OF if(gun)
-				//}//END OF while (this particular chained item exists)
+				//	}// if(gun)
+				//}// while (this particular chained item exists)
 				//pPlayerItem = pPlayerItem->m_pNext;
-		//	}//END OF if( this player's particular item exists)
-		//}//END OF for each item in the player's inventory
+		//	}// if( this player's particular item exists)
+		//}// for each item in the player's inventory
 
 	#endif //CLIENT_WEAPONS
-
 
 	}//player null check
 
 
-}//END OF PlayerPostThink
+}// PlayerPostThink
 
 
 
@@ -6852,7 +6849,7 @@ int AddToFullPack( struct entity_state_s *state, int e, edict_t *ent, edict_t *h
 
 
 		
-	}//END OF player check
+	}// player check
 
 	return 1;
 }
@@ -7347,6 +7344,8 @@ void UpdateClientData ( const struct edict_s *ent, int sendweapons, struct clien
 			cd->m_flNextAttack	= pl->m_flNextAttack;
 			cd->fuser2			= pl->m_flNextAmmoBurn;
 			cd->fuser3			= pl->m_flAmmoStartCharge;
+
+#if SKIP_NAMED_AMMO_CACHE == 0
 			cd->vuser1.x		= pl->ammo_9mm;
 			cd->vuser1.y		= pl->ammo_357;
 			cd->vuser1.z		= pl->ammo_argrens;
@@ -7355,6 +7354,7 @@ void UpdateClientData ( const struct edict_s *ent, int sendweapons, struct clien
 			cd->ammo_rockets	= pl->ammo_rockets;
 			cd->ammo_cells		= pl->ammo_uranium;
 			cd->vuser2.x		= pl->ammo_hornets;
+#endif
 			
 
 			if ( pl->m_pActiveItem )

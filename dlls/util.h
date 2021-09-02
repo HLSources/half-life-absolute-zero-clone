@@ -254,7 +254,6 @@ typedef struct GibInfo_s GibInfo_t;
 extern DLL_GLOBAL int g_Language;
 
 extern int giPrecacheGrunt;
-//Why wasn't this externed everywhere before? I'm asking you, 'past me'. I'm not insane, I swear.
 extern int global_useSentenceSave;
 
 extern float previousFrameTime;
@@ -443,9 +442,12 @@ extern Vector UTIL_VecGetForward( const Vector &vecAng );
 extern Vector UTIL_velocityToAngles( const Vector &vecVel);
 extern Vector UTIL_YawToVec			(const float &yaw);
 
-extern Vector UTIL_VecToAngles	(const Vector &vec);
-extern float UTIL_AngleMod		(float a);
-extern float UTIL_AngleDiff		( float destAngle, float srcAngle );
+// why not us too
+extern float UTIL_AngleMod(float a);
+extern float UTIL_AngleDiff( float destAngle, float srcAngle );
+extern Vector UTIL_VecToAngles( const Vector &vec );
+extern void UTIL_MoveToOrigin( edict_t *pent, const Vector &vecGoal, float flDist, int iMoveType );
+
 
 extern CBaseEntity *UTIL_FindEntityInSphere(CBaseEntity *pStartEntity, const Vector &vecCenter, float flRadius);
 extern CBaseEntity *UTIL_FindEntityByString(CBaseEntity *pStartEntity, const char *szKeyword, const char *szValue );
@@ -924,9 +926,6 @@ extern CWorld* getWorld(void);
 
 
 
-
-
-
 //MODDD - moved prototypes from basemonster.h
 /////////////////////////////////////////
 //MODDD - this variation doesn't even have an implementation?
@@ -982,11 +981,6 @@ extern void RadiusDamage( Vector vecSrc, entvars_t *pevInflictor, entvars_t *pev
 
 
 extern void UTIL_SetDeadPlayerTruce(BOOL arg_playerDeadTruce);
-
-
-
-
-
 
 
 
@@ -1055,26 +1049,22 @@ public:
 				}else{
 					appendTo(dest, &contents[i][0], recentIndex, ',');
 				}
-			}//END OF for(...)
+			}// for(...)
 			appendTo(dest, '|', recentIndex);
-		}//END OF else OF if(latestPlace == 0)
+		}// else OF if(latestPlace == 0)
 		//no, already occurring.
 		//*positionOverhead += recentIndex;
-	}//END OF sendPrintQueue
+	}// sendPrintQueue
 	void clearPrintQueue(){
 		//reset.  Overwrite or ignore others.
 		latestPlace = 0;
 	}
 };
 
-//alternate way now.
+// alternate way now.
 extern void PRINTQUEUE_STUKA_SEND(PrintQueue& toPrint, const char* src, ...);
 
-#endif //END OF CLIENT_DLL Check (lack of)
+#endif// CLIENT_DLL Check (not)
 
 
-
-
-
-
-#endif //END OF #ifdef UTIL_H
+#endif// UTIL_H

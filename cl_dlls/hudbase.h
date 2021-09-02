@@ -103,4 +103,4 @@ struct HUDLIST {
 
 
 
-#endif //END OF HUDBASE_H
+#endif // HUDBASE_H

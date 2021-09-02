@@ -486,10 +486,8 @@ void CBreakable::ReportGeneric(){
 	Vector mins = pev->mins;
 	Vector maxs = pev->maxs;
 	*/
-	
-	//int x = 666;
 
-}//END OF ReportGeneric
+}// ReportGeneric
 
 
 void CBreakable::BreakTouch( CBaseEntity *pOther )

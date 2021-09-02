@@ -146,7 +146,7 @@ void Init_CustomMessage(void){
 	HOOK_MESSAGE(YMG_S);
 	
 
-}//END OF Init
+}// Init
 
 
 
@@ -451,7 +451,7 @@ IMPLEMENT_MESSAGE(FirstAppr){
 	gHUD.m_Pain.m_iFlags |= HUD_ACTIVE;
 
 	return 1;
-}//END OF MsgFunc_FirstAppr
+}// MsgFunc_FirstAppr
 
 
 
@@ -531,7 +531,7 @@ IMPLEMENT_MESSAGE(UpdClientC){
 
 #endif
 	return 1;
-}//END OF MsgFunc_UpdClientC
+}// MsgFunc_UpdClientC
 
 
 
@@ -577,7 +577,7 @@ IMPLEMENT_MESSAGE(UpdClientN){
 
 #endif
 	return 1;
-}//END OF MsgFunc_UpdClientN
+}// MsgFunc_UpdClientN
 
 
 
@@ -598,7 +598,7 @@ IMPLEMENT_MESSAGE(RstClientC){
 	resetModCVarsClientOnly();
 	
 	return 1;
-}//END OF MsgFunc_RstClientC
+}// MsgFunc_RstClientC
 
 
 IMPLEMENT_MESSAGE(PntClientC){
@@ -618,7 +618,7 @@ IMPLEMENT_MESSAGE(PntClientC){
 
 #endif
 	return 1;
-}//END OF MsgFunc_PntClientC
+}// MsgFunc_PntClientC
 
 
 

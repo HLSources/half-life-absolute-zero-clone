@@ -75,7 +75,7 @@ public:
 	virtual int StudioDrawModelReflection(int flags);
 	virtual int StudioDrawPlayerReflection(int flags, entity_state_t* pplayer);
 	virtual int StudioDrawModel ( int flags );
-	// that's 'entity_state_t' in the implementation.  You sneaky bastard.
+	// that's 'entity_state_t' in the implementation.
 	virtual int StudioDrawPlayer ( int flags, struct entity_state_s *pplayer );
 
 public:

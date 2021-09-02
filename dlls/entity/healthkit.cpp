@@ -230,7 +230,7 @@ void CWallHealth::ReportGeneric(void){
 	//	healthModuleInstance.ChargeRestored();
 	//}
 
-}//END OF ReportGeneric
+}// ReportGeneric
 
 
 /*

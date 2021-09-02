@@ -234,7 +234,9 @@ extern float getTimePeriodAndBackSmooth(const float& arg_time, const float& arg_
 extern void drawStringFabulous(int arg_x, int arg_y, const char* arg_str);
 extern void drawStringFabulousVert(int arg_x, int arg_y, const char* arg_str);
 extern void drawString(int arg_x, int arg_y, const char* arg_str, const float& r, const float& g, const float& b);
-extern void drawCrazyShit(float flTime);
+
+extern void routine36(void);
+extern void routine37(float flTime);
 
 
 extern void testForHelpFile(void);
@@ -247,4 +249,4 @@ extern void resetModCVarsClientOnly(void);
 //extern bool bIsMultiplayer(void);
 
 
-#endif //END OF CL_UTIL_H
+#endif // CL_UTIL_H

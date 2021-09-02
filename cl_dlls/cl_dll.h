@@ -42,4 +42,4 @@
 extern cl_enginefunc_t gEngfuncs;
 
 
-#endif //END OF CL_DLL_H
+#endif // CL_DLL_H

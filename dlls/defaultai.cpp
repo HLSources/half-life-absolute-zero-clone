@@ -2127,14 +2127,9 @@ Schedule_t *CBaseMonster::ScheduleInList( const char *pName, Schedule_t **pList,
 //=========================================================
 Schedule_t* CBaseMonster::GetScheduleOfType ( int Type ) 
 {
+	//MODDD - let the debug system know
+	DebugSchedule_SchedEnum_Add(this, Type, EntityClass_CBaseMonster);
 
-	if(monsterID == 2){
-		int x = 45;
-	}
-
-	if(Type == SCHED_RANGE_ATTACK2){
-		int x = 666;
-	}
 
 //	ALERT ( at_console, "Sched Type:%d\n", Type );
 	switch	( Type )
@@ -2158,10 +2153,6 @@ Schedule_t* CBaseMonster::GetScheduleOfType ( int Type )
 			//YOU ARE 1
 			//easyForcePrintLine("what %d :::%d", monsterID, m_pCine->m_fMoveTo);
 			//return GetScheduleOfType( SCHED_IDLE_STAND );
-
-			if(monsterID == 16){
-				int x = 45;
-			}
 
 
 			BOOL what = m_pCine->CanInterrupt();
@@ -2401,7 +2392,7 @@ Schedule_t* CBaseMonster::GetScheduleOfType ( int Type )
 
 		return &slIdleStand[ 0 ];
 	}
-	}//END OF switch
+	}// switch
 
 	return NULL;
 }
@@ -2428,11 +2419,11 @@ void CBaseMonster::ScheduleChange(void){
 	}
 
 	
-}//END OF ScheduleChange
+}// ScheduleChange
 
 
 Schedule_t* CBaseMonster::GetStumpedWaitSchedule(){
 	//default.
 	return slPathfindStumped;
-}//END OF GetStumpedWaitSchedule
+}// GetStumpedWaitSchedule
 

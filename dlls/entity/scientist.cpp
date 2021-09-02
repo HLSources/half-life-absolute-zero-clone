@@ -838,7 +838,7 @@ void CScientist::SayHello(CBaseEntity* argPlayerTalkTo) {
 				g_scientist_PredisasterSuitMentionAllowedTime = gpGlobals->time + 16;
 				return;
 			}
-		}//END OF suit check
+		}// suit check
 
 		// 'c1a0_sci_gm1' is already in sentences.txt as a SC_PHELLO choice now.
 
@@ -862,7 +862,7 @@ void CScientist::SayIdleToPlayer(CBaseEntity* argPlayerTalkTo) {
 				g_scientist_PredisasterSuitMentionAllowedTime = gpGlobals->time + 16;
 				return;
 			}
-		}//END OF suit check
+		}// suit check
 	}
 	else {
 		// even after the disaster, might whine about ties... rarely.
@@ -1036,7 +1036,7 @@ void CScientist::SayProvoked(void){
 			case 0:UTIL_PlaySound(ENT(pev), CHAN_VOICE, "scientist/sci_pain2.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
 			case 1:PlaySentenceSingular("SC_FEAR3", 6, VOL_NORM, ATTN_NORM); break;
 			case 2:PlaySentenceSingular("SCI_EXTRAPROVOKED", 6, VOL_NORM, ATTN_NORM); break;
-			}//END OF decision
+			}// decision
 		}
 
 	}else{
@@ -1097,7 +1097,7 @@ void CScientist::SaySuspicious(void){
 			case 6:PlaySentenceSingular("SC_FEAR10", 4, VOL_NORM, ATTN_NORM); break;
 			case 7:PlaySentenceSingular("SC_FEAR11", 4, VOL_NORM, ATTN_NORM); break;
 			case 8:PlaySentenceSingular("SC_FEAR12", 4, VOL_NORM, ATTN_NORM); break;
-			}//END OF switch
+			}// switch
 		}
 
 	}else{
@@ -1110,8 +1110,8 @@ void CScientist::SayLeaderDied(void){
 		case 1:PlaySentenceSingular( "SC_PLFEAR3", 4, VOL_NORM, ATTN_NORM ); break; //scientist/noplease
 		case 2:PlaySentenceSingular( "SC_PLFEAR4", 4, VOL_NORM, ATTN_NORM ); break; //getoutofhere
 		case 3:PlaySentenceSingular( "SC_FEAR0", 4, VOL_NORM, ATTN_NORM ); break; //nooo
-	}//END OF switch
-}//END OF SayLeaderDied
+	}// switch
+}// SayLeaderDied
 
 void CScientist::SayKneel(void){
 	// TODO - do better sometime?
@@ -1120,7 +1120,7 @@ void CScientist::SayKneel(void){
 		case 1:PlaySentenceSingular("SC_FEAR8", 4, VOL_NORM, ATTN_NORM - 0.2); break;
 		case 2:PlaySentenceSingular("SC_FEAR10", 4, VOL_NORM, ATTN_NORM - 0.2); break;
 		case 3:PlaySentenceSingular("SC_FEAR11", 4, VOL_NORM, ATTN_NORM - 0.2); break;
-	}//END OF switch
+	}// switch
 	/*
 	startle5
 	startle6
@@ -1152,8 +1152,8 @@ void CScientist::SayNearPassive(void){
 	case 17:PlaySentenceSingular( "SC_SMELL3", 4, VOL_NORM, ATTN_NORM );break;
 	case 18:PlaySentenceSingular("SC_PIDLE5", 4, VOL_NORM, ATTN_NORM);break;
 	default:break;
-	}//END OF switch
-}//END OF SayNearPassive
+	}// switch
+}// SayNearPassive
 
 
 void CScientist::SayNearCautious(void){
@@ -1183,9 +1183,9 @@ void CScientist::SayNearCautious(void){
 	case 22:PlaySentenceSingular( "SC_QUESTION5", 4, VOL_NORM, ATTN_NORM );break;
 	case 23:PlaySentenceSingular( "SC_IDLE13", 4, VOL_NORM, ATTN_NORM );break;
 	default:break;
-	}//END OF switch
+	}// switch
 
-}//END OF SayNearCautious
+}// SayNearCautious
 
 
 void CScientist::DeclineFollowing( void )
@@ -1503,8 +1503,6 @@ void CScientist::StartTask( Task_t *pTask )
 	{
 		// HOLD UP.  If we can't even navigate to the first node, it's all over before it began.
 		// No, too crude of a check.  Other ways a path can work out but I forget what exactly.
-		// FUCK IT
-
 
 		////Vector vecGoal = m_Route[0].vecLocation;
 		//Vector vecGoal;
@@ -1846,7 +1844,7 @@ void CScientist::HandleAnimEvent( MonsterEvent_t *pEvent )
 	}
 	default:
 		CTalkMonster::HandleAnimEvent( pEvent );
-	}//END OF switch(event)
+	}// switch(event)
 }
 
 
@@ -2329,8 +2327,8 @@ GENERATE_TAKEDAMAGE_IMPLEMENTATION(CScientist)
 				alreadyRunningAway = TRUE;
 			}
 			*/
-		}//END OF entInflictor NULL check
-	}//END OF pevInflictor NULL check
+		}// entInflictor NULL check
+	}// pevInflictor NULL check
 
 
 	if(!alreadyRunningAway){
@@ -2526,7 +2524,7 @@ void CScientist::ReportAIState(void){
 	CTalkMonster::ReportAIState();
 
 	easyPrintLine("SCIENTIST: Body: %d Truebody: %d Skin: %d aggro: %d", pev->body, trueBody, pev->skin, this->aggro);
-}//END OF ReportAIState
+}// ReportAIState
 
 
 Schedule_t* CScientist::GetScheduleOfType ( int Type )
@@ -2770,7 +2768,7 @@ Schedule_t *CScientist::GetSchedule ( void )
 			}
 		}
 		break;
-	}//END OF while(TRUE)...  just a procedural loop to be interrupted as needed.
+	}// while(TRUE)...  just a procedural loop to be interrupted as needed.
 
 	CBaseEntity *pEntityScan = NULL;
 	// so we don't keep calling through the EHANDLE stuff
@@ -2912,7 +2910,7 @@ Schedule_t *CScientist::GetSchedule ( void )
 			}
 
 
-		}//END OF healTargetNPC check
+		}// healTargetNPC check
 
 
 		
@@ -2997,7 +2995,7 @@ Schedule_t *CScientist::GetSchedule ( void )
 
 
 			}
-		}//END OF IsFollowing OR tracking down NPC to heal
+		}// IsFollowing OR tracking down NPC to heal
 
 
 
@@ -3045,7 +3043,7 @@ Schedule_t *CScientist::GetSchedule ( void )
 
 
 		break;
-	}//END OF Swtich ON monsterstate
+	}// Swtich ON monsterstate
 
 
 	
@@ -3270,7 +3268,6 @@ void CScientist::MonsterThink(void){
 		if(m_pCine != NULL){
 			what = m_pCine->CanInterrupt();
 		}
-		int x = 666;
 	}
 
 
@@ -3354,7 +3351,7 @@ void CScientist::MonsterThink(void){
 		case 72:this->SetSequenceByName("wave"); break;
 		case 73:this->SetSequenceByName("wave"); break;
 		case 74:this->SetSequenceByName("wave"); break;
-		}//END OF switch
+		}// switch
 	}
 
 
@@ -3519,7 +3516,7 @@ void CScientist::MonsterThink(void){
 	}
 	*/
 
-}//END OF MonsterThink
+}// MonsterThink
 
 
 
@@ -4260,7 +4257,7 @@ void CScientist::HandleEventQueueEvent(int arg_eventID){
 			}
 
 		break;
-	}//END OF switch(...)
+	}// switch(...)
 
 }
 
@@ -4487,7 +4484,7 @@ int CScientist::LookupActivityHard(int activity){
 					}
 
 				}
-			}//END OF IsTalking check
+			}// IsTalking check
 			
 		}break;
 		// ACT_CROUCH includes crouch_idle2 and crouch_idle3.
@@ -4525,10 +4522,10 @@ int CScientist::LookupActivityHard(int activity){
 		}break;
 
 
-	}//END OF switch
+	}// switch
 	//not handled by above?  try the real deal.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF LookupActivityHard
+}// LookupActivityHard
 
 
 int CScientist::tryActivitySubstitute(int activity){
@@ -4570,7 +4567,7 @@ BOOL CScientist::violentDeathAllowed(void){
 BOOL CScientist::violentDeathClear(void){
 	//Works for a lot of things going backwards.
 	return violentDeathClear_BackwardsCheck(90);
-}//END OF violentDeathAllowed
+}// violentDeathAllowed
 int CScientist::violentDeathPriority(void){
 	return 3;
 }
@@ -4583,7 +4580,7 @@ BOOL CScientist::canPredictActRepeat(void) {
 
 void CScientist::initiateAss(void){
 	// not directly... do this and start the method when the think method runs next.
-	// Yes this fucking joke requires some design decisions. What am I doing.
+	// Yes this joke requires some design decisions. What am I doing.
 	explodeDelay = -3;
 }
 void CScientist::myAssHungers(void){
@@ -4608,7 +4605,7 @@ void CScientist::myAssHungers(void){
 				break;
 			}
 		}
-	}//END OF while(...)
+	}// while(...)
 	if(pickedNumber2 != NULL){
 		//Other one will look at me.
 		pickedNumber2->PlaySentenceNoPitchTo("!meme_my_ass_hungers_a", 21, 1.0, ATTN_NORM, TRUE, this);
@@ -4616,5 +4613,5 @@ void CScientist::myAssHungers(void){
 		this->PlaySentenceNoPitchUninterruptable("!meme_my_ass_hungers_b", 21, 1.0, ATTN_NORM, TRUE);
 		this->explodeDelay = gpGlobals->time + 14.1 - 0.8;
 	}
-}//END OF myAssHungers
+}// myAssHungers
 

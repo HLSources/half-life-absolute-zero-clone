@@ -83,7 +83,7 @@ CSound::CSound(){
 
 	canListenHandle = NULL;
 
-}//END OF CSound()
+}// CSound()
 
 
 //MODDD - new
@@ -91,7 +91,7 @@ void CSound::setCanListenCheck(  BOOL (* arg_canListenHandle)(CBaseEntity* pOthe
 
 	canListenHandle = arg_canListenHandle;
 
-}//END OF setCanListenCheck(...)
+}// setCanListenCheck(...)
 
 
 
@@ -272,7 +272,7 @@ CSound* CSoundEnt::InsertSound ( int iType, const Vector &vecOrigin, int iVolume
 	//MODDD - have to.
 	return &pSoundEnt->m_SoundPool[ iThisSound ];
 
-}//END OF InsertSound(...)
+}// InsertSound
 
 
 

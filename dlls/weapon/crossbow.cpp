@@ -50,14 +50,16 @@ EASY_CVAR_EXTERN_CLIENTSENDOFF_BROADCAST_DEBUGONLY(crossbowReloadSoundDelay)
 // MODDD - NOTICE: class CCrossbowBolt has been moved to its own file pair,
 // crossbowbolt.h/.cpp.  As stated above, it is serverside only.
 
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 LINK_ENTITY_TO_CLASS( weapon_crossbow, CCrossbow );
+#endif
 
 //MODDD - new.
 CCrossbow::CCrossbow(){
 
 	crossbowReloadSoundTimer = -1;
 
-}//END OF constructor
+}// constructor
 
 
 
@@ -314,10 +316,10 @@ void CCrossbow::FireSniperBolt(){
 		//pBolt->BoltTouch(tempEnt);
 		
 
-	}//END OF pHit null check
+	}// pHit null check
 #endif
 
-}//END OF FireSniperBolt
+}// FireSniperBolt
 
 void CCrossbow::FireBolt()
 {
@@ -506,13 +508,13 @@ void CCrossbow::ItemPostFrameThink(){
 		easyForcePrintLine("xbow_reload1w.wav PLAYED");
 		EMIT_SOUND_DYN(ENT(m_pPlayer->pev), CHAN_ITEM, "weapons/xbow_reload1.wav", RANDOM_FLOAT(0.95, 1.0), ATTN_NORM, 0, 93 + RANDOM_LONG(0,0xF));
 
-	}//END OF crossbowReloadSoundTimer check
+	}// crossbowReloadSoundTimer check
 
 	#endif
 	
 	CBasePlayerWeapon::ItemPostFrameThink();
 
-}//END OF ItemPostFrameThink()
+}// ItemPostFrameThink()
 
 
 
@@ -523,14 +525,15 @@ void CCrossbow::ItemPostFrame(){
 	
 
 	CBasePlayerWeapon::ItemPostFrame();
-}//END OF ItemPostFrame()
+}// ItemPostFrame()
 
 
 
 void CCrossbow::Reload( void )
 {
-	if ( m_pPlayer->ammo_bolts <= 0 )
+	if ( PlayerPrimaryAmmoCount() <= 0 ){
 		return;
+	}
 
 	if ( m_pPlayer->pev->fov != 0 )
 	{
@@ -616,6 +619,7 @@ void CCrossbow::WeaponIdle( void )
 
 
 
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 class CCrossbowAmmo : public CBasePlayerAmmo
 {
 	void Spawn( void )
@@ -647,5 +651,4 @@ class CCrossbowAmmo : public CBasePlayerAmmo
 	}
 };
 LINK_ENTITY_TO_CLASS( ammo_crossbow, CCrossbowAmmo );
-
-
+#endif

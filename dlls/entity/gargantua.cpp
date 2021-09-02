@@ -1908,7 +1908,7 @@ GENERATE_TRACEATTACK_IMPLEMENTATION(CGargantua){
 		//send "FALSE" for "useBloodEffect", as the hit effect to use was handled above already.
 		useBloodEffect = FALSE;
 		
-	}//END OF no normal damage check
+	}// no normal damage check
 
 
 	GENERATE_TRACEATTACK_PARENT_CALL(CBaseMonster);
@@ -1961,7 +1961,7 @@ void CGargantua::TraceAttack_Traceless(entvars_t* pevAttacker, float flDamage, V
 		if(isAliveVar){
 			flDamage = flDamage * 0.05;
 		}
-	}//END OF no normal damage check
+	}// no normal damage check
 
 
 	CBaseMonster::TraceAttack_Traceless(pevAttacker, flDamage, vecDir, bitsDamageType, bitsDamageTypeMod);
@@ -2171,7 +2171,7 @@ GENERATE_KILLED_IMPLEMENTATION(CGargantua)
 			GENERATE_KILLED_PARENT_CALL(CBaseMonster);
 		}
 	}
-}//END OF killed
+}// killed
 
 
 void CGargantua::onDelete(void) {
@@ -2782,7 +2782,7 @@ void CGargantua::RunTask( Task_t *pTask )
 						case TASK_MELEE_ATTACK2:{predictActRepeat(bits_COND_CAN_MELEE_ATTACK2); break;}
 						case TASK_SPECIAL_ATTACK1:{predictActRepeat(bits_COND_SPECIAL1); break;}
 						case TASK_SPECIAL_ATTACK2:{predictActRepeat(bits_COND_SPECIAL2); break;}
-					}//END OF inner switch
+					}// inner switch
 				}
 			
 				/*
@@ -3077,7 +3077,7 @@ void CGargantua::RunTask( Task_t *pTask )
 			*/
 
 
-			//}//END OF else(...)
+			//}// else(...)
 			
 		}
 		break;
@@ -3199,7 +3199,7 @@ void CGargantua::OnTakeDamageSetConditions(entvars_t *pevInflictor, entvars_t *p
 */
 	easyForcePrintLine("%s:%d OnTkDmgSetCond raw:%.2f fract:%.2f", getClassname(), monsterID, flDamage, (flDamage / pev->max_health));
 
-}//END OF OnTakeDamageSetConditions
+}// OnTakeDamageSetConditions
 
 
 BOOL CGargantua::usesAdvancedAnimSystem(void){
@@ -3459,11 +3459,11 @@ int CGargantua::LookupActivityHard(int activity){
 			*/
 			
 		break;
-	}//END OF switch
+	}// switch
 	
 	//not handled by above?  try the real deal.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF LookupActivityHard
+}// LookupActivityHard
 
 
 int CGargantua::tryActivitySubstitute(int activity){
@@ -3480,11 +3480,11 @@ int CGargantua::tryActivitySubstitute(int activity){
 		case ACT_RANGE_ATTACK1:
 
 		break;
-	}//END OF switch
+	}// switch
 
 	//not handled by above? We're not using the script to determine animation then. Rely on the model's anim for this activity if there is one.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF tryActivitySubstitute
+}// tryActivitySubstitute
 
 
 void CGargantua::HandleEventQueueEvent(int arg_eventID){

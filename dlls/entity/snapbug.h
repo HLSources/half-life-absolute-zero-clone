@@ -28,8 +28,8 @@ public:
 
 
 	
-};//END OF class CSnapBug
+};
 
 
 
-#endif //END OF #ifdef SNAPBUG_H
+#endif // SNAPBUG_H

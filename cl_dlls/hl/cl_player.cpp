@@ -68,8 +68,8 @@ void CBasePlayer::printOutWeapons(void) {
 			easyForcePrintLine("slot:%d row:%d %s", i, i2, STRING(thisItem->pev->classname));
 			i2++;
 			thisItem = thisItem->m_pNext;
-		}//END OF while(...)
-	}//END OF for(...)
+		}// while(...)
+	}// for(...)
 
 };
 
@@ -88,7 +88,8 @@ int CBasePlayer::AmmoInventory(int iAmmoIndex)
 	return m_rgAmmo[iAmmoIndex];
 }
 
-//MODDD - copied over.
+//MODDD - copied over.  Same with removal per config.
+#if SKIP_NAMED_AMMO_CACHE == 0
 void CBasePlayer::TabulateAmmo()
 {
 	ammo_9mm = AmmoInventory(AmmoIndex_9mm);
@@ -100,9 +101,7 @@ void CBasePlayer::TabulateAmmo()
 	ammo_uranium = AmmoInventory(AmmoIndex_uranium);
 	ammo_hornets = AmmoInventory(AmmoIndex_Hornets);
 }
-
-
-
+#endif
 
 
 
@@ -137,8 +136,8 @@ void CBasePlayer::SelectItem(const char* pstr)
 	}
 	*/
 
-	easyForcePrintLine("$$$$ AHA I SHOULD NEVER EVER HAPPEN, REPORT ME IF I DO YOU HEAR?! $$$$");
-}//END OF SelectItem
+	easyForcePrintLine("$$$$ I SHOULD NEVER EVER HAPPEN, REPORT ME IF I DO $$$$");
+}// SelectItem
 
 
 void CBasePlayer::setActiveItem(CBasePlayerItem* argItem) {

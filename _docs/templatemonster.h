@@ -184,9 +184,9 @@ public:
 	void HandleEventQueueEvent(int arg_eventID);
 	void HandleAnimEvent(MonsterEvent_t* pEvent );
 
-};//END OF class CTemplateMonster
+};
 
 
 
-#endif //END OF #ifdef TEMPLATEMONSTER_H
+#endif // TEMPLATEMONSTER_H
 

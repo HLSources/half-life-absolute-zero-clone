@@ -341,14 +341,14 @@ void CBaseAnimating::checkEndOfAnimation(void){
 
 			queuedAnimCurrent++;
 
-		}//END OF if(queuedAnim is picked)
+		}// if(queuedAnim is picked)
 		else{
 
 		*/
 		//	m_fSequenceFinished = TRUE;	// just in case it wasn't caught in GetEvents
 		//}
 
-	}//END OF passedCutoff check.
+	}// passedCutoff check.
 
 
 
@@ -588,7 +588,6 @@ void CBaseAnimating::StudioFrameAdvance ( float flInterval )
 	
 	/*
 	if(FClassnameIs(this->pev, "monster_panthereye")){
-		int x = 666;
 		easyForcePrintLine("MY RECENT FRAMETIME %.2f : %.2f", pev->frame, recentFrameAdvance);
 		//	easyPrintLine("DOES IT LOOP?! %d", m_fSequenceLoops);
 	}
@@ -1079,9 +1078,9 @@ void CBaseAnimating::DispatchAnimEvents ( float flInterval )
 			animEventQueueActive[i] = 0;
 			HandleEventQueueEvent( animEventQueueID[i]);
 		}
-	}//END OF for(...)   for custom events.
+	}// for(...)   for custom events.
 
-}//END OF DispatchAnimEvents
+}// DispatchAnimEvents
 
 
 

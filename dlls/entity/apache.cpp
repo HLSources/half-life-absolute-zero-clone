@@ -108,6 +108,7 @@ public:
 
 	GENERATE_TRACEATTACK_PROTOTYPE
 	GENERATE_TAKEDAMAGE_PROTOTYPE
+	const char* getHitgroupName(int arg_iHitgroup);
 
 };
 
@@ -288,7 +289,7 @@ void CApache::onDelete(void){
 
 	UTIL_StopSound(ENT(pev), CHAN_STATIC, "apache/ap_rotor2.wav" );
 
-}//END OF onDelete
+}// onDelete
 
 
 
@@ -958,8 +959,13 @@ GENERATE_TAKEDAMAGE_IMPLEMENTATION(CApache)
 
 
 
+// TODO: what are the hitgroups here?  Don't know if this all makes sense,
+// same for osprey.  Would prefer to make those macro constants for clarity,
+// HITGROUP_APACHE_whatever.
 GENERATE_TRACEATTACK_IMPLEMENTATION(CApache)
 {
+	float flDamageStart = flDamage;
+	int iHitgroupStart = ptr->iHitgroup;
 	// ALERT( at_console, "%d %.0f\n", ptr->iHitgroup, flDamage );
 
 	// ignore blades
@@ -987,6 +993,19 @@ GENERATE_TRACEATTACK_IMPLEMENTATION(CApache)
 		// AddMultiDamage( pevAttacker, this, flDamage / 2.0, bitsDamageType, bitsDamageTypeMod );
 		UTIL_Ricochet( ptr->vecEndPos, 2.0 );
 	}
+
+	debugTraceAttack(ptr, bitsDamageType, bitsDamageTypeMod, iHitgroupStart, flDamageStart, flDamage);
+
+	// NOTE: The apache/osprey do not call CBaseMonster/CBaseEntity traceattack.
+	// That ends up missing the AddMultiDamage and bleeding checks.
+	// Unsure if missing the AddMultiDamage call is completely ok but it seems
+	// to work out.
+}
+
+const char* CApache::getHitgroupName(int arg_iHitgroup){
+	// just do the number
+	// (seen: 1, 2, 6)
+	return CBaseEntity::getHitgroupName(arg_iHitgroup);
 }
 
 
@@ -1166,7 +1185,7 @@ void CApacheHVR::AccelerateThink( void  )
 
 float CApacheHVR::massInfluence(void){
 	return 0.40f;
-}//END OF massInfluence
+}// massInfluence
 
 int CApacheHVR::GetProjectileType(void){
 	return PROJECTILE_ROCKET;

@@ -1,11 +1,5 @@
 
-
-
-
 // This used to be in const.h. It now includes this file to keep custom CVars available everywhere.
-
-
-
 
 /*
 A few important notes:
@@ -15,26 +9,9 @@ Also, need to extern (all?) CVars in dlls/client.cpp.
 
 */
 
-
-
-
-
-
-
-
-
-
-
 #ifndef CVAR_CUSTOM_H
 #define CVAR_CUSTOM_H
 
-
-
-
-//CREDIT TO TEAM:
-//http://stackoverflow.com/questions/6671698/adding-quotes-to-argument-in-c-preprocessor
-#define QQQQ(x) #x
-#define QUOTE(x) QQQQ(x)
 
 
 
@@ -1343,6 +1320,6 @@ if(EASY_CVAR_GET(requirementName) == 1){\
 
 
 
-#endif //END OF CVAR_CUSTOM_H
+#endif// CVAR_CUSTOM_H
 
 

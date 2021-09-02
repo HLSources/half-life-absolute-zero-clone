@@ -409,9 +409,9 @@ void CFlyingMonster::StartTask( Task_t *pTask ){
 		default:
 			CBaseMonster::StartTask( pTask );
 		break;
-	}//END OF switch
+	}// switch
 
-}//END OF StartTask
+}// StartTask
 
 void CFlyingMonster::RunTask( Task_t *pTask ){
 	
@@ -423,9 +423,9 @@ void CFlyingMonster::RunTask( Task_t *pTask ){
 		default:
 			CBaseMonster::RunTask(pTask);
 		break;
-	}//END OF switch
+	}// switch
 
-}//END OF RunTask
+}// RunTask
 */
 
 
@@ -434,6 +434,6 @@ void CFlyingMonster::RunTask( Task_t *pTask ){
 // underwater is an issue, say so, that way (on the surface, prefer not to go underwater) can be sorted out.
 BOOL CFlyingMonster::SeeThroughWaterLine(void){
 	return TRUE;
-}//END OF SeeThroughWaterLine
+}// SeeThroughWaterLine
 
 

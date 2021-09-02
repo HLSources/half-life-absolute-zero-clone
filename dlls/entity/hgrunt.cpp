@@ -499,8 +499,6 @@ enum
 
 
 
-
-
 //=========================================================
 // AI Schedules Specific to this monster
 //=========================================================
@@ -1567,7 +1565,7 @@ void CHGrunt::hgruntUse( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE
 				break;
 			}
 
-		}//END OF pActivator check
+		}// pActivator check
 	}
 	else {
 		// redirect to MonsterUse
@@ -2126,6 +2124,8 @@ GENERATE_TRACEATTACK_IMPLEMENTATION(CHGrunt)
 	//MODDD - hardcoded damage requirement for player damage instead.  Shots over 25 can do headshots then.
 	//const float headshotDamageReq = gSkillData.plrDmg357;
 	//easyForcePrintLine("HGrunt::TraceAttack says I took %.2f damage.", flDamage);
+	float flDamageStart = flDamage;
+	int iHitgroupStart = ptr->iHitgroup;
 
 	if(
 		// Can not go headless from BLAST or equal-hitbox damage, hits to whatever bodygroup is
@@ -2168,8 +2168,8 @@ GENERATE_TRACEATTACK_IMPLEMENTATION(CHGrunt)
 					if (useBulletHitSound) { *useBulletHitSound = FALSE; }
 					useBloodEffect = FALSE;
 				}else {
-					//MODDD - Hitting the armor still shouldn't be insignificant, reduce damage by 15%.
-					flDamage *= 0.85;
+					//MODDD - Hitting the armor still shouldn't be insignificant, reduce damage by 25%.
+					flDamage *= 0.75;
 				}
 			}else if (bitsDamageType & (DMG_SLASH | DMG_CLUB) ) {
 				if (flDamage <= 20) {
@@ -2184,10 +2184,15 @@ GENERATE_TRACEATTACK_IMPLEMENTATION(CHGrunt)
 					flDamage *= 0.90;
 				}
 			}
-		}//END OF has helmet check
+		}// has helmet check
 
 		// it's head shot anyways
 		ptr->iHitgroup = HITGROUP_HEAD;
+	}
+	else if(ptr->iHitgroup == HITGROUP_HEAD){
+		// leave damage at ... well, it is a gaskmask there anyway.
+		// Cut by 20%.
+		flDamage *= 0.80;
 	}
 	else if (ptr->iHitgroup == HITGROUP_CHEST || ptr->iHitgroup == HITGROUP_STOMACH) {
 		// hits to the backback count as chest near the top, stomach near the bottom... really now.
@@ -2200,25 +2205,39 @@ GENERATE_TRACEATTACK_IMPLEMENTATION(CHGrunt)
 				// UNDONE!  Need to test blood effects.
 				//useBloodEffect = FALSE;
 			}
-			else {
+			else if(flDamage <= 20){
 				flDamage *= 0.85;
+			}else{
+				flDamage *= 0.9;
 			}
 		}
 	}
 	else {
-		// anywhere else, legs, arms, etc.?  Cut by 10%.
-		if (bitsDamageType & (DMG_BULLET)) {
-			flDamage *= 0.90;
+		// anywhere else, legs, arms, etc.?
+		if (bitsDamageType & (DMG_BULLET | DMG_SLASH | DMG_CLUB)) {
+			if (flDamage >= 20){
+				// 10%
+				flDamage = flDamage * 0.9;
+			}else{
+				// 20%
+				flDamage = flDamage * 0.8;
+			}
 		}
 	}
-	//END OF armor hitgroup check
+	// armor hitgroup check
 
-	easyPrintLine("hgrunt RECENT HITGROUP: %d", ptr->iHitgroup);
+	debugTraceAttack(ptr, bitsDamageType, bitsDamageTypeMod, iHitgroupStart, flDamageStart, flDamage);
 
 	//easyForcePrintLine("HGrunt::TraceAttack ended with %.2f damage.", flDamage);
 	GENERATE_TRACEATTACK_PARENT_CALL(CSquadMonster);
 }
 
+
+const char* CHGrunt::getHitgroupName(int arg_iHitgroup){
+	if(arg_iHitgroup == HITGROUP_HGRUNT_HELMET)return "HITGROUP_HGRUNT_HELMET";
+
+	return CBaseMonster::getHitgroupName(arg_iHitgroup);
+}
 
 
 
@@ -2355,7 +2374,7 @@ GENERATE_TAKEDAMAGE_IMPLEMENTATION(CHGrunt)
 		}
 		*/
 
-	}//END OF blast damage and act_cower (ducking for cover) check.
+	}// blast damage and act_cower (ducking for cover) check.
 
 
 	//EASY_CVAR_PRINTIF_PRE(hgruntPrintout, easyForcePrintLine("WHUT %d::ACT ideal:%d, cur:%d.", this->m_movementGoal, m_IdealActivity, m_movementActivity));
@@ -2515,7 +2534,7 @@ GENERATE_TAKEDAMAGE_IMPLEMENTATION(CHGrunt)
 				//EASY_CVAR_PRINTIF_PRE(hgruntPrintout, easyForcePrintLine("OW!!!@@@@@@@@@@@@@@@@@@@@@@ %.2f %d", lengthGoneWith, pathOkay) );
 
 
-			}//END OF if(m_hEnemy->IsPlayer())
+			}// if(m_hEnemy->IsPlayer())
 
 
 			//EASY_CVAR_PRINTIF_PRE(hgruntPrintout, easyForcePrintLine("TESETTT %d %.2f %.2f %.2f", decision, bestCoverLeftDist, bestCoverRightDist, (m_vecMoveGoal - pev->origin).Length()) );
@@ -2534,13 +2553,13 @@ GENERATE_TAKEDAMAGE_IMPLEMENTATION(CHGrunt)
 				}
 			}
 
-		}//END OF random check
+		}// random check
 
-	}//END OF stopped? check.
+	}// stopped? check.
 
 
 	return GENERATE_TAKEDAMAGE_PARENT_CALL(CSquadMonster);
-}//END OF TakeDamage
+}// TakeDamage
 
 
 
@@ -2595,7 +2614,7 @@ float CHGrunt::findCoverInDirection(const Vector& arg_vecStart, const float& arg
 
 			}
 
-		}//END OF loop.
+		}// loop.
 
 
 
@@ -2660,10 +2679,10 @@ float CHGrunt::findCoverInDirection(const Vector& arg_vecStart, const float& arg
 				EASY_CVAR_PRINTIF_PRE(hgruntPrintout, easyForcePrintLine("POTATOES!!!!!!! POTATOES!!!!!!!!!!!!!"));
 			}
 
-		}//END OF if(canTryAlternateDegrees)
-	}//END OF else
+		}// if(canTryAlternateDegrees)
+	}// else
 
-	}//END OF total distance check from left.
+	}// total distance check from left.
 
 
 	//safety.
@@ -2919,7 +2938,7 @@ BOOL CHGrunt::getMovementCanAutoTurn(void){
 		//strafing? forbid the auto turn, can get confusing to deal with.
 		return FALSE;
 	}
-}//END OF getMovementCanAutoTurn
+}// getMovementCanAutoTurn
 
 
 
@@ -3117,11 +3136,6 @@ BOOL CHGrunt::getIsStrafeLocked(void){
 
 void CHGrunt::MonsterThink ( void ){
 
-
-	/*
-	EASY_CVAR_PRINTIF_PRE(hgruntPrintout, easyForcePrintLine( "yey %d", test()) ) ;
-	*/
-
 	//EASY_CVAR_PRINTIF_PRE(hgruntPrintout, easyForcePrintLine("HGRUNT REPORT: %s : %d ROUTEINDEX: %d", getScheduleName(), getTaskNumber(), m_iRouteIndex);
 
 
@@ -3165,7 +3179,7 @@ void CHGrunt::MonsterThink ( void ){
 			case 30:this->SetSequenceByName("get_smashed");break;
 			case 31:this->SetSequenceByName("plunger");break;
 			case 32:this->SetSequenceByName("pipetoss");break;
-			}//END OF switch
+			}// switch
 		}
 
 		if(m_fSequenceFinished){
@@ -3180,13 +3194,9 @@ void CHGrunt::MonsterThink ( void ){
 		}
 	//MODDD - see if we can use the strafing anim.
 
-
-
 	SELF_checkSayRecentlyKilledAlly(this);
 
-
 	BOOL noStrafeForYou = FALSE;
-
 
 	//conditions that make it impossible to strafe.
 	if(hgruntAllowStrafe() == FALSE || m_movementGoal == MOVEGOAL_ENEMY || m_movementGoal == MOVEGOAL_TARGETENT){
@@ -3285,8 +3295,6 @@ void CHGrunt::MonsterThink ( void ){
 		}
 		
 
-
-		
 		/*
 		if(runAndGun){
 			if(dotProductStraight > EASY_CVAR_GET_DEBUGONLY(hgruntRunAndGunDotMin) && HasConditions(bits_COND_SEE_ENEMY) ){
@@ -3301,18 +3309,14 @@ void CHGrunt::MonsterThink ( void ){
 		if(!noStrafeForYou){
 
 			//check for opportunity to strafe...
-
 			/*
 			Vector vecForward;
 			Vector vecRight;
 			UTIL_MakeVectorsPrivate ( pev->angles, vecForward, vecRight, NULL );
 			*/
 
-
 			//My "right" isn't necessarily what we want.
 			//Vector2D vecRight2D = vecRight.Make2D().Normalize();
-
-
 
 			//Vector vecDirToPoint = ( m_Route[ m_iRouteIndex ].vecLocation - pev->origin );
 			////////////////Vector vecDirToPointNorm = ( m_Route[ m_iRouteIndex ].vecLocation - pev->origin ).Normalize();
@@ -3334,30 +3338,19 @@ void CHGrunt::MonsterThink ( void ){
 			//UTIL_drawLineFrame(pev->origin + Vector(0,0,6), m_vecMoveGoal + Vector(0,0,6), 9, 255, 255, 0);
 
 
-
-
-
-
 			//UTIL_drawLineFrame(pev->origin, m_Route[ 0 ].vecLocation, 9, 0, 0, 255);
 
-
-
 			//QUESTION: is my "right" or "left" (opposite of right) similar to the vector towards the "enemy"?  If so, this is a good position to strafe.
-
 
 			//my "right" is too arbitrary.
 			//float dotProduct = DotProduct ( vecTowardEnemy, vecRight2D ) ;
 
 			//IF right of where I'm going...
 			float dotProduct = DotProduct ( vec2DirToPointRight, vecTowardEnemyNorm ) ;
-
 			BOOL mayStrafeFire = FALSE;
-
-
-			strafeCanFire = TRUE;
-
 			float dotProductCutoff = 0.9;
 
+			strafeCanFire = TRUE;
 
 			/*
 			if(EASY_CVAR_GET_CLIENTSENDOFF_BROADCAST_DEBUGONLY(testVar) == 24){
@@ -3374,12 +3367,7 @@ void CHGrunt::MonsterThink ( void ){
 			}
 			*/
 
-
-			//easyForcePrintLine("ARE YOU A fine fellow %d %d %.2f %.2f %.2f", this->m_pSchedule != slhgruntStrafeToLocation, !canDoOpportunisticStrafe(), distanceToEnemy2D,dotProduct,dotProductCutoff);
-			
-			
 			//if(this->m_pSchedule != slhgruntStrafeToLocation){
-			
 				//if we're too close, or dotproduct isn't close enough to 1 or -1, don't try a strafe.
 				//Also, don't allow strafing if we're unable to do so opportunistically (can do if forced by schedule though).
 				if( (this->m_pSchedule != slhgruntStrafeToLocation && !canDoOpportunisticStrafe()) || distanceToEnemy2D < 80 || (dotProduct <= dotProductCutoff && dotProduct >= -dotProductCutoff) ){
@@ -3444,20 +3432,13 @@ void CHGrunt::MonsterThink ( void ){
 					//strafeMode = 0 + 1;
 				}else{
 
-
-
-
 					//WHUT
 					EASY_CVAR_PRINTIF_PRE(hgruntPrintout, easyForcePrintLine("HGRUNT: potatoes.  ???" ));
 				}
 				//EASY_CVAR_PRINTIF_PRE(hgruntPrintout, easyForcePrintLine("IDEAL STR: %d : %d %d", strafeCanFire, strafeMode, idealStrafeMode) );
 
-				//strafin'?  cool.
+			//}// the (this->m_pSchedule == slhgruntStrafeToLocation) check
 
-
-			//}//END OF the (this->m_pSchedule == slhgruntStrafeToLocation) check
-
-			
 			if(m_Activity == ACT_STRAFE_RIGHT){
 				if(dotProduct > 0.92){
 					hgruntMoveAndShootDotProductPass = TRUE;
@@ -3473,7 +3454,7 @@ void CHGrunt::MonsterThink ( void ){
 				}
 			}
 
-		}//END OF (!noStrafeForYou)
+		}// (!noStrafeForYou)
 		else{
 
 			/*
@@ -3484,7 +3465,7 @@ void CHGrunt::MonsterThink ( void ){
 			*/
 
 		}
-	}//END OF any edit check
+	}// any edit check
 	else{
 
 		/*
@@ -3515,33 +3496,12 @@ void CHGrunt::MonsterThink ( void ){
 	}
 	CBaseMonster::MonsterThink();
 
-
-
-}//END OF MonsterThink
+}// MonsterThink
 
 
 
 void CHGrunt::HandleEventQueueEvent(int arg_eventID){
 	
-	/*
-	MonsterEvent_t eee;
-
-	switch(arg_eventID){
-	case 0:
-		eee.event = 4;
-	break;
-	case 1:
-		eee.event = 5;
-	break;
-
-	}
-	
-	HandleAnimEvent(&eee);
-	*/
-
-	//easyForcePrintLine("DO I EVER GET CALLED?????");
-	return;
-
 }
 
 //=========================================================
@@ -3553,14 +3513,9 @@ void CHGrunt::HandleAnimEvent( MonsterEvent_t *pEvent )
 	if(EASY_CVAR_GET_CLIENTSENDOFF_BROADCAST_DEBUGONLY(thatWasntPunch) == 1){
 		return;
 	}
-	//pev->renderfx |= 128;
-	//return;
 
-	//easyForcePrintLine("ATTT THE %d", pEvent->event);
-	
 	//can flash if needed.
 	pev->renderfx &= ~NOMUZZLEFLASH;
-
 
 	if(pEvent->event >= 4 && pEvent->event <= 6){
 		//(pEvent->event >= 4 && pEvent->event <= 6)
@@ -3664,7 +3619,7 @@ void CHGrunt::HandleAnimEvent( MonsterEvent_t *pEvent )
 					DropItem( "ammo_ARgrenades", BodyTarget( pev->origin ), vecGunAngles );
 				}
 	#endif
-			}//END OF pev->framerate check
+			}// pev->framerate check
 		}
 		break;
 
@@ -3926,7 +3881,7 @@ void CHGrunt::StartMonster( void )
 						};
 					}
 				}
-			}//END OF for
+			}// for
 
 			if(!forbidLeaderChange){
 				EASY_CVAR_PRINTIF_PRE(squadmonsterPrintout, easyForcePrintLine("SELECTED LEADER: %d", selectedLeader == NULL));
@@ -3934,7 +3889,7 @@ void CHGrunt::StartMonster( void )
 					//make this "hassault" that was found the leader.
 					ChangeLeader(testLeader, selectedLeader);
 					testLeader = selectedLeader;
-				}//END OF if(selectedLeader != NULL)
+				}// if(selectedLeader != NULL)
 				else if(this->SquadCount() >= 3){
 					//no "hassaults" and the squad is of at least 3 members?  Make the current leading grunt an "hassault" (create one in his place) and transfer squad-data over.
 
@@ -4038,16 +3993,16 @@ void CHGrunt::StartMonster( void )
 					}
 					//return FALSE;
 					UTIL_Remove(testLeader);	
-				}//END OF else OF if(selectedLeader != NULL)
-			}//END OF if(!forbidLeaderChange)
-		}//END OF testLeader check
+				}// else OF if(selectedLeader != NULL)
+			}// if(!forbidLeaderChange)
+		}// testLeader check
 		//////////////////////////////////////////////////////////////////////////////////////////////
-		//END OF HGRUNTS CUSTOM SCRIPT
+		// HGRUNTS CUSTOM SCRIPT
 		//////////////////////////////////////////////////////////////////////////////////////////////
 		
 		
-	}//END OF has bits_CAP_SQUAD and not already in a squad check
-}//END OF StartMonster
+	}// has bits_CAP_SQUAD and not already in a squad check
+}// StartMonster
 
 
 
@@ -4422,7 +4377,7 @@ void CHGrunt::moveAnimUpdate(void){
 		case 3:
 			return LookupSequence("straferight_fire");
 		break;
-	}//END OF switch(strafeMode)
+	}// switch(strafeMode)
 
 	*/
 }
@@ -4502,7 +4457,7 @@ void CHGrunt::onAnimationLoop(void){
 				}
 			}
 
-		}//END OF movement activity being either strafe... check.
+		}// movement activity being either strafe... check.
 		else if(m_movementActivity == ACT_RUN){
 			//update the run anim?
 
@@ -4527,8 +4482,8 @@ void CHGrunt::onAnimationLoop(void){
 				}
 			}
 
-		}//END OF movement activity being run... check.
-	}//END OF (ideal activity & movement activity checks)
+		}// movement activity being run... check.
+	}// (ideal activity & movement activity checks)
 
 }
 
@@ -4583,7 +4538,7 @@ int CHGrunt::tryActivitySubstitute(int activity){
 
 	
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF tryActivitySubstitute
+}// tryActivitySubstitute
 
 
 int CHGrunt::LookupActivityHard(int activity){
@@ -4666,7 +4621,7 @@ int CHGrunt::LookupActivityHard(int activity){
 					EASY_CVAR_PRINTIF_PRE(hgruntPrintout, easyForcePrintLine("HGRUNT SEVERE ERROR B: Strafe failed to fetch anim!"));
 					return CBaseAnimating::LookupActivity(activity);
 				break;
-			}//END OF switch(strafeMode)
+			}// switch(strafeMode)
 
 		break;
 		case ACT_RUN:
@@ -4714,7 +4669,7 @@ int CHGrunt::LookupActivityHard(int activity){
 	}
 
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF LookupActivityHard
+}// LookupActivityHard
 
 
 
@@ -4772,7 +4727,7 @@ void CHGrunt::MakeIdealYaw( Vector vecTarget )
 		//UTIL_drawLineFrame(pev->origin, (vecProjection + Vector(0, 0, 3) ), 14, 255, 255, 255 );
 		pev->ideal_yaw = UTIL_VecToYaw ( vecTarget - pev->origin );
 	}
-}//END OF MakeIdealYaw
+}// MakeIdealYaw
 
 
 
@@ -4786,7 +4741,7 @@ void CHGrunt::StartReanimation(void) {
 
 
 
-}//END OF StartReanimation
+}// StartReanimation
 
 
 
@@ -4859,7 +4814,7 @@ void CHGrunt::RunTask ( Task_t *pTask )
 					}
 				}
 			}
-		}//END OF EASY_CVAR_GET_DEBUGONLY(hgruntMovementDeltaCheck)
+		}// EASY_CVAR_GET_DEBUGONLY(hgruntMovementDeltaCheck)
 
 		vecPrevOrigin = pev->origin;
 
@@ -5381,7 +5336,7 @@ Schedule_t *CHGrunt::GetSchedule( void )
 
 
 		}
-	}//END OF hear sound check
+	}// hear sound check
 
 
 	switch	( m_MonsterState )
@@ -5641,6 +5596,8 @@ Schedule_t *CHGrunt::GetSchedule( void )
 Schedule_t* CHGrunt::GetScheduleOfType ( int Type )
 {
 	EASY_CVAR_PRINTIF_PRE(hgruntPrintout, easyForcePrintLine("HGRUNT%d GetSchedOfType: %d", monsterID, Type));
+
+	DebugSchedule_SchedEnum_Add(this, Type, EntityClass_CHGrunt);
 
 
 	/*
@@ -5983,7 +5940,7 @@ void CHGruntRepel::RepelUse ( CBaseEntity *pActivator, CBaseEntity *pCaller, USE
 	DispatchSpawn( pEntity->edict() );
 
 	//break;
-	//}//END OF while(true) ... just to be skippable at any point.
+	//}// while(true) ... just to be skippable at any point.
 	//  ..wait, what was I thinking.  Why did I even make that while loop.    ah well.
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	CBaseMonster *pGrunt = pEntity->MyMonsterPointer( );
@@ -6268,7 +6225,7 @@ void CHGrunt::checkHeadGore(int iGib ){
 		}
 
 	}
-}//END OF checkHeadGore()
+}// checkHeadGore()
 
 
 
@@ -6312,3 +6269,36 @@ void CHGrunt::setEnemyLKP(CBaseEntity* theEnt){
 
 	//m_flLastEnemySightTime = gpGlobals->time;
 }
+
+
+
+
+const char* CHGrunt_ScheduleEnum_name[] =
+{
+	"SCHED_GRUNT_SUPPRESS",
+	"SCHED_GRUNT_ESTABLISH_LINE_OF_FIRE",
+	"SCHED_GRUNT_COVER_AND_RELOAD",
+	"SCHED_GRUNT_SWEEP",
+	"SCHED_GRUNT_FOUND_ENEMY",
+	"SCHED_GRUNT_REPEL",
+	"SCHED_GRUNT_REPEL_ATTACK",
+	"SCHED_GRUNT_REPEL_LAND",
+	"SCHED_GRUNT_WAIT_FACE_ENEMY",
+	"SCHED_GRUNT_TAKECOVER_FAILED",
+	"SCHED_GRUNT_ELOF_FAIL",
+	"SCHED_GRUNT_VICTORY_DANCE_STAND",
+	"SCHED_GRUNT_CHASE_FAIL"
+};
+
+const char* CHGrunt_TaskEnum_name[] =
+{
+	"TASK_GRUNT_FACE_TOSS_DIR",
+	"TASK_GRUNT_SPEAK_SENTENCE",
+	"TASK_GRUNT_CHECK_FIRE",
+	"TASK_HGRUNT_PICK_STRAFE_ACT",
+	"TASK_HGRUNT_STRAFEPATH"
+};
+
+
+GET_SCHEDULE_ENUM_NAME_IMPLEMENTATION(CHGrunt, CSquadMonster, LAST_COMMON_SCHEDULE+1, CHGrunt_ScheduleEnum_name)
+GET_TASK_ENUM_NAME_IMPLEMENTATION(CHGrunt, CSquadMonster, LAST_COMMON_TASK+1, CHGrunt_TaskEnum_name)

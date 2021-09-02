@@ -20,6 +20,7 @@
 #include "cbase.h"
 #include "basetoggle.h"
 #include "skill.h"
+#include "util_debugschedule.h"
 
 // monsters.h merged with this file.
 
@@ -62,11 +63,6 @@
 //             floatSinkSpeed to its full (initial) value if too much time passes without switching.
 //             Without this a diffferent waterlevel would leave this creatue stuck where it stopped thinking.
 #define WATER_DEAD_SINKSPEED_INITIAL 8
-
-
-
-
-
 
 
 
@@ -212,52 +208,14 @@
 
 
 
-
-// NOTE: tweak these values based on gameplay feedback:
-//(MODDD - that comment is not mine.)
-
-
-//MODD - old?
-/*
-#define PARALYZE_DURATION	2		// number of 2 second intervals to take damage
-#define PARALYZE_DAMAGE		1.0		// damage to take each 2 second interval
-
-#define NERVEGAS_DURATION	2
-#define NERVEGAS_DAMAGE		5.0
-
-#define POISON_DURATION		5
-#define POISON_DAMAGE		2.0
-
-#define RADIATION_DURATION	2
-#define RADIATION_DAMAGE	1.0
-
-#define ACID_DURATION		2
-#define ACID_DAMAGE			5.0
-
-#define SLOWBURN_DURATION	2
-#define SLOWBURN_DAMAGE		1.0
-
-#define SLOWFREEZE_DURATION	2
-#define SLOWFREEZE_DAMAGE	1.0
-*/
-
-
 #define PARALYZE_DAMAGE		gSkillData.tdmg_paralyze_damage
-
 #define NERVEGAS_DAMAGE		gSkillData.tdmg_nervegas_damage
-
 #define POISON_DAMAGE		gSkillData.tdmg_poison_damage
-
 #define RADIATION_DAMAGE	gSkillData.tdmg_radiation_damage
-
 #define ACID_DAMAGE			gSkillData.tdmg_acid_damage
-
 #define SLOWBURN_DAMAGE		gSkillData.tdmg_slowburn_damage
-
 #define SLOWFREEZE_DAMAGE	gSkillData.tdmg_slowfreeze_damage
-
 #define BLEEDING_DAMAGE		gSkillData.tdmg_bleeding_damage
-
 
 
 //MODDD - prototypes for h_ai.cpp methods (FBoxVisible, VecCheckToss, VecCheckThrow) moved to util.h.
@@ -266,12 +224,6 @@ extern DLL_GLOBAL Vector g_vecAttackDir;
 extern DLL_GLOBAL CONSTANT float g_flMeleeRange;
 extern DLL_GLOBAL CONSTANT float g_flMediumRange;
 extern DLL_GLOBAL CONSTANT float g_flLongRange;
-
-
-
-
-extern void UTIL_MoveToOrigin(edict_t* pent, const Vector& vecGoal, float flDist, int iMoveType);
-
 
 
 
@@ -475,7 +427,6 @@ public:
 // Scripted sequence Info
 	SCRIPTSTATE m_scriptState;		// internal cinematic state
 	CCineMonster* m_pCine;
-
 
 
 
@@ -897,6 +848,9 @@ public:
 	void reportNetName(void);
 
 	virtual void ReportAIState( void );
+
+	virtual void debugTraceAttack(TraceResult* ptr, int bitsDamageType, int bitsDamageTypeMod, int iHitgroup, float flDamageStart, float flDamageFinal);
+	virtual const char* getHitgroupName(int arg_iHitgroup);
 
 	void CheckAttacks ( CBaseEntity *pTarget, float flDist );
 	virtual int CheckEnemy ( CBaseEntity *pEnemy );
@@ -1372,6 +1326,12 @@ public:
 	virtual BOOL CanMakeBloodParticles(void);
 	virtual BOOL AffectedByKnockback(void);
 
+
+	//MODDD - to support DEBUG_SCHEDULE, dummied if that is off
+	DEBUG_SCHEDULE_VARS
+	GET_SCHEDULE_ENUM_PROTOTYPE
+	GET_TASK_ENUM_NAME_PROTOTYPE
+
 };
 
 
@@ -1380,7 +1340,7 @@ public:
 /*
 //MODDD - never inherit from only, inherit from CBaseMonster or some child class too, and inherit from CResawpanble as a 2nd choice.
 // Could be any entity though, but CBaseMonster's respawn methods, well, expect a CBaseMonster of some kind for the MonsterInit call.
-// OOOoooookay.  Fuck this.  Don't do this.   It bad.
+// OOOoooookay. Nevermind. Don't do this.
 class CRespawnable {
 public:
 	Vector respawn_origin;

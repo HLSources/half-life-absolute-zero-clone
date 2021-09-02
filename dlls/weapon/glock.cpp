@@ -35,26 +35,26 @@ EASY_CVAR_EXTERN_CLIENTSENDOFF_BROADCAST(wpn_glocksilencer)
 //EASY_CVAR_EXTERN_CLIENTSENDOFF_BROADCAST_DEBUGONLY(testVar)
 
 
-extern float global2_wpn_glocksilencer;
-
-
-
-
-LINK_ENTITY_TO_CLASS( weapon_glock, CGlock );
-LINK_ENTITY_TO_CLASS( weapon_9mmhandgun, CGlock );
-
-//MODDD - check for these variations by name!
-LINK_ENTITY_TO_CLASS( weapon_glocksilencer, CGlock );
-LINK_ENTITY_TO_CLASS( weapon_9mmhandgunsilencer, CGlock );
-
-
-
 
 #ifndef CLIENT_DLL
 
 #else
+	extern float global2_wpn_glocksilencer;
 	extern int global2PSEUDO_playerHasGlockSilencer;
 #endif
+
+
+
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
+LINK_ENTITY_TO_CLASS( weapon_glock, CGlock );
+LINK_ENTITY_TO_CLASS( weapon_9mmhandgun, CGlock );
+
+//MODDD
+LINK_ENTITY_TO_CLASS( weapon_glocksilencer, CGlock );
+LINK_ENTITY_TO_CLASS( weapon_9mmhandgunsilencer, CGlock );
+#endif
+
+
 
 
 
@@ -165,7 +165,7 @@ CGlock::CGlock(){
 
 	//???
 	//m_fireState = 1;
-}//END OF CGlock constructor
+}// CGlock constructor
 
 
 
@@ -378,7 +378,6 @@ int CGlock::GetItemInfo(ItemInfo *p)
 	// Is it necessary?  It might be?
 	// Yes, it is.  Only precaching in util.cpp sets the ItemInfoArray spots
 	// with what comes from "GetItemInfo".  So this has to be forced in case of a change since then.
-	// Thank you 'past me' for saying fucking nothing here!
 	ItemInfoArray[ m_iId ].iMaxClip = p->iMaxClip;
 
 
@@ -493,7 +492,7 @@ void CGlock::Holster( int skiplocal /* = 0 */ ){
 	DefaultHolster(GLOCK_HOLSTER, skiplocal, (m_fireState& ~128), (16.0f/20.0f) );
 	//CBasePlayerWeapon::Holster();
 
-}//END OF Holster
+}// Holster
 
 //MODDD - everybody do the swap.
 void CGlock::ItemPreFrame(){
@@ -1046,8 +1045,9 @@ void CGlock::GlockFire( float flSpread , float flCycleTime, BOOL fUseAutoAim )
 void CGlock::Reload( void )
 {
 
-	if ( m_pPlayer->ammo_9mm <= 0 )
-		 return;
+	if ( PlayerPrimaryAmmoCount() <= 0 ){
+		return;
+	}
 	
 	int iResult;
 	if (m_iClip == 0){
@@ -1178,7 +1178,7 @@ void CGlock::OnReloadApply(void) {
 
 	setFiredSinceReloadFalse();
 
-}//END OF OnReloadApply
+}// OnReloadApply
 
 
 
@@ -1220,11 +1220,7 @@ void CGlock::SetBodyFromDefault(void) {
 
 
 
-
-
-
-
-
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 class CGlockAmmo : public CBasePlayerAmmo
 {
 	void Spawn( void )
@@ -1275,14 +1271,4 @@ class CGlockAmmo : public CBasePlayerAmmo
 };
 LINK_ENTITY_TO_CLASS( ammo_glockclip, CGlockAmmo );
 LINK_ENTITY_TO_CLASS( ammo_9mmclip, CGlockAmmo );
-
-
-
-
-
-
-
-
-
-
-
+#endif

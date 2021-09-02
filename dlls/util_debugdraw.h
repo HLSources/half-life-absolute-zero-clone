@@ -1,15 +1,9 @@
-
-
-
 // New file to contain script related to drawing debug lines in a more organized way.
 // That is, specifing coords for a line to be drawn at (DebugLine_Setup, etc.) so that
 // a line can be continually drawn at those coords from then on for easy viewing later.
 // Has more control than the TE_LINE (or whatever it was) call that draws dotted lines
 // for some fixed interval.  These can be immediately replaced when needed to avoid 
 // irrelevant/outdated spam.
-
-
-
 
 #ifndef UTIL_DEBUGDRAW_H
 #define UTIL_DEBUGDRAW_H
@@ -24,7 +18,6 @@ class CPathTrack;
 
 //For anywhere else that wants to know this?
 #define DEBUG_LINE_WIDTH 8
-
 
 
 class DebugLine{
@@ -145,21 +138,4 @@ extern float nextSpecialNodeAlternateTime;
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 
-
-
-#endif //END OF UTIL_DEBUGDRAW_H
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#endif// UTIL_DEBUGDRAW_H

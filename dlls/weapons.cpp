@@ -391,7 +391,7 @@ CBaseEntity* CBasePlayerItem::Respawn( void )
 void CBasePlayerItem::DefaultTouchRemoveThink( CBaseEntity *pOther){
 	DefaultTouch(pOther);
 	SetThink ( NULL );
-}//END OF DefaultTouchRemoveThink(...)
+}// DefaultTouchRemoveThink(...)
 
 void CBasePlayerItem::DefaultTouch( CBaseEntity *pOther )
 {
@@ -483,7 +483,7 @@ float CBasePlayerWeapon::randomIdleAnimationDelay(void){
 	}else{
 		return 0;
 	}
-}//END OF randomIdleAnimationDelay
+}// randomIdleAnimationDelay
 
 
 
@@ -599,7 +599,9 @@ void CBasePlayerWeapon::ItemPostFrame( void )
 
 			}
 
+#if SKIP_NAMED_AMMO_CACHE == 0
 			m_pPlayer->TabulateAmmo();
+#endif
 
 			//MODDD - new event!
 			this->OnReloadApply();
@@ -679,9 +681,9 @@ void CBasePlayerWeapon::ItemPostFrame( void )
 			canCallNeither = FALSE;
 		break;
 
-		}//END OF switch(...)
+		}// switch(...)
 
-	}//END OF (both held)
+	}// (both held)
 	*/
 
 	if(canCallNeither && !secondaryHeld && !primaryHeld){
@@ -726,7 +728,9 @@ void CBasePlayerWeapon::ItemPostFrame( void )
 			}
 		}
 
+#if SKIP_NAMED_AMMO_CACHE == 0
 		m_pPlayer->TabulateAmmo();
+#endif
 		SecondaryAttack();
 
 		//MODDD NOTE - ?????
@@ -775,7 +779,9 @@ void CBasePlayerWeapon::ItemPostFrame( void )
 		}
 		*/
 		
+#if SKIP_NAMED_AMMO_CACHE == 0
 		m_pPlayer->TabulateAmmo();
+#endif
 		if(EASY_CVAR_GET_CLIENTSENDOFF_BROADCAST_DEBUGONLY(viewModelPrintouts)==1)easyForcePrintLine("Postframe PrimaryAttack!");
 		PrimaryAttack();
 
@@ -1249,7 +1255,6 @@ BOOL CBasePlayerWeapon::AddPrimaryAmmo( int iCount, char *szName, int iMaxClip, 
 		iIdAmmo = m_pPlayer->GiveAmmoID( iCount, myPrimaryAmmoType, iMaxCarry );
 	}
 	//MODDD - nope!  Ammo to an existing weapon always goes straight to the pool.
-	// Reload you lazy bastard.
 	else if (m_iClip == 0 && g_isNewWeapon == TRUE)
 	{
 		int i;
@@ -1426,7 +1431,9 @@ BOOL CBasePlayerWeapon::DefaultDeploy( char *szViewModel, char *szWeaponModel, i
 
 	m_chargeReady &= ~128;
 
+#if SKIP_NAMED_AMMO_CACHE == 0
 	m_pPlayer->TabulateAmmo();
+#endif
 	m_pPlayer->pev->viewmodel = MAKE_STRING(szViewModel);
 	m_pPlayer->pev->weaponmodel = MAKE_STRING(szWeaponModel);
 	strcpy( m_pPlayer->m_szAnimExtention, szAnimExt );
@@ -1472,7 +1479,7 @@ BOOL CBasePlayerWeapon::DefaultDeploy( char *szViewModel, char *szWeaponModel, i
 	}
 	*/
 	return TRUE;
-}//END OF DefaultDeploy
+}// DefaultDeploy
 
 
 void CBasePlayerWeapon::DefaultHolster( int iAnim, int skiplocal /* = 0 */, int body, float holsterAnimTime )
@@ -1500,7 +1507,7 @@ void CBasePlayerWeapon::DefaultHolster( int iAnim, int skiplocal /* = 0 */, int 
 	SendWeaponAnimBypass( iAnim );
 
 
-}//END OF DefaultHolster
+}// DefaultHolster
 
 
 

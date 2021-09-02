@@ -662,7 +662,7 @@ int CPantherEye::Restore( CRestore &restore )
 
 float CPantherEye::HearingSensitivity(void){
 	return 2.2f;
-}//END OF HearingSensitivity
+}// HearingSensitivity
 
 
 
@@ -742,7 +742,7 @@ BOOL CPantherEye::testLeapNoBlock(void){
 	}
 
 	return TRUE;
-}//END OF testLeapNoBlock
+}// testLeapNoBlock
 
 
 
@@ -815,7 +815,7 @@ BOOL CPantherEye::testLeapNoBlock_Forward(void){
 	
 
 	return TRUE;
-}//END OF testLeapNoBlock_Forward
+}// testLeapNoBlock_Forward
 
 
 
@@ -1101,7 +1101,7 @@ int CPantherEye::LookupActivityHard(int activity){
 						animChoiceString = "idle_figit";
 					break;
 				}
-			}//END OF else OF sneak check
+			}// else OF sneak check
 
 
 			
@@ -1389,7 +1389,7 @@ void CPantherEye::HandleEventQueueEvent(int arg_eventID){
 			JumpEvent(FALSE);
 
 		}break;
-	}//END OF switch(arg_eventID)
+	}// switch(arg_eventID)
 
 }
 
@@ -1687,7 +1687,7 @@ void CPantherEye::Spawn()
 
 void CPantherEye::SetEyePosition(void){
 	pev->view_ofs = VEC_VIEW;
-}//END OF SetEyePosition
+}// SetEyePosition
 
 
 
@@ -2052,7 +2052,7 @@ void CPantherEye::MonsterThink ( void )
 
 			}
 		}
-	}//END OF dead check
+	}// dead check
 
 
 	CBaseMonster::MonsterThink();
@@ -2077,7 +2077,6 @@ void CPantherEye::PrescheduleThink(void){
 		//pissedRunTime != -1 &&
 		if(pissedRunTime != -1 && gpGlobals->time >= pissedRunTime){
 			// Not pissed?  If I don't see the enemy, drop it.
-			// FUCKING
 			if(!HasConditions(bits_COND_SEE_ENEMY) && !HasConditions(bits_COND_NEW_ENEMY)){
 				pissedRunTime = -1;
 				ForgetEnemy();
@@ -2219,7 +2218,7 @@ void CPantherEye::PrescheduleThink(void){
 							}
 						}
 					}
-				}//END OF if(pissedOffTime == -1)
+				}// if(pissedOffTime == -1)
 				else{
 					if(!HasConditions(bits_COND_ENEMY_OCCLUDED) && HasConditions(bits_COND_SEE_ENEMY)){
 
@@ -2287,7 +2286,7 @@ void CPantherEye::PrescheduleThink(void){
 				}
 
 			}
-		}//END OF if(m_hEnemy != NULL)
+		}// if(m_hEnemy != NULL)
 		else{
 			//no enemy?  Reset all timers.
 			runawayTime = -1;
@@ -2344,7 +2343,7 @@ void CPantherEye::PrescheduleThink(void){
 		}
 
 
-	}//END OF if(pev->deadflag == DEAD_NO &&
+	}// if(pev->deadflag == DEAD_NO &&
 	else{
 
 		//////easyForcePrintLine(".....???????? %d : %d   %d %d", monsterID, pTask->iTask, pev->deadflag, deadSetActivityBlock);
@@ -2824,7 +2823,7 @@ void CPantherEye::MoveExecute( CBaseEntity *pTargetEnt, const Vector &vecDir, fl
 	//otherwise just do what the parent class does, it works.
 	CBaseMonster::MoveExecute(pTargetEnt, vecDir, flInterval);
 	
-}//END OF MoveExecute
+}// MoveExecute
 
 
 
@@ -3319,7 +3318,7 @@ BOOL CPantherEye::violentDeathAllowed(void){
 BOOL CPantherEye::violentDeathClear(void){
 	// Works for a lot of things going backwards.
 	return violentDeathClear_BackwardsCheck(430);
-}//END OF violentDeathAllowed
+}// violentDeathAllowed
 int CPantherEye::violentDeathPriority(void){
 	return 3;
 }
@@ -3377,7 +3376,7 @@ void CPantherEye::OnTakeDamageSetConditions(entvars_t *pevInflictor, entvars_t *
 	easyForcePrintLine("%s:%d OnTkDmgSetCond raw:%.2f fract:%.2f", getClassname(), monsterID, flDamage, (flDamage / pev->max_health));
 
 	
-}//END OF OnTakeDamageSetConditions
+}// OnTakeDamageSetConditions
 
 int CPantherEye::getHullIndexForNodes(void){
     return NODE_LARGE_HULL;  //safe?
@@ -3387,7 +3386,7 @@ int CPantherEye::getHullIndexForNodes(void){
 // Will work out something if there's ever an issue here.
 BOOL CPantherEye::SeeThroughWaterLine(void){
 	return TRUE;
-}//END OF SeeThroughWaterLine
+}// SeeThroughWaterLine
 
 
 // AREWIOSDI:TGBJTDFH JRSTIPEe5wtrhiok

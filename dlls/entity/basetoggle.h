@@ -82,4 +82,4 @@ public:
 #define SetMoveDone( a ) m_pfnCallWhenMoveDone = static_cast <void (CBaseToggle::*)(void)> (a)
 
 
-#endif //END OF BASETOGGLE_H
+#endif // BASETOGGLE_H

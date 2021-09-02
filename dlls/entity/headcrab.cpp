@@ -861,7 +861,7 @@ Schedule_t* CHeadCrab::GetScheduleOfType ( int Type )
 						ClearConditions(bits_COND_CAN_RANGE_ATTACK1);
 						return GetSchedule();
 					}
-				}//END OF enemy check
+				}// enemy check
 				*/
 
 				return &slHCRangeAttack1[0];
@@ -916,12 +916,12 @@ int CHeadCrab::tryActivitySubstitute(int activity) {
 			}
 
 		break; }
-	}//END OF switch
+	}// switch
 
 
 	// not handled by above? Rely on the model's anim for this activity if there is one.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF tryActivitySubstitute
+}// tryActivitySubstitute
 
 int CHeadCrab::LookupActivityHard(int activity) {
 	int i = 0;
@@ -942,11 +942,11 @@ int CHeadCrab::LookupActivityHard(int activity) {
 			}
 
 		break; }
-	}//END OF switch
+	}// switch
 
 	// not handled by above?  try the real deal.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF LookupActivityHard
+}// LookupActivityHard
 
 
 
@@ -963,16 +963,16 @@ void CHeadCrab::HandleEventQueueEvent(int arg_eventID) {
 
 
 		break; }
-	}//END OF switch
+	}// switch
 
-}//END OF HandleEventQueueEvent
+}// HandleEventQueueEvent
 
 
 
  // If a headcrab lands in the water, go ahead and let it target something to jump out at.  Kinda useless stuck in there.
 BOOL CHeadCrab::SeeThroughWaterLine(void){
 	return TRUE;
-}//END OF SeeThroughWaterLine
+}// SeeThroughWaterLine
 
 
 

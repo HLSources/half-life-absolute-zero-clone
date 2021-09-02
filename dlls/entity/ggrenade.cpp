@@ -267,7 +267,7 @@ void StaticExplode(Vector rawExplodeOrigin, float rawDamage, float flRange, CBas
 		}
 		//::DebugLine_Setup(7, vecCheckStart, explosionOrigin, trToEffectOrigin.flFraction);
 
-	}//END OF surface hit check (pTrace)
+	}// surface hit check (pTrace)
 
 	//is this change from pev->origin to explosionOrigin ok?
 	int iContents = UTIL_PointContents(explosionOrigin);
@@ -333,7 +333,7 @@ void StaticExplode(Vector rawExplodeOrigin, float rawDamage, float flRange, CBas
 				CBaseEntity::Create("spark_shower", explosionOrigin, pTrace->vecPlaneNormal, NULL);
 		}
 	}
-}//END OF StaticExplode
+}// StaticExplode
 
 
 void CGrenade::Smoke( void )
@@ -435,7 +435,7 @@ void CGrenade::ExplodeTouch( CBaseEntity *pOther )
 
 		Explode( &tr, DMG_BLAST );
 		//easyPrintLine("cheat_touchNeverExplodes what??");
-	}//END OF CVar check...
+	}// CVar check
 	
 }
 

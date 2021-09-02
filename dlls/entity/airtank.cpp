@@ -150,7 +150,7 @@ void CAirtank::TankTouch( CBaseEntity *pOther )
 
 
 		REMOVE_ENTITY(edict());
-	}//END OF if(pPlayer->m_rgItems[ITEM_RADIATION] < 5)
+	}// if(pPlayer->m_rgItems[ITEM_RADIATION] < 5)
 	//////////////////////////////////////////////////////////////////////
 
 

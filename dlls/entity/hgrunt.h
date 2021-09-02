@@ -145,7 +145,7 @@ public:
 	void moveAnimUpdate(void);
 
 	//MODDD - NEW.  Overriding 
-	virtual void StartMonster(void);
+	void StartMonster(void);
 
 	void Spawn( void );
 	void Precache( void );
@@ -205,10 +205,9 @@ public:
 	Schedule_t	*GetSchedule( void );
 	Schedule_t  *GetScheduleOfType ( int Type );
 
-	//MODDD
-
 	GENERATE_TRACEATTACK_PROTOTYPE
 	GENERATE_TAKEDAMAGE_PROTOTYPE
+	const char* getHitgroupName(int arg_iHitgroup);
 
 	int IRelationship ( CBaseEntity *pTarget );
 
@@ -250,6 +249,9 @@ public:
 
 	float getDistTooFar(void);
 	void setEnemyLKP(CBaseEntity* theEnt);
+
+	GET_SCHEDULE_ENUM_PROTOTYPE
+	GET_TASK_ENUM_NAME_PROTOTYPE
 
 };
 

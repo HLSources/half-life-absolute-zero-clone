@@ -109,8 +109,7 @@
 
 // weapon clip/carry ammo capacities
 
-//MODDD - CLEVER BASTARD.  Just redirect these to our
-// new skill CVar constants.
+//MODDD - Just redirect these to our new skill CVar constants.
 /**
 #define URANIUM_MAX_CARRY		100
 #define _9MM_MAX_CARRY			120    // was 150
@@ -147,8 +146,7 @@
 // but logic isn't strong there anyway.  If it were to be smarter, the gsSkillData's
 // would need to be sent to be broadcasted from server to clientside for all players
 // at startup.      ........no.
-// And using 254 instead of 255 in case 255 is some equivalent for '-1' in interpreting
-// a signed type as unsigned somewhere.
+// And using 254 instead of 255 in case 255 becomes -1 if interpreted as a signed byte.
 #define URANIUM_MAX_CARRY		254
 #define _9MM_MAX_CARRY			254
 #define _357_MAX_CARRY			254

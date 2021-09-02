@@ -295,31 +295,6 @@ void CCineMonster::Touch(CBaseEntity* pOther)
 }
 
 
-/*
-	entvars_t *pevOther = VARS( gpGlobals->other );
-
-	if ( !FBitSet ( pevOther->flags , FL_MONSTER ) )
-	{// touched by a non-monster.
-		return;
-	}
-
-	pevOther->origin.z += 1;
-
-	if ( FBitSet ( pevOther->flags, FL_ONGROUND ) )
-	{// clear the onground so physics don't bitch
-		pevOther->flags -= FL_ONGROUND;
-	}
-
-	// toss the monster!
-	pevOther->velocity = pev->movedir * pev->speed;
-	pevOther->velocity.z += m_flHeight;
-
-
-	pev->solid = SOLID_NOT;// kill the trigger for now !!!UNDONE
-}
-*/
-
-
 //
 // ********** Cinematic DIE **********
 //
@@ -1189,9 +1164,9 @@ void CBaseMonster::OnCineCleanup(CCineMonster* pOldCine) {
 		// We should have some animation to put these guys in, but for now it's idle.
 		// Due to NOINTERP above, there won't be any blending between this anim & the sequence
 		m_Activity = ACT_RESET;
-	}//END OF pOldCine->m_iszPlay check
+	}// pOldCine->m_iszPlay check
 
-}//END OF OnCineCleanup
+}// OnCineCleanup
 
 
 

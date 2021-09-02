@@ -106,7 +106,7 @@ public:
 	virtual int myWeaponMaxAmmo();
 
 
-};//END OF CPickupWalker
+};// CPickupWalker
 
 /*
 const char *CPickupWalker::pIdleSounds[] = 
@@ -140,7 +140,7 @@ public:
 	int LookupActivityHard(int activity);
 	int tryActivitySubstitute(int activity);
 
-};//END OF CPickupWalker
+};// CPickupWalker
 
 
 
@@ -166,7 +166,7 @@ public:
 	int tryActivitySubstitute(int activity);
 
 
-};//END OF CPickupWalker
+};// CPickupWalker
 
 
 #endif //PICKUPWALKER_H

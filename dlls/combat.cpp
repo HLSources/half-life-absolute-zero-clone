@@ -189,7 +189,7 @@ GENERATE_GIBMONSTER_IMPLEMENTATION(CBaseMonster)
 	GibMonsterSound(gibbed);
 	GibMonsterEnd(gibbed);
 
-}//END OF GibMonster
+}// GibMonster
 
 
 //parameter: BOOL fGibSpawnsDecal
@@ -309,7 +309,7 @@ GENERATE_GIBMONSTERGIB_IMPLEMENTATION(CBaseMonster){
 	}
 
 	return gibbed;
-}//END OF GibMonsterGib
+}// GibMonsterGib
 
 
 
@@ -331,7 +331,7 @@ GENERATE_GIBMONSTERSOUND_IMPLEMENTATION(CBaseMonster){
 		UTIL_playMetalGibSound(pev);
 	}
 
-}//END OF GibMonsterSound
+}// GibMonsterSound
 
 
 
@@ -382,7 +382,7 @@ GENERATE_GIBMONSTEREND_IMPLEMENTATION(CBaseMonster){
 
 
 
-}//END OF GibMonsterEnd
+}// GibMonsterEnd
 
 
 
@@ -488,7 +488,7 @@ Activity CBaseMonster::GetDeathActivity ( void )
 				{
 					deathActivity = ACT_DIEFORWARD;
 				}
-			}//END OF ACT_DIEFORWARD check
+			}// ACT_DIEFORWARD check
 		}
 		else if ( flDot <= -0.3 )
 		{
@@ -521,16 +521,16 @@ Activity CBaseMonster::GetDeathActivity ( void )
 					{
 						deathActivity = ACT_DIEBACKWARD;
 					}
-				}//END OF ACT_DIEBACKWARD check
+				}// ACT_DIEBACKWARD check
 			}
 
 
 
-		}//END OF flDot checks
-	}//END OF fCanTryDirection
+		}// flDot checks
+	}// fCanTryDirection
 
 	return deathActivity;
-}//END OF GetDeathActivity
+}// GetDeathActivity
 
 
 //=========================================================
@@ -583,7 +583,7 @@ Activity CBaseMonster::GetSmallFlinchActivity ( void )
 	}
 
 	return flinchActivity;
-}//END OF GetSmallFlinchActivity
+}// GetSmallFlinchActivity
 
 
 Activity CBaseMonster::GetBigFlinchActivity(void){
@@ -599,7 +599,7 @@ Activity CBaseMonster::GetBigFlinchActivity(void){
 	}
 
 	return flinchActivity;
-}//END OF GetBigFlinchActivity
+}// GetBigFlinchActivity
 
 
 
@@ -698,7 +698,7 @@ void CBaseMonster::BecomeDead(void)
 				pev->velocity.z += tossAmount * 0.07;
 
 				pev->groundentity = NULL;
-			}//END OF monsterKilledToss check
+			}// monsterKilledToss check
 
 		}// damage type checks
 
@@ -860,7 +860,7 @@ GENERATE_KILLED_IMPLEMENTATION(CBaseMonster)
 	//MODDD - well golly gee, I do believe you are now dead
 	Remember(bits_MEMORY_KILLED);
 
-}//END OF Killed
+}// Killed
 
 
 
@@ -1254,7 +1254,7 @@ BOOL CBaseEntity::FVisible ( CBaseEntity *pEntity )
 	{
 		return TRUE;// line of sight is valid.
 	}
-}//END OF FVisible
+}// FVisible
 
 //=========================================================
 // FVisible - returns true if a line can be traced from
@@ -1292,7 +1292,7 @@ BOOL CBaseEntity::FVisible ( const Vector &vecTargetOrigin )
 	{
 		return TRUE;// line of sight is valid.
 	}
-}//END OF FVisible
+}// FVisible
 
 
 
@@ -1333,7 +1333,7 @@ BOOL CBaseEntity::FVisible (const Vector& vecLookerOrigin, CBaseEntity *pEntity 
 	{
 		return TRUE;// line of sight is valid.
 	}
-}//END OF FVisible
+}// FVisible
 
 BOOL CBaseEntity::FVisible (const Vector& vecLookerOrigin, const Vector &vecTargetOrigin )
 {
@@ -1361,7 +1361,7 @@ BOOL CBaseEntity::FVisible (const Vector& vecLookerOrigin, const Vector &vecTarg
 	{
 		return TRUE;// line of sight is valid.
 	}
-}//END OF FVisible
+}// FVisible
 
 
 
@@ -1587,7 +1587,7 @@ BOOL CBaseEntity::ChangeHealthFiltered(entvars_t* pevAttacker, float flDamage) {
 		if (attacka != NULL && attacka->IsPlayer()) {
 			canDoDmg = TRUE;
 		}
-	}//END Of "nothingHurts" CVar check.
+	}// "nothingHurts" CVar check.
 
 	if (canDoDmg) {
 		// ordinary take-damage.
@@ -1625,7 +1625,7 @@ BOOL CBaseMonster::ChangeHealthFiltered(entvars_t* pevAttacker, float flDamage) 
 		if (attacka != NULL && attacka->IsPlayer()) {
 			canDoDmg = TRUE;
 		}
-	}//END Of "nothingHurts" CVar check.
+	}// "nothingHurts" CVar check.
 
 	if (canDoDmg) {
 		if (this->blockDamage == TRUE) {
@@ -1739,7 +1739,7 @@ void CBaseEntity::SpawnBlood(const Vector& vecSpot, float flDamage) {
 			UTIL_BloodStream(vecSpot, UTIL_RandomBloodVectorHigh(), theBlood, RANDOM_LONG(12, 18) + (int)(15 * extraBloodFactor));
 		}
 
-	}//END OF alpha check
+	}// alpha check
 	if (EASY_CVAR_GET(sv_bloodparticlemode) == 0 || EASY_CVAR_GET(sv_bloodparticlemode) == 2) {
 		// RETAIL CALL.
 		// Is it still a good idea to assume g_vecAttackDir is always set as it was (hopefully?) in retail?
@@ -1839,9 +1839,9 @@ GENERATE_TRACEATTACK_IMPLEMENTATION(CBaseMonster)
 		}
 
 		AddMultiDamage( pevAttacker, this, flDamage, bitsDamageType, bitsDamageTypeMod );
-	}//END OF pev->takedamage check
+	}// pev->takedamage check
 
-}//END OF CBaseMonster's Traceattack implementation
+}// CBaseMonster's Traceattack implementation
 
 
 
@@ -2185,7 +2185,7 @@ GENERATE_TAKEDAMAGE_IMPLEMENTATION(CBaseMonster){
 			//	applyNewTimedDamage(bitsDamageType, bitsDamageTypeMod);
 			//}
 		
-		}//END OF pev->health 0 check
+		}// pev->health 0 check
 	}//!healthCheckBlock
 
 
@@ -2238,7 +2238,7 @@ GENERATE_TAKEDAMAGE_IMPLEMENTATION(CBaseMonster){
 					//unstumpable = TRUE;
 				//}
 
-			}//END OF timed damage check
+			}// timed damage check
 
 
 			// add pain to the conditions 
@@ -2255,7 +2255,7 @@ GENERATE_TAKEDAMAGE_IMPLEMENTATION(CBaseMonster){
 
 	g_rawDamageCumula = 0;  //and done
 	return 1;
-}//END OF TakeDamage
+}// TakeDamage
 
 //MODDD - NEW.  Overridable part of TRACEATTACK that most monsters call.
 // Let monsters override to change how much damage different hitgroups do,
@@ -2286,7 +2286,7 @@ float CBaseMonster::hitgroupDamage(float flDamage, int bitsDamageType, int bitsD
 		default:
 			return flDamage;
 		}
-	}//END OF bitsDamageTypeMod check
+	}// bitsDamageTypeMod check
 	return flDamage;
 }//hitgroupDamage
 
@@ -2711,8 +2711,6 @@ void RadiusDamage( Vector vecSrc, entvars_t *pevInflictor, entvars_t *pevAttacke
 					pevAttackerClassname = STRING(pevAttacker->classname);
 				}
 
-
-				int x = 666;
 				::DebugLine_Setup(6, vecSrc, vecSpot, tr.flFraction);
 			}
 			*/
@@ -2865,7 +2863,7 @@ BOOL CBaseEntity::CheckTracer(const Vector& vecSrc, const Vector& vecEnd, const 
 
 	return disableBulletHitDecal;
 
-}//END OF CheckTracer
+}// CheckTracer
 
 
 
@@ -2930,7 +2928,7 @@ void CBaseEntity::FireBullets(ULONG cShots, Vector vecSrc, Vector vecDirShooting
 			//always
 			iTracerFreq = 1;
 		break;
-		}//END OF switch
+		}// switch
 
 		//MODDD - squeaky clean, moved to a method.  Like how cl_dlls/ev_hldm.cpp did it.
 		disableBulletHitDecal = CheckTracer(vecSrc, tr.vecEndPos, gpGlobals->v_forward, gpGlobals->v_right, iBulletType, iTracerFreq, &tracerCount);
@@ -3031,7 +3029,7 @@ void CBaseEntity::FireBullets(ULONG cShots, Vector vecSrc, Vector vecDirShooting
 						}
 					}
 				}
-			}//END OF pEntity NULL check
+			}// pEntity NULL check
 		}
 		// make bullet trails
 		UTIL_BubbleTrail( vecSrc, tr.vecEndPos, (flDistance * tr.flFraction) / 64.0 );
@@ -3131,7 +3129,7 @@ Vector CBaseEntity::FireBulletsPlayer ( ULONG cShots, Vector vecSrc, Vector vecD
 			// unrecognized setting?  Default to nothing like retail did.
 			iTracerFreq = 0;
 		break;
-		}//END OF switch
+		}// switch
 
 		//MODDD - the idea was always here for FireBullets (monsters) above, but for the player, this is new.  Player's "disableBulletHitDecal" goes unused though.
 		disableBulletHitDecal = CheckTracer(vecSrc, tr.vecEndPos, gpGlobals->v_forward, gpGlobals->v_right, iBulletType, iTracerFreq, &tracerCount);
@@ -3212,7 +3210,7 @@ Vector CBaseEntity::FireBulletsPlayer ( ULONG cShots, Vector vecSrc, Vector vecD
 					}
 
 					break;
-				}//END OF switch
+				}// switch
 
 
 				// !!! I think these have been taken care of since!
@@ -3270,9 +3268,9 @@ Vector CBaseEntity::FireBulletsPlayer ( ULONG cShots, Vector vecSrc, Vector vecD
 						}
 					}
 				}
-			}//END OF pEntity NULL check
+			}// pEntity NULL check
 			
-		}//END OF if (tr.flFraction != 1.0)
+		}// if (tr.flFraction != 1.0)
 
 		//easyPrintLine("NULL?? %d", FNullEnt(tr.pHit) );
 		//COME BACK

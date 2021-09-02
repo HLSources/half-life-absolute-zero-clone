@@ -134,4 +134,4 @@ inline BOOL FNullEnt(entvars_t* pev)				{ return pev == NULL || FNullEnt(OFFSET(
 ////////////////////
 
 
-#endif //END OF UTIL_ENTITY_H
+#endif// UTIL_ENTITY_H

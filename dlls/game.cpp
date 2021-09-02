@@ -93,13 +93,13 @@ void test_cvar_create(){
 	if(test_cvar_tempRef == &test_cvar){
 		easyForcePrintLine("test_cvar re-get test: IT MATCHES!");
 	}else{
-		easyForcePrintLine("test_cvar re-get test: Nope, well what the fuck.");
+		easyForcePrintLine("test_cvar re-get test: Nope.");
 	}
 	*/
 
 	//global_test_cvar_ref = CVAR_GET_POINTER("test_cvar");
 
-}//END OF test_cvar_create
+}// test_cvar_create
 	
 	
 

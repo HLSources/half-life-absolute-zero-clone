@@ -51,14 +51,14 @@ void CKingpinBall::Spawn( void ){
 	//	//nothing out of the ordinary.
 	//}
 
-}//END OF Spawn
+}// Spawn
 
 void CKingpinBall::Precache( void ){
 
 	CControllerHeadBall::Precache();
 
 
-}//END OF Precache
+}// Precache
 
 
 //MODDD - little less reactive to following the enemy.
@@ -92,7 +92,7 @@ void CKingpinBall::MovetoTarget( Vector vecTarget ){
 			startSmartFollow();
 		}
 
-	}//END OF pathfind_onRoute
+	}// pathfind_onRoute
 
 
 	if(pathfind_onRoute){
@@ -152,7 +152,7 @@ void CKingpinBall::MovetoTarget( Vector vecTarget ){
 	}
 
 
-}//END OF MovetoTarget
+}// MovetoTarget
 
 
 
@@ -209,7 +209,7 @@ void CKingpinBall::pathfind_move(const float& arg_distToEnemy){
 
 
 
-}//END OF pathfind_think
+}// pathfind_think
 
 
 
@@ -255,7 +255,7 @@ void CKingpinBall::startSmartFollow(void){
 	}
 
 
-}//END OF startSmartFollow
+}// startSmartFollow
 
 
 
@@ -344,7 +344,7 @@ BOOL CKingpinBall::ShouldAdvanceRoute( float flWaypointDist, float flInterval ){
 	//const float moveDistTol = max(moveDistTest, 8);  //must be at least 8.
 
 
-}//END OF ShouldAdvanceRoute
+}// ShouldAdvanceRoute
 
 
 float CKingpinBall::MoveYawDegreeTolerance(void){

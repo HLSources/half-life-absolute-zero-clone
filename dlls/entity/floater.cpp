@@ -269,7 +269,7 @@ CFloater::CFloater(void){
 
 	lastVelocityChange = -1;
 
-}//END OF CFloater constructor
+}// CFloater constructor
 
 
 //Thank you bullsquid, you know what is up dog.
@@ -376,7 +376,7 @@ void CFloater::Precache( void )
 	PRECACHE_SOUND("bullchicken/bc_spithit3.wav");
 
 	global_useSentenceSave = FALSE;
-}//END OF Precache()
+}// Precache()
 
 
 void CFloater::Spawn( void )
@@ -418,7 +418,7 @@ void CFloater::Spawn( void )
 	SetTouch(&CFloater::CustomTouch );
 	//SetTouch( NULL );
 
-}//END OF Spawn();
+}// Spawn();
 
 
 
@@ -731,7 +731,7 @@ void CFloater::MoveExecute( CBaseEntity *pTargetEnt, const Vector &vecDir, float
 	checkFloor(vecSuggestedDir, velMag, flInterval);
 
 	lastVelocityChange = gpGlobals->time;
-}//END OF MoveExecute
+}// MoveExecute
 
 
 /*
@@ -787,7 +787,7 @@ void CFloater::MoveExecute( CBaseEntity *pTargetEnt, const Vector &vecDir, float
 void CFloater::SetEyePosition(void){
 	//CFlyingMonster::SetEyePosition();
 	pev->view_ofs = Vector(0, 0, 42 - 8);//VEC_VIEW;
-}//END OF SetEyePosition
+}// SetEyePosition
 
 
 
@@ -992,7 +992,7 @@ Schedule_t* CFloater::GetSchedule ( void )
 	}
 
 	return &slError[ 0 ];
-}//END OF GetSchedule()
+}// GetSchedule()
 
 
 Schedule_t* CFloater::GetScheduleOfType( int Type){
@@ -1008,10 +1008,10 @@ Schedule_t* CFloater::GetScheduleOfType( int Type){
 
 
 
-	}//END OF switch(Type)
+	}// switch(Type)
 	
 	return CFlyingMonster::GetScheduleOfType(Type);
-}//END OF GetScheduleOfType
+}// GetScheduleOfType
 
 
 void CFloater::ScheduleChange(){
@@ -1025,12 +1025,12 @@ void CFloater::ScheduleChange(){
 	
 	CFlyingMonster::ScheduleChange(); //Call the parent.
 
-}//END OF ScheduleChange
+}// ScheduleChange
 
 
 Schedule_t* CFloater::GetStumpedWaitSchedule(){
 	return CFlyingMonster::GetStumpedWaitSchedule();
-}//END OF GetStumpedWaitSchedule
+}// GetStumpedWaitSchedule
 
 
 void CFloater::StartTask( Task_t *pTask ){
@@ -1069,9 +1069,9 @@ void CFloater::StartTask( Task_t *pTask ){
 		default:
 			CFlyingMonster::StartTask( pTask );
 		break;
-	}//END OF switch
+	}// switch
 
-}//END OF StartTask
+}// StartTask
 
 void CFloater::RunTask( Task_t *pTask ){
 	
@@ -1094,9 +1094,9 @@ void CFloater::RunTask( Task_t *pTask ){
 		default:
 			CFlyingMonster::RunTask(pTask);
 		break;
-	}//END OF switch
+	}// switch
 
-}//END OF RunTask
+}// RunTask
 
 
 
@@ -1214,7 +1214,7 @@ void CFloater::MonsterThink(){
 	}
 
 	CFlyingMonster::MonsterThink();
-}//END OF MonsterThink
+}// MonsterThink
 
 // PrescheduleThink - this function runs after conditions are collected and before scheduling code is run.
 //NOTE - PrescheduleThink is called by RunAI of monsterstate.cpp, which is called from MonsterThink in the parent CFlyingMonster class (monsters.cpp).
@@ -1223,7 +1223,7 @@ void CFloater::PrescheduleThink (){
 
 
 	CFlyingMonster::PrescheduleThink();
-}//END OF PrescheduleThink
+}// PrescheduleThink
 
 
 
@@ -1237,14 +1237,14 @@ BOOL CFloater::isOrganic(){
 int CFloater::IRelationship( CBaseEntity *pTarget ){
 
 	return CFlyingMonster::IRelationship(pTarget);
-}//END OF IRelationship
+}// IRelationship
 
 
 void CFloater::ReportAIState(){
 	//call the parent, and add on to that.
 	CFlyingMonster::ReportAIState();
 	//print anything special with easyForcePrintLine
-}//END OF ReportAIState()
+}// ReportAIState()
 
 
 
@@ -1274,7 +1274,7 @@ GENERATE_DEADTAKEDAMAGE_IMPLEMENTATION(CFloater)
 
 
 	return GENERATE_DEADTAKEDAMAGE_PARENT_CALL(CFlyingMonster);
-}//END OF DeadTakeDamage
+}// DeadTakeDamage
 
 
 //Parameters: integer named fGibSpawnsDecal
@@ -1376,9 +1376,9 @@ GENERATE_KILLED_IMPLEMENTATION(CFloater)
 	//if you have the "FL_KILLME" flag, it means this is about to get deleted (gibbed). No point in doing any of this then.
 	if(firstCall && !(pev->flags & FL_KILLME) ){
 		cheapKilledFlyer();
-	}//END OF firstCall check
+	}// firstCall check
 	*/
-}//END OF Killed
+}// Killed
 
 
 
@@ -1395,7 +1395,7 @@ void CFloater::SetYawSpeed( void ){
 	break;
 	}
 	pev->yaw_speed = ys;
-}//END OF SetYawSpeed
+}// SetYawSpeed
 
 
 
@@ -1424,7 +1424,7 @@ void CFloater::SetActivity(Activity NewActivity ){
 		CFlyingMonster::SetActivity(NewActivity);
 	}
 
-}//END OF SetActivity
+}// SetActivity
 
 
 
@@ -1459,11 +1459,11 @@ int CFloater::tryActivitySubstitute(int activity){
 		case ACT_HOVER:
 			return SEQ_FLOATER_IDLE1;
 		break;
-	}//END OF switch
+	}// switch
 
 	//not handled by above? Rely on the model's anim for this activity if there is one.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF tryActivitySubstitute
+}// tryActivitySubstitute
 
 
 int CFloater::LookupActivityHard(int activity){
@@ -1507,11 +1507,11 @@ int CFloater::LookupActivityHard(int activity){
 		case ACT_HOVER:
 			return SEQ_FLOATER_IDLE1;
 		break;
-	}//END OF switch
+	}// switch
 	
 	//not handled by above?  try the real deal.
 	return CBaseAnimating::LookupActivity(activity);
-}//END OF LookupActivityHard
+}// LookupActivityHard
 
 
 //Handles custom events sent from "LookupActivityHard", which sends events as timed delays along with picking an animation in script.
@@ -1553,9 +1553,9 @@ void CFloater::HandleEventQueueEvent(int arg_eventID){
 
 	break;
 	}
-	}//END OF switch
+	}// switch
 
-}//END OF HandleEventQueueEvent
+}// HandleEventQueueEvent
 
 
 //This handles events built into the model, not custom hard-coded ones (above).
@@ -1577,7 +1577,7 @@ void CFloater::HandleAnimEvent(MonsterEvent_t *pEvent ){
 	default:
 		CFlyingMonster::HandleAnimEvent( pEvent );
 	break;
-	}//END OF switch
+	}// switch
 }
 
 
@@ -1665,8 +1665,8 @@ void CFloater::checkTraceLine(const Vector& vecSuggestedDir, const float& travel
 			//MODDAHHH 0.91, 5, 0.44, 4.56
 			//easyPrintLineGroup2("MODDAHHH %.2f, %d, %.2f, %.2f ", tr.flFraction, moveDist, toMove, (tr.vecEndPos - vecStart).Length());
 
-		}//END OF if(tr.flFraction < 1.0)
-	}//END OF if(!tempCheckTraceLineBlock)
+		}// if(tr.flFraction < 1.0)
+	}// if(!tempCheckTraceLineBlock)
 	
 	if(EASY_CVAR_GET_DEBUGONLY(drawDebugPathfinding2) == 1){
 		UTIL_drawLineFrame(vecStart, vecStart + vecRelativeEndScale, 16, 0, 255, 0);
@@ -1769,8 +1769,8 @@ void CFloater::checkTraceLineTest(const Vector& vecSuggestedDir, const float& tr
 			//MODDAHHH 0.91, 5, 0.44, 4.56
 			//easyPrintLineGroup2("MODDAHHH %.2f, %d, %.2f, %.2f ", tr.flFraction, moveDist, toMove, (tr.vecEndPos - vecStart).Length());
 
-		}//END OF if(tr.flFraction < 1.0)
-	}//END OF if(!tempCheckTraceLineBlock)
+		}// if(tr.flFraction < 1.0)
+	}// if(!tempCheckTraceLineBlock)
 	
 	if(EASY_CVAR_GET_DEBUGONLY(drawDebugPathfinding2) == 1){
 		UTIL_drawLineFrame(vecStart, vecStart + vecRelativeEndScale, 16, 0, 255, 0);
@@ -2006,9 +2006,9 @@ void CFloater::checkFloor(const Vector& vecSuggestedDir, const float& travelMag,
 
 			//checkTraceLineTest(vecSuggestedDir, travelMag, flInterval, vecBottomRightBackward, Vector(root3rec, -root3rec, -root3rec), checkDistD, FALSE);
 		}
-	}//END OF if(!onGround)
+	}// if(!onGround)
 
-}//END OF checkFloor
+}// checkFloor
 
 
 int CFloater::getLoopingDeathSequence(void){
@@ -2037,7 +2037,7 @@ void CFloater::onDeathAnimationEnd(void){
 	//(oh hey I kinda already made this comment)
 	//CFlyingMonster::onDeathAnimationEnd();
 
-}//END OF onDeathAnimationEnd
+}// onDeathAnimationEnd
 
 
 // Can move in the water a little if I have to, but I'd prefer not to.

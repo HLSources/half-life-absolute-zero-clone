@@ -1402,7 +1402,7 @@ void SENTENCEG_Init()
 			}
 
 			continue;
-		}//END OF buffer[i] == '#'
+		}// buffer[i] == '#'
 
 
 
@@ -1570,7 +1570,7 @@ void SENTENCEG_PlaySingular(edict_t* entity, int arg_channel, const char *pszSen
 	
 	//CHAN_VOICE ?
 	EMIT_SOUND_DYN(entity, arg_channel, sentenceToPlay, volume, attenuation, flag, pitch);
-}//END OF SENTENCEG_PlaySingular
+}// SENTENCEG_PlaySingular
 
 
 
@@ -1853,7 +1853,7 @@ float TEXTURETYPE_PlaySound(TraceResult *ptr,  Vector vecSrc, Vector vecEnd, int
 			// get texture type
 			chTextureType = TEXTURETYPE_Find(szbuffer);	
 		}
-	}//END OF world check
+	}// world check
 
 	
 	if(EASY_CVAR_GET_CLIENTSENDOFF_BROADCAST_DEBUGONLY(textureHitSoundPrintouts)==1)easyForcePrintLine("SND PLAY TEXTURE SOUND: %d, %c", (int)chTextureType, chTextureType);

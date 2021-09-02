@@ -449,8 +449,8 @@ void CISlave::MonsterThink(void){
 				//keep trying...
 				selfReviveTime += RANDOM_LONG(5, 11);
 			}
-		}//END OF time check
-	}//END OF revive check
+		}// time check
+	}// revive check
 
 
 	if(EASY_CVAR_GET_CLIENTSENDOFF_BROADCAST_DEBUGONLY(thatWasntPunch) == 1 && this->m_fSequenceFinished){
@@ -1239,9 +1239,9 @@ CISlave* CISlave::findISlaveToRevive(BOOL requireLineTrace, float argStartMaxDis
 							bestChoiceYet = tempIslave;
 							reviveTargetChosen = TRUE;  //is this line okay??
 						}
-					}//END OF tempISlave != NULL && ...)
+					}// tempISlave != NULL && ...)
 
-				}//END OF shouldFadeOnDeath check
+				}// shouldFadeOnDeath check
 
 				//m_iBravery--;
 			}
@@ -1250,7 +1250,7 @@ CISlave* CISlave::findISlaveToRevive(BOOL requireLineTrace, float argStartMaxDis
 				//m_iBravery++;
 			}
 		}
-	}//END OF while(...)
+	}// while(...)
 
 
 	//need to do anything if it is null?
@@ -1261,7 +1261,7 @@ CISlave* CISlave::findISlaveToRevive(BOOL requireLineTrace, float argStartMaxDis
 	}
 
 	return bestChoiceYet;
-}//END OF findISlaveToRevive
+}// findISlaveToRevive
 
 
 //=========================================================
@@ -1429,7 +1429,7 @@ void CISlave::StartTask ( Task_t *pTask )
 	default:
 		CSquadMonster::StartTask ( pTask );
 	break;
-	}//END OF switch(...)
+	}// switch(...)
 
 }
 
@@ -1458,7 +1458,7 @@ void CISlave::StartReanimation(){
 
 	// NOTE - parent calls StartReanimationPost.
 	CSquadMonster::StartReanimation();
-}//END OF StartReanimation
+}// StartReanimation
 void CISlave::StartReanimationPost(int preReviveSequence){
 	/*
 	pev->sequence = -1; //force reset.
@@ -1475,7 +1475,7 @@ void CISlave::StartReanimationPost(int preReviveSequence){
 	//CBaseMonster::StartReanimation();
 	ChangeSchedule(slISlaveReviveSelf );
 
-}//END OF StartReanimationPost
+}// StartReanimationPost
 
 
 
@@ -1694,7 +1694,7 @@ void CISlave::RunTask( Task_t *pTask )
 	default:
 		CSquadMonster::RunTask(pTask);
 	break;
-	}//END OF switch(...)
+	}// switch(...)
 }
 
 
@@ -1916,11 +1916,11 @@ GENERATE_TRACEATTACK_IMPLEMENTATION(CISlave)
 			}
 
 		break;
-	}//END OF switch
+	}// switch
 	
 
 	GENERATE_TRACEATTACK_PARENT_CALL(CSquadMonster);
-}//END OF TRACEATTACK
+}// TRACEATTACK
 
 
 //=========================================================
@@ -2078,7 +2078,7 @@ Schedule_t *CISlave::GetSchedule( void )
 			}
 
 			//reviveTarget = attemptFindDeadFriend();
-		}//END OF if able to revive a dead islave
+		}// if able to revive a dead islave
 
 
 
@@ -2409,7 +2409,7 @@ BOOL CISlave::violentDeathAllowed(void){
 }
 BOOL CISlave::violentDeathClear(void){
 	return violentDeathClear_BackwardsCheck(50);
-}//END OF violentDeathAllowed
+}// violentDeathAllowed
 int CISlave::violentDeathPriority(void){
 	return 3;
 }
@@ -2417,7 +2417,7 @@ int CISlave::violentDeathPriority(void){
 void CISlave::onDelete(void){
 	//If suddenly removed, clean up my beams
 	ClearBeams();
-}//END OF onDelete
+}// onDelete
 
 
 void CISlave::ForgetEnemy(void) {
@@ -2425,7 +2425,7 @@ void CISlave::ForgetEnemy(void) {
 	// As of yet this only happens by a console command like "chillout", so this
 	// isn't too important.
 
-}//END OF ForgetEnemy
+}// ForgetEnemy
 
 
 

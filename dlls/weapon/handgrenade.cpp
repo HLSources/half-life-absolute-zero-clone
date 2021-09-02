@@ -28,8 +28,9 @@ EASY_CVAR_EXTERN_CLIENTSENDOFF_BROADCAST_DEBUGONLY(cheat_infiniteclip)
 EASY_CVAR_EXTERN_CLIENTSENDOFF_BROADCAST_DEBUGONLY(cheat_infiniteammo)
 EASY_CVAR_EXTERN_CLIENTSENDOFF_BROADCAST_DEBUGONLY(handGrenadePickupYieldsOne);
 
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 LINK_ENTITY_TO_CLASS( weapon_handgrenade, CHandGrenade );
-
+#endif
 
 //NOTICE: this file does not include the projectile.  See "ShootTimed" above called by "PrimaryAttack".
 //        Looks like the projectile is still a generic GGrenade object with a hand grenade model just like MP5
@@ -242,13 +243,13 @@ void CHandGrenade::Holster( int skiplocal /* = 0 */ )
 	}
 
 	EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_WEAPON, "common/null.wav", 1.0, ATTN_NORM);
-}//END OF Holster
+}// Holster
 
 
 void CHandGrenade::PrimaryAttack()
 {
 	EitherAttack();
-}//END OF PrimaryAttack
+}// PrimaryAttack
 
 void CHandGrenade::SecondaryAttack()
 {
@@ -296,7 +297,6 @@ void CHandGrenade::EitherAttack() {
 
 		//easyForcePrintLine("ARE YOU hello %.2f, %d", m_flStartThrow, PlayerPrimaryAmmoCount());
 
-		//"!m_flStartThrow"? Just say ==0 for fuck's sake.
 		if (m_flStartThrow == 0 && PlayerPrimaryAmmoCount() > 0)
 		{
 			m_flStartThrow = gpGlobals->time;
@@ -334,7 +334,7 @@ void CHandGrenade::EitherAttack() {
 		Vector vecThrow = gpGlobals->v_forward * flVel + m_pPlayer->pev->velocity;
 
 		CGrenade::ShootTimed(m_pPlayer->pev, vecSrc, vecThrow, gSkillData.plrDmgHandGrenade, 0.3f);
-	}//END OF cheat check
+	}// cheat check
 
 }//eitherAttack
 
@@ -493,36 +493,13 @@ void CHandGrenade::WeaponIdle( void )
 				grenRef->pev->sequence = RANDOM_LONG(1, 2);
 			}
 
-		}//END OF primaryThrow check
+		}// primaryThrow check
 
-
-
-
-
-		//MODDD - section removed.   Odd, while testing, I could not trigger "THROW3" at all.
-		//time
-		/*
-		if ( flVel < 500 )
-		{
-			SendWeaponAnim( HANDGRENADE_THROW1 );
-			easyPrintLine("HAND GRENADE THROW1");
-		}
-		else if ( flVel < 1000 )
-		{
-			SendWeaponAnim( HANDGRENADE_THROW2 );
-			easyPrintLine("HAND GRENADE THROW2");
-		}
-		else
-		{
-			SendWeaponAnim( HANDGRENADE_THROW3 );
-			easyPrintLine("HAND GRENADE THROW3");
-		}
-		*/
 
 		/*
 		//Randomize animation instead.
 		//MODDD - new way of showing grenade toss animations: just randomize animations.
-		//MODDD - section also removed.  Using hold time -> distance -> animation instead.
+		//MODDD - removed.  Using hold time -> distance -> animation instead.
 		float flRand = RANDOM_FLOAT(0,1);
 		if(flRand <= 0.333){
 			//EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/357_cock1.wav", 0.8, ATTN_NORM);

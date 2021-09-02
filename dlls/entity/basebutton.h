@@ -71,4 +71,4 @@ public:
 };
 
 
-#endif //END OF BASEBUTTON_H
+#endif // BASEBUTTON_H

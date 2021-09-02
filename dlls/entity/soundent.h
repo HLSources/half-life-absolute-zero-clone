@@ -133,4 +133,4 @@ private:
 	CSound		m_SoundPool[ MAX_WORLD_SOUNDS ];
 };
 
-#endif //END OF #ifndef SOUNDENT_H
+#endif// SOUNDENT_H

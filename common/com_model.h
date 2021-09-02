@@ -544,4 +544,4 @@ typedef struct player_info_s
     customization_t customdata;
 } player_info_t;
 
-#endif // #if !defined(COM_MODEL_H)
+#endif// !defined(COM_MODEL_H)

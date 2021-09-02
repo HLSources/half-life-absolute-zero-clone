@@ -1224,7 +1224,7 @@ int CHudAmmo::Draw(float flTime)
 
 		gHUD.m_Flash.drawFlashlightSidebarIcon(x, y);
 
-	}//END OF gHUD.canDrawSidebar()
+	}// gHUD.canDrawSidebar()
 
 
 	if (!m_pWeapon) {
@@ -1396,7 +1396,7 @@ int CHudAmmo::Draw(float flTime)
 				ammoDrawTertiary_draw = TRUE;
 				ammoDrawTertiary = secondaryAmmoTotal;
 			}
-		}//END OF iAmmoType check
+		}// iAmmoType check
 		
 
 
@@ -1429,7 +1429,7 @@ int CHudAmmo::Draw(float flTime)
 			x = gHUD.DrawHudNumber(x, y, iFlags | DHN_3DIGITS, ammoDrawTertiary, r, g, b, 0, 1);
 		}
 
-	}//END OF if(EASY_CVAR_GET(hud_version) < 3)
+	}// if(EASY_CVAR_GET(hud_version) < 3)
 	else{
 
 		if(m_pWeapon->iAmmoType > 0){
@@ -1467,7 +1467,7 @@ int CHudAmmo::Draw(float flTime)
 				ammoDrawTertiary_draw = TRUE;
 				ammoDrawTertiary = secondaryAmmoTotal;
 			}
-		}//END OF iAmmoType check
+		}// iAmmoType check
 
 
 		//used again.
@@ -1501,7 +1501,7 @@ int CHudAmmo::Draw(float flTime)
 			gHUD.DrawHudNumber(x, y, DHN_DRAWZERO|DHN_2DIGITS|DHN_DRAWPLACE|DHN_EMPTYDIGITSUNFADED , ammoDrawTertiary, r, g, b, 4);
 		}
 
-	}//END OF hud_version checks
+	}// hud_version checks
 
 
 	return 1;
@@ -1767,7 +1767,7 @@ int CHudAmmo::DrawWList(float flTime)
 
 					}else{
 						fallToDefault = 1;
-					}//END OF else OF if(global2PSEUDO_playerHasGlockSilencer == 1)
+					}// else OF if(global2PSEUDO_playerHasGlockSilencer == 1)
 				}
 
 				if(fallToDefault){
@@ -1801,7 +1801,7 @@ int CHudAmmo::DrawWList(float flTime)
 						SPR_DrawAdditive( 0, x, y, &p->rcInactive );
 
 					}
-				}//END OF special glock check.
+				}// special glock check.
 
 				// Draw Ammo Bar
 				DrawAmmoBar(p, x + giABWidth/2, y, giABWidth, giABHeight);
@@ -1858,8 +1858,8 @@ int CHudAmmo::DrawWList(float flTime)
 			//MODDD
 			//x += giBucketWidth + 5;
 			x += giBucketWidth + 4;
-		}// END OF (i == active slot check)
-	}//END OF for loop through buckets/slots (I think they're interchangable terms?).
+		}//  (i == active slot check)
+	}// for loop through buckets/slots (I think they're interchangable terms?).
 
 	return 1;
 }

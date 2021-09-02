@@ -606,7 +606,7 @@ CChumToad::CChumToad(void){
 	playerFriend = FALSE;
 	playerAllyFriend = FALSE;
 
-}//END OF CChumToad constructor
+}// CChumToad constructor
 
 
 BOOL CChumToad::usesSoundSentenceSave(void){
@@ -645,7 +645,7 @@ void CChumToad::SetYawSpeed( void ){
 	ys = 200;
 	pev->yaw_speed = ys;
 	return;
-}//END OF SetYawSpeed(...)
+}// SetYawSpeed(...)
 
 
 
@@ -677,7 +677,7 @@ BOOL CChumToad::getMonsterBlockIdleAutoUpdate(){
 
 
 	return FALSE;
-}//END OF getMonsterBlockIdleAutoUpdate(...)
+}// getMonsterBlockIdleAutoUpdate(...)
 
 
 
@@ -719,7 +719,7 @@ void CChumToad::setModel(const char* m){
 		}
 	}
 
-}//END OF setModel
+}// setModel
 
 
 void CChumToad::Spawn( void )
@@ -876,7 +876,7 @@ void CChumToad::Spawn( void )
 
 	//easyForcePrintLine("AW SON %d", (FBitSet( pev->spawnflags, SF_MONSTER_FALL_TO_GROUND )) );
 	
-}//END OF Spawn(...);
+}// Spawn(...);
 
 #if REMOVE_ORIGINAL_NAMES != 1
 	LINK_ENTITY_TO_CLASS( monster_chumtoad, CChumToad);
@@ -935,9 +935,9 @@ void CChumToad::ChumToadTouch( CBaseEntity *pOther ){
 			m_hEntitySittingOn = entityBelow;
 		}
 
-	}//END OF if(!(pev->flags & FL_ONGROUND))
+	}// if(!(pev->flags & FL_ONGROUND))
 	*/
-}//END OF ChumToadTouch
+}// ChumToadTouch
 
 
 /*
@@ -1021,14 +1021,14 @@ void CChumToad::PickupUse(CBaseEntity* pActivator, CBaseEntity* pCaller, USE_TYP
 		UTIL_Remove(this);
 	}
 	*/
-}//END OF PickupUse
+}// PickupUse
 
 
 void CChumToad::SetActivity ( Activity NewActivity )
 {
 
 	CBaseMonster::SetActivity(NewActivity);
-}//END OF SetActivity
+}// SetActivity
 
 
 
@@ -1070,11 +1070,11 @@ BOOL canListenHandle_ChumToad_Bait(CBaseEntity* pOther){
 		case CLASS_HUMAN_MILITARY:
 			return TRUE;
 		break;
-	}//END OF switch(...)
+	}// switch(...)
 
 
 	return FALSE;
-}//END OF canListenHandle_ChumToad_Bait(...)
+}// canListenHandle_ChumToad_Bait(...)
 
 
 
@@ -1102,9 +1102,9 @@ void CChumToad::IdleSound( void )
 
 		EASY_CVAR_PRINTIF_PRE(chumtoadPrintout, easyPrintLine("DO THEY HEAR ME??") );
 
-	}//END OF playing dead check
+	}// playing dead check
 
-}//END OF IdleSound()
+}// IdleSound()
 
 
 
@@ -1253,7 +1253,7 @@ Schedule_t *CChumToad::GetSchedule ( void )
 							return GetScheduleOfType(SCHED_TOAD_RUNAWAY);
 						}
 					}
-				}//END OF sound null check
+				}// sound null check
 
 				
 				//generic fall thru: face whatever made the sound.
@@ -1404,7 +1404,7 @@ Schedule_t *CChumToad::GetSchedule ( void )
 	EASY_CVAR_PRINTIF_PRE(chumtoadPrintout, easyPrintLine("ChumToad: GetSchedule FAIL TO PICK SCHEDULE. BROKEN.") );
 
 	return &slError[ 0 ];
-}//END OF GetSchedule(...)
+}// GetSchedule(...)
 
 
 
@@ -1489,11 +1489,11 @@ Schedule_t* CChumToad::GetScheduleOfType( int Type){
 		//	return slPantherEyeCoverFail;
 		//break;
 		
-	}//END OF switch(Type)
+	}// switch(Type)
 
 	//???
 	return CBaseMonster::GetScheduleOfType(Type);
-}//END OF GetScheduleOfType(...)
+}// GetScheduleOfType(...)
 
 
 void CChumToad::HandleEventQueueEvent(int arg_eventID){
@@ -1523,10 +1523,10 @@ void CChumToad::HandleEventQueueEvent(int arg_eventID){
 
 		break;
 		}
-	}//END OF switch(...)
+	}// switch(...)
 
 
-}//END OF HandleEventQueueEvent(...)
+}// HandleEventQueueEvent(...)
 
 
 
@@ -1639,7 +1639,7 @@ GENERATE_TAKEDAMAGE_IMPLEMENTATION(CChumToad)
 			}
 
 		}
-	}//END OF on ground check
+	}// on ground check
 
 	//If we take damage, see what the chances of playing dead this time are.
 	return tempDmg;
@@ -1843,9 +1843,9 @@ void CChumToad::StartTask ( Task_t *pTask )
 		default:
 			CBaseMonster::StartTask ( pTask );
 		break;
-	}//END OF switch(...)
+	}// switch(...)
 
-}//END OF StartTask(...)
+}// StartTask(...)
 
 
 
@@ -2094,9 +2094,9 @@ void CChumToad::RunTask ( Task_t *pTask ){
 		default:
 			CBaseMonster::RunTask(pTask);
 		break;
-	}//END OF switch(...)
+	}// switch(...)
 
-}//END OF RunTask(...)
+}// RunTask(...)
 
 
 
@@ -2108,7 +2108,7 @@ float CChumToad::HearingSensitivity(){
 // Players throw me.  I better show up.
 BOOL CChumToad::bypassAllowMonstersSpawnCheck(void) {
 	return TRUE;
-}//END OF bypassAllowMonstersSpawnCheck
+}// bypassAllowMonstersSpawnCheck
 
 
 
@@ -2185,12 +2185,12 @@ void CChumToad::MonsterThink ( void )
 	*/
 
 	CBaseMonster::MonsterThink();
-}//END OF MonsterThink(...)
+}// MonsterThink(...)
 
 
 void CChumToad::firstLand(){
 	Land();
-}//END OF firstLand(...)
+}// firstLand(...)
 
 void CChumToad::Land(){
 	
@@ -2232,7 +2232,7 @@ void CChumToad::Land(){
 	pev->velocity = Vector(0,0,0);
 	//Materialize(); 
 
-}//END OF Land(...)
+}// Land(...)
 
 
 void CChumToad::forwardHop(){
@@ -2245,7 +2245,7 @@ void CChumToad::forwardHop(){
 	pev->sequence = CHUMTOAD_HOP1;
 	ResetSequenceInfo( );
 
-}//END OF forwardHop(...)
+}// forwardHop(...)
 
 
 
@@ -2268,7 +2268,7 @@ void CChumToad::aimlessHop(){
 	ResetSequenceInfo( );
 
 
-}//END OF forwardHop(...)
+}// forwardHop(...)
 
 
 void CChumToad::randomDelay(){
@@ -2281,7 +2281,7 @@ void CChumToad::randomDelay(){
 	if(croakChoice){
 		passiveCroakDelay = gpGlobals->time + RANDOM_FLOAT(2, delayAdd - 5);
 	}
-}//END OF randomDelay(...)
+}// randomDelay(...)
 
 
 
@@ -2312,7 +2312,7 @@ BOOL CChumToad::IsAlive_FromAI( CBaseMonster* whoWantsToKnow ){
 		return CBaseMonster::IsAlive_FromAI(whoWantsToKnow);
 	}
 
-}//END OF IsAlive_FromAI(...)
+}// IsAlive_FromAI(...)
 
 
 void CChumToad::ReportAIState(void){
@@ -2323,7 +2323,7 @@ void CChumToad::ReportAIState(void){
 	easyForcePrintLine("playdead timer:%.2f curtime:%.2f playing dead?:%d success?:%d", toadPlayDeadTimer, gpGlobals->time, (this->toadPlayDeadTimer != -1 && gpGlobals->time < toadPlayDeadTimer), playDeadSuccessful );
 
 
-}//END OF ReportAIState()
+}// ReportAIState()
 
 
 //For now, the chumtoad is no different here.
@@ -2406,11 +2406,11 @@ int CChumToad::forcedRelationshipWith(CBaseEntity* pWith){
 	case CLASS_BARNACLE:
 		return R_DEFAULT;
 	break;
-	}//END OF switch(...)
+	}// switch(...)
 	
 	return CBaseMonster::forcedRelationshipWith(pWith);
 
-}//END OF forcedRelationshipWith(...)
+}// forcedRelationshipWith(...)
 
 
 int CChumToad::IRelationship ( CBaseEntity *pTarget )
@@ -2520,12 +2520,12 @@ int CChumToad::IRelationship ( CBaseEntity *pTarget )
 		
 		//return R_DEFAULT;   //fall thru...
 	break;
-	}//END OF switch(...)
+	}// switch(...)
 
 
 	return CBaseMonster::IRelationship(pTarget);
 
-}//END OF IRelationship(...)
+}// IRelationship(...)
 
 
 //MODDD TODO.
@@ -2601,7 +2601,7 @@ BOOL CChumToad::getForceAllowNewEnemy(CBaseEntity* pOther){
 BOOL CChumToad::playDeadFooling(CBaseEntity* whoWantsToKnow){
 	BOOL distanceCheck = (this->pev->origin - whoWantsToKnow->pev->origin).Length() > 230;
 	return ( (playDeadSuccessful||distanceCheck) && (this->toadPlayDeadTimer != -1 && gpGlobals->time < toadPlayDeadTimer) );
-}//END OF playDeadFooling()
+}// playDeadFooling()
 
 
 
@@ -2751,7 +2751,7 @@ int CChumToad::tryActivitySubstitute(int activity){
 			return -1;
 		break;
 
-	}//END OF switch
+	}// switch
 
 
 	//not handled by above?
@@ -2784,7 +2784,7 @@ GENERATE_GIBMONSTERGIB_IMPLEMENTATION(CChumToad){
 	}
 
 	return FALSE;
-}//END OF GibMonsterGib
+}// GibMonsterGib
 
 
 
@@ -2820,7 +2820,7 @@ void CChumToad::onPlayDead(){
 			//toadPlayDeadTimer
 
 
-}//END OF onPlayDead()
+}// onPlayDead()
 
 
 
@@ -2861,17 +2861,17 @@ void CChumToad::playDeadSendMonstersAway(){
 					testMon->wanderAway( this->pev->origin );
 				
 				
-				}//END OF all the other checks
-			}//END OF monster null check
-		}//END OF "entity found is not myself" check
+				}// all the other checks
+			}// monster null check
+		}// "entity found is not myself" check
 
-	}//END OF while(...)
-
-
+	}// while(...)
 
 
 
-}//END OF playDeadSendMonstersAway()
+
+
+}// playDeadSendMonstersAway()
 
 
 void CChumToad::onDeathAnimationEnd(void){
@@ -2955,16 +2955,16 @@ CBaseEntity* CChumToad::getEntityBelow(void){
 				}
 			}
 
-		}//END OF trace basic checks
+		}// trace basic checks
 
 		return NULL;
 
-}//END OF getEntityBelow
+}// getEntityBelow
 	
 
 float CChumToad::massInfluence(void){
 	return 0.24f;
-}//END OF massInfluence
+}// massInfluence
 
 int CChumToad::GetProjectileType(void){
 	return PROJECTILE_ORGANIC_HARMLESS;
@@ -3022,7 +3022,7 @@ void CChumToad::OnTakeDamageSetConditions(entvars_t *pevInflictor, entvars_t *pe
 	}
 	*/
 	
-}//END OF OnTakeDamageSetConditions
+}// OnTakeDamageSetConditions
 
 
 int CChumToad::getHullIndexForNodes(void){
@@ -3034,7 +3034,7 @@ int CChumToad::getHullIndexForNodes(void){
 /*
 CChumToadRespawnable::CChumToadRespawnable(void) {
 
-}//END OF constructor
+}// constructor
 
 // already done?
 //LINK_ENTITY_TO_CLASS(monster_chumtoad_respawnable, CChumToadRespawnable);

@@ -1357,7 +1357,7 @@ BOOL CBullsquid::violentDeathAllowed(void){
 BOOL CBullsquid::violentDeathClear(void){
 	//Works for a lot of things going backwards.
 	return violentDeathClear_BackwardsCheck(120);
-}//END OF violentDeathAllowed
+}// violentDeathAllowed
 int CBullsquid::violentDeathPriority(void){
 	return 3;
 }

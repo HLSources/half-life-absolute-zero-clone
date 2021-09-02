@@ -122,6 +122,6 @@ public:
 };
 
 
-#endif //END OF AMMOHISTORY_H
+#endif // AMMOHISTORY_H
 
 

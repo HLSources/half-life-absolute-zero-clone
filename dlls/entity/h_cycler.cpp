@@ -225,7 +225,7 @@ GENERATE_TAKEDAMAGE_IMPLEMENTATION(CCycler)
 	return 0;
 }
 
-#endif  //END OF TEMP_FOR_SCREEN_SHOTS check.    What.
+#endif// TEMP_FOR_SCREEN_SHOTS check.    What.
 
 
 class CCyclerSprite : public CBaseEntity

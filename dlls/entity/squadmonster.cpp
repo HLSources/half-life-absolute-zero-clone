@@ -691,10 +691,10 @@ BOOL CSquadMonster::checkLeaderlessSquadByNetname(void){
 				//this one should not re-check its peers, no need.
 				pRecruit->alreadyDoneNetnameLeaderCheck = TRUE;
 			}
-		}//END OF if(pEntity)
+		}// if(pEntity)
 		
 		pEntity = UTIL_FindEntityByString( pEntity, "netname", STRING( pev->netname ) );
-	}//END OF while(pEntity)
+	}// while(pEntity)
 
 	return !foundLeaderYet;
 
@@ -772,8 +772,8 @@ void CSquadMonster::StartMonster( void )
 		//MODDD - TODO - put some custom event here like "onPostStartSquadCheck" for the hgrunt to latch onto?
 		// If we care enough.
 		
-	}//END OF has bits_CAP_SQUAD and not already in a squad check
-}//END OF StartMonster
+	}// has bits_CAP_SQUAD and not already in a squad check
+}// StartMonster
 
 
 

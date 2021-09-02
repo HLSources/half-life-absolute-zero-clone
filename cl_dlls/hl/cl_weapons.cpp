@@ -149,12 +149,36 @@ BOOL CBasePlayerWeapon::DefaultReload(int iClipSize, int iAnim, float fDelay, in
 		return FALSE;
 	}
 
+	//MODDD
+	// WARNING! A tad hacky, but definitely solves the "reload happens twice if done while empty +
+	// holding reload" issue.  Although for anything that takes less than 1 second to reload
+	// or a ping in excess of 1 second (yeah right), this would deny predicted reloading.
+	// Proper way would probably be to send a tiny message  when the client thinks it's done
+	// reloading and wait for that message to come back.  Until then, ignore messsages to update
+	// the clientside ammo counters from the server (on clientside, receiving that is) so that 
+	// messages out-of-date reaching the client from moments before the reload finished (0 ammo clip)
+	// don't cause the client to think a fresh reload is needed.  That blip of 0 ammo from being 0 on 
+	// the server 20 milliseconds ago causes another reload to start clientside, but it never actually
+	// happens serverside (sees clip is non-zero on the input it gets).
+	if(m_pPlayer->m_flNextAttackCLIENTHISTORY + 1 > UTIL_WeaponTimeBase()){
+		// nope!
+		return FALSE;
+	}
 
 	if (EASY_CVAR_GET_CLIENTSENDOFF_BROADCAST_DEBUGONLY(cheat_infiniteammo) != 1) {
 		if (m_pPlayer->m_rgAmmo[myPrimaryAmmoType] <= 0)
 			return FALSE;
 
 		int j = min(iClipSize - m_iClip, m_pPlayer->m_rgAmmo[myPrimaryAmmoType]);
+		
+		//MODDD - TEST?  I don't think this changes anything, but not harmful a tleast
+		if(localPlayer.m_rgAmmoCLIENTHISTORY[myPrimaryAmmoType] > 0){
+			
+		}else{
+			return FALSE;
+		}
+		
+		
 		//MODDD - is this edit ok?  To help with things that mess with the max-count like the glock with old reload logic.
 		//if (j == 0)
 		if (j <= 0)
@@ -442,7 +466,7 @@ void CBasePlayerWeapon::DefaultHolster(int iAnim, int skiplocal /* = 0 */, int b
 	SendWeaponAnim(iAnim);
 
 
-}//END OF DefaultHolster
+}// DefaultHolster
 
 
 
@@ -668,7 +692,7 @@ float CBasePlayerWeapon::randomIdleAnimationDelay(void) {
 	else {
 		return 0;
 	}
-}//END OF randomIdleAnimationDelay
+}// randomIdleAnimationDelay
 
 
 
@@ -784,7 +808,9 @@ void CBasePlayerWeapon::ItemPostFrame()
 
 			}
 
+#if SKIP_NAMED_AMMO_CACHE == 0
 			m_pPlayer->TabulateAmmo();
+#endif
 
 			//MODDD - new event!
 			this->OnReloadApply();
@@ -805,7 +831,7 @@ void CBasePlayerWeapon::ItemPostFrame()
 		m_fInReload = FALSE;
 		
 
-	}//END OF that reload stuff
+	}// that reload stuff
 
 	//BOOL canDoNormalPressBehavior = TRUE;
 	BOOL canCallBoth = TRUE;
@@ -880,9 +906,7 @@ void CBasePlayerWeapon::ItemPostFrame()
 	{
 		// no fire buttons down
 
-
-
-		// no.   fuck this.
+		// no.
 		/*
 
 		m_fFireOnEmpty = FALSE;

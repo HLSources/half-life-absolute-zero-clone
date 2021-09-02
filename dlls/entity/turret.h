@@ -92,6 +92,7 @@ public:
 	GENERATE_TRACEATTACK_PROTOTYPE_VIRTUAL
 	GENERATE_TAKEDAMAGE_PROTOTYPE_VIRTUAL
 
+	const char* getHitgroupName(int arg_iHitgroup);
 
 
 	int Classify(void);
@@ -299,4 +300,4 @@ public:
 
 
 
-#endif //END OF TURRET_H
+#endif// TURRET_H

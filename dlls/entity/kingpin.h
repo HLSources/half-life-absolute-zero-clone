@@ -203,7 +203,7 @@ public:
 			pev->absmin = pev->origin + Vector(-32, -32, 0);
 			pev->absmax = pev->origin + Vector(32, 32, 110);
 		}
-	}//END OF SetObjectCollisionBox
+	}// SetObjectCollisionBox
 
 
 	void ScheduleChange(void);
@@ -270,11 +270,11 @@ public:
 	void attemptReflectProjectileStart(CBaseEntity* arg_toReflect, float arg_delayFactor);
 
 
-};//END OF class CKingpin
+};
 
 
 
-#endif //END OF #ifdef KINGPIN_H
+#endif // KINGPIN_H
 
 
 

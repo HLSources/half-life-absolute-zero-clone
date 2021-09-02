@@ -31,9 +31,6 @@ enum squeak_e {
 
 
 
-
-//TODO: make it move??  OR would it make more sense to make a monster that acts as if the player touched this?
-// ...........what.
 class CSqueak : public CBasePlayerWeapon
 {
 	static int numberOfEyeSkins;
@@ -93,8 +90,8 @@ public:
 
 
 
-
 //////////////////////////////////////////////////////////////////////////////////////
+#if SLIM_WEAPON_CLIENT_COMPILE==0 || !defined(CLIENT_DLL)
 // Same as spawning by "weapon_snark", but gives the same effect as the 
 // SF_PICKUP_NOREPLACE spawnflag.
 // It doesn't add the spawnflag, just having a classname that ends in "_noreplace" is enough.
@@ -106,9 +103,8 @@ public:
 
 	void Spawn(void);
 };
-
+#endif
 //////////////////////////////////////////////////////////////////////////////////////
-
 
 
 

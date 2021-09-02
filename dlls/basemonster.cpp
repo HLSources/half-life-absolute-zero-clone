@@ -489,7 +489,7 @@ BOOL CBaseMonster::NoFriendlyFireImp(const Vector& startVec, const Vector& endVe
 		return FALSE;
 	}
 	//m_checkAttackTime = gpGlobals->time + 1.5;
-}//END OF NoFriendlyFireImp
+}// NoFriendlyFireImp
 
 
 //MODDD - new
@@ -557,6 +557,9 @@ CBaseMonster::CBaseMonster(void){
 
 	nextDirectRouteAttemptTime = -1;
 	recentMoveExecuteFailureCooldown = -1;
+
+	//MODDD - safety, set to 0's
+	DebugSchedule_SchedEnum_Reset(this);
 
 }//CBaseMonster constructor
 
@@ -633,12 +636,7 @@ void CBaseMonster::setAnimation(char* animationName, BOOL forceException, BOOL f
 }
 
 void CBaseMonster::setAnimation(char* animationName, BOOL forceException, BOOL forceLoopsProperty, int extraLogic){
-
-	
 	int iSequence = LookupSequence( animationName );
-	
-	//easyPrintLine("OH YOU despicable bastard FROM HELL extralogic: %d", extraLogic);
-	//easyPrintLine("OH YOU despicable bastard FROM HELL %s", animationName);
 
 	if ( forceException || (canSetAnim == TRUE) && iSequence > ACTIVITY_NOT_AVAILABLE )
 	{
@@ -704,7 +702,7 @@ void CBaseMonster::setAnimation(char* animationName, BOOL forceException, BOOL f
 	}
 	//canSetAnim == FALSE;
 	
-}//END OF setAnimation
+}// setAnimation
 
 
 
@@ -909,7 +907,7 @@ SCHEDULE_TYPE CBaseMonster::getHeardBaitSoundSchedule(CSound* pSound){
 	
 	return SCHED_NONE;
 
-}//END OF getHeardBaitSoundSchedule
+}// getHeardBaitSoundSchedule
 
 
 SCHEDULE_TYPE CBaseMonster::_getHeardBaitSoundSchedule(CSound* pSound){
@@ -933,7 +931,7 @@ SCHEDULE_TYPE CBaseMonster::_getHeardBaitSoundSchedule(CSound* pSound){
 		return SCHED_INVESTIGATE_SOUND_BAIT;
 	}
 	return SCHED_NONE;
-}//END OF getHeardBaitSoundSchedule(...)
+}// getHeardBaitSoundSchedule(...)
 
 
 
@@ -963,12 +961,12 @@ SCHEDULE_TYPE CBaseMonster::getHeardBaitSoundSchedule(){
 
 		}
 		
-	}//END OF m_MonsterState IDLE or ALERT check.
+	}// m_MonsterState IDLE or ALERT check.
 
 
 	//skipSoundInvestigate:
 	return SCHED_NONE;
-}//END OF getHeardBaitSoundSchedule(...)
+}// getHeardBaitSoundSchedule(...)
 
 
 //=========================================================
@@ -1167,40 +1165,6 @@ void CBaseMonster::Look ( float flDistance )
 		return;
 	}
 
-	/*
-	int chuckTesta = 6666;
-	int chuckTestb = 6667;
-	const char* MYCLASSNAMEDAMN = getClassname();
-	const char* MYCLASSNAMEDAMNALT = STRING(pev->classname);
-	BOOL doesThatThingEqualMyThing = strcmp(MYCLASSNAMEDAMN, "monster_barney");
-
-	BOOL thingResult = FClassnameIs(pev, "monster_barney");
-	if(FClassnameIs(pev, "monster_barney") == TRUE ){
-		int x = 666;
-		chuckTesta = 1337;
-	}
-
-	if(FClassnameIs(pev, "monster_barney") == TRUE ){
-		int x = 666;
-	}
-
-	if(thingResult){
-		int x = 666;
-		chuckTestb = 1338;
-	}
-
-
-
-
-	BOOL test2 = FStrEq(STRING(pev->classname), "monster_barney");
-	BOOL test3 = strcmp(STRING(pev->classname), "monster_barney");
-
-
-	BOOL whatTheHay = FClassnameIs(pev, "monster_barney");
-	*/
-
-
-
 	m_pLink = NULL;
 
 	CBaseEntity	*pSightEnt = NULL;// the current visible entity that we're dealing with
@@ -1221,34 +1185,6 @@ void CBaseMonster::Look ( float flDistance )
 			pSightEnt = pList[i];
 			// !!!temporarily only considering other monsters and clients, don't see prisoners
 			
-
-			//Good for doing breakpoints with.
-			/*
-			const char* sightedClassname = "derp";
-			BOOL sightedEntStillAliveByAI = FALSE;
-			if(pSightEnt != NULL){
-				sightedClassname = pSightEnt->getClassname();
-				sightedEntStillAliveByAI = IsAlive_FromAI(this);
-			}
-
-			
-			const char* enemyClassname = "DERR";
-			const char* myClassname = getClassname();
-			if(m_hEnemy != NULL){
-				enemyClassname = m_hEnemy->getClassname();
-			}else{
-
-			}
-			int yyy = 666;
-
-
-			int x = 666;
-
-			BOOL isThatThingAlive = pSightEnt->IsAlive_FromAI(this);
-			
-			int x2 = 666;
-			*/
-
 			if ( pSightEnt != this												&& 
 				 !FBitSet( pSightEnt->pev->spawnflags, SF_MONSTER_PRISONER )	&& 
 				 
@@ -1275,7 +1211,6 @@ void CBaseMonster::Look ( float flDistance )
 				BOOL isInDaViewcone = FInViewCone(pSightEnt);
 				BOOL isVisaba = FVisible(pSightEnt);
 				BOOL isDaFlagSet = FBitSet(pSightEnt->pev->flags, FL_NOTARGET);
-				int xxx = 666;
 				*/
 				
 				
@@ -1551,9 +1486,7 @@ void CBaseMonster::heardBulletHit(entvars_t* pevShooter){
 		}
 	}
 
-
-}//END OF heardBulletHit(...)
-
+}// heardBulletHit
 
 
 void CBaseMonster::wanderAway(const Vector& toWalkAwayFrom){
@@ -1576,19 +1509,15 @@ void CBaseMonster::wanderAway(const Vector& toWalkAwayFrom){
 	//Peraps changing to a "waitForWanderDelay" schedule, interruptible by practically anything, would work?
 
 
-	easyForcePrintLine("YOU, %s:%d, GOT TOLD TO WANDER AWAY SO YOU BETTER LISTEN", this->getClassname(), monsterID);
+	easyPrintLine("!!! wanderAway: %s:%d was told to wander away", this->getClassname(), monsterID);
 	//if(this->m_movementActivity == ACT_IDLE){
-		//m_movementActivity
-
 		//TODO: specify walking away from "toWalkAwayFrom" ?
 
 		this->ChangeSchedule(  this->GetScheduleOfType(SCHED_TAKE_COVER_FROM_ORIGIN_WALK)  );
 	//}
 
 
-}//END OF wanderAway()
-
-
+}// wanderAway
 
 
 
@@ -1626,10 +1555,8 @@ void CBaseMonster::TimedDamagePostBuddhaCheck(void) {
 int CBaseMonster::convert_itbd_to_damage(int i){
 	
 	if(i < itbd_BITMASK2_FIRST){
-		//The old way works fine for existing damage types.
-
-		//DAMNIT PAST ME, comments.
-		//These damage types are represented per value of i:
+		// The old way works fine for existing damage types.
+		// These damage types are represented per value of i:
 		//0 : DMG_PARALYZE		(1 << 15)	// slows affected creature down
 		//1 : DMG_NERVEGAS		(1 << 16)	// nerve toxins, very bad
 		//2 : DMG_POISON			(1 << 17)	// blood poisioning
@@ -1650,13 +1577,13 @@ int CBaseMonster::convert_itbd_to_damage(int i){
 		case itbd_Bleeding:
 			return DMG_BLEEDING;
 		break;
-		}//END OF switch(i)
+		}// Eswitch(i)
 	}
 
 	easyPrintLine("ERROR: failed to convert timed damage itbd #%d to damage type!", i);
 	//throw error! problem!
 	return -1;
-}//END OF convert_itbd_to_damage
+}// convert_itbd_to_damage
 
 
 void CBaseMonster::removeTimedDamage(int arg_type, int* m_bitsDamageTypeRef) {
@@ -1670,7 +1597,7 @@ void CBaseMonster::removeTimedDamage(int arg_type, int* m_bitsDamageTypeRef) {
 	// if we're done, clear damage bits
 	//m_bitsDamageType &= ~(DMG_PARALYZE << i);	
 	(*m_bitsDamageTypeRef) &= ~(convert_itbd_to_damage(arg_type));
-}//END OF removeTimedDamage
+}// removeTimedDamage
 
 
 // Similar to removeTimedDamage, but only called on removing a timed damage very early on.
@@ -1807,7 +1734,7 @@ void CBaseMonster::parse_itbd(int i) {
 	break;
 	}//switch(i)
 
-}//END OF parse_itbd
+}// parse_itbd
 
 
 // If this is not the first frame we're taking this damage type,
@@ -1949,14 +1876,14 @@ void CBaseMonster::CheckTimeBasedDamage(void)
 				// the small damage icon that disappears soon without any timed damage.
 
 				setTimedDamageDuration(i, m_bitsDamageTypeRef);
-			}//END OF firstFrame check
+			}// firstFrame check
 		}
-	}//END OF loop through all damage types
+	}// loop through all damage types
 
 
 	TimedDamagePostBuddhaCheck();
 
-}//END OF CheckTimeBasedDamage
+}// CheckTimeBasedDamage
 
 
 
@@ -1970,7 +1897,7 @@ void CBaseMonster::setTimedDamageDuration(int i, int* m_bitsDamageTypeRef) {
 	else {
 		// don't come back!
 		removeTimedDamageImmediate(i, m_bitsDamageTypeRef, bDuration);
-	}//END OF duration checks
+	}// duration checks
 }
 
 
@@ -2034,12 +1961,12 @@ void CBaseMonster::applyNewTimedDamage(int arg_bitsDamageType, int arg_bitsDamag
 				else {
 					// don't come back!
 					removeTimedDamageImmediate(i, m_bitsDamageTypeRef, bDuration);
-				}//END OF duration checks
+				}// duration checks
 			}
 
 		}
 
-	}//END OF for through itbd's
+	}// for through itbd's
 }//applyNewTimedDamage
 
 
@@ -2206,7 +2133,7 @@ void CBaseMonster::MonsterThink ( void )
 			UTIL_drawLineFrame(debugVector3, debugVector4, 12, clrR, clrG, clrB);
 
 
-		}//END OF debugVectorMode checks
+		}// debugVectorMode checks
 		else if(debugVectorMode == 2){
 			
 			clrR=0;clrG=255;clrB=0;
@@ -2215,7 +2142,7 @@ void CBaseMonster::MonsterThink ( void )
 
 		}
 
-	}//END OF draw debug vector check (path finding ramp fix)
+	}// draw debug vector check (path finding ramp fix)
 	
 
 	
@@ -2391,7 +2318,7 @@ void CBaseMonster::MonsterThink ( void )
 
 	//easyForcePrintLine("FRAMEB:%.2f seq:%d loop:%d fin:%d", this->pev->frame, pev->sequence, m_fSequenceLoops, m_fSequenceFinished);
 
-}//END OF monsterThink
+}// monsterThink
 
 
 
@@ -2463,7 +2390,7 @@ BOOL CBaseMonster::getMonsterBlockIdleAutoUpdate(){
 	// by default, monsters have no problems looping the idle anim / looking for a new one automatically when it finishes.
 	// Override this method in child monster classes (children of CBaseMonster) to change this per child.
 	return FALSE;
-}//END OF getMonsterBlockIdleAutoUpdate
+}// getMonsterBlockIdleAutoUpdate
 
 
 //=========================================================
@@ -2536,26 +2463,6 @@ int CBaseMonster::IgnoreConditions ( void )
 		// not hungry? Ignore food smell.
 		iIgnoreConditions |= bits_COND_SMELL_FOOD;
 	}
-
-	/*
-	if (FClassnameIs(pev, "monster_gargantua")) {
-		int x = 666;
-		if (m_MonsterState != MONSTERSTATE_SCRIPT) {
-			int x2 = 666;
-		}
-		if (m_pCine == NULL) {
-			int x2 = 666;
-		}
-		else {
-			int theid = ENTINDEX(m_pCine->edict());
-			float agg1 = m_pCine->pev->nextthink;
-			float agg2 = gpGlobals->time;
-			void* agg3 = &m_pCine->m_pfnThink;
-		}
-
-		int err = 444;
-	}
-	*/
 
 
 	if (m_pCine) {
@@ -3006,7 +2913,7 @@ BOOL CBaseMonster::FRefreshRouteCheap ( void )
 //			if ( returnCode )
 //				RouteSimplify( NULL );
 		}break;
-	}//end of switch
+	}// switch
 
 	if (returnCode != FALSE && usesSegmentedMove()) {
 		returnCode = CheckPreMove();
@@ -3174,7 +3081,7 @@ BOOL CBaseMonster::FRefreshRouteChaseEnemySmart(void){
 	}
 
 	return returnCode;
-}//END OF FRefreshRouteChaseEnemySmart
+}// FRefreshRouteChaseEnemySmart
 
 
 
@@ -3327,7 +3234,7 @@ BOOL CBaseMonster::FRefreshRouteChaseEnemySmartSafe(void){
 	}
 
 	return returnCode;
-}//END OF FRefreshRouteChaseEnemySmartSafe
+}// FRefreshRouteChaseEnemySmartSafe
 
 
 
@@ -3569,7 +3476,7 @@ void CBaseMonster::DrawRoute( entvars_t *pev, WayPoint_t *m_Route, int m_iRouteL
 
 //		UTIL_ParticleEffect ( m_Route[ i ].vecLocation, g_vecZero, 255, 25 );
 	}
-}//END OF DrawRoute(...)
+}// DrawRoute(...)
 
 void CBaseMonster::DrawMyRoute(int r, int g, int b){
 	// redirect to that
@@ -3967,41 +3874,10 @@ int CBaseMonster::CheckEnemy ( CBaseEntity *pEnemy )
 	}
 	
 	
-	//FLAG 666
-
-	//easyPrintLine("HEY WHO IS THAT ENEMY!? %s::%d %d", pEnemy->getClassname(), pEnemy->IsAlive(), pEnemy->pev->deadflag);
-	//m_hEnemy!=NULL?easyPrintLine("HEY WHO IS MY ENEMY!? %s::%d %d", m_hEnemy->getClassname(), m_hEnemy->IsAlive(), m_hEnemy->pev->deadflag):easyPrintLine("NOOEEE");
-	
-		//IsAlive_FromAI takes "this" monster as a parameter. It already knows what itself is.
-
-	//if(FClassnameIs(pev, "monster_barney")){
-	//	int x = 666;
-	//}
-
-
-
-	/*
-	if(monsterID == 9){
-		BOOL tempp1 = pEnemy->IsAlive_FromAI(this);
-		BOOL tempp2 = pEnemy->IsAlive();
-
-		int daDeadflag = pEnemy->pev->deadflag;
-
-		easyForcePrintLine("$$$FLAG3: is my enemy dead? fromAI:%d real:%d deadflag:%d", tempp1, tempp2, daDeadflag);
-	}
-	*/
-
 	//Why does this wait to count an enemy as dead, but
 	//bits_COND_SEE_ENEMY sure happens instantly the moment of death?
 	if ( !pEnemy->IsAlive_FromAI(this) )
 	{
-
-		if(monsterID == 9){
-			int x = 45;
-		}
-
-		//easyForcePrintLine("DO IT BE THO %d : %.2f", (pEnemy->pev->deadflag, pEnemy->pev->frame) );
-
 		//MODDD - new event, called when the checked enemy is dead
 		// (as bits_COND_ENEMY_DEAD is set)
 		onEnemyDead(pEnemy);
@@ -4200,7 +4076,7 @@ void CBaseMonster::refreshStack() {
 			//clearly, one less enemy to remember.
 			m_intOldEnemyNextIndex--;
 		}
-	}//END OF for
+	}// for
 
 }
 
@@ -4239,18 +4115,11 @@ void CBaseMonster::PushEnemy( CBaseEntity *pEnemy, Vector &vecLastKnownPos )
 	return;
 	*/
 
-
-
 	refreshStack();
-
-
 
 	//a stack just needs to see the most recent position. Defaults to 0 of course.
 	//It is actualy a sign of the next "target" index to fill. being 0 means index "0" is ready to fill. Being index 4 (MAX_OLD_ENEMIES at the time of writing) exactly means it is full.
 	if (m_intOldEnemyNextIndex < MAX_OLD_ENEMIES) {
-		
-
-		
 		//first a check. Is this enemy already in the list?
 		for(i = 0; i < m_intOldEnemyNextIndex; i++){
 			if(m_hOldEnemy[i] == pEnemy){
@@ -4258,7 +4127,6 @@ void CBaseMonster::PushEnemy( CBaseEntity *pEnemy, Vector &vecLastKnownPos )
 				return;
 			}
 		}
-
 
 		m_hOldEnemy[m_intOldEnemyNextIndex] = pEnemy;
 		m_vecOldEnemy[m_intOldEnemyNextIndex] = vecLastKnownPos;
@@ -4323,10 +4191,6 @@ BOOL CBaseMonster::PopEnemy()
 
 
 
-
-
-
-
 void CBaseMonster::DrawFieldOfVision(){
 	
 	//1: +-0 deg.
@@ -4374,7 +4238,7 @@ void CBaseMonster::DrawFieldOfVision(){
 	::UTIL_drawLineFrame(eyePos, eyePos + vecFovExtentLeft, 12, 0, 255, 0);
 	::UTIL_drawLineFrame(eyePos, eyePos + vecFovExtentRight, 12, 0, 255, 0);
 
-}//END OF DrawFieldOfVision
+}// DrawFieldOfVision
 
 
 
@@ -4654,7 +4518,7 @@ void CBaseMonster::SetSequenceByIndex(int iSequence, BOOL safeReset)
 		pev->sequence		= 0;	// Set to the reset anim (if it's there)
 		usingCustomSequence = FALSE;
 	}
-}//END OF SetSequenceByNumber()
+}// SetSequenceByNumber()
 void CBaseMonster::SetSequenceByName(char* szSequence, BOOL safeReset)
 {
 	int iSequence;
@@ -5124,7 +4988,7 @@ int CBaseMonster::CheckLocalMove ( const Vector &vecStart, const Vector &vecEnd,
 	//				else
 
 					iReturn = LOCALMOVE_INVALID;
-				}//END OF check for trace-hit matching target
+				}// check for trace-hit matching target
 
 			}else{
 				// Didn't hit anything, still failed?  Likely tried going over some impassable change in elevation (cliff?).
@@ -6073,7 +5937,7 @@ BOOL CBaseMonster::attemptRampFix(const Vector &vecGoal, int iMoveFlag, CBaseEnt
 						debugVector4 = vecGoalOrigin;
 						debugVectorsSet = TRUE;
 						return TRUE;
-					}//END OF if(localMovePass)
+					}// if(localMovePass)
 					else{
 						debugVector1 = vecRampLowPoint;
 						debugVector2 = rampTopPoint1;
@@ -6083,9 +5947,9 @@ BOOL CBaseMonster::attemptRampFix(const Vector &vecGoal, int iMoveFlag, CBaseEnt
 						debugFailColor = TRUE;
 					}
 
-				//}//END OF dot check
-			}//END OF pre move test (from current place to the bottom of the ramp, if not immediately there)
-		}//END OF trace-hit-something check
+				//}// dot check
+			}// pre move test (from current place to the bottom of the ramp, if not immediately there)
+		}// trace-hit-something check
 	}else{
 		EASY_CVAR_PRINTIF_PRE(pathfindPrintout, easyForcePrintLine("%s:ID%d Pathfinding: NO RAMP TEST.", getClassnameShort(), monsterID) );
 	}
@@ -8046,7 +7910,7 @@ void CBaseMonster::Move ( float flInterval )
 		}
 		
 
-	}//END OF else OF facingNextNode
+	}// else OF facingNextNode
 
 	//}
 
@@ -8061,7 +7925,7 @@ void CBaseMonster::Move ( float flInterval )
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 
-}//END OF Move
+}// Move
 
 
 
@@ -8164,7 +8028,7 @@ BOOL CBaseMonster::CheckPreMove(void){
 			// Route left to go?  get out the loop then
 			break;
 		}
-	}//END OF while loop
+	}// while loop
 
 	g_pathfind_preMoveOnly = FALSE;
 
@@ -8486,9 +8350,9 @@ void CBaseMonster::MoveExecute( CBaseEntity *pTargetEnt, const Vector &vecDir, f
 			//}
 
 
-		}//END OF if(!WALK_MOVE( ... ) )
+		}// if(!WALK_MOVE( ... ) )
 
-		}//END OF else OF pathfindLargeBoundFix check
+		}// else OF pathfindLargeBoundFix check
 
 		/////////////////////////////////////////////////////////////////////////////////////
 
@@ -9845,7 +9709,7 @@ BOOL CBaseMonster::BuildNearestRoute ( Vector vecThreat, Vector vecViewOffset, f
 	}
 
 	return FALSE;
-}//END OF BuildNearestRoute
+}// BuildNearestRoute
 
 
 
@@ -10123,10 +9987,10 @@ CBaseEntity *CBaseMonster::BestVisibleEnemy ( void )
 				}
 
 			}
-		}//END OF this monster alive (as far as the AI cares) check
+		}// this monster alive (as far as the AI cares) check
 
 		pNextEnt = pNextEnt->m_pLink;
-	}//END OF while loop through all seen monsters list "m_pLink".
+	}// while loop through all seen monsters list "m_pLink".
 
 
 
@@ -10152,7 +10016,7 @@ CBaseEntity *CBaseMonster::BestVisibleEnemy ( void )
 
 	// should not be reached.
 	return pReturn;
-}//END OF BestVisibleEnemy
+}// BestVisibleEnemy
 
 
 //=========================================================
@@ -10884,8 +10748,7 @@ BOOL CBaseMonster::FGetNodeRoute_Final(Vector vecStart, Vector vecDest, BOOL asI
 	if(asIfSnappedToGround && g_FGetNodeRoute_recursiveCall){
 		// Straight-down shot?  Then the route needs to begin with a node to say to head straight down
 		m_Route[0].vecLocation = vecStart;
-		// AAAaaaaaaaaaaallllllllllssssssssooooooooo don't fuck around with 
-		// bits_MF_TO_PATHCORNER unless you know what you're doing.
+		// Don't mess with bits_MF_TO_PATHCORNER unless you know what you're doing.
 		// Cuz uh.  I sure don't.
 		m_Route[0].iType = bits_MF_TO_DETOUR; // | bits_MF_DONT_SIMPLIFY;
 		m_Route[0].iMapNodeIndex = -1;
@@ -11118,58 +10981,55 @@ int CBaseMonster::FindHintNode ( void )
 void CBaseMonster::reportNetName(void){
 	const char* netnameBetter;
 	if(FStringNull(pev->netname) || ((netnameBetter = STRING(pev->netname)) == NULL)  ){
-		easyForcePrintLine("%s:%d MY NETNAME IS %s", this->getClassname(), this->monsterID, "__NULL__");
+		easyForcePrintLine("%s:%d netname:%s", this->getClassname(), this->monsterID, "__NULL__");
 	}else{
-		easyForcePrintLine("%s:%d MY NETNAME IS %s", this->getClassname(), this->monsterID, netnameBetter);
+		easyForcePrintLine("%s:%d netname:%s", this->getClassname(), this->monsterID, netnameBetter);
 	}
 }
 
 
-char* getActivityName(Activity arg_act){
-	int i = 0;
-	int actAsNumber = (int)arg_act;
-
-	while ( activity_map[i].type != 0 )
-	{
-		if ( activity_map[i].type == actAsNumber )
-		{
-			//ALERT( level, "Activity %s, ", activity_map[i].name );
-			return activity_map[i].name;
-			break;
-		}
-		i++;
-	}
-	return "NONE?";
-}//END OF getActivityName
-
-
-
-
 void CBaseMonster::ReportAIState( void )
 {
+	int i = 0;
 	float currentYaw = UTIL_AngleMod( pev->angles.y );
+	ALERT_TYPE level = at_console;
 
 	//this->pev->movetype = MOVETYPE_TOSS;
 	//ClearBits( pev->flags, FL_ONGROUND );
 
-	//m_pfnThink m_pfnTouch
-	ALERT_TYPE level = at_console;
-
-	
-
 	easyForcePrintLine("%s ID:%d", getClassname(), monsterID);
-
-	int i = 0;
-	
-
 	easyForcePrintLine("ACTS: Current:%s  Ideal:%s  Movement:%s", getActivityName(m_Activity), getActivityName(m_IdealActivity), getActivityName(m_movementActivity));
-		
 	easyForcePrintLine("STATES: Current: %s  Ideal: %s", pStateNames[this->m_MonsterState], pStateNames[this->m_IdealMonsterState]);
-
 	easyForcePrintLine("Can attack? m1::%d m2:%d r1:%d r2:%d", HasConditions(bits_COND_CAN_MELEE_ATTACK1), HasConditions(bits_COND_CAN_MELEE_ATTACK2), HasConditions(bits_COND_CAN_RANGE_ATTACK1), HasConditions(bits_COND_CAN_RANGE_ATTACK2) );
 	easyForcePrintLine("Could attack? m1::%d m2:%d r1:%d r2:%d", HasConditionsMod(bits_COND_COULD_MELEE_ATTACK1), HasConditionsMod(bits_COND_COULD_MELEE_ATTACK2), HasConditionsMod(bits_COND_COULD_RANGE_ATTACK1), HasConditionsMod(bits_COND_COULD_RANGE_ATTACK2) );
 
 
+
+#if DEBUG_SCHEDULE == 1
+	// We can get readable names straight from here.  Assuming this monster subclass has
+	// overridden getScheduleEnumName/getTaskNumberName to involve its own task/sched enums
+	// should they ever occur, if necessary
+
+	if ( m_pSchedule )
+	{
+		easyForcePrint("Schedule:%s || FailSched:%s(%d)\n", getScheduleName(), this->getScheduleEnumName(m_failSchedule), m_failSchedule);
+
+		DebugSchedule_SchedEnum_PrintFinal(this);
+
+		Task_t *pTask = GetTask();
+		if ( pTask ){
+			easyForcePrint("Task#: %s(%d) (schedindex:%d) ", this->getTaskNumberName(pTask->iTask), pTask->iTask, m_iScheduleIndex );
+		}else{
+			easyForcePrint("Task#: NULL?");
+		}
+	}
+	else{
+		easyForcePrint("Schedule: NULL?!");
+	}
+	easyForcePrint("\n");
+
+#else
+	// Old way, without any new schedule/task enum naming
 
 	if ( m_pSchedule )
 	{
@@ -11180,12 +11040,14 @@ void CBaseMonster::ReportAIState( void )
 		}else{
 			easyForcePrint("Task#: NULL?");
 		}
-
 	}
 	else{
 		easyForcePrint("Schedule: NULL?!");
 	}
 	easyForcePrint("\n");
+#endif
+
+	
 
 
 	if ( IsMoving() )
@@ -11275,7 +11137,7 @@ void CBaseMonster::ReportAIState( void )
 				if(i!=0)easyForcePrint(", ");
 				easyForcePrint("#%d:%s", i, "EMPTY");	
 			}
-		}//END OF for(...)
+		}// for(...)
 		
 		easyForcePrintLine("");
 	}else{
@@ -11295,7 +11157,7 @@ void CBaseMonster::ReportAIState( void )
 		easyForcePrintLine("CINE: %s:%d  sf:%d ob:%d targetname:%s target:%s iszE:%s globalname: %s", m_pCine->getClassname(), m_pCine->monsterID, m_pCine->pev->spawnflags, m_pCine->ObjectCaps(),  STRING(m_pCine->pev->targetname), STRING(m_pCine->pev->target),  STRING( m_pCine->m_iszEntity ), STRING(m_pCine->pev->globalname ) );
 		
 		// spread out to debug a little crash issue.
-		// Great were' in 2020 and a program can't give any more info about a long line crashing other than 'crash happen here'.   >_>
+		// Great we're in 2020 and a program can't give any more info about a long line crashing other than "crash happen here".
 		/*
 		easyForcePrintLine("ok its gonnna go a lil somethin like this yall");
 
@@ -11310,12 +11172,8 @@ void CBaseMonster::ReportAIState( void )
 		*/
 	}
 	
-
 	easyForcePrint("Capability: ");
 	printLineIntAsBinary((unsigned int)m_afCapability, 32u);
-
-
-	//
 
 	//easyForcePrintLine("isOrganic:%d", isOrganic());
 
@@ -11328,6 +11186,69 @@ void CBaseMonster::ReportAIState( void )
 	easyForcePrintLine("-------------------------------------------------------------");
 
 }
+
+
+// Give some info about what was hit in a recent TraceAttack call.
+// Name / number of the hitgroup and startDamage to finalDamage after
+// considering the hitgroup, plus a percentage of the change.
+// Could be a CBaseEntity version that lacks MonsterID, but I don't really
+// see the point.
+// ptr->iHitgroup is what's used to determine the additional damage modifier seen in
+// hitgroupDamage.  iHitgroup is the one first seen in the TraceAttack call that lead 
+// to that point.
+// Example: a hit to a Barney's helmet would have a iHitgroup of BARNEY_HELMET (first
+// thing hit), yet a ptr->iHitgroup of HEAD (for the hitgroupDamage modifier to work with).
+// TraceAttack explicitly changed ptr->iHitgroup for it to be HEAD instead of remaining
+// BARNEY_HELMET.
+void CBaseMonster::debugTraceAttack(TraceResult* ptr, int bitsDamageType, int bitsDamageTypeMod, int iHitgroup, float flDamageStart, float flDamageFinal){
+	char strTemp[16];
+	float flDamgaePercentChange;
+	
+	// Take flDamageFinal, and see what it would be after going through hitgroupDamage like
+	// most things do:
+	flDamageFinal = hitgroupDamage(flDamageFinal, bitsDamageType, bitsDamageTypeMod, ptr->iHitgroup);
+	
+// There were some recent changes to TraceAttack, so leaving these in for now.
+// Requires developer 1 or above I think to show this.
+// Also - this does not work with all classes, requires a little support from their own
+// TraceAttack methods.  See barney, agrunt, and hgrunt's for examples.
+#if 1
+	if(flDamageStart != 0){
+		sprintf(&strTemp[0], "%.0f%%", (flDamageFinal / flDamageStart) * 100);
+	}else{
+		sprintf(&strTemp[0], "N/A%%");
+	}
+	easyPrintLine("%s:#%d TA. hitgroup:%s(%d) dmg:%.1f->%.1f (%s)", getClassname(), monsterID, getHitgroupName(iHitgroup), iHitgroup, flDamageStart, flDamageFinal, strTemp);
+#endif
+
+}
+
+// It might sound like this should be a global instance-less method, but some
+// things have their own hitgroup choices or do something completely different
+// with the defaults.  See the apache/osprey doing much different things with
+// hitgroups 1, 2, 3, and 6 (at least) without even any enum.
+// So, let this be appended to or completely overridden as needed.
+// Keeping it here as it is a debug feature.
+const char* CBaseMonster::getHitgroupName(int arg_iHitgroup){
+	//static char strTemp[16];
+
+	switch(arg_iHitgroup){
+	case HITGROUP_GENERIC: return "HITGROUP_GENERIC";
+	case HITGROUP_HEAD: return "HITGROUP_HEAD";
+	case HITGROUP_CHEST: return "HITGROUP_CHEST";
+	case HITGROUP_STOMACH: return "HITGROUP_STOMACH";
+	case HITGROUP_LEFTARM: return "HITGROUP_LEFTARM";
+	case HITGROUP_RIGHTARM: return "HITGROUP_RIGHTARM";
+	case HITGROUP_LEFTLEG: return "HITGROUP_LEFTLEG";
+	case HITGROUP_RIGHTLEG: return "HITGROUP_RIGHTLEG";
+	}
+	// Not necessarily a bad thing, but be aware that the codebase hasn't named this.
+	// Don't call CBaseEntity's version, it's useless and worth pointing out this is unnamed.
+	//sprintf(&strTemp[0], "UNNAMED(%d)", arg_iHitgroup);
+	//return strTemp;
+	return "UNNAMED";  // (nevermind the number, the caller will print the number always anyway now)
+}
+
 
 //=========================================================
 // KeyValue
@@ -12076,7 +11997,7 @@ void CBaseMonster::DeathAnimationStart(){
 	if(EASY_CVAR_GET_DEBUGONLY(animationKilledBoundsRemoval) == 1){
 		setPhysicalHitboxForDeath();
 	}
-}//END OF DeathAnimationStart
+}// DeathAnimationStart
 
 
 //MODDD TODO - would it be possible to use "SetSequenceBox" to set the bounds
@@ -12124,7 +12045,7 @@ void CBaseMonster::DeathAnimationEnd(){
 	//an event.  But ONLY if not fading out.  At least in the default case,
 	//it is up to other monsters whether they care about that, like auto-detonators (floaters).
 	onDeathAnimationEnd();
-}//END OF DeathAnimationEnd
+}// DeathAnimationEnd
 
 void CBaseMonster::onDeathAnimationEnd(void){
 	//...nothing in the broadest case.
@@ -12201,10 +12122,10 @@ void CBaseMonster::Activate( void ){
 					}
 				}
 				*/
-			}//END OF loop
-		}//END OF pEdict check (first)
+			}// loop
+		}// pEdict check (first)
 
-	}//END OF verify I may want a cine object.
+	}// verify I may want a cine object.
 }
 
 void CBaseMonster::Spawn( ){
@@ -12224,7 +12145,7 @@ int CBaseMonster::LookupActivityFiltered(int NewActivity){
 	}else{
 		return LookupActivity ( NewActivity );
 	}
-}//END OF LookupActivityFiltered
+}// LookupActivityFiltered
 
 
 
@@ -12362,7 +12283,7 @@ void CBaseMonster::OnTakeDamageSetConditions(entvars_t *pevInflictor, entvars_t 
 	//easyForcePrintLine("%s:%d OnTkDmgSetCond raw:%.2f fract:%.2f", getClassname(), monsterID, flDamage, (flDamage / pev->max_health));
 
 
-}//END OF OnTakeDamageSetConditions
+}// OnTakeDamageSetConditions
 
 
 
@@ -12385,7 +12306,7 @@ void CBaseMonster::ForgetEnemy(void) {
 		}
 	}
 
-}//END OF ForgetEnemy
+}// ForgetEnemy
 
 //by default, does nothing. Used for the Kingpin to let a monster remove itself from the Kingpin's command list of entities it powered up and can order to attack its enemy.
 void CBaseMonster::removeFromPoweredUpCommandList(CBaseMonster* argToRemove){
@@ -12405,7 +12326,7 @@ void CBaseMonster::forceNewEnemy(CBaseEntity* argIssuing, CBaseEntity* argNewEne
 		}
 	}
 
-}//END OF forceNewEnemy
+}// forceNewEnemy
 
 //dummied by default
 void CBaseMonster::setPoweredUpOff(void){}
@@ -12453,7 +12374,7 @@ void CBaseMonster::StartReanimation(void){
 	//     SetEyePosition();
 	
 	StartReanimationPost(oldSeq);
-}//END OF StartReanimation
+}// StartReanimation
 
 
 // Overridable method. What to do when this monster is at the end of revival from StartReanimation above.
@@ -12480,7 +12401,7 @@ void CBaseMonster::StartReanimationPost(int preReviveSequence){
 	SetSequenceByIndex(preReviveSequence, -1, FALSE);
 
 	ChangeSchedule(slWaitForReviveSequence );
-}//END OF StartReanimationPost
+}// StartReanimationPost
 
 
 //Overridable. Whether a monster wants to turn to face a node up to so many degrees (such as +- 45 degrees before going back to walking or running).
@@ -12534,7 +12455,7 @@ WayPoint_t* CBaseMonster::GetGoalNode(void){
 	// Can't think of when a route would lack a GOAL-marked node unless it ran out at 
 	// the max number of nodes a route can hold (ROUTE_SIZE).
 	return NULL;
-}//END OF getGoalNode
+}// getGoalNode
 
 
 // Use the current 'moveGoal' type to tell which entity handle (m_hEnemy, m_hTarget, or none)
@@ -12575,7 +12496,7 @@ BOOL CBaseMonster::getForceAllowNewEnemy(CBaseEntity* pOther){
 BOOL CBaseMonster::needsMovementBoundFix(){
 
 	return FALSE;
-}//END OF needsMovementBoundFix
+}// needsMovementBoundFix
 
 
 void CBaseMonster::cheapKilled(void){
@@ -12595,7 +12516,7 @@ void CBaseMonster::cheapKilled(void){
 
 	DeathAnimationStart();
 	DeathAnimationEnd();
-}//END OF cheapKilled
+}// cheapKilled
 
 
 // Version of cheapKilled for flying monsters. They should still drop to the ground as expected, not akwardly freeze in mid-air.  Or maybe they should? dunno.
@@ -12625,7 +12546,7 @@ void CBaseMonster::cheapKilledFlyer(void){
 
 	DeathAnimationStart();
 	DeathAnimationEnd();
-}//END OF cheapKilledFlyer
+}// cheapKilledFlyer
 
 
 // When killed, how do we handle the "Touch" callback method from the engine?
@@ -12658,7 +12579,7 @@ void CBaseMonster::KilledFinishTouch( CBaseEntity *pOther ){
 		SetTouch(NULL); //don't need to do this again.
 	//}
 
-}//END OF KilledFinishTouch
+}// KilledFinishTouch
 
 
 
@@ -12688,7 +12609,7 @@ Schedule_t* CBaseMonster::flyerDeathSchedule(void){
 			return slDieFallLoop;
 		}
 
-	}//END OF flyerKilledFallingLoop check
+	}// flyerKilledFallingLoop check
 
 
 	//default
@@ -12843,26 +12764,26 @@ CBaseEntity* CBaseMonster::getNearestDeadBody(const Vector& arg_searchOrigin, co
 				bestChoiceYet = testMon;
 				leastDistanceYet = thisDistance;
 				
-			}//END OF minimum distance yet
-		}//END OF entity scan null check
+			}// minimum distance yet
+		}// entity scan null check
 
-	}//END OF while loop through all entities in an area to see which are corpses.
+	}// while loop through all entities in an area to see which are corpses.
 	return bestChoiceYet;
 
-}//END OF getNearestDeadBody
+}// getNearestDeadBody
 
 // Whether to do the usual "Look" method for checking for new or existing enemies.
 // Needed by archers to be able to call "Look" despite the player never going underwater (causes the PVS check to pass at least once to start combat).
 BOOL CBaseMonster::noncombat_Look_ignores_PVS_check(void){
 	return FALSE;
-}//END OF noncombat_Look_ignores_PVS_check
+}// noncombat_Look_ignores_PVS_check
 
 // Implement for monsters that should spawn regardless of the "mp_allowmonsters" CVar.
 // Pickup walkers are a clear example since they're needed for some weapons intended
 // by the map.
 BOOL CBaseMonster::bypassAllowMonstersSpawnCheck(void){
 	return FALSE;
-}//END OF bypassAllowMonstersSpawnCheck
+}// bypassAllowMonstersSpawnCheck
 
 
 
@@ -12873,7 +12794,7 @@ BOOL CBaseMonster::bypassAllowMonstersSpawnCheck(void){
 // It is also OK if the sequence for violent death is not tied to ACT_DIEVIOLENT in the model. Then pick it for ACT_DIEVIOLENT in the custom animation system instead.
 BOOL CBaseMonster::violentDeathAllowed(void){
 	return FALSE;
-}//END OF hasViolentDeathSequence
+}// hasViolentDeathSequence
 
 // Default case should work fine for most monsters.
 // Only allow a violent death animation if the last hit solidly did this much damage.
@@ -12887,7 +12808,7 @@ BOOL CBaseMonster::violentDeathDamageRequirement(void){
 // above regardless.
 BOOL CBaseMonster::violentDeathClear(void){
 	return TRUE;
-}//END OF violentDeathClear
+}// violentDeathClear
 
 //MODDD - the priority that ACT_DIEVIOLENT gets compared to other activities.  That is, even if the conditions for a violent death act are met or could
 //        be met if checked, what activities should get picked first anyways if their criteria matches at the same time?  Only applies if "violentDeathAllowed" is TRUE.
@@ -12899,7 +12820,7 @@ BOOL CBaseMonster::violentDeathClear(void){
 //   Otherwise, all other death acts get priority.
 int CBaseMonster::violentDeathPriority(void){
 	return 3;
-}//END OF violentDeathPriority
+}// violentDeathPriority
 
 
 // a utility for checking to see if behind a monster by up to "argDistance" is completely unobstructed and is of the same ground level as this entity.
@@ -12940,7 +12861,7 @@ BOOL CBaseMonster::violentDeathClear_BackwardsCheck(float argDistance){
 	}
 	
 	return FALSE;
-}//END OF violentDeathClear_BackwardsCheck
+}// violentDeathClear_BackwardsCheck
 
 
 void CBaseMonster::lookAtEnemyLKP(void){
@@ -12962,7 +12883,7 @@ void CBaseMonster::predictActRepeat(int arg_bits_cond){
 // Am I able to use the "predictActRepeat" check above at all? Defaults to TRUE, set differently when problematic.
 BOOL CBaseMonster::canPredictActRepeat(void){
 	return TRUE;
-}//END OF canPredictActRepeat
+}// canPredictActRepeat
 
 
 
@@ -13077,11 +12998,11 @@ BOOL CBaseMonster::traceResultObstructionValidForAttack(const TraceResult& arg_t
 				return FALSE;
 			}
 		}
-	}//END OF fraction and thing-hit checks.
+	}// fraction and thing-hit checks.
 
 
 	return TRUE;
-}//END OF traceResultObstructionValidForAttack
+}// traceResultObstructionValidForAttack
 
 
 //default, override if necessary.
@@ -13100,7 +13021,7 @@ void CBaseMonster::ReportGeneric() {
 	//Also call our own special report method: ReportAI.
 	ReportAIState();
 
-}//END OF ReportGeneric()
+}// ReportGeneric()
 
 // When my marked enemy has recently died, let me know.
 // m_hEnemy could be cleared at any moment after all.

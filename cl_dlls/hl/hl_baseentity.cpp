@@ -257,6 +257,7 @@ void UTIL_PRECACHESOUND(char* path){}
 
 
 GENERATE_TRACEATTACK_IMPLEMENTATION_DUMMY_CLIENT(CBaseEntity)
+const char* CBaseEntity::getHitgroupName(int arg_iHitgroup){return NULL;}
 void CBaseEntity::TraceAttack_Traceless(entvars_t* pevAttacker, float flDamage, Vector vecDir, int bitsDamageType, int bitsDamageTypeMod) {}
 GENERATE_TAKEDAMAGE_IMPLEMENTATION_DUMMY_CLIENT(CBaseEntity)
 void CBaseEntity::Knockback(const int knockbackAmount, const Vector& knockbackDir) {}
@@ -701,6 +702,7 @@ BOOL CBaseMonster::FVerifyRoute(Vector vecStart, Vector vecDest, int iPath[], in
 
 int CBaseMonster::FindHintNode ( void ) { return NO_NODE; }
 void CBaseMonster::ReportAIState( void ) { }
+void CBaseMonster::debugTraceAttack(TraceResult* ptr, int bitsDamageType, int bitsDamageTypeMod, int iHitgroup, float flDamageStart, float flDamageFinal) {};
 void CBaseMonster::KeyValue( KeyValueData *pkvd ) { }
 BOOL CBaseMonster::FCheckAITrigger ( void ) { return FALSE; }
 BOOL CBaseMonster::NoFriendlyFire(void) { return FALSE; }
@@ -729,6 +731,7 @@ BOOL CBaseMonster::GetEnemy (BOOL arg_forceWork ){return FALSE;}
 
 GENERATE_TRACEATTACK_IMPLEMENTATION_DUMMY_CLIENT(CBaseMonster)
 GENERATE_TAKEDAMAGE_IMPLEMENTATION_DUMMY_CLIENT(CBaseMonster)
+const char* CBaseMonster::getHitgroupName(int arg_iHitgroup){return NULL;}
 BOOL CBaseMonster::ChangeHealthFiltered(entvars_t* pevAttacker, float flDamage) { return FALSE; }
 
 
