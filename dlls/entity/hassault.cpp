@@ -2286,17 +2286,17 @@ BOOL CHAssault::CheckRangeAttack1 ( float flDot, float flDist )
 // (can be required to be set again if needed)
 BOOL CHAssault::CheckRangeAttack2 ( float flDot, float flDist )
 {
-	// enemy, MUST.  be occluded.
-	// uhhhh.  says who?
-	//if (!HasConditions(bits_COND_ENEMY_OCCLUDED)) {
-	//	return FALSE;
-	//}
+
+	//MODDD - enemy must be occluded, OR far enough away that throwing a grenade anyway still makes sense
+	if(!HasConditions(bits_COND_ENEMY_OCCLUDED) && flDist < 370){
+		return FALSE;
+	}
 
 	if(EASY_CVAR_GET_DEBUGONLY(hassaultAllowGrenades) == 0){
 		return FALSE;
 	}
 
-	if(flDist > 1024.0 * 0.8){
+	if(flDist > 1024.0 * 0.95){
 		// I can't throw that far!
 		return FALSE;
 	}
@@ -3343,22 +3343,23 @@ Schedule_t* CHAssault::GetSchedule(){
 			{
 				return GetScheduleOfType( SCHED_SMALL_FLINCH );
 			}
-			else if ( !HasConditions(bits_COND_SEE_ENEMY) )
+			//else if ( !HasConditions(bits_COND_SEE_ENEMY) )
+			// (this used to be withing the "!HasCoditions(SEE_ENEMY)" block further down)
+			else if ( HasConditions(bits_COND_CAN_RANGE_ATTACK2) )
 			{
-
 				//MODDD - Can I toss a grenade?
 				// Might be able to see but still not attack normally (especially if minigun is too low to fire over something).
-				if ( HasConditions(bits_COND_CAN_RANGE_ATTACK2) )
+				// also from hgrunt
+				if (FOkToSpeak())
 				{
-					// also from hgrunt
-					if (FOkToSpeak())
-					{
-						SayGrenadeThrow();
-						JustSpoke();
-					}
-
-					return GetScheduleOfType( SCHED_RANGE_ATTACK2 );
+					SayGrenadeThrow();
+					JustSpoke();
 				}
+
+				return GetScheduleOfType( SCHED_RANGE_ATTACK2 );
+			}
+			else if ( !HasConditions(bits_COND_SEE_ENEMY) )
+			{
 
 				//MODDD - yes?
 				if ( HasConditions ( bits_COND_HEAR_SOUND ) )

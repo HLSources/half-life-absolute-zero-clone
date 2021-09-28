@@ -72,7 +72,8 @@ public:
 	void CheckOverviewEntities();
 	void DrawOverview();
 	void DrawOverviewEntities();
-	void GetMapPosition( float * returnvec );
+	//MODDD - whoops, unimplemented method
+	//void GetMapPosition( float * returnvec );
 	void DrawOverviewLayer();
 	void LoadMapSprites();
 	bool ParseOverviewFile();

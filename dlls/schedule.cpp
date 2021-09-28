@@ -508,6 +508,10 @@ void CBaseMonster::MaintainSchedule ( void )
 	}
 	*/
 
+	if(monsterID == 30){
+		int x = 4;
+	}
+
 	if(EASY_CVAR_GET_DEBUGONLY(crazyMonsterPrintouts) == 1){
 		easyPrintLine("DOCKS1 %d", HasConditions(bits_COND_CAN_MELEE_ATTACK1));
 	}

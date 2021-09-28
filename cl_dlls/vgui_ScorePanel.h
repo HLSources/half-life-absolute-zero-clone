@@ -221,7 +221,9 @@ private:
 	bool _useFgColorAsImageColor;
 };
 
-class ScoreTablePanel;
+//TAGGG - oh look, a pointless forward declaration.
+// Catching it just now isn't embarassing or anything, nope.
+//class ScoreTablePanel;
 
 #include "..\game_shared\vgui_grid.h"
 #include "..\game_shared\vgui_defaultinputsignal.h"

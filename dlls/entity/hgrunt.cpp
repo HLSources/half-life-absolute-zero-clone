@@ -56,6 +56,7 @@
 #include "player.h"
 #include "util_debugdraw.h"
 #include "hassault.h"
+#include "scripted.h"
 
 
 
@@ -770,7 +771,7 @@ Task_t	tlGruntCombatFace1[] =
 	{ TASK_SET_ACTIVITY,			(float)ACT_IDLE				},
 	{ TASK_FACE_ENEMY,				(float)0					},
 	//MODDD - now faces the enemy instead, good to keep up to date during this waiting time.
-	{ TASK_WAIT_FACE_ENEMY,					(float)1.5					},
+	{ TASK_WAIT_FACE_ENEMY,			(float)1.5					},
 	{ TASK_SET_SCHEDULE,			(float)SCHED_GRUNT_SWEEP	},
 };
 
@@ -781,8 +782,12 @@ Schedule_t	slGruntCombatFace[] =
 		ARRAYSIZE ( tlGruntCombatFace1 ),
 		bits_COND_NEW_ENEMY				|
 		bits_COND_ENEMY_DEAD			|
-		bits_COND_CAN_RANGE_ATTACK1		|
-		bits_COND_CAN_RANGE_ATTACK2,
+		bits_COND_CAN_RANGE_ATTACK1,
+		//MODDD - let's not be interruptable by being able to throw a grenade.
+		// That can cause the AI to stall from thinking it can throw a grenade before seeing if facing the
+		// intended direction would've lead to a different outcome, and stall-repick-stall-repick forever
+		//bits_COND_CAN_RANGE_ATTACK2,
+
 		0,
 		//MODDD - why named so generic? "Combat Face"? what?
 		"hgrunt Combat Face"
@@ -1923,12 +1928,10 @@ BOOL CHGrunt::CheckRangeAttack1 ( float flDot, float flDist )
 BOOL CHGrunt::CheckRangeAttack2 ( float flDot, float flDist )
 {
 
-
-	// enemy, MUST.  be occluded.
-	// uhhhh.  says who?
-	//if (!HasConditions(bits_COND_ENEMY_OCCLUDED)) {
-	//	return FALSE;
-	//}
+	//MODDD - enemy must be occluded, OR far enough away that throwing a grenade anyway still makes sense
+	if(!HasConditions(bits_COND_ENEMY_OCCLUDED) && flDist < 370){
+		return FALSE;
+	}
 
 
 	if(EASY_CVAR_GET_DEBUGONLY(hgruntAllowGrenades) == 0){
@@ -2039,8 +2042,9 @@ BOOL CHGrunt::CheckRangeAttack2 ( float flDot, float flDist )
 		//vecTarget = m_hEnemy->BodyTarget( pev->origin );
 		vecTarget = m_vecEnemyLKP + (m_hEnemy->BodyTarget( pev->origin ) - m_hEnemy->pev->origin);
 		// estimate position
-		if (HasConditions( bits_COND_SEE_ENEMY))
+		if (HasConditions( bits_COND_SEE_ENEMY)){
 			vecTarget = vecTarget + ((vecTarget - pev->origin).Length() / gSkillData.hgruntGrenadeSpeed) * m_hEnemy->pev->velocity;
+		}
 	}
 
 	// are any of my squad members near the intended grenade impact area?
@@ -2396,6 +2400,18 @@ GENERATE_TAKEDAMAGE_IMPLEMENTATION(CHGrunt)
 		//This ensures the damage isn't coming from a continual source (poison, radiation).
 		//Moving sideways in response to taking damage from a likely out-of-sight enemy is... odd looking.
 		!(bitsDamageTypeMod & (DMG_TIMEDEFFECT|DMG_TIMEDEFFECTIGNORE) )
+
+		// ALSO - can't be in a scripted state, just gets too confusing.
+		// TODO - low priority.
+		// It we really wanted to support breaking the scripted state to immediately go to strafe,
+		// we'd need to make sure the hgrunt has a strong preference to pick a strafe schedule
+		// the next time it picks a schedule in GetSchedule instead, probably the proper way
+		// to handle this anytime.  Have a custom condition that breaks most schedules to go pick
+		// a strafe instead of all these hardcoded checks like the above.
+		// ALTHOUGH.  If there isn't a place to strafe to at the moment, we don't want to break
+		// the schedule as stopping with nowhere to strafe to (standstill) would look kinda dumb.
+		//&&!(m_MonsterState == MONSTERSTATE_SCRIPT && (m_pCine && !m_pCine->CanInterrupt() ) )
+		&&!(m_MonsterState == MONSTERSTATE_SCRIPT)
 	)
 	{
 		//standing?
@@ -5250,17 +5266,11 @@ void CHGrunt::SetActivity ( Activity NewActivity )
 Schedule_t *CHGrunt::GetSchedule( void )
 {
 	
-	/*
-	if(monsterID == 9){
-		if(HasConditions(bits_COND_ENEMY_DEAD)){
-			easyForcePrintLine("$$$ THEY DEAD M8");
-		}else{
-			easyForcePrintLine("$$$ I SEE NO DEAD COND M8");
-		}
-	}
-	*/
-
 	//return CBaseMonster::GetSchedule();
+
+	if(monsterID == 30){
+		int x = 45;
+	}
 
 	// clear old sentence
 	m_iSentence = HGRUNT_SENT_NONE;
@@ -5510,46 +5520,48 @@ Schedule_t *CHGrunt::GetSchedule( void )
 				}
 			}
 // can't see enemy
-			else if ( HasConditions( bits_COND_ENEMY_OCCLUDED ) )
+			//TAGGG - removing the OCCLUDED check from here.
+			// The CheckRangeAttack2 ("can I throw a grenade?") already involves Occluded as it needs to.
+			//else if ( HasConditions( bits_COND_ENEMY_OCCLUDED ) )
+			else if ( HasConditions( bits_COND_CAN_RANGE_ATTACK2 ) && OccupySlot( bits_SLOTS_HGRUNT_GRENADE ) )
 			{
-				if ( HasConditions( bits_COND_CAN_RANGE_ATTACK2 ) && OccupySlot( bits_SLOTS_HGRUNT_GRENADE ) )
+				//!!!KELLY - this grunt is about to throw or fire a grenade at the player. Great place for "fire in the hole"  "frag out" etc
+				if (FOkToSpeak())
 				{
-					//!!!KELLY - this grunt is about to throw or fire a grenade at the player. Great place for "fire in the hole"  "frag out" etc
-					if (FOkToSpeak())
-					{
-						SayGrenadeThrow();
-						JustSpoke();
-					}
-					return GetScheduleOfType( SCHED_RANGE_ATTACK2 );
+					SayGrenadeThrow();
+					JustSpoke();
 				}
-				else if ( OccupySlot( bits_SLOTS_HGRUNT_ENGAGE ) )
+				return GetScheduleOfType( SCHED_RANGE_ATTACK2 );
+			}
+			// The rest can keep the OCCLUDED checks though.
+			else if ( HasConditions( bits_COND_ENEMY_OCCLUDED ) && OccupySlot( bits_SLOTS_HGRUNT_ENGAGE ) )
+			{
+				//!!!KELLY - grunt cannot see the enemy and has just decided to
+				// charge the enemy's position.
+				if (FOkToSpeak())// && RANDOM_LONG(0,1))
 				{
-					//!!!KELLY - grunt cannot see the enemy and has just decided to
-					// charge the enemy's position.
-					if (FOkToSpeak())// && RANDOM_LONG(0,1))
-					{
-						//SENTENCEG_PlayRndSz( ENT(pev), "HG_CHARGE", HGRUNT_SENTENCE_VOLUME, GRUNT_ATTN, 0, m_voicePitch);
-						m_iSentence = HGRUNT_SENT_CHARGE;
-						//JustSpoke();
-					}
+					//SENTENCEG_PlayRndSz( ENT(pev), "HG_CHARGE", HGRUNT_SENTENCE_VOLUME, GRUNT_ATTN, 0, m_voicePitch);
+					m_iSentence = HGRUNT_SENT_CHARGE;
+					//JustSpoke();
+				}
 
 #if HGRUNT_NOMOVE != 1
-					return GetScheduleOfType( SCHED_GRUNT_ESTABLISH_LINE_OF_FIRE );
+				return GetScheduleOfType( SCHED_GRUNT_ESTABLISH_LINE_OF_FIRE );
 #endif
-				}
-				else
-				{
-					//!!!KELLY - grunt is going to stay put for a couple seconds to see if
-					// the enemy wanders back out into the open, or approaches the
-					// grunt's covered position. Good place for a taunt, I guess?
-					if (FOkToSpeak() && RANDOM_LONG(0,1))
-					{
-						SENTENCEG_PlayRndSz( ENT(pev), "HG_TAUNT", HGRUNT_SENTENCE_VOLUME, GRUNT_ATTN, 0, m_voicePitch);
-						JustSpoke();
-					}
-					return GetScheduleOfType( SCHED_STANDOFF );
-				}
 			}
+			else if(HasConditions( bits_COND_ENEMY_OCCLUDED ))
+			{
+				//!!!KELLY - grunt is going to stay put for a couple seconds to see if
+				// the enemy wanders back out into the open, or approaches the
+				// grunt's covered position. Good place for a taunt, I guess?
+				if (FOkToSpeak() && RANDOM_LONG(0,1))
+				{
+					SENTENCEG_PlayRndSz( ENT(pev), "HG_TAUNT", HGRUNT_SENTENCE_VOLUME, GRUNT_ATTN, 0, m_voicePitch);
+					JustSpoke();
+				}
+				return GetScheduleOfType( SCHED_STANDOFF );
+			}
+			
 
 
 			BOOL testo = HasConditions(bits_COND_NEW_ENEMY);

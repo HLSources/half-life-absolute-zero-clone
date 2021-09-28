@@ -799,19 +799,15 @@ int CCrowbar::Swing( int fFirst )
 		}
 		#ifndef CLIENT_DLL
 			m_fireState = (++m_fireState) % 3;
-			//easyPrintLine("SERVAH");
 		#else
-			//easyPrintLine("CLIENTT");
+			// why not here too? I forget, test with that at your own peril
+
 		#endif
 
 		// player "shoot" animation
 		m_pPlayer->SetAnimation( PLAYER_ATTACK1 );
 		// at least do these things?
 		m_flNextPrimaryAttack = UTIL_WeaponTimeBase() + 0.25;
-
-		//easyPrintLine("efefefefefef");
-		//return TRUE;
-
 
 
 		//MODDD
