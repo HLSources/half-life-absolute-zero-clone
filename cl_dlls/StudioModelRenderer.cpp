@@ -1323,18 +1323,20 @@ void CStudioModelRenderer::StudioFxTransform( cl_entity_t *ent, float transform[
 		if ( gEngfuncs.pfnRandomLong(0,49) == 0 )
 		{
 			int axis = gEngfuncs.pfnRandomLong(0,1);
-			if ( axis == 1 ) // Choose between x & z
+			if ( axis == 1 ){ // Choose between x & z
 				axis = 2;
+			}
 			VectorScale( transform[axis], gEngfuncs.pfnRandomFloat(1,1.484), transform[axis] );
 		}
 		else if ( gEngfuncs.pfnRandomLong(0,49) == 0 )
 		{
+			//MODDD - Gotcha!  axis-generating script was cloned above,
+			// despite not being used here.  So two random numbers generated,
+			// one went unused.
 			float offset;
-			int axis = gEngfuncs.pfnRandomLong(0,1);
-			if ( axis == 1 ) // Choose between x & z
-				axis = 2;
+			int axis = gEngfuncs.pfnRandomLong(0,2);
 			offset = gEngfuncs.pfnRandomFloat(-10,10);
-			transform[gEngfuncs.pfnRandomLong(0,2)][3] += offset;
+			transform[axis][3] += offset;
 		}
 	break;
 	case kRenderFxExplode:

@@ -92,6 +92,12 @@
 // This skips both of those if set to 1, 0 for retail behavior.
 #define SLIM_WEAPON_CLIENT_COMPILE 1
 
+// If on, a minimal "special" command is supported to let the "+bhop" alias used by
+// NGHL in place of "+jump" (mapped to space instead) continue to work as expected.
+// Otherwise, the "special" commands called by "bhop" won't work, so continuous jumping
+// won't work and holding space underwater won't move upwards (only tapping does).
+#define NGHL_BHOP_SUPPORT 1
+
 // Turn on to get easy access to even more information about schedules, like task names
 // and recently used schedule enum constants to track down how a schedule was picked.
 // Enables a large chunk of util_debugschedule.h and other needed additions

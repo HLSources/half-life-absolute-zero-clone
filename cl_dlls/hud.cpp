@@ -851,12 +851,25 @@ void command_test4(void) {
 
 
 
+#if NGHL_BHOP_SUPPORT == 1
+void command_special(void)
+{
+	// Originally this command was for TF.  It checked for the player class
+	// being PC_ENGINEER or SPY, otherwise called "_special" which is only
+	// supported by the Engine.
+	// The NGHL client expects this "special" command to exist to redirect
+	// to "_special".
+	ClientCmd( "_special" );
+}
+#endif
+
 // This is called every time the DLL is loaded
 // MODDD - NOTE. 
 // See cl_dlls/cdll_int.cpp for the HUD_Init call that leads here, although there isn't anything
 // special there.
 void CHud::Init( void )
 {
+
 	//MODDD - HOOK_MESSAGE calls for hud_msg.cpp methods moved
 	// to custom_message.cpp, along with the methods themselves.
 	
@@ -901,6 +914,9 @@ void CHud::Init( void )
 
 	gEngfuncs.pfnAddCommand("lastinv", command_lastinv);
 
+#if NGHL_BHOP_SUPPORT == 1
+	gEngfuncs.pfnAddCommand("special", command_special);
+#endif
 	
 
 
